@@ -31,20 +31,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnBuscar_Home = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtBusqueda_Home = new System.Windows.Forms.TextBox();
+            this.dgvPrestamos_Home = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBusqueda_Home = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBuscar_Home = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbFiltroBusqueda_Home = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,10 +71,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.cbFiltroBusqueda_Home);
             this.tabPage1.Controls.Add(this.btnBuscar_Home);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txtBusqueda_Home);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dgvPrestamos_Home);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -81,30 +85,45 @@
             this.tabPage1.Text = "INICIO";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // btnBuscar_Home
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(777, 503);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.btnBuscar_Home.Location = new System.Drawing.Point(315, 110);
+            this.btnBuscar_Home.Name = "btnBuscar_Home";
+            this.btnBuscar_Home.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar_Home.TabIndex = 3;
+            this.btnBuscar_Home.Text = "Buscar";
+            this.btnBuscar_Home.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // label2
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "BUSQUEDA DE PRESTAMO";
+            // 
+            // txtBusqueda_Home
+            // 
+            this.txtBusqueda_Home.Location = new System.Drawing.Point(21, 110);
+            this.txtBusqueda_Home.Name = "txtBusqueda_Home";
+            this.txtBusqueda_Home.Size = new System.Drawing.Size(265, 20);
+            this.txtBusqueda_Home.TabIndex = 1;
+            // 
+            // dgvPrestamos_Home
+            // 
+            this.dgvPrestamos_Home.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrestamos_Home.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6});
-            this.dataGridView1.Location = new System.Drawing.Point(21, 151);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(644, 315);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
+            this.dgvPrestamos_Home.Name = "dgvPrestamos_Home";
+            this.dgvPrestamos_Home.Size = new System.Drawing.Size(644, 315);
+            this.dgvPrestamos_Home.TabIndex = 0;
             // 
             // Column1
             // 
@@ -136,30 +155,37 @@
             this.Column6.HeaderText = "Fecha De Entrega";
             this.Column6.Name = "Column6";
             // 
-            // txtBusqueda_Home
+            // tabPage2
             // 
-            this.txtBusqueda_Home.Location = new System.Drawing.Point(21, 110);
-            this.txtBusqueda_Home.Name = "txtBusqueda_Home";
-            this.txtBusqueda_Home.Size = new System.Drawing.Size(265, 20);
-            this.txtBusqueda_Home.TabIndex = 1;
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(777, 503);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // cbFiltroBusqueda_Home
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "BUSQUEDA DE PRESTAMO";
+            this.cbFiltroBusqueda_Home.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltroBusqueda_Home.FormattingEnabled = true;
+            this.cbFiltroBusqueda_Home.Items.AddRange(new object[] {
+            "TODOS",
+            "ALUMNOS",
+            "PERSONAL"});
+            this.cbFiltroBusqueda_Home.Location = new System.Drawing.Point(21, 55);
+            this.cbFiltroBusqueda_Home.Name = "cbFiltroBusqueda_Home";
+            this.cbFiltroBusqueda_Home.Size = new System.Drawing.Size(121, 21);
+            this.cbFiltroBusqueda_Home.TabIndex = 4;
             // 
-            // btnBuscar_Home
+            // label3
             // 
-            this.btnBuscar_Home.Location = new System.Drawing.Point(315, 110);
-            this.btnBuscar_Home.Name = "btnBuscar_Home";
-            this.btnBuscar_Home.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar_Home.TabIndex = 3;
-            this.btnBuscar_Home.Text = "Buscar";
-            this.btnBuscar_Home.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Filtrar  prestamos por:";
             // 
             // Form1
             // 
@@ -171,10 +197,11 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "BIBLIOTECA";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +215,7 @@
         private System.Windows.Forms.Button btnBuscar_Home;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBusqueda_Home;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPrestamos_Home;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -196,6 +223,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ComboBox cbFiltroBusqueda_Home;
+        private System.Windows.Forms.Label label3;
     }
 }
 

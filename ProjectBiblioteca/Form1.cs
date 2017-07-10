@@ -16,5 +16,10 @@ namespace ProjectBiblioteca
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cbFiltroBusqueda_Home.SelectedIndex = 0;
+        }
     }
 }
