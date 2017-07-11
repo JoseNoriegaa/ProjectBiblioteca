@@ -89,6 +89,7 @@
             this.txtBuscar_Personal = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.btnBuscar_Personal = new System.Windows.Forms.Button();
+            this.tabPrestamo = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -113,6 +114,7 @@
             this.tabControl1.Controls.Add(this.tabInicio);
             this.tabControl1.Controls.Add(this.tabAlumno);
             this.tabControl1.Controls.Add(this.tabPersonal);
+            this.tabControl1.Controls.Add(this.tabPrestamo);
             this.tabControl1.Location = new System.Drawing.Point(1, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -562,7 +564,7 @@
             // 
             // txtEMail_Personal
             // 
-            this.txtEMail_Personal.Location = new System.Drawing.Point(11, 273);
+            this.txtEMail_Personal.Location = new System.Drawing.Point(6, 275);
             this.txtEMail_Personal.Name = "txtEMail_Personal";
             this.txtEMail_Personal.Size = new System.Drawing.Size(243, 20);
             this.txtEMail_Personal.TabIndex = 9;
@@ -655,6 +657,15 @@
             this.btnBuscar_Personal.Text = "Buscar";
             this.btnBuscar_Personal.UseVisualStyleBackColor = true;
             // 
+            // tabPrestamo
+            // 
+            this.tabPrestamo.Location = new System.Drawing.Point(4, 22);
+            this.tabPrestamo.Name = "tabPrestamo";
+            this.tabPrestamo.Size = new System.Drawing.Size(776, 501);
+            this.tabPrestamo.TabIndex = 3;
+            this.tabPrestamo.Text = "PRÉSTAMO";
+            this.tabPrestamo.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -744,6 +755,7 @@
         private System.Windows.Forms.Button btnBuscar_Personal;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBuscar_Personal;
+        private System.Windows.Forms.TabPage tabPrestamo;
     }
 }
 
