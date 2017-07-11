@@ -37,20 +37,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBusqueda_Home = new System.Windows.Forms.TextBox();
             this.dgvPrestamos_Home = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAlumno = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
             this.btnBuscar_Alumno = new System.Windows.Forms.Button();
             this.txtBusqueda_Alumno = new System.Windows.Forms.TextBox();
             this.dgvAlumnos_Alumno = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
             this.btnAdd_Alumno = new System.Windows.Forms.Button();
             this.txtTelefono_AlumnoAdd = new System.Windows.Forms.TextBox();
@@ -83,13 +74,22 @@
             this.btnAgregar_Personal = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.dgvLista_Personal = new System.Windows.Forms.DataGridView();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscar_Personal = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.btnBuscar_Personal = new System.Windows.Forms.Button();
             this.tabPrestamo = new System.Windows.Forms.TabPage();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -200,36 +200,6 @@
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(733, 315);
             this.dgvPrestamos_Home.TabIndex = 0;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Nombre";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nombre del libro";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "ISBN";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "ID Ejemplar";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "ID Prestamo";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Fecha De Entrega";
-            this.Column6.Name = "Column6";
-            // 
             // tabAlumno
             // 
             this.tabAlumno.Controls.Add(this.label13);
@@ -298,21 +268,6 @@
             this.dgvAlumnos_Alumno.Name = "dgvAlumnos_Alumno";
             this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(342, 371);
             this.dgvAlumnos_Alumno.TabIndex = 17;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Matricula";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Nombre";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Carrera";
-            this.Column9.Name = "Column9";
             // 
             // label12
             // 
@@ -617,21 +572,6 @@
             this.dgvLista_Personal.Size = new System.Drawing.Size(328, 402);
             this.dgvLista_Personal.TabIndex = 14;
             // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "No.Empleado";
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Nombre";
-            this.Column11.Name = "Column11";
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Ocupación";
-            this.Column12.Name = "Column12";
-            // 
             // txtBuscar_Personal
             // 
             this.txtBuscar_Personal.Location = new System.Drawing.Point(439, 58);
@@ -665,6 +605,79 @@
             this.tabPrestamo.TabIndex = 3;
             this.tabPrestamo.Text = "PRÉSTAMO";
             this.tabPrestamo.UseVisualStyleBackColor = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Matricula";
+            this.Column7.Name = "Column7";
+            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Nombre";
+            this.Column8.Name = "Column8";
+            this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Carrera";
+            this.Column9.Name = "Column9";
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "No.Empleado";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Nombre";
+            this.Column11.Name = "Column11";
+            this.Column11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Ocupación";
+            this.Column12.Name = "Column12";
+            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Nombre";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre del libro";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "ISBN";
+            this.Column3.Name = "Column3";
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "ID Ejemplar";
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "ID Prestamo";
+            this.Column5.Name = "Column5";
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Fecha De Entrega";
+            this.Column6.Name = "Column6";
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Form1
             // 
@@ -701,12 +714,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBusqueda_Home;
         private System.Windows.Forms.DataGridView dgvPrestamos_Home;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TabPage tabAlumno;
         private System.Windows.Forms.ComboBox cbFiltroBusqueda_Home;
         private System.Windows.Forms.Label label3;
@@ -730,9 +737,6 @@
         private System.Windows.Forms.Button btnBuscar_Alumno;
         private System.Windows.Forms.TextBox txtBusqueda_Alumno;
         private System.Windows.Forms.DataGridView dgvAlumnos_Alumno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TabPage tabPersonal;
         private System.Windows.Forms.Label label16;
@@ -740,9 +744,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dgvLista_Personal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnAgregar_Personal;
         private System.Windows.Forms.TextBox txtTelefono_Personal;
@@ -756,6 +757,18 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBuscar_Personal;
         private System.Windows.Forms.TabPage tabPrestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
 
