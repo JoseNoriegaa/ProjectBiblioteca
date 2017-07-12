@@ -88,6 +88,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabPrestamo = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
             this.cbTipo_Prestamo = new System.Windows.Forms.ComboBox();
@@ -118,7 +119,8 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.btnDevolucion_Home = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -155,6 +157,8 @@
             // 
             // tabInicio
             // 
+            this.tabInicio.Controls.Add(this.btnDevolucion_Home);
+            this.tabInicio.Controls.Add(this.label32);
             this.tabInicio.Controls.Add(this.label3);
             this.tabInicio.Controls.Add(this.cbFiltroBusqueda_Home);
             this.tabInicio.Controls.Add(this.btnBuscar_Home);
@@ -233,7 +237,7 @@
             this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
             this.dgvPrestamos_Home.Name = "dgvPrestamos_Home";
             this.dgvPrestamos_Home.ReadOnly = true;
-            this.dgvPrestamos_Home.Size = new System.Drawing.Size(976, 315);
+            this.dgvPrestamos_Home.Size = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.TabIndex = 0;
             // 
             // Column1
@@ -734,11 +738,20 @@
             this.tabPrestamo.UseVisualStyleBackColor = true;
             this.tabPrestamo.Click += new System.EventHandler(this.tabPrestamo_Click);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(19, 45);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(141, 13);
+            this.label25.TabIndex = 26;
+            this.label25.Text = "Seleccione tipo de préstamo";
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label22.Location = new System.Drawing.Point(695, 411);
+            this.label22.Location = new System.Drawing.Point(688, 408);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(79, 13);
             this.label22.TabIndex = 25;
@@ -746,10 +759,10 @@
             // 
             // txtEstado_Prestamo
             // 
-            this.txtEstado_Prestamo.Location = new System.Drawing.Point(792, 408);
+            this.txtEstado_Prestamo.Location = new System.Drawing.Point(791, 408);
             this.txtEstado_Prestamo.Multiline = true;
             this.txtEstado_Prestamo.Name = "txtEstado_Prestamo";
-            this.txtEstado_Prestamo.Size = new System.Drawing.Size(142, 40);
+            this.txtEstado_Prestamo.Size = new System.Drawing.Size(201, 40);
             this.txtEstado_Prestamo.TabIndex = 24;
             // 
             // cbTipo_Prestamo
@@ -778,7 +791,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label31.Location = new System.Drawing.Point(694, 178);
+            this.label31.Location = new System.Drawing.Point(688, 174);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 21;
@@ -788,7 +801,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label30.Location = new System.Drawing.Point(694, 232);
+            this.label30.Location = new System.Drawing.Point(688, 232);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(32, 13);
             this.label30.TabIndex = 20;
@@ -798,17 +811,17 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label29.Location = new System.Drawing.Point(688, 306);
+            this.label29.Location = new System.Drawing.Point(688, 312);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(98, 13);
             this.label29.TabIndex = 19;
-            this.label29.Text = "Fecha de prestamo";
+            this.label29.Text = "Fecha de préstamo";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label28.Location = new System.Drawing.Point(694, 273);
+            this.label28.Location = new System.Drawing.Point(688, 270);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(59, 13);
             this.label28.TabIndex = 18;
@@ -818,17 +831,17 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label27.Location = new System.Drawing.Point(694, 340);
+            this.label27.Location = new System.Drawing.Point(688, 340);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(72, 13);
+            this.label27.Size = new System.Drawing.Size(74, 13);
             this.label27.TabIndex = 17;
-            this.label27.Text = "Dias a prestar";
+            this.label27.Text = "Días a prestar";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label26.Location = new System.Drawing.Point(694, 376);
+            this.label26.Location = new System.Drawing.Point(688, 369);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(60, 13);
             this.label26.TabIndex = 16;
@@ -838,7 +851,7 @@
             // 
             this.lNoControl_Empleado_Prestamo.AutoSize = true;
             this.lNoControl_Empleado_Prestamo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(694, 135);
+            this.lNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(688, 132);
             this.lNoControl_Empleado_Prestamo.Name = "lNoControl_Empleado_Prestamo";
             this.lNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(60, 13);
             this.lNoControl_Empleado_Prestamo.TabIndex = 15;
@@ -879,52 +892,52 @@
             // 
             this.cbDias_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDias_Prestamo.FormattingEnabled = true;
-            this.cbDias_Prestamo.Location = new System.Drawing.Point(792, 332);
+            this.cbDias_Prestamo.Location = new System.Drawing.Point(791, 332);
             this.cbDias_Prestamo.Name = "cbDias_Prestamo";
             this.cbDias_Prestamo.Size = new System.Drawing.Size(121, 21);
             this.cbDias_Prestamo.TabIndex = 11;
             // 
             // dtpEntrega_Prestamo
             // 
-            this.dtpEntrega_Prestamo.Location = new System.Drawing.Point(792, 369);
+            this.dtpEntrega_Prestamo.Location = new System.Drawing.Point(791, 369);
             this.dtpEntrega_Prestamo.Name = "dtpEntrega_Prestamo";
             this.dtpEntrega_Prestamo.Size = new System.Drawing.Size(200, 20);
             this.dtpEntrega_Prestamo.TabIndex = 10;
             // 
             // dtpPrestamo_Prestamo
             // 
-            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(792, 306);
+            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(791, 306);
             this.dtpPrestamo_Prestamo.Name = "dtpPrestamo_Prestamo";
             this.dtpPrestamo_Prestamo.Size = new System.Drawing.Size(200, 20);
             this.dtpPrestamo_Prestamo.TabIndex = 9;
             // 
             // txtIdEjemplar_Prestamo
             // 
-            this.txtIdEjemplar_Prestamo.Location = new System.Drawing.Point(792, 270);
+            this.txtIdEjemplar_Prestamo.Location = new System.Drawing.Point(791, 270);
             this.txtIdEjemplar_Prestamo.Name = "txtIdEjemplar_Prestamo";
-            this.txtIdEjemplar_Prestamo.Size = new System.Drawing.Size(142, 20);
+            this.txtIdEjemplar_Prestamo.Size = new System.Drawing.Size(201, 20);
             this.txtIdEjemplar_Prestamo.TabIndex = 8;
             // 
             // txtISBN_Prestamo
             // 
-            this.txtISBN_Prestamo.Location = new System.Drawing.Point(792, 229);
+            this.txtISBN_Prestamo.Location = new System.Drawing.Point(791, 229);
             this.txtISBN_Prestamo.Name = "txtISBN_Prestamo";
-            this.txtISBN_Prestamo.Size = new System.Drawing.Size(142, 20);
+            this.txtISBN_Prestamo.Size = new System.Drawing.Size(201, 20);
             this.txtISBN_Prestamo.TabIndex = 7;
             // 
             // txtNombreLibro_Prestamo
             // 
-            this.txtNombreLibro_Prestamo.Location = new System.Drawing.Point(792, 174);
+            this.txtNombreLibro_Prestamo.Location = new System.Drawing.Point(791, 174);
             this.txtNombreLibro_Prestamo.Multiline = true;
             this.txtNombreLibro_Prestamo.Name = "txtNombreLibro_Prestamo";
-            this.txtNombreLibro_Prestamo.Size = new System.Drawing.Size(142, 40);
+            this.txtNombreLibro_Prestamo.Size = new System.Drawing.Size(201, 40);
             this.txtNombreLibro_Prestamo.TabIndex = 6;
             // 
             // txtNoControl_Empleado_Prestamo
             // 
-            this.txtNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(792, 132);
+            this.txtNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(791, 132);
             this.txtNoControl_Empleado_Prestamo.Name = "txtNoControl_Empleado_Prestamo";
-            this.txtNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(142, 20);
+            this.txtNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(201, 20);
             this.txtNoControl_Empleado_Prestamo.TabIndex = 5;
             // 
             // dgvListaLibros_Prestamo
@@ -1003,14 +1016,24 @@
             this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
             this.txtAlumno_Prestamo.TabIndex = 0;
             // 
-            // label25
+            // label32
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(19, 45);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(141, 13);
-            this.label25.TabIndex = 26;
-            this.label25.Text = "Seleccione tipo de préstamo";
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(17, 6);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(148, 24);
+            this.label32.TabIndex = 6;
+            this.label32.Text = "PENDIENTES";
+            // 
+            // btnDevolucion_Home
+            // 
+            this.btnDevolucion_Home.Location = new System.Drawing.Point(907, 427);
+            this.btnDevolucion_Home.Name = "btnDevolucion_Home";
+            this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 52);
+            this.btnDevolucion_Home.TabIndex = 7;
+            this.btnDevolucion_Home.Text = "REGISTRAR DEVOLUCIÓN";
+            this.btnDevolucion_Home.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1135,6 +1158,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtEstado_Prestamo;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnDevolucion_Home;
+        private System.Windows.Forms.Label label32;
     }
 }
 
