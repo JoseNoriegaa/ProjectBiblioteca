@@ -22,39 +22,45 @@ namespace ProjectBiblioteca
             cbFiltroBusqueda_Home.SelectedIndex = 0;
         }
 
-        private void label11_Click(object sender, EventArgs e)
+        private void tabPrestamo_Click(object sender, EventArgs e)
         {
-
+            cbTipo_Prestamo.SelectedIndex = 0;
         }
 
-        private void tabPage3_Click(object sender, EventArgs e)
+        private void cbTipo_Prestamo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (cbTipo_Prestamo.SelectedItem.ToString())
+            {
+                case "ALUMNO":
+                    lAlumnos_Prestamo.Text = "LISTA ALUMNOS";
+                    lNoControl_Empleado_Prestamo.Text = "No. de Control";
+                    dgvListaAlumno_Prestamo.Columns[0].HeaderText = "No. de Control";
+                    dgvListaAlumno_Prestamo.Columns[1].HeaderText = "Nombre Del Alumno";
+                    break;
+                case "PERSONAL":
+                    lAlumnos_Prestamo.Text = "LISTA PERSONAL";
+                    lNoControl_Empleado_Prestamo.Text = "No. de Empleado";
+                    dgvListaAlumno_Prestamo.Columns[0].HeaderText = "No. de Empleado";
+                    dgvListaAlumno_Prestamo.Columns[1].HeaderText = "Nombre Del Empleado";
 
+                    break;
+            }
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void cbFiltroBusqueda_Home_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtNoControl_AlumnoAdd_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNombre_AlumnoAdd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
+            {
+                case "TODOS":
+                    dgvPrestamos_Home.Columns[0].HeaderText = "No. De Control/No. De Empleado";
+                    break;
+                case "ALUMNOS":
+                    dgvPrestamos_Home.Columns[0].HeaderText = "No. De Control";
+                    break;
+                case "PERSONAL":
+                    dgvPrestamos_Home.Columns[0].HeaderText = "No. De Empleado";
+                    break;
+            }
         }
     }
 }
