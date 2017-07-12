@@ -37,9 +37,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBusqueda_Home = new System.Windows.Forms.TextBox();
             this.dgvPrestamos_Home = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAlumno = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
-            this.btnBuscar_Alumno = new System.Windows.Forms.Button();
             this.txtBusqueda_Alumno = new System.Windows.Forms.TextBox();
             this.dgvAlumnos_Alumno = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +68,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtApellido_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.tabPersonal = new System.Windows.Forms.TabPage();
-            this.btnBuscar_Personal = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txtBuscar_Personal = new System.Windows.Forms.TextBox();
             this.dgvLista_Personal = new System.Windows.Forms.DataGridView();
@@ -84,6 +88,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabPrestamo = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
             this.cbTipo_Prestamo = new System.Windows.Forms.ComboBox();
             this.bRealizarPrestamo_Prestamo = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
@@ -112,14 +118,7 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -237,10 +236,51 @@
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(976, 315);
             this.dgvPrestamos_Home.TabIndex = 0;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "No. De Control/No. De Empleado";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre del libro";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "ISBN";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "ID Ejemplar";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "ID Prestamo";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Fecha De Entrega";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // tabAlumno
             // 
             this.tabAlumno.Controls.Add(this.label13);
-            this.tabAlumno.Controls.Add(this.btnBuscar_Alumno);
             this.tabAlumno.Controls.Add(this.txtBusqueda_Alumno);
             this.tabAlumno.Controls.Add(this.dgvAlumnos_Alumno);
             this.tabAlumno.Controls.Add(this.label12);
@@ -276,15 +316,6 @@
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 20;
             this.label13.Text = "BÚSQUEDA";
-            // 
-            // btnBuscar_Alumno
-            // 
-            this.btnBuscar_Alumno.Location = new System.Drawing.Point(624, 82);
-            this.btnBuscar_Alumno.Name = "btnBuscar_Alumno";
-            this.btnBuscar_Alumno.Size = new System.Drawing.Size(58, 23);
-            this.btnBuscar_Alumno.TabIndex = 19;
-            this.btnBuscar_Alumno.Text = "Buscar";
-            this.btnBuscar_Alumno.UseVisualStyleBackColor = true;
             // 
             // txtBusqueda_Alumno
             // 
@@ -478,7 +509,6 @@
             // 
             // tabPersonal
             // 
-            this.tabPersonal.Controls.Add(this.btnBuscar_Personal);
             this.tabPersonal.Controls.Add(this.label21);
             this.tabPersonal.Controls.Add(this.txtBuscar_Personal);
             this.tabPersonal.Controls.Add(this.dgvLista_Personal);
@@ -503,19 +533,10 @@
             this.tabPersonal.Text = "PERSONAL";
             this.tabPersonal.UseVisualStyleBackColor = true;
             // 
-            // btnBuscar_Personal
-            // 
-            this.btnBuscar_Personal.Location = new System.Drawing.Point(680, 54);
-            this.btnBuscar_Personal.Name = "btnBuscar_Personal";
-            this.btnBuscar_Personal.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar_Personal.TabIndex = 17;
-            this.btnBuscar_Personal.Text = "Buscar";
-            this.btnBuscar_Personal.UseVisualStyleBackColor = true;
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(439, 40);
+            this.label21.Location = new System.Drawing.Point(502, 40);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(55, 13);
             this.label21.TabIndex = 16;
@@ -523,9 +544,9 @@
             // 
             // txtBuscar_Personal
             // 
-            this.txtBuscar_Personal.Location = new System.Drawing.Point(439, 58);
+            this.txtBuscar_Personal.Location = new System.Drawing.Point(502, 58);
             this.txtBuscar_Personal.Name = "txtBuscar_Personal";
-            this.txtBuscar_Personal.Size = new System.Drawing.Size(234, 20);
+            this.txtBuscar_Personal.Size = new System.Drawing.Size(263, 20);
             this.txtBuscar_Personal.TabIndex = 15;
             // 
             // dgvLista_Personal
@@ -538,10 +559,10 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            this.dgvLista_Personal.Location = new System.Drawing.Point(439, 90);
+            this.dgvLista_Personal.Location = new System.Drawing.Point(502, 90);
             this.dgvLista_Personal.Name = "dgvLista_Personal";
             this.dgvLista_Personal.ReadOnly = true;
-            this.dgvLista_Personal.Size = new System.Drawing.Size(328, 402);
+            this.dgvLista_Personal.Size = new System.Drawing.Size(495, 402);
             this.dgvLista_Personal.TabIndex = 14;
             // 
             // Column10
@@ -569,7 +590,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(435, 12);
+            this.label20.Location = new System.Drawing.Point(498, 12);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(72, 24);
             this.label20.TabIndex = 13;
@@ -679,6 +700,7 @@
             // 
             // tabPrestamo
             // 
+            this.tabPrestamo.Controls.Add(this.label25);
             this.tabPrestamo.Controls.Add(this.label22);
             this.tabPrestamo.Controls.Add(this.txtEstado_Prestamo);
             this.tabPrestamo.Controls.Add(this.cbTipo_Prestamo);
@@ -712,6 +734,24 @@
             this.tabPrestamo.UseVisualStyleBackColor = true;
             this.tabPrestamo.Click += new System.EventHandler(this.tabPrestamo_Click);
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label22.Location = new System.Drawing.Point(695, 411);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(79, 13);
+            this.label22.TabIndex = 25;
+            this.label22.Text = "Estado del libro";
+            // 
+            // txtEstado_Prestamo
+            // 
+            this.txtEstado_Prestamo.Location = new System.Drawing.Point(792, 408);
+            this.txtEstado_Prestamo.Multiline = true;
+            this.txtEstado_Prestamo.Name = "txtEstado_Prestamo";
+            this.txtEstado_Prestamo.Size = new System.Drawing.Size(142, 40);
+            this.txtEstado_Prestamo.TabIndex = 24;
+            // 
             // cbTipo_Prestamo
             // 
             this.cbTipo_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -719,7 +759,7 @@
             this.cbTipo_Prestamo.Items.AddRange(new object[] {
             "ALUMNO",
             "PERSONAL"});
-            this.cbTipo_Prestamo.Location = new System.Drawing.Point(275, 13);
+            this.cbTipo_Prestamo.Location = new System.Drawing.Point(22, 61);
             this.cbTipo_Prestamo.Name = "cbTipo_Prestamo";
             this.cbTipo_Prestamo.Size = new System.Drawing.Size(121, 21);
             this.cbTipo_Prestamo.TabIndex = 23;
@@ -808,27 +848,28 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(35, 10);
+            this.label24.Location = new System.Drawing.Point(18, 6);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(211, 24);
             this.label24.TabIndex = 14;
-            this.label24.Text = "NUEVO PRESTAMO";
+            this.label24.Text = "NUEVO PRÉSTAMO";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(302, 102);
+            this.label23.Location = new System.Drawing.Point(287, 94);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(193, 24);
             this.label23.TabIndex = 13;
             this.label23.Text = "LISTA DE LIBROS";
+            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // lAlumnos_Prestamo
             // 
             this.lAlumnos_Prestamo.AutoSize = true;
             this.lAlumnos_Prestamo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAlumnos_Prestamo.Location = new System.Drawing.Point(30, 101);
+            this.lAlumnos_Prestamo.Location = new System.Drawing.Point(18, 94);
             this.lAlumnos_Prestamo.Name = "lAlumnos_Prestamo";
             this.lAlumnos_Prestamo.Size = new System.Drawing.Size(220, 24);
             this.lAlumnos_Prestamo.TabIndex = 12;
@@ -896,7 +937,7 @@
             this.IdEjempar,
             this.NombreDelLibro,
             this.ISBN});
-            this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 132);
+            this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 165);
             this.dgvListaLibros_Prestamo.Name = "dgvListaLibros_Prestamo";
             this.dgvListaLibros_Prestamo.ReadOnly = true;
             this.dgvListaLibros_Prestamo.Size = new System.Drawing.Size(382, 292);
@@ -930,7 +971,7 @@
             this.dgvListaAlumno_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoControl,
             this.Nombre});
-            this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 132);
+            this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 165);
             this.dgvListaAlumno_Prestamo.Name = "dgvListaAlumno_Prestamo";
             this.dgvListaAlumno_Prestamo.ReadOnly = true;
             this.dgvListaAlumno_Prestamo.Size = new System.Drawing.Size(241, 292);
@@ -950,77 +991,26 @@
             // 
             // txtLibro_Prestamo
             // 
-            this.txtLibro_Prestamo.Location = new System.Drawing.Point(311, 67);
+            this.txtLibro_Prestamo.Location = new System.Drawing.Point(291, 135);
             this.txtLibro_Prestamo.Name = "txtLibro_Prestamo";
-            this.txtLibro_Prestamo.Size = new System.Drawing.Size(100, 20);
+            this.txtLibro_Prestamo.Size = new System.Drawing.Size(189, 20);
             this.txtLibro_Prestamo.TabIndex = 2;
             // 
             // txtAlumno_Prestamo
             // 
-            this.txtAlumno_Prestamo.Location = new System.Drawing.Point(34, 67);
+            this.txtAlumno_Prestamo.Location = new System.Drawing.Point(22, 132);
             this.txtAlumno_Prestamo.Name = "txtAlumno_Prestamo";
-            this.txtAlumno_Prestamo.Size = new System.Drawing.Size(100, 20);
+            this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
             this.txtAlumno_Prestamo.TabIndex = 0;
             // 
-            // Column1
+            // label25
             // 
-            this.Column1.HeaderText = "No. De Control/No. De Empleado";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nombre del libro";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "ISBN";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "ID Ejemplar";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "ID Prestamo";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Fecha De Entrega";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // txtEstado_Prestamo
-            // 
-            this.txtEstado_Prestamo.Location = new System.Drawing.Point(792, 408);
-            this.txtEstado_Prestamo.Multiline = true;
-            this.txtEstado_Prestamo.Name = "txtEstado_Prestamo";
-            this.txtEstado_Prestamo.Size = new System.Drawing.Size(142, 40);
-            this.txtEstado_Prestamo.TabIndex = 24;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label22.Location = new System.Drawing.Point(695, 411);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(79, 13);
-            this.label22.TabIndex = 25;
-            this.label22.Text = "Estado del libro";
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(19, 45);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(141, 13);
+            this.label25.TabIndex = 26;
+            this.label25.Text = "Seleccione tipo de préstamo";
             // 
             // Form1
             // 
@@ -1081,7 +1071,6 @@
         private System.Windows.Forms.TextBox txtTelefono_AlumnoAdd;
         private System.Windows.Forms.Button btnAdd_Alumno;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button btnBuscar_Alumno;
         private System.Windows.Forms.TextBox txtBusqueda_Alumno;
         private System.Windows.Forms.DataGridView dgvAlumnos_Alumno;
         private System.Windows.Forms.Label label12;
@@ -1100,7 +1089,6 @@
         private System.Windows.Forms.ComboBox cbOcupacion_Personal;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtNombre_Personal;
-        private System.Windows.Forms.Button btnBuscar_Personal;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBuscar_Personal;
         private System.Windows.Forms.TabPage tabPrestamo;
@@ -1146,6 +1134,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtEstado_Prestamo;
+        private System.Windows.Forms.Label label25;
     }
 }
 

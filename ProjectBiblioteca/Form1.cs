@@ -20,6 +20,7 @@ namespace ProjectBiblioteca
         private void Form1_Load(object sender, EventArgs e)
         {
             cbFiltroBusqueda_Home.SelectedIndex = 0;
+            cbTipo_Prestamo.SelectedIndex = 0;
         }
 
         private void tabPrestamo_Click(object sender, EventArgs e)
@@ -32,17 +33,22 @@ namespace ProjectBiblioteca
             switch (cbTipo_Prestamo.SelectedItem.ToString())
             {
                 case "ALUMNO":
+                    cbDias_Prestamo.Items.Clear(); 
                     lAlumnos_Prestamo.Text = "LISTA ALUMNOS";
                     lNoControl_Empleado_Prestamo.Text = "No. de Control";
                     dgvListaAlumno_Prestamo.Columns[0].HeaderText = "No. de Control";
                     dgvListaAlumno_Prestamo.Columns[1].HeaderText = "Nombre Del Alumno";
+                    cbDias_Prestamo.Items.Add(3);
+                    cbDias_Prestamo.SelectedIndex = 0;
                     break;
                 case "PERSONAL":
+                    cbDias_Prestamo.Items.Clear();
                     lAlumnos_Prestamo.Text = "LISTA PERSONAL";
                     lNoControl_Empleado_Prestamo.Text = "No. de Empleado";
                     dgvListaAlumno_Prestamo.Columns[0].HeaderText = "No. de Empleado";
                     dgvListaAlumno_Prestamo.Columns[1].HeaderText = "Nombre Del Empleado";
-
+                    cbDias_Prestamo.Items.Add("--");
+                    cbDias_Prestamo.SelectedIndex = 0;
                     break;
             }
         }
@@ -61,6 +67,11 @@ namespace ProjectBiblioteca
                     dgvPrestamos_Home.Columns[0].HeaderText = "No. De Empleado";
                     break;
             }
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
