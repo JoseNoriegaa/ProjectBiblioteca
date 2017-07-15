@@ -25,7 +25,7 @@ namespace ProjectBiblioteca
 
         private void tabPrestamo_Click(object sender, EventArgs e)
         {
-            cbTipo_Prestamo.SelectedIndex = 0;
+            //cbTipo_Prestamo.SelectedIndex = 0;
         }
 
         private void cbTipo_Prestamo_SelectedIndexChanged(object sender, EventArgs e)

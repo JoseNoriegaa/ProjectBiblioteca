@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabInicio = new System.Windows.Forms.TabPage();
+            this.btnDevolucion_Home = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbFiltroBusqueda_Home = new System.Windows.Forms.ComboBox();
             this.btnBuscar_Home = new System.Windows.Forms.Button();
@@ -119,8 +121,10 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.btnDevolucion_Home = new System.Windows.Forms.Button();
+            this.tabAjustes = new System.Windows.Forms.TabPage();
+            this.tabAjustes_2 = new System.Windows.Forms.TabControl();
+            this.tabEmail = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -131,6 +135,8 @@
             this.tabPrestamo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).BeginInit();
+            this.tabAjustes.SuspendLayout();
+            this.tabAjustes_2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -149,6 +155,7 @@
             this.tabControl1.Controls.Add(this.tabAlumno);
             this.tabControl1.Controls.Add(this.tabPersonal);
             this.tabControl1.Controls.Add(this.tabPrestamo);
+            this.tabControl1.Controls.Add(this.tabAjustes);
             this.tabControl1.Location = new System.Drawing.Point(1, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -172,6 +179,25 @@
             this.tabInicio.TabIndex = 0;
             this.tabInicio.Text = "INICIO";
             this.tabInicio.UseVisualStyleBackColor = true;
+            // 
+            // btnDevolucion_Home
+            // 
+            this.btnDevolucion_Home.Location = new System.Drawing.Point(907, 427);
+            this.btnDevolucion_Home.Name = "btnDevolucion_Home";
+            this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 52);
+            this.btnDevolucion_Home.TabIndex = 7;
+            this.btnDevolucion_Home.Text = "REGISTRAR DEVOLUCIÓN";
+            this.btnDevolucion_Home.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(17, 6);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(148, 24);
+            this.label32.TabIndex = 6;
+            this.label32.Text = "PENDIENTES";
             // 
             // label3
             // 
@@ -1016,24 +1042,45 @@
             this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
             this.txtAlumno_Prestamo.TabIndex = 0;
             // 
-            // label32
+            // tabAjustes
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(17, 6);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(148, 24);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "PENDIENTES";
+            this.tabAjustes.Controls.Add(this.tabAjustes_2);
+            this.tabAjustes.Location = new System.Drawing.Point(4, 22);
+            this.tabAjustes.Name = "tabAjustes";
+            this.tabAjustes.Size = new System.Drawing.Size(1024, 501);
+            this.tabAjustes.TabIndex = 4;
+            this.tabAjustes.Text = "AJUSTES";
+            this.tabAjustes.UseVisualStyleBackColor = true;
             // 
-            // btnDevolucion_Home
+            // tabAjustes_2
             // 
-            this.btnDevolucion_Home.Location = new System.Drawing.Point(907, 427);
-            this.btnDevolucion_Home.Name = "btnDevolucion_Home";
-            this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 52);
-            this.btnDevolucion_Home.TabIndex = 7;
-            this.btnDevolucion_Home.Text = "REGISTRAR DEVOLUCIÓN";
-            this.btnDevolucion_Home.UseVisualStyleBackColor = true;
+            this.tabAjustes_2.Controls.Add(this.tabEmail);
+            this.tabAjustes_2.Controls.Add(this.tabPage2);
+            this.tabAjustes_2.Location = new System.Drawing.Point(3, 2);
+            this.tabAjustes_2.Name = "tabAjustes_2";
+            this.tabAjustes_2.SelectedIndex = 0;
+            this.tabAjustes_2.Size = new System.Drawing.Size(1018, 496);
+            this.tabAjustes_2.TabIndex = 0;
+            // 
+            // tabEmail
+            // 
+            this.tabEmail.Location = new System.Drawing.Point(4, 22);
+            this.tabEmail.Name = "tabEmail";
+            this.tabEmail.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEmail.Size = new System.Drawing.Size(1010, 470);
+            this.tabEmail.TabIndex = 0;
+            this.tabEmail.Text = "E-MAIL";
+            this.tabEmail.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1010, 470);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1060,6 +1107,8 @@
             this.tabPrestamo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).EndInit();
+            this.tabAjustes.ResumeLayout(false);
+            this.tabAjustes_2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1160,6 +1209,10 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnDevolucion_Home;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TabPage tabAjustes;
+        private System.Windows.Forms.TabControl tabAjustes_2;
+        private System.Windows.Forms.TabPage tabEmail;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
