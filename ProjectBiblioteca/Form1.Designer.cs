@@ -125,6 +125,13 @@
             this.tabAjustes_2 = new System.Windows.Forms.TabControl();
             this.tabEmail = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtPassCorreo = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkPassCorreo = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -137,6 +144,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).BeginInit();
             this.tabAjustes.SuspendLayout();
             this.tabAjustes_2.SuspendLayout();
+            this.tabEmail.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1064,6 +1073,7 @@
             // 
             // tabEmail
             // 
+            this.tabEmail.Controls.Add(this.groupBox1);
             this.tabEmail.Location = new System.Drawing.Point(4, 22);
             this.tabEmail.Name = "tabEmail";
             this.tabEmail.Padding = new System.Windows.Forms.Padding(3);
@@ -1081,6 +1091,75 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Location = new System.Drawing.Point(12, 42);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtCorreo.TabIndex = 0;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(9, 26);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(155, 13);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "Dirección de correo electrónico";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(9, 70);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(61, 13);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "Contraseña";
+            // 
+            // txtPassCorreo
+            // 
+            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
+            this.txtPassCorreo.Name = "txtPassCorreo";
+            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtPassCorreo.TabIndex = 3;
+            this.txtPassCorreo.UseSystemPasswordChar = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.checkPassCorreo);
+            this.groupBox1.Controls.Add(this.txtCorreo);
+            this.groupBox1.Controls.Add(this.txtPassCorreo);
+            this.groupBox1.Controls.Add(this.label33);
+            this.groupBox1.Controls.Add(this.label34);
+            this.groupBox1.Location = new System.Drawing.Point(680, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(314, 178);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "INGRESAR CORREO";
+            // 
+            // checkPassCorreo
+            // 
+            this.checkPassCorreo.AutoSize = true;
+            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
+            this.checkPassCorreo.Name = "checkPassCorreo";
+            this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
+            this.checkPassCorreo.TabIndex = 4;
+            this.checkPassCorreo.Text = "Mostrar contraseña";
+            this.checkPassCorreo.UseVisualStyleBackColor = true;
+            this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(226, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Registrar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -1109,6 +1188,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).EndInit();
             this.tabAjustes.ResumeLayout(false);
             this.tabAjustes_2.ResumeLayout(false);
+            this.tabEmail.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1213,6 +1295,13 @@
         private System.Windows.Forms.TabControl tabAjustes_2;
         private System.Windows.Forms.TabPage tabEmail;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkPassCorreo;
+        private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.TextBox txtPassCorreo;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button button1;
     }
 }
 
