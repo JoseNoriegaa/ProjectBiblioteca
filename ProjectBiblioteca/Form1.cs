@@ -8,14 +8,20 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data;
+using System.Data.SqlClient;
 namespace ProjectBiblioteca
 {
     public partial class Form1 : Form
     {
+        Libro libro;
+        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
+
+
         public Form1()
         {
             InitializeComponent();
+            fillDGVs();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -113,6 +119,125 @@ namespace ProjectBiblioteca
             {
                 //registrar correo en la base de datos
             }
+        }
+
+        private void btnAgregar_Libro_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                libro = new Libro(txtId_Libro.Text.ToUpper(), txtIsbn_Libro.Text.ToUpper(), txtTitulo_Libro.Text.ToUpper(), int.Parse(txtAño_Libro.Text), txtAutor_Libro.Text.ToUpper(), txtClasificiacion_Libro.Text.ToUpper(), txtDescripcion_Libro.Text.ToUpper(), txtEditorial_Libro.Text.ToUpper(), txtLugar_Libro.Text.ToUpper(), txtEdicion_Libro.Text.ToUpper());
+                libro.agregarLibroBD();
+
+                txtId_Libro.Text = null;
+                txtIsbn_Libro.Text = null;
+                txtTitulo_Libro.Text = null;
+                txtAño_Libro.Text = null;
+                txtClasificiacion_Libro.Text = null;
+                txtAutor_Libro.Text = null;
+                txtDescripcion_Libro.Text = null;
+                txtEditorial_Libro.Text = null;
+                txtLugar_Libro.Text = null;
+                txtEdicion_Libro.Text = null;
+                fillDGVs();
+            }
+            catch { }
+
+        }
+
+        private void fillDGVs()
+        {
+            //try
+            //{
+            //    SqlCommand cmd;
+            //    SqlDataReader rd;
+            //    cnn.Open();
+            //    #region llenar DGV libro
+            //    dgvLista_libro.Rows.Clear();
+            //    dgvLista_Personal.Rows.Clear();
+            //    cmd = new SqlCommand("BuscarLibros_Todos", cnn);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    rd = cmd.ExecuteReader();
+            //    while (rd.Read())
+            //    {
+            //        dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+            //        dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+            //    }
+            //    rd.Close();
+            //    #endregion
+
+            //    #region llenar DGV Alumnos-Personal Prestamo
+            //    if (cbTipo_Prestamo.Text == "Alumnos")
+            //    {
+            //        cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        rd = cmd.ExecuteReader();
+            //        while (rd.Read())
+            //        {
+            //            dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(),rd["Nombre"].ToString());
+            //        }
+            //    }
+            //    else
+            //    {
+            //        cmd = new SqlCommand("Mostrar_Personal", cnn);
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        rd = cmd.ExecuteReader();
+            //        while (rd.Read())
+            //        {
+            //            dgvListaAlumno_Prestamo.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString());
+            //        }
+            //    }
+            //    rd.Close();
+
+            //    #endregion
+
+            //    #region llenar lista alumnos
+            //    cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    rd = cmd.ExecuteReader();
+            //    while (rd.Read())
+            //    {
+            //        dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString());
+            //    }
+            //    rd.Close();
+
+            //    #endregion
+
+            //    #region llenar lista Personal
+            //    cmd = new SqlCommand("Mostrar_Personal", cnn);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    rd = cmd.ExecuteReader();
+            //    while (rd.Read())
+            //    {
+            //        dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString());
+            //    }
+            //    rd.Close();
+
+            //    #endregion
+
+
+
+
+            //}
+            
+            //finally
+            //{
+            //    cnn.Close();
+            //}
+
+        }
+
+      
+
+        private void dgvListaLibros_Prestamo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNombreLibro_Prestamo.Text = dgvListaLibros_Prestamo.CurrentRow.Cells[1].Value.ToString();
+            txtISBN_Prestamo.Text= dgvListaLibros_Prestamo.CurrentRow.Cells[2].Value.ToString();
+            txtIdEjemplar_Prestamo.Text= dgvListaLibros_Prestamo.CurrentRow.Cells[0].Value.ToString();
+        }
+
+        private void dgvListaAlumno_Prestamo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNoControl_Empleado_Prestamo.Text = dgvListaAlumno_Prestamo.CurrentRow.Cells[0].Value.ToString();
         }
     }
 }

@@ -121,17 +121,52 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
+            this.tabLibro = new System.Windows.Forms.TabPage();
+            this.txtBusqueda_Libro = new System.Windows.Forms.TextBox();
+            this.dgvLista_libro = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregar_Libro = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtEdicion_Libro = new System.Windows.Forms.TextBox();
+            this.txtLugar_Libro = new System.Windows.Forms.TextBox();
+            this.txtEditorial_Libro = new System.Windows.Forms.TextBox();
+            this.txtDescripcion_Libro = new System.Windows.Forms.RichTextBox();
+            this.txtAutor_Libro = new System.Windows.Forms.TextBox();
+            this.txtClasificiacion_Libro = new System.Windows.Forms.TextBox();
+            this.txtAño_Libro = new System.Windows.Forms.TextBox();
+            this.txtTitulo_Libro = new System.Windows.Forms.TextBox();
+            this.txtIsbn_Libro = new System.Windows.Forms.TextBox();
+            this.txtId_Libro = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.tabAjustes = new System.Windows.Forms.TabPage();
             this.tabAjustes_2 = new System.Windows.Forms.TabControl();
-            this.tabEmail = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnGuardarCorreo_Herramientas = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtAsuntoCorreo_Herramientas = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtCuerpoCorreo_Herramientas = new System.Windows.Forms.RichTextBox();
+            this.gbCorreo_herramientas = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkPassCorreo = new System.Windows.Forms.CheckBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtPassCorreo = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.txtPassCorreo = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkPassCorreo = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -142,10 +177,12 @@
             this.tabPrestamo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).BeginInit();
+            this.tabLibro.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLista_libro)).BeginInit();
             this.tabAjustes.SuspendLayout();
             this.tabAjustes_2.SuspendLayout();
-            this.tabEmail.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.btnGuardarCorreo_Herramientas.SuspendLayout();
+            this.gbCorreo_herramientas.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -164,6 +201,7 @@
             this.tabControl1.Controls.Add(this.tabAlumno);
             this.tabControl1.Controls.Add(this.tabPersonal);
             this.tabControl1.Controls.Add(this.tabPrestamo);
+            this.tabControl1.Controls.Add(this.tabLibro);
             this.tabControl1.Controls.Add(this.tabAjustes);
             this.tabControl1.Location = new System.Drawing.Point(1, 35);
             this.tabControl1.Name = "tabControl1";
@@ -990,6 +1028,7 @@
             this.dgvListaLibros_Prestamo.ReadOnly = true;
             this.dgvListaLibros_Prestamo.Size = new System.Drawing.Size(382, 292);
             this.dgvListaLibros_Prestamo.TabIndex = 4;
+            this.dgvListaLibros_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaLibros_Prestamo_CellClick);
             // 
             // IdEjempar
             // 
@@ -1024,6 +1063,7 @@
             this.dgvListaAlumno_Prestamo.ReadOnly = true;
             this.dgvListaAlumno_Prestamo.Size = new System.Drawing.Size(241, 292);
             this.dgvListaAlumno_Prestamo.TabIndex = 3;
+            this.dgvListaAlumno_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaAlumno_Prestamo_CellClick);
             // 
             // NoControl
             // 
@@ -1051,6 +1091,280 @@
             this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
             this.txtAlumno_Prestamo.TabIndex = 0;
             // 
+            // tabLibro
+            // 
+            this.tabLibro.Controls.Add(this.txtBusqueda_Libro);
+            this.tabLibro.Controls.Add(this.dgvLista_libro);
+            this.tabLibro.Controls.Add(this.btnAgregar_Libro);
+            this.tabLibro.Controls.Add(this.label49);
+            this.tabLibro.Controls.Add(this.label48);
+            this.tabLibro.Controls.Add(this.label47);
+            this.tabLibro.Controls.Add(this.label46);
+            this.tabLibro.Controls.Add(this.label45);
+            this.tabLibro.Controls.Add(this.label44);
+            this.tabLibro.Controls.Add(this.label43);
+            this.tabLibro.Controls.Add(this.label42);
+            this.tabLibro.Controls.Add(this.label41);
+            this.tabLibro.Controls.Add(this.label40);
+            this.tabLibro.Controls.Add(this.txtEdicion_Libro);
+            this.tabLibro.Controls.Add(this.txtLugar_Libro);
+            this.tabLibro.Controls.Add(this.txtEditorial_Libro);
+            this.tabLibro.Controls.Add(this.txtDescripcion_Libro);
+            this.tabLibro.Controls.Add(this.txtAutor_Libro);
+            this.tabLibro.Controls.Add(this.txtClasificiacion_Libro);
+            this.tabLibro.Controls.Add(this.txtAño_Libro);
+            this.tabLibro.Controls.Add(this.txtTitulo_Libro);
+            this.tabLibro.Controls.Add(this.txtIsbn_Libro);
+            this.tabLibro.Controls.Add(this.txtId_Libro);
+            this.tabLibro.Controls.Add(this.label39);
+            this.tabLibro.Controls.Add(this.label38);
+            this.tabLibro.Location = new System.Drawing.Point(4, 22);
+            this.tabLibro.Name = "tabLibro";
+            this.tabLibro.Size = new System.Drawing.Size(1024, 501);
+            this.tabLibro.TabIndex = 5;
+            this.tabLibro.Text = "LIBRO";
+            this.tabLibro.UseVisualStyleBackColor = true;
+            // 
+            // txtBusqueda_Libro
+            // 
+            this.txtBusqueda_Libro.Location = new System.Drawing.Point(572, 60);
+            this.txtBusqueda_Libro.Name = "txtBusqueda_Libro";
+            this.txtBusqueda_Libro.Size = new System.Drawing.Size(264, 20);
+            this.txtBusqueda_Libro.TabIndex = 25;
+            // 
+            // dgvLista_libro
+            // 
+            this.dgvLista_libro.AllowUserToAddRows = false;
+            this.dgvLista_libro.AllowUserToDeleteRows = false;
+            this.dgvLista_libro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLista_libro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLista_libro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dgvLista_libro.Location = new System.Drawing.Point(572, 86);
+            this.dgvLista_libro.Name = "dgvLista_libro";
+            this.dgvLista_libro.ReadOnly = true;
+            this.dgvLista_libro.Size = new System.Drawing.Size(449, 406);
+            this.dgvLista_libro.TabIndex = 24;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id Ejempar";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre Del Libro";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "ISBN";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // btnAgregar_Libro
+            // 
+            this.btnAgregar_Libro.Location = new System.Drawing.Point(401, 454);
+            this.btnAgregar_Libro.Name = "btnAgregar_Libro";
+            this.btnAgregar_Libro.Size = new System.Drawing.Size(93, 38);
+            this.btnAgregar_Libro.TabIndex = 23;
+            this.btnAgregar_Libro.Text = "Agregar";
+            this.btnAgregar_Libro.UseVisualStyleBackColor = true;
+            this.btnAgregar_Libro.Click += new System.EventHandler(this.btnAgregar_Libro_Click);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(28, 406);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(51, 13);
+            this.label49.TabIndex = 22;
+            this.label49.Text = "EDICIÓN";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(28, 363);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(44, 13);
+            this.label48.TabIndex = 21;
+            this.label48.Text = "LUGAR";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(28, 320);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(64, 13);
+            this.label47.TabIndex = 20;
+            this.label47.Text = "EDITORIAL";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(278, 281);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(80, 13);
+            this.label46.TabIndex = 19;
+            this.label46.Text = "DESCRIPCIÓN";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(28, 281);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(45, 13);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "AUTOR";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(28, 238);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(86, 13);
+            this.label44.TabIndex = 17;
+            this.label44.Text = "CLASIFICACIÓN";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(28, 195);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(30, 13);
+            this.label43.TabIndex = 16;
+            this.label43.Text = "AÑO";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(25, 152);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(46, 13);
+            this.label42.TabIndex = 15;
+            this.label42.Text = "TITULO";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(25, 113);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(32, 13);
+            this.label41.TabIndex = 14;
+            this.label41.Text = "ISBN";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(25, 70);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(53, 13);
+            this.label40.TabIndex = 13;
+            this.label40.Text = "ID LIBRO";
+            // 
+            // txtEdicion_Libro
+            // 
+            this.txtEdicion_Libro.Location = new System.Drawing.Point(31, 422);
+            this.txtEdicion_Libro.MaxLength = 30;
+            this.txtEdicion_Libro.Name = "txtEdicion_Libro";
+            this.txtEdicion_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtEdicion_Libro.TabIndex = 12;
+            // 
+            // txtLugar_Libro
+            // 
+            this.txtLugar_Libro.Location = new System.Drawing.Point(31, 379);
+            this.txtLugar_Libro.MaxLength = 50;
+            this.txtLugar_Libro.Name = "txtLugar_Libro";
+            this.txtLugar_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtLugar_Libro.TabIndex = 11;
+            // 
+            // txtEditorial_Libro
+            // 
+            this.txtEditorial_Libro.Location = new System.Drawing.Point(31, 336);
+            this.txtEditorial_Libro.MaxLength = 30;
+            this.txtEditorial_Libro.Name = "txtEditorial_Libro";
+            this.txtEditorial_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtEditorial_Libro.TabIndex = 10;
+            // 
+            // txtDescripcion_Libro
+            // 
+            this.txtDescripcion_Libro.Location = new System.Drawing.Point(278, 297);
+            this.txtDescripcion_Libro.Name = "txtDescripcion_Libro";
+            this.txtDescripcion_Libro.Size = new System.Drawing.Size(216, 145);
+            this.txtDescripcion_Libro.TabIndex = 9;
+            this.txtDescripcion_Libro.Text = "";
+            // 
+            // txtAutor_Libro
+            // 
+            this.txtAutor_Libro.Location = new System.Drawing.Point(31, 297);
+            this.txtAutor_Libro.MaxLength = 80;
+            this.txtAutor_Libro.Name = "txtAutor_Libro";
+            this.txtAutor_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtAutor_Libro.TabIndex = 8;
+            // 
+            // txtClasificiacion_Libro
+            // 
+            this.txtClasificiacion_Libro.Location = new System.Drawing.Point(31, 254);
+            this.txtClasificiacion_Libro.MaxLength = 30;
+            this.txtClasificiacion_Libro.Name = "txtClasificiacion_Libro";
+            this.txtClasificiacion_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtClasificiacion_Libro.TabIndex = 7;
+            // 
+            // txtAño_Libro
+            // 
+            this.txtAño_Libro.Location = new System.Drawing.Point(31, 211);
+            this.txtAño_Libro.Name = "txtAño_Libro";
+            this.txtAño_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtAño_Libro.TabIndex = 6;
+            // 
+            // txtTitulo_Libro
+            // 
+            this.txtTitulo_Libro.Location = new System.Drawing.Point(31, 168);
+            this.txtTitulo_Libro.Name = "txtTitulo_Libro";
+            this.txtTitulo_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtTitulo_Libro.TabIndex = 5;
+            // 
+            // txtIsbn_Libro
+            // 
+            this.txtIsbn_Libro.Location = new System.Drawing.Point(31, 129);
+            this.txtIsbn_Libro.MaxLength = 30;
+            this.txtIsbn_Libro.Name = "txtIsbn_Libro";
+            this.txtIsbn_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtIsbn_Libro.TabIndex = 4;
+            // 
+            // txtId_Libro
+            // 
+            this.txtId_Libro.Location = new System.Drawing.Point(31, 86);
+            this.txtId_Libro.MaxLength = 30;
+            this.txtId_Libro.Name = "txtId_Libro";
+            this.txtId_Libro.Size = new System.Drawing.Size(234, 20);
+            this.txtId_Libro.TabIndex = 3;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(568, 22);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(193, 24);
+            this.label39.TabIndex = 2;
+            this.label39.Text = "LISTA DE LIBROS";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(24, 22);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(159, 24);
+            this.label38.TabIndex = 1;
+            this.label38.Text = "NUEVO LIBRO";
+            // 
             // tabAjustes
             // 
             this.tabAjustes.Controls.Add(this.tabAjustes_2);
@@ -1058,12 +1372,12 @@
             this.tabAjustes.Name = "tabAjustes";
             this.tabAjustes.Size = new System.Drawing.Size(1024, 501);
             this.tabAjustes.TabIndex = 4;
-            this.tabAjustes.Text = "AJUSTES";
+            this.tabAjustes.Text = "HERRAMIENTAS";
             this.tabAjustes.UseVisualStyleBackColor = true;
             // 
             // tabAjustes_2
             // 
-            this.tabAjustes_2.Controls.Add(this.tabEmail);
+            this.tabAjustes_2.Controls.Add(this.btnGuardarCorreo_Herramientas);
             this.tabAjustes_2.Controls.Add(this.tabPage2);
             this.tabAjustes_2.Location = new System.Drawing.Point(3, 2);
             this.tabAjustes_2.Name = "tabAjustes_2";
@@ -1071,26 +1385,111 @@
             this.tabAjustes_2.Size = new System.Drawing.Size(1018, 496);
             this.tabAjustes_2.TabIndex = 0;
             // 
-            // tabEmail
+            // btnGuardarCorreo_Herramientas
             // 
-            this.tabEmail.Controls.Add(this.groupBox1);
-            this.tabEmail.Location = new System.Drawing.Point(4, 22);
-            this.tabEmail.Name = "tabEmail";
-            this.tabEmail.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEmail.Size = new System.Drawing.Size(1010, 470);
-            this.tabEmail.TabIndex = 0;
-            this.tabEmail.Text = "E-MAIL";
-            this.tabEmail.UseVisualStyleBackColor = true;
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.button2);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label37);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label36);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtAsuntoCorreo_Herramientas);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label35);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtCuerpoCorreo_Herramientas);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.gbCorreo_herramientas);
+            this.btnGuardarCorreo_Herramientas.Location = new System.Drawing.Point(4, 22);
+            this.btnGuardarCorreo_Herramientas.Name = "btnGuardarCorreo_Herramientas";
+            this.btnGuardarCorreo_Herramientas.Padding = new System.Windows.Forms.Padding(3);
+            this.btnGuardarCorreo_Herramientas.Size = new System.Drawing.Size(1010, 470);
+            this.btnGuardarCorreo_Herramientas.TabIndex = 0;
+            this.btnGuardarCorreo_Herramientas.Text = "E-MAIL";
+            this.btnGuardarCorreo_Herramientas.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // button2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1010, 470);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(416, 406);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Guardar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(25, 17);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(343, 25);
+            this.label37.TabIndex = 9;
+            this.label37.Text = "NOTIFICACIONES DE CORREO";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(27, 120);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(52, 13);
+            this.label36.TabIndex = 8;
+            this.label36.Text = "CUERPO";
+            // 
+            // txtAsuntoCorreo_Herramientas
+            // 
+            this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(27, 92);
+            this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
+            this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(461, 20);
+            this.txtAsuntoCorreo_Herramientas.TabIndex = 7;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(24, 75);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(52, 13);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "ASUNTO";
+            // 
+            // txtCuerpoCorreo_Herramientas
+            // 
+            this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(30, 136);
+            this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
+            this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 251);
+            this.txtCuerpoCorreo_Herramientas.TabIndex = 5;
+            this.txtCuerpoCorreo_Herramientas.Text = "";
+            // 
+            // gbCorreo_herramientas
+            // 
+            this.gbCorreo_herramientas.Controls.Add(this.button1);
+            this.gbCorreo_herramientas.Controls.Add(this.checkPassCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.txtCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.txtPassCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.label33);
+            this.gbCorreo_herramientas.Controls.Add(this.label34);
+            this.gbCorreo_herramientas.Location = new System.Drawing.Point(678, 26);
+            this.gbCorreo_herramientas.Name = "gbCorreo_herramientas";
+            this.gbCorreo_herramientas.Size = new System.Drawing.Size(314, 178);
+            this.gbCorreo_herramientas.TabIndex = 4;
+            this.gbCorreo_herramientas.TabStop = false;
+            this.gbCorreo_herramientas.Text = "INGRESAR CORREO";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(226, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Registrar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkPassCorreo
+            // 
+            this.checkPassCorreo.AutoSize = true;
+            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
+            this.checkPassCorreo.Name = "checkPassCorreo";
+            this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
+            this.checkPassCorreo.TabIndex = 4;
+            this.checkPassCorreo.Text = "Mostrar contraseña";
+            this.checkPassCorreo.UseVisualStyleBackColor = true;
+            this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
             // 
             // txtCorreo
             // 
@@ -1098,6 +1497,14 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(289, 20);
             this.txtCorreo.TabIndex = 0;
+            // 
+            // txtPassCorreo
+            // 
+            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
+            this.txtPassCorreo.Name = "txtPassCorreo";
+            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtPassCorreo.TabIndex = 3;
+            this.txtPassCorreo.UseSystemPasswordChar = true;
             // 
             // label33
             // 
@@ -1117,49 +1524,15 @@
             this.label34.TabIndex = 2;
             this.label34.Text = "Contraseña";
             // 
-            // txtPassCorreo
+            // tabPage2
             // 
-            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
-            this.txtPassCorreo.Name = "txtPassCorreo";
-            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
-            this.txtPassCorreo.TabIndex = 3;
-            this.txtPassCorreo.UseSystemPasswordChar = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.checkPassCorreo);
-            this.groupBox1.Controls.Add(this.txtCorreo);
-            this.groupBox1.Controls.Add(this.txtPassCorreo);
-            this.groupBox1.Controls.Add(this.label33);
-            this.groupBox1.Controls.Add(this.label34);
-            this.groupBox1.Location = new System.Drawing.Point(680, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(314, 178);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "INGRESAR CORREO";
-            // 
-            // checkPassCorreo
-            // 
-            this.checkPassCorreo.AutoSize = true;
-            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
-            this.checkPassCorreo.Name = "checkPassCorreo";
-            this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
-            this.checkPassCorreo.TabIndex = 4;
-            this.checkPassCorreo.Text = "Mostrar contraseña";
-            this.checkPassCorreo.UseVisualStyleBackColor = true;
-            this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(226, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1010, 470);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1186,11 +1559,15 @@
             this.tabPrestamo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).EndInit();
+            this.tabLibro.ResumeLayout(false);
+            this.tabLibro.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLista_libro)).EndInit();
             this.tabAjustes.ResumeLayout(false);
             this.tabAjustes_2.ResumeLayout(false);
-            this.tabEmail.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.btnGuardarCorreo_Herramientas.ResumeLayout(false);
+            this.btnGuardarCorreo_Herramientas.PerformLayout();
+            this.gbCorreo_herramientas.ResumeLayout(false);
+            this.gbCorreo_herramientas.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1293,15 +1670,50 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TabPage tabAjustes;
         private System.Windows.Forms.TabControl tabAjustes_2;
-        private System.Windows.Forms.TabPage tabEmail;
+        private System.Windows.Forms.TabPage btnGuardarCorreo_Herramientas;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbCorreo_herramientas;
         private System.Windows.Forms.CheckBox checkPassCorreo;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.TextBox txtPassCorreo;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox txtAsuntoCorreo_Herramientas;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.RichTextBox txtCuerpoCorreo_Herramientas;
+        private System.Windows.Forms.TabPage tabLibro;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox txtEdicion_Libro;
+        private System.Windows.Forms.TextBox txtLugar_Libro;
+        private System.Windows.Forms.TextBox txtEditorial_Libro;
+        private System.Windows.Forms.RichTextBox txtDescripcion_Libro;
+        private System.Windows.Forms.TextBox txtAutor_Libro;
+        private System.Windows.Forms.TextBox txtClasificiacion_Libro;
+        private System.Windows.Forms.TextBox txtAño_Libro;
+        private System.Windows.Forms.TextBox txtTitulo_Libro;
+        private System.Windows.Forms.TextBox txtIsbn_Libro;
+        private System.Windows.Forms.TextBox txtId_Libro;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button btnAgregar_Libro;
+        private System.Windows.Forms.DataGridView dgvLista_libro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.TextBox txtBusqueda_Libro;
     }
 }
 
