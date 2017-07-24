@@ -11,7 +11,7 @@ namespace ProjectBiblioteca
    
         
 
-        public Prestamo(Libro libro)
+        public Prestamo()
         {
            
            

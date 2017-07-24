@@ -20,15 +20,17 @@ namespace ProjectBiblioteca
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Carrera { get; set; }
+       
 
         public Alumno() { }
-        public Alumno(int matricula, string nombre, string telefono, string correo, string carrera)
+        public Alumno(int matricula, string nombre,string apellido, string telefono, string correo, string carrera)
         {
             this.Matricula = matricula;
-            this.Nombre = nombre;
+            this.Nombre = nombre.Trim() + " "+apellido.Trim();
             this.Correo = correo;
             this.Telefono = telefono;
             this.Carrera = carrera;
+            ;
         }
 
         public void agregarAlumnoBD()
@@ -57,6 +59,7 @@ namespace ProjectBiblioteca
             }
 
         }
+        
 
     }
 }

@@ -17,7 +17,7 @@ namespace ProjectBiblioteca
     {
         Libro libro;
         Alumno alumno;
-
+        Carrera carrera;
         //cnn laptop-noriega
         //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
         //cnn pc-noriega
@@ -28,6 +28,7 @@ namespace ProjectBiblioteca
         {
             InitializeComponent();
             fillDGVs();
+            fillCB();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -86,6 +87,7 @@ namespace ProjectBiblioteca
                     cbDias_Prestamo.SelectedIndex = 0;
                     break;
             }
+            fillDGVs();
         }
 
         private void cbFiltroBusqueda_Home_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,14 +154,18 @@ namespace ProjectBiblioteca
 
         private void fillDGVs()
         {
+            
             try
             {
                 SqlCommand cmd;
                 SqlDataReader rd;
                 cnn.Open();
                 #region llenar DGV libro
+
                 dgvLista_libro.Rows.Clear();
                 dgvLista_Personal.Rows.Clear();
+                dgvListaLibros_Prestamo.Rows.Clear();
+
                 cmd = new SqlCommand("BuscarLibros_Todos", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 rd = cmd.ExecuteReader();
@@ -172,11 +178,12 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar DGV Alumnos-Personal Prestamo
-                if (cbTipo_Prestamo.Text == "Alumnos")
+                if (cbTipo_Prestamo.SelectedIndex == 0)
                 {
                     cmd = new SqlCommand("Mostrar_Alumnos", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     rd = cmd.ExecuteReader();
+                    dgvListaAlumno_Prestamo.Rows.Clear();
                     while (rd.Read())
                     {
                         dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString());
@@ -187,6 +194,8 @@ namespace ProjectBiblioteca
                     cmd = new SqlCommand("Mostrar_Personal", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     rd = cmd.ExecuteReader();
+                    dgvListaAlumno_Prestamo.Rows.Clear();
+
                     while (rd.Read())
                     {
                         dgvListaAlumno_Prestamo.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString());
@@ -196,29 +205,30 @@ namespace ProjectBiblioteca
 
                 #endregion
 
-                //#region llenar lista alumnos
-                //cmd = new SqlCommand("Mostrar_Alumnos", cnn);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //rd = cmd.ExecuteReader();
-                //while (rd.Read())
-                //{
-                //    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString());
-                //}
-                //rd.Close();
+                #region llenar lista alumnos
+                cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                rd = cmd.ExecuteReader();
+                dgvAlumnos_Alumno.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString());
+                }
+                rd.Close();
 
-                //#endregion
+                #endregion
 
-                //#region llenar lista Personal
-                //cmd = new SqlCommand("Mostrar_Personal", cnn);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //rd = cmd.ExecuteReader();
-                //while (rd.Read())
-                //{
-                //    dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString());
-                //}
-                //rd.Close();
+                #region llenar lista Personal
+                cmd = new SqlCommand("Mostrar_Personal", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                rd = cmd.ExecuteReader();
+                while (rd.Read())
+                {
+                    dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString());
+                }
+                rd.Close();
 
-                //#endregion
+                #endregion
 
 
 
@@ -246,15 +256,211 @@ namespace ProjectBiblioteca
             txtNoControl_Empleado_Prestamo.Text = dgvListaAlumno_Prestamo.CurrentRow.Cells[0].Value.ToString();
         }
 
+
+        //Combo box de cuatrimestre en agregar alumno no se utiliza
+
         private void btnAdd_Alumno_Click(object sender, EventArgs e)
         {
-            alumno = new Alumno(int.Parse(txtApellido_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtCorreo.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper());
+            alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(),txtApellido_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtCorreo.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper());
+            alumno.agregarAlumnoBD();
+            txtNoControl_AlumnoAdd.Text = null;
+            txtNombre_AlumnoAdd.Text = null;
+            txtApellido_AlumnoAdd.Text = null;
+            txtTelefono_AlumnoAdd.Text = null;
+            txtCorreo.Text = null;
+            cbCuatrimestre_AlumnoAdd.SelectedIndex = -1;
+            cbCarrera_AlumnoAdd.SelectedIndex = -1;
             fillDGVs();
         }
 
         private void txtTelefono_AlumnoAdd_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rbNuevaCarrera_Alumno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbNuevaCarrera_Alumno.Checked)
+            {
+                gbAgregarCarrera_Alumno.Visible = true;
+            }
+            else
+            {
+                gbAgregarCarrera_Alumno.Visible = false;
+            }
+        }
+        private void fillCB()
+        {
+            #region Carrera Alumno
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("verCarreras",cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader rd = cmd.ExecuteReader();
+            
+            cbCarrera_AlumnoAdd.Items.Clear();
+            while (rd.Read())
+            {
+                cbCarrera_AlumnoAdd.Items.Add(rd[0].ToString());
+            }
+            rd.Close();
+            #endregion
+
+
+            cnn.Close();
+        }
+
+        private void btnAddCarrera_alumno_Click(object sender, EventArgs e)
+        {
+            carrera = new Carrera(txtCarrrera_Alumno.Text);
+            carrera.agregarCarreraBD();
+            rbNuevaCarrera_Alumno.Checked = false;
+            fillCB();
+        }
+
+        private void txtAlumno_Prestamo_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtAlumno_Prestamo.Text)==false)
+            {
+
+
+                SqlCommand cmd;
+                SqlDataReader rd;
+                cnn.Open();
+            if (cbTipo_Prestamo.SelectedIndex == 0)
+            {
+                cmd = new SqlCommand("Buscar_Alumno", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", txtAlumno_Prestamo.Text);
+                rd = cmd.ExecuteReader();
+                dgvListaAlumno_Prestamo.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString());
+                }
+            }
+            else
+            {
+                    cmd = new SqlCommand("Buscar_Personal", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", txtAlumno_Prestamo.Text);
+                    rd = cmd.ExecuteReader();
+                    dgvListaAlumno_Prestamo.Rows.Clear();
+                    while (rd.Read())
+                    {
+                        dgvListaAlumno_Prestamo.Rows.Add(rd[0].ToString(), rd["Nombre"].ToString());
+                    }
+                }
+                cnn.Close();
+            }
+            else
+            {
+                fillDGVs();
+
+            }
+
+        }
+
+        private void txtLibro_Prestamo_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtLibro_Prestamo.Text) == false)
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Buscar_Libro", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdLibro", txtLibro_Prestamo.Text);
+                cmd.Parameters.AddWithValue("@Autor", txtLibro_Prestamo.Text);
+                cmd.Parameters.AddWithValue("@Descripcion", txtLibro_Prestamo.Text);
+                cmd.Parameters.AddWithValue("@Titulo", txtLibro_Prestamo.Text);
+                cmd.Parameters.AddWithValue("@ISBN", txtLibro_Prestamo.Text);
+
+
+                SqlDataReader rd = cmd.ExecuteReader();
+                dgvListaLibros_Prestamo.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+                }
+                cnn.Close();
+            }
+            else
+            {
+                fillDGVs();
+            }
+            
+            
+        }
+
+        private void txtBusqueda_Libro_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtBusqueda_Libro.Text) == false)
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Buscar_Libro", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdLibro", txtBusqueda_Libro.Text);
+                cmd.Parameters.AddWithValue("@Autor", txtBusqueda_Libro.Text);
+                cmd.Parameters.AddWithValue("@Descripcion", txtBusqueda_Libro.Text);
+                cmd.Parameters.AddWithValue("@Titulo", txtBusqueda_Libro.Text);
+                cmd.Parameters.AddWithValue("@ISBN", txtBusqueda_Libro.Text);
+
+
+                SqlDataReader rd = cmd.ExecuteReader();
+                dgvLista_libro.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+                }
+                cnn.Close();
+            }
+            else
+            {
+                fillDGVs();
+            }
+        }
+
+        private void txtBusqueda_Alumno_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBusqueda_Alumno.Text)==false)
+            {
+                cnn.Open();
+               SqlCommand cmd = new SqlCommand("Buscar_Alumno", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", txtBusqueda_Alumno.Text);
+               SqlDataReader rd = cmd.ExecuteReader();
+               dgvAlumnos_Alumno.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString());
+                }
+                cnn.Close();
+            }
+            else
+            {
+                fillDGVs();
+            }
+            
+        }
+
+        private void txtBuscar_Personal_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBuscar_Personal.Text)==false)
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Buscar_Personal", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", txtBuscar_Personal.Text);
+                SqlDataReader rd = cmd.ExecuteReader();
+                dgvLista_Personal.Rows.Clear();
+                while (rd.Read())
+                {
+                    dgvLista_Personal.Rows.Add(rd[0].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString());
+                }
+                cnn.Close();
+            }
+            else
+            {
+                fillDGVs();
+            }
         }
     }
 }
