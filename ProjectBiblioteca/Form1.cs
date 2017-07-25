@@ -19,6 +19,7 @@ namespace ProjectBiblioteca
         Alumno alumno;
         Carrera carrera;
         Personal personal;
+        Prestamo prestamo;
         bool actualizarAlumno = false;
         bool actualizarPersonal = false;
         bool actualizarLibro = false;
@@ -32,14 +33,15 @@ namespace ProjectBiblioteca
         public Form1()
         {
             InitializeComponent();
-            fillDGVs();
-            fillCB();
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             cbFiltroBusqueda_Home.SelectedIndex = 0;
             cbTipo_Prestamo.SelectedIndex = 0;
+            fillDGVs();
+            fillCB();
         }
 
         private void tabPrestamo_Click(object sender, EventArgs e)
@@ -109,6 +111,7 @@ namespace ProjectBiblioteca
                     dgvPrestamos_Home.Columns[0].HeaderText = "No. De Empleado";
                     break;
             }
+            fillDGVs();
         }
 
         private void label23_Click(object sender, EventArgs e)
@@ -173,7 +176,7 @@ namespace ProjectBiblioteca
 
         private void fillDGVs()
         {
-            
+
             try
             {
                 SqlCommand cmd;
@@ -190,7 +193,7 @@ namespace ProjectBiblioteca
                 rd = cmd.ExecuteReader();
                 while (rd.Read())
                 {
-                    dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+
                     dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[7].ToString(), rd[8].ToString(), rd[9].ToString(), rd[6].ToString());
                 }
                 rd.Close();
@@ -224,6 +227,21 @@ namespace ProjectBiblioteca
 
                 #endregion
 
+                #region llenar dgv Libro prestamo
+
+
+                cmd = new SqlCommand("BuscarLibros_NoPrestados", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                rd = cmd.ExecuteReader();
+                while (rd.Read())
+                {
+                    dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+                }
+                rd.Close();
+
+
+                #endregion
+
                 #region llenar lista alumnos
                 cmd = new SqlCommand("Mostrar_Alumnos", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -249,7 +267,64 @@ namespace ProjectBiblioteca
 
                 #endregion
 
+                #region llenar dgv prestamos home
+                switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
+                {
+                    case "TODOS":
+                        cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Home.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString());
 
+                        }
+                        rd.Close();
+                        cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString());
+
+                        }
+                        rd.Close();
+
+
+                        break;
+                    case "ALUMNOS":
+                        cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Home.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString());
+
+                        }
+                        rd.Close();
+                        break;
+                    case "PERSONAL":
+                        cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Home.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString());
+
+                        }
+                        rd.Close();
+                        break;
+                }
+               
+
+
+
+
+            
+                #endregion
 
 
             }
@@ -265,14 +340,23 @@ namespace ProjectBiblioteca
 
         private void dgvListaLibros_Prestamo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvListaLibros_Prestamo.Rows.Count>0)
+            {
+                
             txtNombreLibro_Prestamo.Text = dgvListaLibros_Prestamo.CurrentRow.Cells[1].Value.ToString();
             txtISBN_Prestamo.Text = dgvListaLibros_Prestamo.CurrentRow.Cells[2].Value.ToString();
             txtIdEjemplar_Prestamo.Text = dgvListaLibros_Prestamo.CurrentRow.Cells[0].Value.ToString();
+
+            }
         }
 
         private void dgvListaAlumno_Prestamo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvListaAlumno_Prestamo.Rows.Count>0)
+            {
             txtNoControl_Empleado_Prestamo.Text = dgvListaAlumno_Prestamo.CurrentRow.Cells[0].Value.ToString();
+
+            }
         }
 
 
@@ -507,6 +591,10 @@ namespace ProjectBiblioteca
         int matriculavieja_Alumno;
         private void dgvAlumnos_Alumno_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvAlumnos_Alumno.Rows.Count>0)
+            {
+
+            
             actualizarAlumno = true;
             lblActualizar_Alumno.Visible = actualizarAlumno;
             matriculavieja_Alumno = int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString());
@@ -523,7 +611,7 @@ namespace ProjectBiblioteca
             txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[3].Value.ToString();
             txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
 
-
+            }
         }
 
         private void tabAlumno_Click(object sender, EventArgs e)
@@ -536,6 +624,9 @@ namespace ProjectBiblioteca
         int numeroDeEmpleadoViejo;
         private void dgvLista_Personal_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvLista_Personal.Rows.Count>0)
+            {
+                
             numeroDeEmpleadoViejo = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
             actualizarPersonal = true;
             lblActualizar_Personal.Visible = actualizarPersonal;
@@ -553,12 +644,15 @@ namespace ProjectBiblioteca
             txtEMail_Personal.Text = dgvLista_Personal.CurrentRow.Cells[3].Value.ToString();
             txtTelefono_Personal.Text = dgvLista_Personal.CurrentRow.Cells[4].Value.ToString();
 
+            }
         }
 
         private void btnAgregar_Personal_Click(object sender, EventArgs e)
         {
+            try
+            {
 
-            personal = new Personal(int.Parse(txtNoEmpleado_Personal.Text), txtNombre_Personal.Text.ToUpper().Trim(), cbOcupacion_Personal.SelectedItem.ToString().ToUpper().Trim(), txtEMail_Personal.Text.ToUpper().Trim(), txtTelefono_Personal.Text.ToUpper().Trim());
+           personal = new Personal(int.Parse(txtNoEmpleado_Personal.Text), txtNombre_Personal.Text.ToUpper().Trim(), cbOcupacion_Personal.SelectedItem.ToString().ToUpper().Trim(), txtEMail_Personal.Text.ToUpper().Trim(), txtTelefono_Personal.Text.ToUpper().Trim());
             if (actualizarPersonal == true)
             {
                 personal.actualizarPersonal(numeroDeEmpleadoViejo);
@@ -576,6 +670,12 @@ namespace ProjectBiblioteca
             txtTelefono_Personal.Text = null;
             actualizarPersonal = false;
             lblActualizar_Personal.Visible = actualizarPersonal;
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
+            }
         }
 
         private void btnOcupacion_Personal_Click(object sender, EventArgs e)
@@ -637,6 +737,32 @@ namespace ProjectBiblioteca
             txtEdicion_Libro.Text = dgvLista_libro.CurrentRow.Cells[8].Value.ToString();
             txtDescripcion_Libro.Text = dgvLista_libro.CurrentRow.Cells[9].Value.ToString();
             }
+
+        }
+
+        private void bRealizarPrestamo_Prestamo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbTipo_Prestamo.SelectedItem.ToString()== "ALUMNO")
+                {
+                    prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text.ToUpper(), int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text.ToUpper(),"Alumno");
+                }
+                else
+                {
+                    prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text.ToUpper(), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text.ToUpper(), "Personal");
+                }
+                prestamo.registrarPrestamo();
+               
+            }
+            catch (Exception j)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source);
+            }
+        }
+
+        private void txtBusqueda_Home_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

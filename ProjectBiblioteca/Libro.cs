@@ -54,7 +54,10 @@ namespace ProjectBiblioteca
         {
             try
             {
+                if (verificarLibroRegistrado()==false)
+                {
 
+              
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Agregar_Libro", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -73,6 +76,10 @@ namespace ProjectBiblioteca
                 MessageBox.Show("Se ha registrado el libro " + this.titulo);
 
             }
+                else {
+                MessageBox.Show("Error.\nId existente");
+            }
+        }
             catch (Exception e)
             {
                 MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
@@ -115,7 +122,40 @@ namespace ProjectBiblioteca
             {
                 cnn.Close();
             }
+            
+        
+        }
+        private bool verificarLibroRegistrado()
+        {
+            bool salida = false;
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("verificarLibro", cnn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", this.ID_Libro);
 
+                if (int.Parse(cmd.ExecuteScalar().ToString()) == 1)
+                {
+                    salida = true;
+                }
+                else
+                {
+                    salida = false;
+                }
+
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return salida;
         }
 
     }

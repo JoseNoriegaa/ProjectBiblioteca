@@ -50,6 +50,10 @@ namespace ProjectBiblioteca
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Se ha registrado "+ this.Nombre);
                 }
+                else
+                {
+                    MessageBox.Show("Error.\nMatricula existente");
+                }
                 
                 
 

@@ -34,6 +34,9 @@ namespace ProjectBiblioteca
         {
             try
             {
+                if (verificarPersonalRegistrado()==false)
+                {
+                    
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Agregar_Personal", cnn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -45,6 +48,12 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha registrado " + this.Nombre);
 
+                }
+                else
+                {
+                    MessageBox.Show("Error.\nEmpleado existente");
+
+                }
             }
             catch (Exception e)
             {
@@ -83,6 +92,39 @@ namespace ProjectBiblioteca
             {
                 cnn.Close();
             }
+        }
+        private bool verificarPersonalRegistrado()
+        {
+            bool salida = false;
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("verificar_Personal", cnn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NumeroDeEmpleado", this.numeroDeEmpleado);
+                
+                if (int.Parse(cmd.ExecuteScalar().ToString())==1)
+                {
+                    salida = true;
+                }
+                else
+                {
+                    salida = false;
+                }
+
+                
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return salida;
         }
 
     }
