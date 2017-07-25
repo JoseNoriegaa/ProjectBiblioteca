@@ -38,8 +38,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception e)
             {
-
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message);
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
             }
             finally
             {

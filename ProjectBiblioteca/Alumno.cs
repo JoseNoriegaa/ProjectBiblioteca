@@ -20,13 +20,13 @@ namespace ProjectBiblioteca
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Carrera { get; set; }
-       
+
 
         public Alumno() { }
-        public Alumno(int matricula, string nombre,string apellido, string telefono, string correo, string carrera)
+        public Alumno(int matricula, string nombre,  string telefono, string correo, string carrera)
         {
             this.Matricula = matricula;
-            this.Nombre = nombre.Trim() + " "+apellido.Trim();
+            this.Nombre = nombre.Trim();
             this.Correo = correo;
             this.Telefono = telefono;
             this.Carrera = carrera;
@@ -37,21 +37,27 @@ namespace ProjectBiblioteca
         {
             try
             {
-                cnn.Open();
-                SqlCommand cmd= new SqlCommand("Alta_Alumno",cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Matricula",this.Matricula);
-                cmd.Parameters.AddWithValue("@Nombre",this.Nombre);
-                cmd.Parameters.AddWithValue("@Correo",this.Correo);
-                cmd.Parameters.AddWithValue("@Telefono",this.Telefono);
-                cmd.Parameters.AddWithValue("@Carrera",this.Carrera);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Se ha registrado ", this.Nombre);
+                if (verificarAlumnoRegistrado(this.Matricula)==false)
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("Alta_Alumno", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Matricula", this.Matricula);
+                    cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
+                    cmd.Parameters.AddWithValue("@Correo", this.Correo);
+                    cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
+                    cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Se ha registrado "+ this.Nombre);
+                }
+                
+                
 
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ha ocurrido un error:\n",e.Message);
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+
             }
             finally
             {
@@ -59,7 +65,65 @@ namespace ProjectBiblioteca
             }
 
         }
-        
+        public void actualizarAlumno(int matriculaVieja)
+        {
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Editar_Alumno", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Matricula", this.Matricula);
+                cmd.Parameters.AddWithValue("@MatriculaVieja", matriculaVieja);
+                cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
+                cmd.Parameters.AddWithValue("@Correo", this.Correo);
+                cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
+                cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se ha actualizado "+ this.Nombre);
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+
+        }
+        private bool verificarAlumnoRegistrado(int numeroDeControl)
+        {
+            bool salida = false;
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("verificarAlumno", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Matricula", numeroDeControl);
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                if (int.Parse(rd[0].ToString()) == 1)
+                {
+                    salida = true;
+                }
+                else
+                {
+                    salida = false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return salida;
+        }
 
     }
 }

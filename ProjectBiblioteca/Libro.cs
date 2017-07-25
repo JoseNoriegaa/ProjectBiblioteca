@@ -73,9 +73,9 @@ namespace ProjectBiblioteca
                 MessageBox.Show("Se ha registrado el libro " + this.titulo);
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
             }
             finally
             {
@@ -85,7 +85,38 @@ namespace ProjectBiblioteca
 
 
         }
+        public void actualizarLibro(string idLibro)
+        {
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("EditarLibro", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdLibro", this.ID_Libro);
+                cmd.Parameters.AddWithValue("@ISBN", this.ISBN);
+                cmd.Parameters.AddWithValue("@Titulo", this.titulo);
+                cmd.Parameters.AddWithValue("@Año", this.año);
+                cmd.Parameters.AddWithValue("@Clasificacion", this.clasificacion);
+                cmd.Parameters.AddWithValue("@Autor", this.autor);
+                cmd.Parameters.AddWithValue("@Descripcion", this.descripcion);
+                cmd.Parameters.AddWithValue("@Editorial", this.editorial);
+                cmd.Parameters.AddWithValue("@Lugar", this.lugar);
+                cmd.Parameters.AddWithValue("@Edicion", this.edicion);
+                cmd.Parameters.AddWithValue("@IdLibroViejo", idLibro);
+                cmd.Parameters.AddWithValue("@Status", 0);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se ha actualizado el libro " + this.titulo);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
 
+        }
 
     }
 }

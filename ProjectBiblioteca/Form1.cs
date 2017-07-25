@@ -18,6 +18,11 @@ namespace ProjectBiblioteca
         Libro libro;
         Alumno alumno;
         Carrera carrera;
+        Personal personal;
+        bool actualizarAlumno = false;
+        bool actualizarPersonal = false;
+        bool actualizarLibro = false;
+
         //cnn laptop-noriega
         //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
         //cnn pc-noriega
@@ -128,14 +133,22 @@ namespace ProjectBiblioteca
                 //registrar correo en la base de datos
             }
         }
-
+        //variable para guardar el id antes de editar libro
+        string idLibroViejo;
         private void btnAgregar_Libro_Click(object sender, EventArgs e)
         {
             try
             {
                 libro = new Libro(txtId_Libro.Text.ToUpper(), txtIsbn_Libro.Text.ToUpper(), txtTitulo_Libro.Text.ToUpper(), int.Parse(txtAño_Libro.Text), txtAutor_Libro.Text.ToUpper(), txtClasificiacion_Libro.Text.ToUpper(), txtDescripcion_Libro.Text.ToUpper(), txtEditorial_Libro.Text.ToUpper(), txtLugar_Libro.Text.ToUpper(), txtEdicion_Libro.Text.ToUpper());
-                libro.agregarLibroBD();
 
+                if (actualizarLibro==true)
+                {
+                    libro.actualizarLibro(idLibroViejo);
+                }
+                else
+                { 
+                libro.agregarLibroBD();
+                }
                 txtId_Libro.Text = null;
                 txtIsbn_Libro.Text = null;
                 txtTitulo_Libro.Text = null;
@@ -146,9 +159,15 @@ namespace ProjectBiblioteca
                 txtEditorial_Libro.Text = null;
                 txtLugar_Libro.Text = null;
                 txtEdicion_Libro.Text = null;
+                actualizarLibro = false;
+                lblActualizar_Libro.Visible = actualizarLibro;
                 fillDGVs();
             }
-            catch { }
+            catch(Exception j)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source);
+
+            }
 
         }
 
@@ -172,7 +191,7 @@ namespace ProjectBiblioteca
                 while (rd.Read())
                 {
                     dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
-                    dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
+                    dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[7].ToString(), rd[8].ToString(), rd[9].ToString(), rd[6].ToString());
                 }
                 rd.Close();
                 #endregion
@@ -212,7 +231,7 @@ namespace ProjectBiblioteca
                 dgvAlumnos_Alumno.Rows.Clear();
                 while (rd.Read())
                 {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString());
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
                 }
                 rd.Close();
 
@@ -224,7 +243,7 @@ namespace ProjectBiblioteca
                 rd = cmd.ExecuteReader();
                 while (rd.Read())
                 {
-                    dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString());
+                    dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
                 }
                 rd.Close();
 
@@ -260,17 +279,28 @@ namespace ProjectBiblioteca
         //Combo box de cuatrimestre en agregar alumno no se utiliza
 
         private void btnAdd_Alumno_Click(object sender, EventArgs e)
-        {
-            alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(),txtApellido_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtCorreo.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper());
-            alumno.agregarAlumnoBD();
+        {   
+            alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtEmail_AlumnoAdd.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper());
+
+            if (actualizarAlumno == true)
+            {
+                alumno.actualizarAlumno(matriculavieja_Alumno);
+            }
+            else
+            {
+                alumno.agregarAlumnoBD();
+            }
+
             txtNoControl_AlumnoAdd.Text = null;
             txtNombre_AlumnoAdd.Text = null;
-            txtApellido_AlumnoAdd.Text = null;
+            
             txtTelefono_AlumnoAdd.Text = null;
-            txtCorreo.Text = null;
+            txtEmail_AlumnoAdd.Text = null;
             cbCuatrimestre_AlumnoAdd.SelectedIndex = -1;
             cbCarrera_AlumnoAdd.SelectedIndex = -1;
             fillDGVs();
+            actualizarAlumno = false;
+            lblActualizar_Alumno.Visible = actualizarAlumno;
         }
 
         private void txtTelefono_AlumnoAdd_TextChanged(object sender, EventArgs e)
@@ -305,6 +335,17 @@ namespace ProjectBiblioteca
             rd.Close();
             #endregion
 
+            #region Ocupacion Personal
+            cmd = new SqlCommand("Mostrar_Ocupacion", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            rd = cmd.ExecuteReader();
+            cbOcupacion_Personal.Items.Clear();
+            while (rd.Read())
+            {
+                cbOcupacion_Personal.Items.Add(rd[0].ToString());
+            }
+            rd.Close();
+            #endregion
 
             cnn.Close();
         }
@@ -461,6 +502,142 @@ namespace ProjectBiblioteca
             {
                 fillDGVs();
             }
+        }
+        //variable para guardar matricula antes de actualizar
+        int matriculavieja_Alumno;
+        private void dgvAlumnos_Alumno_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            actualizarAlumno = true;
+            lblActualizar_Alumno.Visible = actualizarAlumno;
+            matriculavieja_Alumno = int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString());
+            txtNoControl_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString();
+            for (int i = 0; i < cbCarrera_AlumnoAdd.Items.Count; i++)
+            {
+                if (dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString()==cbCarrera_AlumnoAdd.Items[i].ToString())
+                {
+                    
+                    cbCarrera_AlumnoAdd.SelectedIndex=i;
+                }
+            }
+            txtNombre_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[1].Value.ToString();
+            txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[3].Value.ToString();
+            txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
+
+
+        }
+
+        private void tabAlumno_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        //variable para guardar numero de empleado antes de editar
+        int numeroDeEmpleadoViejo;
+        private void dgvLista_Personal_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            numeroDeEmpleadoViejo = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
+            actualizarPersonal = true;
+            lblActualizar_Personal.Visible = actualizarPersonal;
+
+
+            txtNoEmpleado_Personal.Text = dgvLista_Personal.CurrentRow.Cells[0].Value.ToString();
+            txtNombre_Personal.Text= dgvLista_Personal.CurrentRow.Cells[1].Value.ToString();
+            for (int i = 0; i < cbOcupacion_Personal.Items.Count; i++)
+            {
+                if (dgvLista_Personal.CurrentRow.Cells[2].Value.ToString()==cbOcupacion_Personal.Items[i].ToString())
+                {
+                    cbOcupacion_Personal.SelectedIndex = i;
+                }
+            }
+            txtEMail_Personal.Text = dgvLista_Personal.CurrentRow.Cells[3].Value.ToString();
+            txtTelefono_Personal.Text = dgvLista_Personal.CurrentRow.Cells[4].Value.ToString();
+
+        }
+
+        private void btnAgregar_Personal_Click(object sender, EventArgs e)
+        {
+
+            personal = new Personal(int.Parse(txtNoEmpleado_Personal.Text), txtNombre_Personal.Text.ToUpper().Trim(), cbOcupacion_Personal.SelectedItem.ToString().ToUpper().Trim(), txtEMail_Personal.Text.ToUpper().Trim(), txtTelefono_Personal.Text.ToUpper().Trim());
+            if (actualizarPersonal == true)
+            {
+                personal.actualizarPersonal(numeroDeEmpleadoViejo);
+            }
+            else
+            {
+                personal.agregarPersonalBD();
+            }
+            fillDGVs();
+
+            txtNoEmpleado_Personal.Text = null;
+            txtNombre_Personal.Text = null;
+            cbOcupacion_Personal.SelectedIndex = -1;
+            txtEMail_Personal.Text = null;
+            txtTelefono_Personal.Text = null;
+            actualizarPersonal = false;
+            lblActualizar_Personal.Visible = actualizarPersonal;
+        }
+
+        private void btnOcupacion_Personal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Agregar_Ocupacion", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Puesto", txtOcupacion_Personal.Text.ToUpper());
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se ha agregado correctamente " + txtOcupacion_Personal.Text.ToUpper());
+                cbAddOcupacion_Personal.Checked = false;
+            }
+            catch (Exception f)
+            {
+
+                MessageBox.Show("Ha ocurrido un error.\n" + f.Message);
+
+            }
+            finally
+            {
+                cnn.Close();
+                fillCB();
+            }
+            
+
+        }
+
+        private void cbAddOcupacion_Personal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAddOcupacion_Personal.Checked)
+            {
+                gbOcupacion_Personal.Visible = true;
+            }
+            else
+            {
+                gbOcupacion_Personal.Visible = false;
+            }
+        }
+       
+        private void dgvLista_libro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvLista_libro.Rows.Count>0)
+            {
+
+            
+            actualizarLibro = true;
+            lblActualizar_Libro.Visible = actualizarLibro;
+            idLibroViejo=dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
+            txtId_Libro.Text = dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
+            txtIsbn_Libro.Text = dgvLista_libro.CurrentRow.Cells[2].Value.ToString();
+            txtTitulo_Libro.Text = dgvLista_libro.CurrentRow.Cells[1].Value.ToString();
+            txtAño_Libro.Text = dgvLista_libro.CurrentRow.Cells[3].Value.ToString();
+            txtClasificiacion_Libro.Text = dgvLista_libro.CurrentRow.Cells[4].Value.ToString();
+            txtAutor_Libro.Text = dgvLista_libro.CurrentRow.Cells[5].Value.ToString();
+            txtEditorial_Libro.Text = dgvLista_libro.CurrentRow.Cells[6].Value.ToString();
+            txtLugar_Libro.Text = dgvLista_libro.CurrentRow.Cells[7].Value.ToString();
+            txtEdicion_Libro.Text = dgvLista_libro.CurrentRow.Cells[8].Value.ToString();
+            txtDescripcion_Libro.Text = dgvLista_libro.CurrentRow.Cells[9].Value.ToString();
+            }
+
         }
     }
 }
