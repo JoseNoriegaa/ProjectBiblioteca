@@ -25,9 +25,9 @@ namespace ProjectBiblioteca
         bool actualizarLibro = false;
 
         //cnn laptop-noriega
-        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
+        //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
         //cnn pc-noriega
-       // SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
+        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
 
 
         public Form1()
@@ -40,6 +40,8 @@ namespace ProjectBiblioteca
         {
             cbFiltroBusqueda_Home.SelectedIndex = 0;
             cbTipo_Prestamo.SelectedIndex = 0;
+            cbFiltro_Historial.SelectedIndex = 0;
+
             fillDGVs();
             fillCB();
             verificarFechaPrestamo();
@@ -360,6 +362,56 @@ namespace ProjectBiblioteca
 
 
 
+
+
+                #endregion
+                #region llenar dgv historial Herramientas
+                switch (cbFiltro_Historial.SelectedItem)
+                {
+                    case "TODOS":
+                        cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Historial.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString().Remove(10));
+                        }
+                        rd.Close();
+                        cmd = new SqlCommand("historialPrestamos_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString().Remove(10));
+                        }
+                        rd.Close();
+
+
+                        break;
+                    case "ALUMNOS":
+                        cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Historial.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString().Remove(10));
+                        }
+                        rd.Close();
+                        break;
+                    case "PERSONAL":
+                        cmd = new SqlCommand("historialPrestamos_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvPrestamos_Historial.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString().Remove(10));
+                        }
+                        rd.Close();
+                        break;
+                }
 
 
                 #endregion
@@ -936,7 +988,7 @@ namespace ProjectBiblioteca
         {
             this.Show();
             WindowState = FormWindowState.Normal;
-            this.TopMost = true;
+            
         }
 
         private void sALIRToolStripMenuItem_Click(object sender, EventArgs e)
@@ -968,7 +1020,104 @@ namespace ProjectBiblioteca
             {
                 this.Show();
                 WindowState = FormWindowState.Normal;
-                this.TopMost = true;
+          
+            }
+        }
+
+        private void cbFiltro_Historial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillDGVs();
+        }
+
+        private void txtBusqueda_Historial_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (String.IsNullOrEmpty(txtBusqueda_Historial.Text) == false)
+                {
+
+
+                    cnn.Open();
+                    SqlCommand cmd;
+                    SqlDataReader reader;
+                    switch (cbFiltro_Historial.SelectedItem.ToString())
+                    {
+                        case "TODOS":
+                            cmd = new SqlCommand("BuscarPrestamo_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Historial.Text);
+
+                            reader = cmd.ExecuteReader();
+                            int i = 0;
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (reader.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+
+                                i++;
+                            }
+                            reader.Close();
+
+                            cmd = new SqlCommand("BuscarPrestamo_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Historial.Text);
+
+                            reader = cmd.ExecuteReader();
+                            while (reader.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+
+                  
+                            }
+                            break;
+                        case "PERSONAL":
+
+                            cmd = new SqlCommand("BuscarPrestamo_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Historial.Text);
+
+                            reader = cmd.ExecuteReader();
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (reader.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+
+                                
+                            }
+                            reader.Close();
+
+                            break;
+                        case "ALUMNOS":
+                            cmd = new SqlCommand("BuscarPrestamo_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Historial.Text);
+
+                            reader = cmd.ExecuteReader();
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (reader.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+
+                            }
+                            reader.Close();
+                            break;
+                    }
+
+
+                }
+                else
+                {
+                    fillDGVs();
+                }
+            }
+            catch (Exception j)
+            {
+                MessageBox.Show("Ha ocurrido un error" + j.Message, j.Source);
+            }
+            finally
+            {
+                cnn.Close();
             }
         }
 

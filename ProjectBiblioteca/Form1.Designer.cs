@@ -194,8 +194,22 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label51 = new System.Windows.Forms.Label();
+            this.cbFiltro_Historial = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.txtBusqueda_Historial = new System.Windows.Forms.TextBox();
+            this.dgvPrestamos_Historial = new System.Windows.Forms.DataGridView();
+            this.label53 = new System.Windows.Forms.Label();
+            this._idprestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._persona = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._idejemplar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._fechaprestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._fechaentrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -214,7 +228,9 @@
             this.tabAjustes_2.SuspendLayout();
             this.btnGuardarCorreo_Herramientas.SuspendLayout();
             this.gbCorreo_herramientas.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -1820,12 +1836,18 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label53);
+            this.tabPage2.Controls.Add(this.label51);
+            this.tabPage2.Controls.Add(this.cbFiltro_Historial);
+            this.tabPage2.Controls.Add(this.label52);
+            this.tabPage2.Controls.Add(this.txtBusqueda_Historial);
+            this.tabPage2.Controls.Add(this.dgvPrestamos_Historial);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1010, 470);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "HISTORIAL";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // notifyIcon1
@@ -1852,6 +1874,13 @@
             this.mOToolStripMenuItem.Text = "MOSTRAR";
             this.mOToolStripMenuItem.Click += new System.EventHandler(this.mOToolStripMenuItem_Click);
             // 
+            // iNFORMACIÓNToolStripMenuItem
+            // 
+            this.iNFORMACIÓNToolStripMenuItem.Name = "iNFORMACIÓNToolStripMenuItem";
+            this.iNFORMACIÓNToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.iNFORMACIÓNToolStripMenuItem.Text = "INFORMACIÓN";
+            this.iNFORMACIÓNToolStripMenuItem.Click += new System.EventHandler(this.iNFORMACIÓNToolStripMenuItem_Click);
+            // 
             // sALIRToolStripMenuItem
             // 
             this.sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
@@ -1859,12 +1888,141 @@
             this.sALIRToolStripMenuItem.Text = "SALIR";
             this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
             // 
-            // iNFORMACIÓNToolStripMenuItem
+            // label51
             // 
-            this.iNFORMACIÓNToolStripMenuItem.Name = "iNFORMACIÓNToolStripMenuItem";
-            this.iNFORMACIÓNToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.iNFORMACIÓNToolStripMenuItem.Text = "INFORMACIÓN";
-            this.iNFORMACIÓNToolStripMenuItem.Click += new System.EventHandler(this.iNFORMACIÓNToolStripMenuItem_Click);
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(6, 63);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(107, 13);
+            this.label51.TabIndex = 10;
+            this.label51.Text = "Filtrar  prestamos por:";
+            // 
+            // cbFiltro_Historial
+            // 
+            this.cbFiltro_Historial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltro_Historial.FormattingEnabled = true;
+            this.cbFiltro_Historial.Items.AddRange(new object[] {
+            "TODOS",
+            "ALUMNOS",
+            "PERSONAL"});
+            this.cbFiltro_Historial.Location = new System.Drawing.Point(9, 79);
+            this.cbFiltro_Historial.Name = "cbFiltro_Historial";
+            this.cbFiltro_Historial.Size = new System.Drawing.Size(121, 21);
+            this.cbFiltro_Historial.TabIndex = 9;
+            this.cbFiltro_Historial.SelectedIndexChanged += new System.EventHandler(this.cbFiltro_Historial_SelectedIndexChanged);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(6, 109);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(148, 13);
+            this.label52.TabIndex = 8;
+            this.label52.Text = "BÚSQUEDA DE PRESTAMO";
+            // 
+            // txtBusqueda_Historial
+            // 
+            this.txtBusqueda_Historial.Location = new System.Drawing.Point(6, 134);
+            this.txtBusqueda_Historial.Name = "txtBusqueda_Historial";
+            this.txtBusqueda_Historial.Size = new System.Drawing.Size(265, 20);
+            this.txtBusqueda_Historial.TabIndex = 7;
+            this.txtBusqueda_Historial.TextChanged += new System.EventHandler(this.txtBusqueda_Historial_TextChanged);
+            // 
+            // dgvPrestamos_Historial
+            // 
+            this.dgvPrestamos_Historial.AllowUserToAddRows = false;
+            this.dgvPrestamos_Historial.AllowUserToDeleteRows = false;
+            this.dgvPrestamos_Historial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPrestamos_Historial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrestamos_Historial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this._idprestamo,
+            this._persona,
+            this._nombre,
+            this._idejemplar,
+            this._titulo,
+            this._isbn,
+            this._fechaprestamo,
+            this._fechaentrega});
+            this.dgvPrestamos_Historial.Location = new System.Drawing.Point(6, 160);
+            this.dgvPrestamos_Historial.Name = "dgvPrestamos_Historial";
+            this.dgvPrestamos_Historial.ReadOnly = true;
+            this.dgvPrestamos_Historial.Size = new System.Drawing.Size(998, 301);
+            this.dgvPrestamos_Historial.TabIndex = 6;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(6, 18);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(300, 24);
+            this.label53.TabIndex = 11;
+            this.label53.Text = "HISTORIAL DE PRESTAMOS";
+            // 
+            // _idprestamo
+            // 
+            this._idprestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._idprestamo.HeaderText = "ID Prestamo";
+            this._idprestamo.Name = "_idprestamo";
+            this._idprestamo.ReadOnly = true;
+            this._idprestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._idprestamo.Width = 90;
+            // 
+            // _persona
+            // 
+            this._persona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._persona.HeaderText = "No. De Control/No. De Empleado";
+            this._persona.Name = "_persona";
+            this._persona.ReadOnly = true;
+            this._persona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._persona.Width = 132;
+            // 
+            // _nombre
+            // 
+            this._nombre.HeaderText = "Nombre";
+            this._nombre.Name = "_nombre";
+            this._nombre.ReadOnly = true;
+            // 
+            // _idejemplar
+            // 
+            this._idejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._idejemplar.HeaderText = "ID Ejemplar";
+            this._idejemplar.Name = "_idejemplar";
+            this._idejemplar.ReadOnly = true;
+            this._idejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._idejemplar.Width = 79;
+            // 
+            // _titulo
+            // 
+            this._titulo.HeaderText = "Titulo";
+            this._titulo.Name = "_titulo";
+            this._titulo.ReadOnly = true;
+            this._titulo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // _isbn
+            // 
+            this._isbn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._isbn.HeaderText = "ISBN";
+            this._isbn.Name = "_isbn";
+            this._isbn.ReadOnly = true;
+            this._isbn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._isbn.Width = 57;
+            // 
+            // _fechaprestamo
+            // 
+            this._fechaprestamo.HeaderText = "Fecha de prestamo";
+            this._fechaprestamo.Name = "_fechaprestamo";
+            this._fechaprestamo.ReadOnly = true;
+            this._fechaprestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // _fechaentrega
+            // 
+            this._fechaentrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._fechaentrega.HeaderText = "Fecha De Entrega";
+            this._fechaentrega.Name = "_fechaentrega";
+            this._fechaentrega.ReadOnly = true;
+            this._fechaentrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._fechaentrega.Width = 109;
             // 
             // Form1
             // 
@@ -1905,7 +2063,10 @@
             this.btnGuardarCorreo_Herramientas.PerformLayout();
             this.gbCorreo_herramientas.ResumeLayout(false);
             this.gbCorreo_herramientas.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2079,6 +2240,20 @@
         private System.Windows.Forms.ToolStripMenuItem mOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iNFORMACIÓNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sALIRToolStripMenuItem;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.ComboBox cbFiltro_Historial;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.TextBox txtBusqueda_Historial;
+        private System.Windows.Forms.DataGridView dgvPrestamos_Historial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _idprestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _persona;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _idejemplar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _titulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _isbn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaprestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaentrega;
     }
 }
 
