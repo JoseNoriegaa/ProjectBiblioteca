@@ -11,9 +11,9 @@ namespace ProjectBiblioteca
     class Prestamo
     {
         //cnn laptop-noriega
-        //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
+        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
         //cnn pc-noriega
-        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
+        //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
 
         public string libroID { get; set; }
         public int matriculaAlumno { get; set; }
@@ -88,6 +88,7 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Dias_De_Prestamo", this.diasDePrestamo);
                 cmd.Parameters.AddWithValue("@Estado_Del_Libro", this.estadoDelLibro);
                 cmd.Parameters.AddWithValue("@tipoPrestamo", this.tipoPrestamo);
+                cmd.Parameters.AddWithValue("@Estado", 1);
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Se ha registrado el prestamo");
@@ -108,7 +109,7 @@ namespace ProjectBiblioteca
         }
 
  
-        public void registrarDevolucion(string Id_Prestamo)
+        public void registrarDevolucion(string Id_Prestamo,string idLibro)
         {
             try
             {
@@ -116,9 +117,8 @@ namespace ProjectBiblioteca
                 SqlCommand cmd = new SqlCommand("RegistrarDevolucion", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@IdPrestamo", Id_Prestamo);
-                cmd.Parameters.AddWithValue("@IdLibro", this.libroID);
+                cmd.Parameters.AddWithValue("@IdLibro", idLibro);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Se ha registrado la devolución");
 
             }
             catch (Exception e)
