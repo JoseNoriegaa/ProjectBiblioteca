@@ -182,13 +182,13 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoControl_Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_Libro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ISBN_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Ejemplar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Prestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_De_Entrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -316,13 +316,13 @@
             this.dgvPrestamos_Home.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrestamos_Home.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Home.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column24,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
+            this.NoControl_Matricula,
+            this.Nombre_,
+            this.Nombre_Libro,
+            this.ISBN_,
+            this.Id_Ejemplar,
+            this.Id_Prestamo,
+            this.Fecha_De_Entrega});
             this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
             this.dgvPrestamos_Home.Name = "dgvPrestamos_Home";
             this.dgvPrestamos_Home.ReadOnly = true;
@@ -1758,63 +1758,63 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // Column1
+            // NoControl_Matricula
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "No. De Control/No. De Empleado";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 132;
+            this.NoControl_Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NoControl_Matricula.HeaderText = "No. De Control/No. De Empleado";
+            this.NoControl_Matricula.Name = "NoControl_Matricula";
+            this.NoControl_Matricula.ReadOnly = true;
+            this.NoControl_Matricula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoControl_Matricula.Width = 132;
             // 
-            // Column24
+            // Nombre_
             // 
-            this.Column24.HeaderText = "Nombre";
-            this.Column24.Name = "Column24";
-            this.Column24.ReadOnly = true;
+            this.Nombre_.HeaderText = "Nombre";
+            this.Nombre_.Name = "Nombre_";
+            this.Nombre_.ReadOnly = true;
             // 
-            // Column2
+            // Nombre_Libro
             // 
-            this.Column2.HeaderText = "Nombre del libro";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Nombre_Libro.HeaderText = "Nombre del libro";
+            this.Nombre_Libro.Name = "Nombre_Libro";
+            this.Nombre_Libro.ReadOnly = true;
+            this.Nombre_Libro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // Column3
+            // ISBN_
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "ISBN";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.Width = 57;
+            this.ISBN_.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ISBN_.HeaderText = "ISBN";
+            this.ISBN_.Name = "ISBN_";
+            this.ISBN_.ReadOnly = true;
+            this.ISBN_.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ISBN_.Width = 57;
             // 
-            // Column4
+            // Id_Ejemplar
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "ID Ejemplar";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column4.Width = 79;
+            this.Id_Ejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id_Ejemplar.HeaderText = "ID Ejemplar";
+            this.Id_Ejemplar.Name = "Id_Ejemplar";
+            this.Id_Ejemplar.ReadOnly = true;
+            this.Id_Ejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id_Ejemplar.Width = 79;
             // 
-            // Column5
+            // Id_Prestamo
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "ID Prestamo";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column5.Width = 83;
+            this.Id_Prestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id_Prestamo.HeaderText = "ID Prestamo";
+            this.Id_Prestamo.Name = "Id_Prestamo";
+            this.Id_Prestamo.ReadOnly = true;
+            this.Id_Prestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id_Prestamo.Width = 83;
             // 
-            // Column6
+            // Fecha_De_Entrega
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.HeaderText = "Fecha De Entrega";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column6.Width = 109;
+            this.Fecha_De_Entrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Fecha_De_Entrega.HeaderText = "Fecha De Entrega";
+            this.Fecha_De_Entrega.Name = "Fecha_De_Entrega";
+            this.Fecha_De_Entrega.ReadOnly = true;
+            this.Fecha_De_Entrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Fecha_De_Entrega.Width = 109;
             // 
             // Form1
             // 
@@ -2015,13 +2015,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoControl_Matricula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_Libro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ISBN_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Ejemplar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Prestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_De_Entrega;
     }
 }
 

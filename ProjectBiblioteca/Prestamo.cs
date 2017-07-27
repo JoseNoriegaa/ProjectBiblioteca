@@ -28,7 +28,7 @@ namespace ProjectBiblioteca
         {
         }
 
-        public Prestamo(string libro,int matriculaAlumno,DateTime fechaDePrestamo,DateTime fechaDeEntrega,int dias,string estadoDelLibro,string tipoDePrestamno)
+        public Prestamo(string libro, int matriculaAlumno, DateTime fechaDePrestamo, DateTime fechaDeEntrega, int dias, string estadoDelLibro, string tipoDePrestamno)
         {
             this.libroID = libro;
             this.matriculaAlumno = matriculaAlumno;
@@ -39,14 +39,15 @@ namespace ProjectBiblioteca
             {
                 this.estadoDelLibro = "default";
             }
-            else { 
-            this.estadoDelLibro = estadoDelLibro;
+            else
+            {
+                this.estadoDelLibro = estadoDelLibro;
             }
             this.tipoPrestamo = tipoDePrestamno;
-            
+
         }
 
-        public Prestamo(int numeroEmpleado,string libro, DateTime fechaDePrestamo, DateTime fechaDeEntrega, int dias, string estadoDelLibro, string tipoDePrestamno)
+        public Prestamo(int numeroEmpleado, string libro, DateTime fechaDePrestamo, DateTime fechaDeEntrega, int dias, string estadoDelLibro, string tipoDePrestamno)
         {
             this.libroID = libro;
             this.numeroEmpleado = numeroEmpleado;
@@ -62,7 +63,7 @@ namespace ProjectBiblioteca
                 this.estadoDelLibro = estadoDelLibro;
             }
             this.tipoPrestamo = tipoDePrestamno;
-        } 
+        }
 
         public void registrarPrestamo()
         {
@@ -72,8 +73,8 @@ namespace ProjectBiblioteca
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Registrar_Prestamo", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-             //   cmd.Parameters.AddWithValue("@Id_Prestamo",);
-                cmd.Parameters.AddWithValue("@Libro",this.libroID);
+                //   cmd.Parameters.AddWithValue("@Id_Prestamo",);
+                cmd.Parameters.AddWithValue("@Libro", this.libroID);
                 if (tipoPrestamo == "Alumno")
                 {
                     cmd.Parameters.AddWithValue("@idPersona", this.matriculaAlumno);
@@ -83,10 +84,10 @@ namespace ProjectBiblioteca
                     cmd.Parameters.AddWithValue("@idPersona", this.numeroEmpleado);
                 }
                 cmd.Parameters.AddWithValue("@Fecha_Prestamo", this.fechaDePrestamo);
-                cmd.Parameters.AddWithValue("@Fecha_Entrega",this.fechaDeEntrega);
-                cmd.Parameters.AddWithValue("@Dias_De_Prestamo",this.diasDePrestamo);
-                cmd.Parameters.AddWithValue("@Estado_Del_Libro",this.estadoDelLibro);
-                cmd.Parameters.AddWithValue("@tipoPrestamo",this.tipoPrestamo);
+                cmd.Parameters.AddWithValue("@Fecha_Entrega", this.fechaDeEntrega);
+                cmd.Parameters.AddWithValue("@Dias_De_Prestamo", this.diasDePrestamo);
+                cmd.Parameters.AddWithValue("@Estado_Del_Libro", this.estadoDelLibro);
+                cmd.Parameters.AddWithValue("@tipoPrestamo", this.tipoPrestamo);
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Se ha registrado el prestamo");
@@ -97,7 +98,8 @@ namespace ProjectBiblioteca
             catch (Exception e)
             {
                 MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source);
-            }finally
+            }
+            finally
             {
                 cnn.Close();
             }
@@ -105,9 +107,29 @@ namespace ProjectBiblioteca
 
         }
 
+ 
+        public void registrarDevolucion(string Id_Prestamo)
+        {
+            try
+            {
+                cnn.Open(); 
+                SqlCommand cmd = new SqlCommand("RegistrarDevolucion", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdPrestamo", Id_Prestamo);
+                cmd.Parameters.AddWithValue("@IdLibro", this.libroID);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Se ha registrado la devolución");
 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
 
-
-
+        }
     }
 }

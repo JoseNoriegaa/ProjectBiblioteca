@@ -326,7 +326,6 @@ namespace ProjectBiblioteca
             
                 #endregion
 
-
             }
 
             finally
@@ -389,7 +388,7 @@ namespace ProjectBiblioteca
 
         private void txtTelefono_AlumnoAdd_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void rbNuevaCarrera_Alumno_CheckedChanged(object sender, EventArgs e)
@@ -763,7 +762,38 @@ namespace ProjectBiblioteca
 
         private void txtBusqueda_Home_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("BuscarPrestamo", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Home.Text);
+                cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+                int i = 0;
+                while (reader.Read())
+                {
+                    dgvPrestamos_Home.Rows.Add();
+                    //Creo que qui podria poner solo esto-> dgvPrestamos_Home.Rows.Add(reader);
+                    //no estoy eguro xD pero se deberia calale.. ¬¬
+                    dgvPrestamos_Home.Rows[i].Cells["NoControl_Matricula"].Value = reader[0];
+                    dgvPrestamos_Home.Rows[i].Cells["Nombre_"].Value = reader[1];
+                    dgvPrestamos_Home.Rows[i].Cells["Nombre_Libro"].Value = reader[2];
+                    dgvPrestamos_Home.Rows[i].Cells["ISBN_"].Value = reader[3];
+                    dgvPrestamos_Home.Rows[i].Cells["Id_Ejemplar"].Value = reader[4];
+                    dgvPrestamos_Home.Rows[i].Cells["Id_Prestamo"].Value = reader[5];
+                    dgvPrestamos_Home.Rows[i].Cells["Fecha_De_Entrega"].Value = reader[6];
+                    i++;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+            finally
+            {
+                cnn.Close();
+            }
         }
     }
 }
