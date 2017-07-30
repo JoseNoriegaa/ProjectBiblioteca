@@ -191,17 +191,12 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label53 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
             this.cbFiltro_Historial = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
             this.txtBusqueda_Historial = new System.Windows.Forms.TextBox();
             this.dgvPrestamos_Historial = new System.Windows.Forms.DataGridView();
-            this.label53 = new System.Windows.Forms.Label();
             this._idprestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._persona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -210,6 +205,18 @@
             this._isbn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._fechaprestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._fechaentrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabAnalisis = new System.Windows.Forms.TabPage();
+            this.gbGrafica_Analisis = new System.Windows.Forms.GroupBox();
+            this.grafica_Analisis = new LiveCharts.WinForms.CartesianChart();
+            this.cbFiltro_Analisis = new System.Windows.Forms.ComboBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblMensaje_grafica = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -229,8 +236,10 @@
             this.btnGuardarCorreo_Herramientas.SuspendLayout();
             this.gbCorreo_herramientas.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).BeginInit();
+            this.tabAnalisis.SuspendLayout();
+            this.gbGrafica_Analisis.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1689,11 +1698,13 @@
             // 
             this.tabAjustes_2.Controls.Add(this.btnGuardarCorreo_Herramientas);
             this.tabAjustes_2.Controls.Add(this.tabPage2);
+            this.tabAjustes_2.Controls.Add(this.tabAnalisis);
             this.tabAjustes_2.Location = new System.Drawing.Point(3, 2);
             this.tabAjustes_2.Name = "tabAjustes_2";
             this.tabAjustes_2.SelectedIndex = 0;
             this.tabAjustes_2.Size = new System.Drawing.Size(1018, 496);
             this.tabAjustes_2.TabIndex = 0;
+            this.tabAjustes_2.Click += new System.EventHandler(this.tabAjustes_2_Click);
             // 
             // btnGuardarCorreo_Herramientas
             // 
@@ -1850,43 +1861,15 @@
             this.tabPage2.Text = "HISTORIAL";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // notifyIcon1
+            // label53
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mOToolStripMenuItem,
-            this.iNFORMACIÓNToolStripMenuItem,
-            this.sALIRToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 70);
-            // 
-            // mOToolStripMenuItem
-            // 
-            this.mOToolStripMenuItem.Name = "mOToolStripMenuItem";
-            this.mOToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.mOToolStripMenuItem.Text = "MOSTRAR";
-            this.mOToolStripMenuItem.Click += new System.EventHandler(this.mOToolStripMenuItem_Click);
-            // 
-            // iNFORMACIÓNToolStripMenuItem
-            // 
-            this.iNFORMACIÓNToolStripMenuItem.Name = "iNFORMACIÓNToolStripMenuItem";
-            this.iNFORMACIÓNToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.iNFORMACIÓNToolStripMenuItem.Text = "INFORMACIÓN";
-            this.iNFORMACIÓNToolStripMenuItem.Click += new System.EventHandler(this.iNFORMACIÓNToolStripMenuItem_Click);
-            // 
-            // sALIRToolStripMenuItem
-            // 
-            this.sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
-            this.sALIRToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.sALIRToolStripMenuItem.Text = "SALIR";
-            this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(6, 18);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(300, 24);
+            this.label53.TabIndex = 11;
+            this.label53.Text = "HISTORIAL DE PRESTAMOS";
             // 
             // label51
             // 
@@ -1949,16 +1932,6 @@
             this.dgvPrestamos_Historial.Size = new System.Drawing.Size(998, 301);
             this.dgvPrestamos_Historial.TabIndex = 6;
             // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(6, 18);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(300, 24);
-            this.label53.TabIndex = 11;
-            this.label53.Text = "HISTORIAL DE PRESTAMOS";
-            // 
             // _idprestamo
             // 
             this._idprestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1966,7 +1939,7 @@
             this._idprestamo.Name = "_idprestamo";
             this._idprestamo.ReadOnly = true;
             this._idprestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._idprestamo.Width = 90;
+            this._idprestamo.Width = 83;
             // 
             // _persona
             // 
@@ -1975,7 +1948,7 @@
             this._persona.Name = "_persona";
             this._persona.ReadOnly = true;
             this._persona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this._persona.Width = 132;
+            this._persona.Width = 98;
             // 
             // _nombre
             // 
@@ -2022,7 +1995,120 @@
             this._fechaentrega.Name = "_fechaentrega";
             this._fechaentrega.ReadOnly = true;
             this._fechaentrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._fechaentrega.Width = 109;
+            this._fechaentrega.Width = 76;
+            // 
+            // tabAnalisis
+            // 
+            this.tabAnalisis.Controls.Add(this.lblMensaje_grafica);
+            this.tabAnalisis.Controls.Add(this.gbGrafica_Analisis);
+            this.tabAnalisis.Controls.Add(this.cbFiltro_Analisis);
+            this.tabAnalisis.Controls.Add(this.label55);
+            this.tabAnalisis.Controls.Add(this.label54);
+            this.tabAnalisis.Location = new System.Drawing.Point(4, 22);
+            this.tabAnalisis.Name = "tabAnalisis";
+            this.tabAnalisis.Size = new System.Drawing.Size(1010, 470);
+            this.tabAnalisis.TabIndex = 2;
+            this.tabAnalisis.Text = "ANÁLISIS";
+            this.tabAnalisis.UseVisualStyleBackColor = true;
+            // 
+            // gbGrafica_Analisis
+            // 
+            this.gbGrafica_Analisis.Controls.Add(this.grafica_Analisis);
+            this.gbGrafica_Analisis.Location = new System.Drawing.Point(18, 106);
+            this.gbGrafica_Analisis.Name = "gbGrafica_Analisis";
+            this.gbGrafica_Analisis.Size = new System.Drawing.Size(978, 348);
+            this.gbGrafica_Analisis.TabIndex = 15;
+            this.gbGrafica_Analisis.TabStop = false;
+            this.gbGrafica_Analisis.Text = "Gráfica";
+            // 
+            // grafica_Analisis
+            // 
+            this.grafica_Analisis.Location = new System.Drawing.Point(6, 19);
+            this.grafica_Analisis.Name = "grafica_Analisis";
+            this.grafica_Analisis.Size = new System.Drawing.Size(952, 322);
+            this.grafica_Analisis.TabIndex = 0;
+            this.grafica_Analisis.Text = "cartesianChart1";
+            // 
+            // cbFiltro_Analisis
+            // 
+            this.cbFiltro_Analisis.FormattingEnabled = true;
+            this.cbFiltro_Analisis.Items.AddRange(new object[] {
+            "LIBROS",
+            "CARRERAS",
+            "PUESTOS",
+            "FECHA"});
+            this.cbFiltro_Analisis.Location = new System.Drawing.Point(18, 69);
+            this.cbFiltro_Analisis.Name = "cbFiltro_Analisis";
+            this.cbFiltro_Analisis.Size = new System.Drawing.Size(121, 21);
+            this.cbFiltro_Analisis.TabIndex = 14;
+            this.cbFiltro_Analisis.SelectedIndexChanged += new System.EventHandler(this.cbFiltro_Analisis_SelectedIndexChanged);
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(15, 52);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(90, 13);
+            this.label55.TabIndex = 13;
+            this.label55.Text = "Filtrar análisis por:";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(14, 17);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(122, 24);
+            this.label54.TabIndex = 12;
+            this.label54.Text = "GRÁFICAS";
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mOToolStripMenuItem,
+            this.iNFORMACIÓNToolStripMenuItem,
+            this.sALIRToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 70);
+            // 
+            // mOToolStripMenuItem
+            // 
+            this.mOToolStripMenuItem.Name = "mOToolStripMenuItem";
+            this.mOToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.mOToolStripMenuItem.Text = "MOSTRAR";
+            this.mOToolStripMenuItem.Click += new System.EventHandler(this.mOToolStripMenuItem_Click);
+            // 
+            // iNFORMACIÓNToolStripMenuItem
+            // 
+            this.iNFORMACIÓNToolStripMenuItem.Name = "iNFORMACIÓNToolStripMenuItem";
+            this.iNFORMACIÓNToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.iNFORMACIÓNToolStripMenuItem.Text = "INFORMACIÓN";
+            this.iNFORMACIÓNToolStripMenuItem.Click += new System.EventHandler(this.iNFORMACIÓNToolStripMenuItem_Click);
+            // 
+            // sALIRToolStripMenuItem
+            // 
+            this.sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
+            this.sALIRToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.sALIRToolStripMenuItem.Text = "SALIR";
+            this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
+            // 
+            // lblMensaje_grafica
+            // 
+            this.lblMensaje_grafica.AutoSize = true;
+            this.lblMensaje_grafica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblMensaje_grafica.Location = new System.Drawing.Point(167, 77);
+            this.lblMensaje_grafica.Name = "lblMensaje_grafica";
+            this.lblMensaje_grafica.Size = new System.Drawing.Size(0, 13);
+            this.lblMensaje_grafica.TabIndex = 16;
+            this.lblMensaje_grafica.Visible = false;
             // 
             // Form1
             // 
@@ -2065,8 +2151,11 @@
             this.gbCorreo_herramientas.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).EndInit();
+            this.tabAnalisis.ResumeLayout(false);
+            this.tabAnalisis.PerformLayout();
+            this.gbGrafica_Analisis.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2254,6 +2343,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _isbn;
         private System.Windows.Forms.DataGridViewTextBoxColumn _fechaprestamo;
         private System.Windows.Forms.DataGridViewTextBoxColumn _fechaentrega;
+        private System.Windows.Forms.TabPage tabAnalisis;
+        private System.Windows.Forms.ComboBox cbFiltro_Analisis;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.GroupBox gbGrafica_Analisis;
+        private LiveCharts.WinForms.CartesianChart grafica_Analisis;
+        private System.Windows.Forms.Label lblMensaje_grafica;
     }
 }
 

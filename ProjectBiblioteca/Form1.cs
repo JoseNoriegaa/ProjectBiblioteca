@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using LiveCharts.Wpf;
+using LiveCharts;
+
 namespace ProjectBiblioteca
 {
     public partial class Form1 : Form
@@ -28,8 +31,8 @@ namespace ProjectBiblioteca
         //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
         //cnn pc-noriega
         SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
-
-
+        ColumnSeries col;
+        Axis ax;
         public Form1()
         {
             InitializeComponent();
@@ -41,12 +44,13 @@ namespace ProjectBiblioteca
             cbFiltroBusqueda_Home.SelectedIndex = 0;
             cbTipo_Prestamo.SelectedIndex = 0;
             cbFiltro_Historial.SelectedIndex = 0;
-
+            cbFiltro_Analisis.SelectedIndex = 0;
             fillDGVs();
             fillCB();
             verificarFechaPrestamo();
             ShowIcon = false;
-
+            
+            llenarGrafica();
         }
 
         private void verificarFechaPrestamo()
@@ -850,6 +854,7 @@ namespace ProjectBiblioteca
                 MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source);
             }
             fillDGVs();
+            llenarGrafica();
         }
 
         private void txtBusqueda_Home_TextChanged(object sender, EventArgs e)
@@ -1139,5 +1144,297 @@ namespace ProjectBiblioteca
 
             btnDevolucion_Home.Enabled = false;
         }
+
+        private void cbFiltro_Analisis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarGrafica();
+        }
+
+        private void tabAjustes_2_Click(object sender, EventArgs e)
+        {
+            llenarGrafica();
+        }
+
+        private void llenarGrafica()
+        {
+            try
+            {
+
+                cnn.Open();
+                lblMensaje_grafica.Visible = false;
+                SqlCommand cmd;
+                SqlDataReader rd;
+                switch (cbFiltro_Analisis.SelectedItem.ToString())
+                {
+                    case "LIBROS":
+
+
+                        cmd = new SqlCommand("librosPrestados_Alumno", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        List<string> titulos1 = new List<string>();
+                        List<int> valores1 = new List<int>();
+
+
+                        while (rd.Read())
+                        {
+                            titulos1.Add(rd["Titulo"].ToString());
+                            valores1.Add(int.Parse(rd["Prestamos"].ToString()));
+                        }
+                        rd.Close();
+                        List<string> titulos2 = new List<string>();
+                        List<int> valores2 = new List<int>();
+                        cmd = new SqlCommand("librosPrestados_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        while (rd.Read())
+                        {
+                            titulos2.Add(rd["Titulo"].ToString());
+                            valores2.Add(int.Parse(rd["Prestamos"].ToString()));
+                        }
+                        rd.Close();
+
+
+
+                        for (int i = 0; i < titulos2.Count; i++)
+                        {
+                            for (int e = 0; e < titulos1.Count; e++)
+                            {
+                                if (titulos2[i] == titulos1[e])
+                                {
+                                    valores1[e] = valores1[e] + valores2[i];
+                                    titulos2.RemoveAt(i);
+                                    valores2.RemoveAt(i);
+
+                                }
+
+                            }
+                        }
+                        for (int i = 0; i < titulos2.Count; i++)
+                        {
+                            titulos1.Add(titulos2[i]);
+                            valores1.Add(valores2[i]);
+
+                        }
+                        col = new ColumnSeries()
+                        {
+                            DataLabels = true,
+                            Values = new ChartValues<int>(),
+                            LabelPoint = point => point.Y.ToString(),
+                        };
+                        ax = new Axis()
+                        {
+                            Separator = new Separator() { Step = 1, IsEnabled = false }
+                        };
+                        ax.Labels = new List<string>();
+                        col.Values.Clear();
+                        ax.Labels.Clear();
+                        grafica_Analisis.Series.Clear();
+                        grafica_Analisis.AxisX.Clear();
+                        grafica_Analisis.AxisY.Clear();
+                        for (int i = 0; i < titulos1.Count; i++)
+                        {
+                            col.Values.Add(valores1[i]);
+                            ax.Labels.Add(titulos1[i]);
+                        }
+                        break;
+                    case "CARRERAS":
+
+                        cmd = new SqlCommand("carreraPrestamos", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+
+                        col = new ColumnSeries()
+                        {
+                            DataLabels = true,
+                            Values = new ChartValues<int>(),
+                            LabelPoint = point => point.Y.ToString(),
+                        };
+                        ax = new Axis()
+                        {
+                            Separator = new Separator() { Step = 1, IsEnabled = false }
+                        };
+                        ax.Labels = new List<string>();
+                        col.Values.Clear();
+                        ax.Labels.Clear();
+                        grafica_Analisis.Series.Clear();
+                        grafica_Analisis.AxisX.Clear();
+                        grafica_Analisis.AxisY.Clear();
+                        List<string> carreras1 = new List<string>();
+                        List<int> prestamos1 = new List<int>();
+
+
+                        while (rd.Read())
+                        {
+                            prestamos1.Add(int.Parse(rd["Prestamos"].ToString()));
+
+                            carreras1.Add(rd["Carrera"].ToString());
+                        }
+                        for (int i = 0; i < prestamos1.Count; i++)
+                        {
+                            for (int e = carreras1.Count - 1; e > i; e--)
+                            {
+                                if (carreras1[i] == carreras1[e])
+                                {
+                                    prestamos1[i] += prestamos1[e];
+                                    prestamos1.RemoveAt(e);
+                                    carreras1.RemoveAt(e);
+                                }
+                            }
+                        }
+                        for (int i = 0; i < carreras1.Count; i++)
+                        {
+                            ax.Labels.Add(carreras1[i]);
+                            col.Values.Add(prestamos1[i]);
+                        }
+                        break;
+                    case "PUESTOS":
+
+                        cmd = new SqlCommand("puestosPrestamos", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+
+                        col = new ColumnSeries()
+                        {
+                            DataLabels = true,
+                            Values = new ChartValues<int>(),
+                            LabelPoint = point => point.Y.ToString(),
+                        };
+                        ax = new Axis()
+                        {
+                            Separator = new Separator() { Step = 1, IsEnabled = false }
+                        };
+                        ax.Labels = new List<string>();
+                        col.Values.Clear();
+                        ax.Labels.Clear();
+                        grafica_Analisis.Series.Clear();
+                        grafica_Analisis.AxisX.Clear();
+                        grafica_Analisis.AxisY.Clear();
+
+                        List<string> puestos = new List<string>();
+                        List<int> prestamosP = new List<int>();
+
+                        while (rd.Read())
+                        {
+                            prestamosP.Add(int.Parse(rd["Prestamos"].ToString()));
+
+                            puestos.Add(rd["Ocupacion"].ToString());
+                        }
+                        for (int i = 0; i < prestamosP.Count; i++)
+                        {
+                            for (int e = puestos.Count - 1; e > i; e--)
+                            {
+                                if (puestos[i] == puestos[e])
+                                {
+                                    prestamosP[i] += prestamosP[e];
+                                    prestamosP.RemoveAt(e);
+                                    puestos.RemoveAt(e);
+                                }
+                            }
+                        }
+                        for (int i = 0; i < puestos.Count; i++)
+                        {
+                            ax.Labels.Add(puestos[i]);
+                            col.Values.Add(prestamosP[i]);
+                        }
+
+
+                        break;
+                    case "FECHA":
+
+                        cmd = new SqlCommand("fechaPrestamos", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        List<string> fechas = new List<string>();
+                        List<int> fechasP = new List<int>();
+
+                        col = new ColumnSeries()
+                        {
+                            DataLabels = true,
+                            Values = new ChartValues<int>(),
+                            LabelPoint = point => point.Y.ToString(), 
+                        };
+                        ax = new Axis()
+                        {
+                            Separator = new Separator() { Step = 1, IsEnabled = false  },
+                           
+                            
+                        };
+                        ax.Labels = new List<string>();
+                        col.Values.Clear();
+                        ax.Labels.Clear();
+                        grafica_Analisis.Series.Clear();
+                        grafica_Analisis.AxisX.Clear();
+                        grafica_Analisis.AxisY.Clear();
+                        while (rd.Read())
+                        {
+
+                            fechas.Add(rd["mes"].ToString() + "/" + rd["año"].ToString());
+                            fechasP.Add(int.Parse(rd["Prestamos"].ToString()));
+
+                           // ax.Labels.Add(rd["mes"].ToString() + "/" + rd["año"].ToString());
+                           // col.Values.Add(int.Parse( rd["Prestamos"].ToString()));
+    
+                        }
+                        for (int i = 0; i < fechas.Count; i++)
+                        {
+                            for (int e = fechas.Count-1; e > i; e--)
+                            {
+                                if (fechas[i]==fechas[e])
+                                {
+                                    fechasP[i] += fechasP[e];
+                                    fechas.RemoveAt(e);
+                                    fechasP.RemoveAt(e);
+                                }
+                            }
+                        }
+                        if (fechas.Count <= 1)
+                        {
+                            lblMensaje_grafica.Visible = true;
+                            lblMensaje_grafica.Text = "SE REQUIEREN REGISTROS DE AL MENOS 2 MESES";
+                            ax.Labels.Clear();
+                            col.Values.Clear();
+                        }
+                        else
+                        {
+                            for (int i = 0; i < fechas.Count; i++)
+                            {
+
+                                ax.Labels.Add(fechas[i]);
+                                col.Values.Add(fechasP[i]);
+
+                            }
+                        }
+                        break;
+
+                }
+                
+                    grafica_Analisis.Series.Add(col);
+                    grafica_Analisis.AxisX.Add(ax);
+                
+
+
+                grafica_Analisis.AxisY.Add(new Axis
+                {
+                    
+                Separator = new Separator()
+            }
+                );
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+
+        }
+
     }
 }
