@@ -27,10 +27,8 @@ namespace ProjectBiblioteca
         bool actualizarPersonal = false;
         bool actualizarLibro = false;
 
-        //cnn laptop-noriega
-        //SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-91F61D3;Initial Catalog=Biblioteca;Integrated security=true;");
-        //cnn pc-noriega
-        SqlConnection cnn = new SqlConnection("Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;");
+        
+        SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
         ColumnSeries col;
         Axis ax;
         public Form1()
@@ -48,7 +46,7 @@ namespace ProjectBiblioteca
             fillDGVs();
             fillCB();
             verificarFechaPrestamo();
-            ShowIcon = false;
+            ShowIcon = true;
             
             llenarGrafica();
         }
@@ -70,7 +68,6 @@ namespace ProjectBiblioteca
             }
             if (contador>0)
             {
-                ShowIcon = false;
                 notifyIcon1.Visible = true;
                 string pluralosing = "";
                 if (contador==1)
@@ -1011,12 +1008,12 @@ namespace ProjectBiblioteca
             if (WindowState==FormWindowState.Minimized)
             {
                 this.Hide();
-                ShowIcon = false;
                 notifyIcon1.Visible = true;
                 notifyIcon1.ShowBalloonTip(1000, "BIBLIOTECA","LA APLICACIÓN SE ENCUENTRA EN SEGUNDO PLANO", ToolTipIcon.Info);
 
 
             }
+            
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)

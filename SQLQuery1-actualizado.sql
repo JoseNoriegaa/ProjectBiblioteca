@@ -1,7 +1,7 @@
 CREATE DATABASE Biblioteca
 
 use Biblioteca
-
+--TABLAS--
 
 CREATE TABLE Libro
 (
@@ -17,6 +17,72 @@ CREATE TABLE Libro
 	Edicion varchar(30),
 	estatus bit
 )
+
+CREATE TABLE Carrera
+(
+	Carrera varchar(50) primary key
+)
+
+CREATE TABLE Alumno
+(
+	Matricula int primary key,
+	Nombre varchar(50) NOT NULL,
+	Correo varchar(50),
+	Telefono VARCHAR(10),
+	Carrera varchar(50) constraint fk_Alumno_Carrera
+	foreign key (Carrera) 
+	references Carrera (Carrera) not null
+)
+
+create table Ocupacion
+(
+Puesto varchar(50) primary key
+)
+
+CREATE TABLE Personal
+(
+	Numero_De_Empleado int primary key,
+	Nombre varchar(50) NOT NULL,
+	Ocupacion varchar(50) foreign key references Ocupacion(Puesto) not null,
+	Correo varchar(30) NOT NULL,
+	Telefono varchar(10)
+)
+
+
+CREATE TABLE Prestamo_alumno
+ (
+	Id_Prestamo int identity(1,1) primary key,
+	Id_Libro varchar(30) constraint fk_Libro_Prestamo 
+	foreign key (Id_Libro) 
+	references Libro (Id_Libro) NOT NULL,
+	Matricula int constraint fk_Alumno_Prestamo	
+	foreign key (Matricula)	
+	references Alumno (Matricula) not null,
+	Fecha_Prestamo date,
+	Fecha_Entrega date,
+	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
+	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
+	Estado bit
+ )
+
+ create table Prestamo_Personal
+(
+	Id_Prestamo int identity (1,1) primary key,
+	Libro varchar(30) foreign key references Libro(Id_Libro) not null,
+	Personal int constraint fk_Personal_Prestamo
+	foreign key (Personal)
+	references Personal(Numero_De_Empleado) not null,
+	Fecha_Prestamo date,
+	Fecha_Entrega date,
+	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
+	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
+	Estado bit
+)
+
+
+
+
+
 create procedure verificarLibro
 @id varchar(30)
 as
@@ -110,10 +176,7 @@ go
 
 
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-CREATE TABLE Carrera
-(
-	Carrera varchar(50) primary key
-)
+
 
 create procedure AgregarCarrera
 @Carrera varchar(50)
@@ -156,16 +219,6 @@ go
 
 
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-CREATE TABLE Alumno
-(
-	Matricula int primary key,
-	Nombre varchar(50) NOT NULL,
-	Correo varchar(50),
-	Telefono VARCHAR(10),
-	Carrera varchar(50) constraint fk_Alumno_Carrera
-	foreign key (Carrera) 
-	references Carrera (Carrera) not null
-)
 
 create procedure Alta_Alumno
 @Matricula int,
@@ -222,10 +275,6 @@ where Matricula=@Matricula
 go
 
 --procedures-Pendiente
-create table Ocupacion
-(
-Puesto varchar(50) primary key
-)
 
 create procedure Agregar_Ocupacion
 
@@ -242,14 +291,6 @@ select * from Ocupacion
 go
 
 
-CREATE TABLE Personal
-(
-	Numero_De_Empleado int primary key,
-	Nombre varchar(50) NOT NULL,
-	Ocupacion varchar(50) foreign key references Ocupacion(Puesto) not null,
-	Correo varchar(30) NOT NULL,
-	Telefono varchar(10)
-)
 
 
 create procedure verificar_Personal
@@ -304,21 +345,6 @@ where Numero_De_Empleado=@Numero_De_Empleado
 go
 
 
-CREATE TABLE Prestamo_alumno
- (
-	Id_Prestamo int identity(1,1) primary key,
-	Id_Libro varchar(30) constraint fk_Libro_Prestamo 
-	foreign key (Id_Libro) 
-	references Libro (Id_Libro) NOT NULL,
-	Matricula int constraint fk_Alumno_Prestamo	
-	foreign key (Matricula)	
-	references Alumno (Matricula) not null,
-	Fecha_Prestamo date,
-	Fecha_Entrega date,
-	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
-	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
-	Estado bit
- )
 create procedure MostrarPrestamos_Alumno
 as
 select a.Matricula, b.Nombre,c.Titulo, c.ISBN,a.Id_Libro,a.Id_Prestamo,a.Fecha_Entrega from Prestamo_alumno a,Alumno b,Libro c where a.Matricula=b.Matricula and a.Id_Libro=c.Id_Libro and a.Estado=1
@@ -331,19 +357,7 @@ go
 
 --drop table Prestamo_alumno
 --drop table Prestamo_Personal
-create table Prestamo_Personal
-(
-	Id_Prestamo int identity (1,1) primary key,
-	Libro varchar(30) foreign key references Libro(Id_Libro) not null,
-	Personal int constraint fk_Personal_Prestamo
-	foreign key (Personal)
-	references Personal(Numero_De_Empleado) not null,
-	Fecha_Prestamo date,
-	Fecha_Entrega date,
-	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
-	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
-	Estado bit
-)
+
 create procedure MostrarPrestamos_Personal
 as
 select a.Personal, b.Nombre,c.Titulo, c.ISBN,a.Libro,a.Id_Prestamo,a.Fecha_Entrega from Prestamo_Personal a,Personal b,Libro c where a.Personal=b.Numero_De_Empleado and a.Libro=c.Id_Libro and a.Estado=1
@@ -434,6 +448,38 @@ SELECT SUM(T1.sumas)as Prestamos FROM
 	  go
 
 
+
+--procedures para las graficas
+create procedure librosPrestados_Alumno
+as
+select b.Titulo, count(*) as Prestamos from Prestamo_alumno a,Libro b where a.Id_Libro=b.Id_Libro group by a.Id_Libro,b.Titulo
+go
+create procedure librosPrestados_Personal
+as
+select b.Titulo, count(*) as Prestamos from Prestamo_Personal a,Libro b where a.Libro=b.Id_Libro group by a.Libro,b.Titulo
+go
+create procedure carreraPrestamos
+as
+select a.Carrera,COUNT(Id_Prestamo) as Prestamos from Prestamo_alumno p,Alumno a where p.Matricula=a.Matricula group by a.Carrera,p.Matricula
+go
+create procedure puestosPrestamos
+as
+select a.Ocupacion,COUNT(Id_Prestamo) as Prestamos from Prestamo_Personal p,Personal a  where p.Personal=a.Numero_De_Empleado group by a.Ocupacion,p.Personal
+go
+
+create procedure fechaPrestamos
+as
+select MONTH( Fecha_Prestamo)as mes ,YEAR(Fecha_Prestamo)as año,COUNT(*) as Prestamos from Prestamo_Personal group by MONTH( Fecha_Prestamo)
+,YEAR(Fecha_Prestamo),
+MONTH( Fecha_Prestamo) union all
+select MONTH( Fecha_Prestamo)as mes ,YEAR(Fecha_Prestamo)as año,COUNT(*) as Prestamos from Prestamo_alumno group by MONTH( Fecha_Prestamo)
+,YEAR(Fecha_Prestamo),
+MONTH( Fecha_Prestamo)
+go
+
+
+
+
 INSERT INTO Carrera
 VALUES('Tecnologias De La Información Y De La Comunicación')
 INSERT INTO Carrera
@@ -483,34 +529,6 @@ select A.Carrera from Alumno A
 full outer join Carrera on A.Carrera = Carrera.Carrera
 where A.Carrera is null and Carrera.Carrera is null
 
-
---procedures para las graficas
-create procedure librosPrestados_Alumno
-as
-select b.Titulo, count(*) as Prestamos from Prestamo_alumno a,Libro b where a.Id_Libro=b.Id_Libro group by a.Id_Libro,b.Titulo
-go
-create procedure librosPrestados_Personal
-as
-select b.Titulo, count(*) as Prestamos from Prestamo_Personal a,Libro b where a.Libro=b.Id_Libro group by a.Libro,b.Titulo
-go
-create procedure carreraPrestamos
-as
-select a.Carrera,COUNT(Id_Prestamo) as Prestamos from Prestamo_alumno p,Alumno a where p.Matricula=a.Matricula group by a.Carrera,p.Matricula
-go
-create procedure puestosPrestamos
-as
-select a.Ocupacion,COUNT(Id_Prestamo) as Prestamos from Prestamo_Personal p,Personal a  where p.Personal=a.Numero_De_Empleado group by a.Ocupacion,p.Personal
-go
-
-create procedure fechaPrestamos
-as
-select MONTH( Fecha_Prestamo)as mes ,YEAR(Fecha_Prestamo)as año,COUNT(*) as Prestamos from Prestamo_Personal group by MONTH( Fecha_Prestamo)
-,YEAR(Fecha_Prestamo),
-MONTH( Fecha_Prestamo) union all
-select MONTH( Fecha_Prestamo)as mes ,YEAR(Fecha_Prestamo)as año,COUNT(*) as Prestamos from Prestamo_alumno group by MONTH( Fecha_Prestamo)
-,YEAR(Fecha_Prestamo),
-MONTH( Fecha_Prestamo)
-go
 
 --CREATE TABLE Maestro
 --(

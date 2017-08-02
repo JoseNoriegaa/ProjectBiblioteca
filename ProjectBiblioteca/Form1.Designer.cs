@@ -40,6 +40,45 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBusqueda_Home = new System.Windows.Forms.TextBox();
             this.dgvPrestamos_Home = new System.Windows.Forms.DataGridView();
+            this.NoControl_Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_Libro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ISBN_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Ejemplar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Prestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_De_Entrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPrestamo = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
+            this.cbTipo_Prestamo = new System.Windows.Forms.ComboBox();
+            this.bRealizarPrestamo_Prestamo = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lNoControl_Empleado_Prestamo = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lAlumnos_Prestamo = new System.Windows.Forms.Label();
+            this.cbDias_Prestamo = new System.Windows.Forms.ComboBox();
+            this.dtpEntrega_Prestamo = new System.Windows.Forms.DateTimePicker();
+            this.dtpPrestamo_Prestamo = new System.Windows.Forms.DateTimePicker();
+            this.txtIdEjemplar_Prestamo = new System.Windows.Forms.TextBox();
+            this.txtISBN_Prestamo = new System.Windows.Forms.TextBox();
+            this.txtNombreLibro_Prestamo = new System.Windows.Forms.TextBox();
+            this.txtNoControl_Empleado_Prestamo = new System.Windows.Forms.TextBox();
+            this.dgvListaLibros_Prestamo = new System.Windows.Forms.DataGridView();
+            this.IdEjempar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreDelLibro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ISBN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvListaAlumno_Prestamo = new System.Windows.Forms.DataGridView();
+            this.NoControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
+            this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
             this.tabAlumno = new System.Windows.Forms.TabPage();
             this.lblActualizar_Alumno = new System.Windows.Forms.Label();
             this.rbNuevaCarrera_Alumno = new System.Windows.Forms.CheckBox();
@@ -98,38 +137,6 @@
             this.txtNoEmpleado_Personal = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.tabPrestamo = new System.Windows.Forms.TabPage();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
-            this.cbTipo_Prestamo = new System.Windows.Forms.ComboBox();
-            this.bRealizarPrestamo_Prestamo = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.lNoControl_Empleado_Prestamo = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.lAlumnos_Prestamo = new System.Windows.Forms.Label();
-            this.cbDias_Prestamo = new System.Windows.Forms.ComboBox();
-            this.dtpEntrega_Prestamo = new System.Windows.Forms.DateTimePicker();
-            this.dtpPrestamo_Prestamo = new System.Windows.Forms.DateTimePicker();
-            this.txtIdEjemplar_Prestamo = new System.Windows.Forms.TextBox();
-            this.txtISBN_Prestamo = new System.Windows.Forms.TextBox();
-            this.txtNombreLibro_Prestamo = new System.Windows.Forms.TextBox();
-            this.txtNoControl_Empleado_Prestamo = new System.Windows.Forms.TextBox();
-            this.dgvListaLibros_Prestamo = new System.Windows.Forms.DataGridView();
-            this.IdEjempar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreDelLibro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ISBN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvListaAlumno_Prestamo = new System.Windows.Forms.DataGridView();
-            this.NoControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
-            this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
             this.tabLibro = new System.Windows.Forms.TabPage();
             this.lblActualizar_Libro = new System.Windows.Forms.Label();
             this.txtBusqueda_Libro = new System.Windows.Forms.TextBox();
@@ -169,20 +176,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.tabAjustes = new System.Windows.Forms.TabPage();
             this.tabAjustes_2 = new System.Windows.Forms.TabControl();
-            this.btnGuardarCorreo_Herramientas = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.txtAsuntoCorreo_Herramientas = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.txtCuerpoCorreo_Herramientas = new System.Windows.Forms.RichTextBox();
-            this.gbCorreo_herramientas = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkPassCorreo = new System.Windows.Forms.CheckBox();
-            this.txtCorreo = new System.Windows.Forms.TextBox();
-            this.txtPassCorreo = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label53 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
@@ -205,40 +198,47 @@
             this.cbFiltro_Analisis = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
+            this.btnGuardarCorreo_Herramientas = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtAsuntoCorreo_Herramientas = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtCuerpoCorreo_Herramientas = new System.Windows.Forms.RichTextBox();
+            this.gbCorreo_herramientas = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkPassCorreo = new System.Windows.Forms.CheckBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtPassCorreo = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NoControl_Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre_Libro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ISBN_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_Ejemplar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_Prestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_De_Entrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
+            this.tabPrestamo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).BeginInit();
             this.tabAlumno.SuspendLayout();
             this.gbAgregarCarrera_Alumno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos_Alumno)).BeginInit();
             this.tabPersonal.SuspendLayout();
             this.gbOcupacion_Personal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_Personal)).BeginInit();
-            this.tabPrestamo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).BeginInit();
             this.tabLibro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_libro)).BeginInit();
             this.tabAjustes.SuspendLayout();
             this.tabAjustes_2.SuspendLayout();
-            this.btnGuardarCorreo_Herramientas.SuspendLayout();
-            this.gbCorreo_herramientas.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).BeginInit();
             this.tabAnalisis.SuspendLayout();
             this.gbGrafica_Analisis.SuspendLayout();
+            this.btnGuardarCorreo_Herramientas.SuspendLayout();
+            this.gbCorreo_herramientas.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -364,6 +364,383 @@
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.TabIndex = 0;
             this.dgvPrestamos_Home.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrestamos_Home_CellClick);
+            // 
+            // NoControl_Matricula
+            // 
+            this.NoControl_Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NoControl_Matricula.HeaderText = "No. De Control/No. De Empleado";
+            this.NoControl_Matricula.Name = "NoControl_Matricula";
+            this.NoControl_Matricula.ReadOnly = true;
+            this.NoControl_Matricula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoControl_Matricula.Width = 132;
+            // 
+            // Nombre_
+            // 
+            this.Nombre_.HeaderText = "Nombre";
+            this.Nombre_.Name = "Nombre_";
+            this.Nombre_.ReadOnly = true;
+            // 
+            // Nombre_Libro
+            // 
+            this.Nombre_Libro.HeaderText = "Titulo";
+            this.Nombre_Libro.Name = "Nombre_Libro";
+            this.Nombre_Libro.ReadOnly = true;
+            this.Nombre_Libro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // ISBN_
+            // 
+            this.ISBN_.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ISBN_.HeaderText = "ISBN";
+            this.ISBN_.Name = "ISBN_";
+            this.ISBN_.ReadOnly = true;
+            this.ISBN_.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ISBN_.Width = 57;
+            // 
+            // Id_Ejemplar
+            // 
+            this.Id_Ejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id_Ejemplar.HeaderText = "ID Ejemplar";
+            this.Id_Ejemplar.Name = "Id_Ejemplar";
+            this.Id_Ejemplar.ReadOnly = true;
+            this.Id_Ejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id_Ejemplar.Width = 79;
+            // 
+            // Id_Prestamo
+            // 
+            this.Id_Prestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id_Prestamo.HeaderText = "ID Prestamo";
+            this.Id_Prestamo.Name = "Id_Prestamo";
+            this.Id_Prestamo.ReadOnly = true;
+            this.Id_Prestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id_Prestamo.Width = 83;
+            // 
+            // Fecha_De_Entrega
+            // 
+            this.Fecha_De_Entrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Fecha_De_Entrega.HeaderText = "Fecha De Entrega";
+            this.Fecha_De_Entrega.Name = "Fecha_De_Entrega";
+            this.Fecha_De_Entrega.ReadOnly = true;
+            this.Fecha_De_Entrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Fecha_De_Entrega.Width = 109;
+            // 
+            // tabPrestamo
+            // 
+            this.tabPrestamo.Controls.Add(this.label25);
+            this.tabPrestamo.Controls.Add(this.label22);
+            this.tabPrestamo.Controls.Add(this.txtEstado_Prestamo);
+            this.tabPrestamo.Controls.Add(this.cbTipo_Prestamo);
+            this.tabPrestamo.Controls.Add(this.bRealizarPrestamo_Prestamo);
+            this.tabPrestamo.Controls.Add(this.label31);
+            this.tabPrestamo.Controls.Add(this.label30);
+            this.tabPrestamo.Controls.Add(this.label29);
+            this.tabPrestamo.Controls.Add(this.label28);
+            this.tabPrestamo.Controls.Add(this.label27);
+            this.tabPrestamo.Controls.Add(this.label26);
+            this.tabPrestamo.Controls.Add(this.lNoControl_Empleado_Prestamo);
+            this.tabPrestamo.Controls.Add(this.label24);
+            this.tabPrestamo.Controls.Add(this.label23);
+            this.tabPrestamo.Controls.Add(this.lAlumnos_Prestamo);
+            this.tabPrestamo.Controls.Add(this.cbDias_Prestamo);
+            this.tabPrestamo.Controls.Add(this.dtpEntrega_Prestamo);
+            this.tabPrestamo.Controls.Add(this.dtpPrestamo_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtIdEjemplar_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtISBN_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtNombreLibro_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtNoControl_Empleado_Prestamo);
+            this.tabPrestamo.Controls.Add(this.dgvListaLibros_Prestamo);
+            this.tabPrestamo.Controls.Add(this.dgvListaAlumno_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtLibro_Prestamo);
+            this.tabPrestamo.Controls.Add(this.txtAlumno_Prestamo);
+            this.tabPrestamo.Location = new System.Drawing.Point(4, 22);
+            this.tabPrestamo.Name = "tabPrestamo";
+            this.tabPrestamo.Size = new System.Drawing.Size(1024, 501);
+            this.tabPrestamo.TabIndex = 3;
+            this.tabPrestamo.Text = "PRÉSTAMO";
+            this.tabPrestamo.UseVisualStyleBackColor = true;
+            this.tabPrestamo.Click += new System.EventHandler(this.tabPrestamo_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(19, 45);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(141, 13);
+            this.label25.TabIndex = 26;
+            this.label25.Text = "Seleccione tipo de préstamo";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label22.Location = new System.Drawing.Point(688, 408);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(79, 13);
+            this.label22.TabIndex = 25;
+            this.label22.Text = "Estado del libro";
+            // 
+            // txtEstado_Prestamo
+            // 
+            this.txtEstado_Prestamo.Location = new System.Drawing.Point(791, 408);
+            this.txtEstado_Prestamo.Multiline = true;
+            this.txtEstado_Prestamo.Name = "txtEstado_Prestamo";
+            this.txtEstado_Prestamo.Size = new System.Drawing.Size(201, 40);
+            this.txtEstado_Prestamo.TabIndex = 24;
+            // 
+            // cbTipo_Prestamo
+            // 
+            this.cbTipo_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipo_Prestamo.FormattingEnabled = true;
+            this.cbTipo_Prestamo.Items.AddRange(new object[] {
+            "ALUMNO",
+            "PERSONAL"});
+            this.cbTipo_Prestamo.Location = new System.Drawing.Point(22, 61);
+            this.cbTipo_Prestamo.Name = "cbTipo_Prestamo";
+            this.cbTipo_Prestamo.Size = new System.Drawing.Size(121, 21);
+            this.cbTipo_Prestamo.TabIndex = 23;
+            this.cbTipo_Prestamo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_Prestamo_SelectedIndexChanged);
+            // 
+            // bRealizarPrestamo_Prestamo
+            // 
+            this.bRealizarPrestamo_Prestamo.Location = new System.Drawing.Point(884, 462);
+            this.bRealizarPrestamo_Prestamo.Name = "bRealizarPrestamo_Prestamo";
+            this.bRealizarPrestamo_Prestamo.Size = new System.Drawing.Size(108, 30);
+            this.bRealizarPrestamo_Prestamo.TabIndex = 22;
+            this.bRealizarPrestamo_Prestamo.Text = "Realizar Prestamo";
+            this.bRealizarPrestamo_Prestamo.UseVisualStyleBackColor = true;
+            this.bRealizarPrestamo_Prestamo.Click += new System.EventHandler(this.bRealizarPrestamo_Prestamo_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label31.Location = new System.Drawing.Point(688, 174);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(83, 13);
+            this.label31.TabIndex = 21;
+            this.label31.Text = "Nombre del libro";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label30.Location = new System.Drawing.Point(688, 232);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(32, 13);
+            this.label30.TabIndex = 20;
+            this.label30.Text = "ISBN";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label29.Location = new System.Drawing.Point(688, 312);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(98, 13);
+            this.label29.TabIndex = 19;
+            this.label29.Text = "Fecha de préstamo";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label28.Location = new System.Drawing.Point(688, 270);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(59, 13);
+            this.label28.TabIndex = 18;
+            this.label28.Text = "Id Ejemplar";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label27.Location = new System.Drawing.Point(688, 340);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(74, 13);
+            this.label27.TabIndex = 17;
+            this.label27.Text = "Días a prestar";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label26.Location = new System.Drawing.Point(688, 369);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(91, 13);
+            this.label26.TabIndex = 16;
+            this.label26.Text = "Fecha de entrega";
+            // 
+            // lNoControl_Empleado_Prestamo
+            // 
+            this.lNoControl_Empleado_Prestamo.AutoSize = true;
+            this.lNoControl_Empleado_Prestamo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(688, 132);
+            this.lNoControl_Empleado_Prestamo.Name = "lNoControl_Empleado_Prestamo";
+            this.lNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(60, 13);
+            this.lNoControl_Empleado_Prestamo.TabIndex = 15;
+            this.lNoControl_Empleado_Prestamo.Text = "No. Control";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(18, 6);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(211, 24);
+            this.label24.TabIndex = 14;
+            this.label24.Text = "NUEVO PRÉSTAMO";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(287, 94);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(193, 24);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "LISTA DE LIBROS";
+            this.label23.Click += new System.EventHandler(this.label23_Click);
+            // 
+            // lAlumnos_Prestamo
+            // 
+            this.lAlumnos_Prestamo.AutoSize = true;
+            this.lAlumnos_Prestamo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lAlumnos_Prestamo.Location = new System.Drawing.Point(18, 94);
+            this.lAlumnos_Prestamo.Name = "lAlumnos_Prestamo";
+            this.lAlumnos_Prestamo.Size = new System.Drawing.Size(220, 24);
+            this.lAlumnos_Prestamo.TabIndex = 12;
+            this.lAlumnos_Prestamo.Text = "LISTA DE ALUMNOS";
+            // 
+            // cbDias_Prestamo
+            // 
+            this.cbDias_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDias_Prestamo.FormattingEnabled = true;
+            this.cbDias_Prestamo.Location = new System.Drawing.Point(791, 332);
+            this.cbDias_Prestamo.Name = "cbDias_Prestamo";
+            this.cbDias_Prestamo.Size = new System.Drawing.Size(121, 21);
+            this.cbDias_Prestamo.TabIndex = 11;
+            // 
+            // dtpEntrega_Prestamo
+            // 
+            this.dtpEntrega_Prestamo.Location = new System.Drawing.Point(791, 369);
+            this.dtpEntrega_Prestamo.Name = "dtpEntrega_Prestamo";
+            this.dtpEntrega_Prestamo.Size = new System.Drawing.Size(200, 20);
+            this.dtpEntrega_Prestamo.TabIndex = 10;
+            // 
+            // dtpPrestamo_Prestamo
+            // 
+            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(791, 306);
+            this.dtpPrestamo_Prestamo.Name = "dtpPrestamo_Prestamo";
+            this.dtpPrestamo_Prestamo.Size = new System.Drawing.Size(200, 20);
+            this.dtpPrestamo_Prestamo.TabIndex = 9;
+            // 
+            // txtIdEjemplar_Prestamo
+            // 
+            this.txtIdEjemplar_Prestamo.Location = new System.Drawing.Point(791, 270);
+            this.txtIdEjemplar_Prestamo.Name = "txtIdEjemplar_Prestamo";
+            this.txtIdEjemplar_Prestamo.Size = new System.Drawing.Size(201, 20);
+            this.txtIdEjemplar_Prestamo.TabIndex = 8;
+            // 
+            // txtISBN_Prestamo
+            // 
+            this.txtISBN_Prestamo.Location = new System.Drawing.Point(791, 229);
+            this.txtISBN_Prestamo.Name = "txtISBN_Prestamo";
+            this.txtISBN_Prestamo.Size = new System.Drawing.Size(201, 20);
+            this.txtISBN_Prestamo.TabIndex = 7;
+            // 
+            // txtNombreLibro_Prestamo
+            // 
+            this.txtNombreLibro_Prestamo.Location = new System.Drawing.Point(791, 174);
+            this.txtNombreLibro_Prestamo.Multiline = true;
+            this.txtNombreLibro_Prestamo.Name = "txtNombreLibro_Prestamo";
+            this.txtNombreLibro_Prestamo.Size = new System.Drawing.Size(201, 40);
+            this.txtNombreLibro_Prestamo.TabIndex = 6;
+            // 
+            // txtNoControl_Empleado_Prestamo
+            // 
+            this.txtNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(791, 132);
+            this.txtNoControl_Empleado_Prestamo.Name = "txtNoControl_Empleado_Prestamo";
+            this.txtNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(201, 20);
+            this.txtNoControl_Empleado_Prestamo.TabIndex = 5;
+            // 
+            // dgvListaLibros_Prestamo
+            // 
+            this.dgvListaLibros_Prestamo.AllowUserToAddRows = false;
+            this.dgvListaLibros_Prestamo.AllowUserToDeleteRows = false;
+            this.dgvListaLibros_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListaLibros_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaLibros_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdEjempar,
+            this.NombreDelLibro,
+            this.ISBN});
+            this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 165);
+            this.dgvListaLibros_Prestamo.Name = "dgvListaLibros_Prestamo";
+            this.dgvListaLibros_Prestamo.ReadOnly = true;
+            this.dgvListaLibros_Prestamo.Size = new System.Drawing.Size(382, 292);
+            this.dgvListaLibros_Prestamo.TabIndex = 4;
+            this.dgvListaLibros_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaLibros_Prestamo_CellClick);
+            // 
+            // IdEjempar
+            // 
+            this.IdEjempar.HeaderText = "Id Ejempar";
+            this.IdEjempar.Name = "IdEjempar";
+            this.IdEjempar.ReadOnly = true;
+            // 
+            // NombreDelLibro
+            // 
+            this.NombreDelLibro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreDelLibro.HeaderText = "Nombre Del Libro";
+            this.NombreDelLibro.Name = "NombreDelLibro";
+            this.NombreDelLibro.ReadOnly = true;
+            // 
+            // ISBN
+            // 
+            this.ISBN.HeaderText = "ISBN";
+            this.ISBN.Name = "ISBN";
+            this.ISBN.ReadOnly = true;
+            // 
+            // dgvListaAlumno_Prestamo
+            // 
+            this.dgvListaAlumno_Prestamo.AllowUserToAddRows = false;
+            this.dgvListaAlumno_Prestamo.AllowUserToDeleteRows = false;
+            this.dgvListaAlumno_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListaAlumno_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaAlumno_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NoControl,
+            this.Nombre});
+            this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 165);
+            this.dgvListaAlumno_Prestamo.Name = "dgvListaAlumno_Prestamo";
+            this.dgvListaAlumno_Prestamo.ReadOnly = true;
+            this.dgvListaAlumno_Prestamo.Size = new System.Drawing.Size(241, 292);
+            this.dgvListaAlumno_Prestamo.TabIndex = 3;
+            this.dgvListaAlumno_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaAlumno_Prestamo_CellClick);
+            // 
+            // NoControl
+            // 
+            this.NoControl.HeaderText = "No. Control";
+            this.NoControl.Name = "NoControl";
+            this.NoControl.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // txtLibro_Prestamo
+            // 
+            this.txtLibro_Prestamo.Location = new System.Drawing.Point(291, 135);
+            this.txtLibro_Prestamo.Name = "txtLibro_Prestamo";
+            this.txtLibro_Prestamo.Size = new System.Drawing.Size(189, 20);
+            this.txtLibro_Prestamo.TabIndex = 2;
+            this.txtLibro_Prestamo.TextChanged += new System.EventHandler(this.txtLibro_Prestamo_TextChanged);
+            // 
+            // txtAlumno_Prestamo
+            // 
+            this.txtAlumno_Prestamo.Location = new System.Drawing.Point(22, 132);
+            this.txtAlumno_Prestamo.Name = "txtAlumno_Prestamo";
+            this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
+            this.txtAlumno_Prestamo.TabIndex = 0;
+            this.txtAlumno_Prestamo.TextChanged += new System.EventHandler(this.txtAlumno_Prestamo_TextChanged);
             // 
             // tabAlumno
             // 
@@ -950,325 +1327,6 @@
             this.label14.TabIndex = 1;
             this.label14.Text = "NUEVO REGISTRO";
             // 
-            // tabPrestamo
-            // 
-            this.tabPrestamo.Controls.Add(this.label25);
-            this.tabPrestamo.Controls.Add(this.label22);
-            this.tabPrestamo.Controls.Add(this.txtEstado_Prestamo);
-            this.tabPrestamo.Controls.Add(this.cbTipo_Prestamo);
-            this.tabPrestamo.Controls.Add(this.bRealizarPrestamo_Prestamo);
-            this.tabPrestamo.Controls.Add(this.label31);
-            this.tabPrestamo.Controls.Add(this.label30);
-            this.tabPrestamo.Controls.Add(this.label29);
-            this.tabPrestamo.Controls.Add(this.label28);
-            this.tabPrestamo.Controls.Add(this.label27);
-            this.tabPrestamo.Controls.Add(this.label26);
-            this.tabPrestamo.Controls.Add(this.lNoControl_Empleado_Prestamo);
-            this.tabPrestamo.Controls.Add(this.label24);
-            this.tabPrestamo.Controls.Add(this.label23);
-            this.tabPrestamo.Controls.Add(this.lAlumnos_Prestamo);
-            this.tabPrestamo.Controls.Add(this.cbDias_Prestamo);
-            this.tabPrestamo.Controls.Add(this.dtpEntrega_Prestamo);
-            this.tabPrestamo.Controls.Add(this.dtpPrestamo_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtIdEjemplar_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtISBN_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtNombreLibro_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtNoControl_Empleado_Prestamo);
-            this.tabPrestamo.Controls.Add(this.dgvListaLibros_Prestamo);
-            this.tabPrestamo.Controls.Add(this.dgvListaAlumno_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtLibro_Prestamo);
-            this.tabPrestamo.Controls.Add(this.txtAlumno_Prestamo);
-            this.tabPrestamo.Location = new System.Drawing.Point(4, 22);
-            this.tabPrestamo.Name = "tabPrestamo";
-            this.tabPrestamo.Size = new System.Drawing.Size(1024, 501);
-            this.tabPrestamo.TabIndex = 3;
-            this.tabPrestamo.Text = "PRÉSTAMO";
-            this.tabPrestamo.UseVisualStyleBackColor = true;
-            this.tabPrestamo.Click += new System.EventHandler(this.tabPrestamo_Click);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(19, 45);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(141, 13);
-            this.label25.TabIndex = 26;
-            this.label25.Text = "Seleccione tipo de préstamo";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label22.Location = new System.Drawing.Point(688, 408);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(79, 13);
-            this.label22.TabIndex = 25;
-            this.label22.Text = "Estado del libro";
-            // 
-            // txtEstado_Prestamo
-            // 
-            this.txtEstado_Prestamo.Location = new System.Drawing.Point(791, 408);
-            this.txtEstado_Prestamo.Multiline = true;
-            this.txtEstado_Prestamo.Name = "txtEstado_Prestamo";
-            this.txtEstado_Prestamo.Size = new System.Drawing.Size(201, 40);
-            this.txtEstado_Prestamo.TabIndex = 24;
-            // 
-            // cbTipo_Prestamo
-            // 
-            this.cbTipo_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipo_Prestamo.FormattingEnabled = true;
-            this.cbTipo_Prestamo.Items.AddRange(new object[] {
-            "ALUMNO",
-            "PERSONAL"});
-            this.cbTipo_Prestamo.Location = new System.Drawing.Point(22, 61);
-            this.cbTipo_Prestamo.Name = "cbTipo_Prestamo";
-            this.cbTipo_Prestamo.Size = new System.Drawing.Size(121, 21);
-            this.cbTipo_Prestamo.TabIndex = 23;
-            this.cbTipo_Prestamo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_Prestamo_SelectedIndexChanged);
-            // 
-            // bRealizarPrestamo_Prestamo
-            // 
-            this.bRealizarPrestamo_Prestamo.Location = new System.Drawing.Point(884, 462);
-            this.bRealizarPrestamo_Prestamo.Name = "bRealizarPrestamo_Prestamo";
-            this.bRealizarPrestamo_Prestamo.Size = new System.Drawing.Size(108, 30);
-            this.bRealizarPrestamo_Prestamo.TabIndex = 22;
-            this.bRealizarPrestamo_Prestamo.Text = "Realizar Prestamo";
-            this.bRealizarPrestamo_Prestamo.UseVisualStyleBackColor = true;
-            this.bRealizarPrestamo_Prestamo.Click += new System.EventHandler(this.bRealizarPrestamo_Prestamo_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label31.Location = new System.Drawing.Point(688, 174);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(83, 13);
-            this.label31.TabIndex = 21;
-            this.label31.Text = "Nombre del libro";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label30.Location = new System.Drawing.Point(688, 232);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(32, 13);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "ISBN";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label29.Location = new System.Drawing.Point(688, 312);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(98, 13);
-            this.label29.TabIndex = 19;
-            this.label29.Text = "Fecha de préstamo";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label28.Location = new System.Drawing.Point(688, 270);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(59, 13);
-            this.label28.TabIndex = 18;
-            this.label28.Text = "Id Ejemplar";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label27.Location = new System.Drawing.Point(688, 340);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(74, 13);
-            this.label27.TabIndex = 17;
-            this.label27.Text = "Días a prestar";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label26.Location = new System.Drawing.Point(688, 369);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(91, 13);
-            this.label26.TabIndex = 16;
-            this.label26.Text = "Fecha de entrega";
-            // 
-            // lNoControl_Empleado_Prestamo
-            // 
-            this.lNoControl_Empleado_Prestamo.AutoSize = true;
-            this.lNoControl_Empleado_Prestamo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(688, 132);
-            this.lNoControl_Empleado_Prestamo.Name = "lNoControl_Empleado_Prestamo";
-            this.lNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(60, 13);
-            this.lNoControl_Empleado_Prestamo.TabIndex = 15;
-            this.lNoControl_Empleado_Prestamo.Text = "No. Control";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(18, 6);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(211, 24);
-            this.label24.TabIndex = 14;
-            this.label24.Text = "NUEVO PRÉSTAMO";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(287, 94);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(193, 24);
-            this.label23.TabIndex = 13;
-            this.label23.Text = "LISTA DE LIBROS";
-            this.label23.Click += new System.EventHandler(this.label23_Click);
-            // 
-            // lAlumnos_Prestamo
-            // 
-            this.lAlumnos_Prestamo.AutoSize = true;
-            this.lAlumnos_Prestamo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lAlumnos_Prestamo.Location = new System.Drawing.Point(18, 94);
-            this.lAlumnos_Prestamo.Name = "lAlumnos_Prestamo";
-            this.lAlumnos_Prestamo.Size = new System.Drawing.Size(220, 24);
-            this.lAlumnos_Prestamo.TabIndex = 12;
-            this.lAlumnos_Prestamo.Text = "LISTA DE ALUMNOS";
-            // 
-            // cbDias_Prestamo
-            // 
-            this.cbDias_Prestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDias_Prestamo.FormattingEnabled = true;
-            this.cbDias_Prestamo.Location = new System.Drawing.Point(791, 332);
-            this.cbDias_Prestamo.Name = "cbDias_Prestamo";
-            this.cbDias_Prestamo.Size = new System.Drawing.Size(121, 21);
-            this.cbDias_Prestamo.TabIndex = 11;
-            // 
-            // dtpEntrega_Prestamo
-            // 
-            this.dtpEntrega_Prestamo.Location = new System.Drawing.Point(791, 369);
-            this.dtpEntrega_Prestamo.Name = "dtpEntrega_Prestamo";
-            this.dtpEntrega_Prestamo.Size = new System.Drawing.Size(200, 20);
-            this.dtpEntrega_Prestamo.TabIndex = 10;
-            // 
-            // dtpPrestamo_Prestamo
-            // 
-            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(791, 306);
-            this.dtpPrestamo_Prestamo.Name = "dtpPrestamo_Prestamo";
-            this.dtpPrestamo_Prestamo.Size = new System.Drawing.Size(200, 20);
-            this.dtpPrestamo_Prestamo.TabIndex = 9;
-            // 
-            // txtIdEjemplar_Prestamo
-            // 
-            this.txtIdEjemplar_Prestamo.Location = new System.Drawing.Point(791, 270);
-            this.txtIdEjemplar_Prestamo.Name = "txtIdEjemplar_Prestamo";
-            this.txtIdEjemplar_Prestamo.Size = new System.Drawing.Size(201, 20);
-            this.txtIdEjemplar_Prestamo.TabIndex = 8;
-            // 
-            // txtISBN_Prestamo
-            // 
-            this.txtISBN_Prestamo.Location = new System.Drawing.Point(791, 229);
-            this.txtISBN_Prestamo.Name = "txtISBN_Prestamo";
-            this.txtISBN_Prestamo.Size = new System.Drawing.Size(201, 20);
-            this.txtISBN_Prestamo.TabIndex = 7;
-            // 
-            // txtNombreLibro_Prestamo
-            // 
-            this.txtNombreLibro_Prestamo.Location = new System.Drawing.Point(791, 174);
-            this.txtNombreLibro_Prestamo.Multiline = true;
-            this.txtNombreLibro_Prestamo.Name = "txtNombreLibro_Prestamo";
-            this.txtNombreLibro_Prestamo.Size = new System.Drawing.Size(201, 40);
-            this.txtNombreLibro_Prestamo.TabIndex = 6;
-            // 
-            // txtNoControl_Empleado_Prestamo
-            // 
-            this.txtNoControl_Empleado_Prestamo.Location = new System.Drawing.Point(791, 132);
-            this.txtNoControl_Empleado_Prestamo.Name = "txtNoControl_Empleado_Prestamo";
-            this.txtNoControl_Empleado_Prestamo.Size = new System.Drawing.Size(201, 20);
-            this.txtNoControl_Empleado_Prestamo.TabIndex = 5;
-            // 
-            // dgvListaLibros_Prestamo
-            // 
-            this.dgvListaLibros_Prestamo.AllowUserToAddRows = false;
-            this.dgvListaLibros_Prestamo.AllowUserToDeleteRows = false;
-            this.dgvListaLibros_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvListaLibros_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaLibros_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdEjempar,
-            this.NombreDelLibro,
-            this.ISBN});
-            this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 165);
-            this.dgvListaLibros_Prestamo.Name = "dgvListaLibros_Prestamo";
-            this.dgvListaLibros_Prestamo.ReadOnly = true;
-            this.dgvListaLibros_Prestamo.Size = new System.Drawing.Size(382, 292);
-            this.dgvListaLibros_Prestamo.TabIndex = 4;
-            this.dgvListaLibros_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaLibros_Prestamo_CellClick);
-            // 
-            // IdEjempar
-            // 
-            this.IdEjempar.HeaderText = "Id Ejempar";
-            this.IdEjempar.Name = "IdEjempar";
-            this.IdEjempar.ReadOnly = true;
-            // 
-            // NombreDelLibro
-            // 
-            this.NombreDelLibro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreDelLibro.HeaderText = "Nombre Del Libro";
-            this.NombreDelLibro.Name = "NombreDelLibro";
-            this.NombreDelLibro.ReadOnly = true;
-            // 
-            // ISBN
-            // 
-            this.ISBN.HeaderText = "ISBN";
-            this.ISBN.Name = "ISBN";
-            this.ISBN.ReadOnly = true;
-            // 
-            // dgvListaAlumno_Prestamo
-            // 
-            this.dgvListaAlumno_Prestamo.AllowUserToAddRows = false;
-            this.dgvListaAlumno_Prestamo.AllowUserToDeleteRows = false;
-            this.dgvListaAlumno_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvListaAlumno_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaAlumno_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NoControl,
-            this.Nombre});
-            this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 165);
-            this.dgvListaAlumno_Prestamo.Name = "dgvListaAlumno_Prestamo";
-            this.dgvListaAlumno_Prestamo.ReadOnly = true;
-            this.dgvListaAlumno_Prestamo.Size = new System.Drawing.Size(241, 292);
-            this.dgvListaAlumno_Prestamo.TabIndex = 3;
-            this.dgvListaAlumno_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaAlumno_Prestamo_CellClick);
-            // 
-            // NoControl
-            // 
-            this.NoControl.HeaderText = "No. Control";
-            this.NoControl.Name = "NoControl";
-            this.NoControl.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // txtLibro_Prestamo
-            // 
-            this.txtLibro_Prestamo.Location = new System.Drawing.Point(291, 135);
-            this.txtLibro_Prestamo.Name = "txtLibro_Prestamo";
-            this.txtLibro_Prestamo.Size = new System.Drawing.Size(189, 20);
-            this.txtLibro_Prestamo.TabIndex = 2;
-            this.txtLibro_Prestamo.TextChanged += new System.EventHandler(this.txtLibro_Prestamo_TextChanged);
-            // 
-            // txtAlumno_Prestamo
-            // 
-            this.txtAlumno_Prestamo.Location = new System.Drawing.Point(22, 132);
-            this.txtAlumno_Prestamo.Name = "txtAlumno_Prestamo";
-            this.txtAlumno_Prestamo.Size = new System.Drawing.Size(176, 20);
-            this.txtAlumno_Prestamo.TabIndex = 0;
-            this.txtAlumno_Prestamo.TextChanged += new System.EventHandler(this.txtAlumno_Prestamo_TextChanged);
-            // 
             // tabLibro
             // 
             this.tabLibro.Controls.Add(this.lblActualizar_Libro);
@@ -1648,145 +1706,6 @@
             this.tabAjustes_2.TabIndex = 0;
             this.tabAjustes_2.Click += new System.EventHandler(this.tabAjustes_2_Click);
             // 
-            // btnGuardarCorreo_Herramientas
-            // 
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.button2);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label37);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label36);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtAsuntoCorreo_Herramientas);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label35);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtCuerpoCorreo_Herramientas);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.gbCorreo_herramientas);
-            this.btnGuardarCorreo_Herramientas.Location = new System.Drawing.Point(4, 22);
-            this.btnGuardarCorreo_Herramientas.Name = "btnGuardarCorreo_Herramientas";
-            this.btnGuardarCorreo_Herramientas.Padding = new System.Windows.Forms.Padding(3);
-            this.btnGuardarCorreo_Herramientas.Size = new System.Drawing.Size(1010, 470);
-            this.btnGuardarCorreo_Herramientas.TabIndex = 0;
-            this.btnGuardarCorreo_Herramientas.Text = "E-MAIL";
-            this.btnGuardarCorreo_Herramientas.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(416, 406);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Guardar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(25, 17);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(343, 25);
-            this.label37.TabIndex = 9;
-            this.label37.Text = "NOTIFICACIONES DE CORREO";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(27, 120);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(52, 13);
-            this.label36.TabIndex = 8;
-            this.label36.Text = "CUERPO";
-            // 
-            // txtAsuntoCorreo_Herramientas
-            // 
-            this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(27, 92);
-            this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
-            this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(461, 20);
-            this.txtAsuntoCorreo_Herramientas.TabIndex = 7;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(24, 75);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(52, 13);
-            this.label35.TabIndex = 6;
-            this.label35.Text = "ASUNTO";
-            // 
-            // txtCuerpoCorreo_Herramientas
-            // 
-            this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(30, 136);
-            this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
-            this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 251);
-            this.txtCuerpoCorreo_Herramientas.TabIndex = 5;
-            this.txtCuerpoCorreo_Herramientas.Text = "";
-            // 
-            // gbCorreo_herramientas
-            // 
-            this.gbCorreo_herramientas.Controls.Add(this.button1);
-            this.gbCorreo_herramientas.Controls.Add(this.checkPassCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.txtCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.txtPassCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.label33);
-            this.gbCorreo_herramientas.Controls.Add(this.label34);
-            this.gbCorreo_herramientas.Location = new System.Drawing.Point(678, 26);
-            this.gbCorreo_herramientas.Name = "gbCorreo_herramientas";
-            this.gbCorreo_herramientas.Size = new System.Drawing.Size(314, 178);
-            this.gbCorreo_herramientas.TabIndex = 4;
-            this.gbCorreo_herramientas.TabStop = false;
-            this.gbCorreo_herramientas.Text = "INGRESAR CORREO";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(226, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // checkPassCorreo
-            // 
-            this.checkPassCorreo.AutoSize = true;
-            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
-            this.checkPassCorreo.Name = "checkPassCorreo";
-            this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
-            this.checkPassCorreo.TabIndex = 4;
-            this.checkPassCorreo.Text = "Mostrar contraseña";
-            this.checkPassCorreo.UseVisualStyleBackColor = true;
-            this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
-            // 
-            // txtCorreo
-            // 
-            this.txtCorreo.Location = new System.Drawing.Point(12, 42);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(289, 20);
-            this.txtCorreo.TabIndex = 0;
-            // 
-            // txtPassCorreo
-            // 
-            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
-            this.txtPassCorreo.Name = "txtPassCorreo";
-            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
-            this.txtPassCorreo.TabIndex = 3;
-            this.txtPassCorreo.UseSystemPasswordChar = true;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(9, 26);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(155, 13);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "Dirección de correo electrónico";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(9, 70);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(61, 13);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "Contraseña";
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label53);
@@ -2014,11 +1933,150 @@
             this.label54.TabIndex = 12;
             this.label54.Text = "GRÁFICAS";
             // 
+            // btnGuardarCorreo_Herramientas
+            // 
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.button2);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label37);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label36);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtAsuntoCorreo_Herramientas);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label35);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtCuerpoCorreo_Herramientas);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.gbCorreo_herramientas);
+            this.btnGuardarCorreo_Herramientas.Location = new System.Drawing.Point(4, 22);
+            this.btnGuardarCorreo_Herramientas.Name = "btnGuardarCorreo_Herramientas";
+            this.btnGuardarCorreo_Herramientas.Padding = new System.Windows.Forms.Padding(3);
+            this.btnGuardarCorreo_Herramientas.Size = new System.Drawing.Size(1010, 470);
+            this.btnGuardarCorreo_Herramientas.TabIndex = 0;
+            this.btnGuardarCorreo_Herramientas.Text = "E-MAIL";
+            this.btnGuardarCorreo_Herramientas.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(416, 406);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Guardar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(25, 17);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(343, 25);
+            this.label37.TabIndex = 9;
+            this.label37.Text = "NOTIFICACIONES DE CORREO";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(27, 120);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(52, 13);
+            this.label36.TabIndex = 8;
+            this.label36.Text = "CUERPO";
+            // 
+            // txtAsuntoCorreo_Herramientas
+            // 
+            this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(27, 92);
+            this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
+            this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(461, 20);
+            this.txtAsuntoCorreo_Herramientas.TabIndex = 7;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(24, 75);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(52, 13);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "ASUNTO";
+            // 
+            // txtCuerpoCorreo_Herramientas
+            // 
+            this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(30, 136);
+            this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
+            this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 251);
+            this.txtCuerpoCorreo_Herramientas.TabIndex = 5;
+            this.txtCuerpoCorreo_Herramientas.Text = "";
+            // 
+            // gbCorreo_herramientas
+            // 
+            this.gbCorreo_herramientas.Controls.Add(this.button1);
+            this.gbCorreo_herramientas.Controls.Add(this.checkPassCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.txtCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.txtPassCorreo);
+            this.gbCorreo_herramientas.Controls.Add(this.label33);
+            this.gbCorreo_herramientas.Controls.Add(this.label34);
+            this.gbCorreo_herramientas.Location = new System.Drawing.Point(678, 26);
+            this.gbCorreo_herramientas.Name = "gbCorreo_herramientas";
+            this.gbCorreo_herramientas.Size = new System.Drawing.Size(314, 178);
+            this.gbCorreo_herramientas.TabIndex = 4;
+            this.gbCorreo_herramientas.TabStop = false;
+            this.gbCorreo_herramientas.Text = "INGRESAR CORREO";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(226, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Registrar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkPassCorreo
+            // 
+            this.checkPassCorreo.AutoSize = true;
+            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
+            this.checkPassCorreo.Name = "checkPassCorreo";
+            this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
+            this.checkPassCorreo.TabIndex = 4;
+            this.checkPassCorreo.Text = "Mostrar contraseña";
+            this.checkPassCorreo.UseVisualStyleBackColor = true;
+            this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Location = new System.Drawing.Point(12, 42);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtCorreo.TabIndex = 0;
+            // 
+            // txtPassCorreo
+            // 
+            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
+            this.txtPassCorreo.Name = "txtPassCorreo";
+            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtPassCorreo.TabIndex = 3;
+            this.txtPassCorreo.UseSystemPasswordChar = true;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(9, 26);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(155, 13);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "Dirección de correo electrónico";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(9, 70);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(61, 13);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "Contraseña";
+            // 
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "BIBLIOTECA";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
@@ -2052,64 +2110,6 @@
             this.sALIRToolStripMenuItem.Text = "SALIR";
             this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
             // 
-            // NoControl_Matricula
-            // 
-            this.NoControl_Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NoControl_Matricula.HeaderText = "No. De Control/No. De Empleado";
-            this.NoControl_Matricula.Name = "NoControl_Matricula";
-            this.NoControl_Matricula.ReadOnly = true;
-            this.NoControl_Matricula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NoControl_Matricula.Width = 132;
-            // 
-            // Nombre_
-            // 
-            this.Nombre_.HeaderText = "Nombre";
-            this.Nombre_.Name = "Nombre_";
-            this.Nombre_.ReadOnly = true;
-            // 
-            // Nombre_Libro
-            // 
-            this.Nombre_Libro.HeaderText = "Titulo";
-            this.Nombre_Libro.Name = "Nombre_Libro";
-            this.Nombre_Libro.ReadOnly = true;
-            this.Nombre_Libro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // ISBN_
-            // 
-            this.ISBN_.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ISBN_.HeaderText = "ISBN";
-            this.ISBN_.Name = "ISBN_";
-            this.ISBN_.ReadOnly = true;
-            this.ISBN_.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ISBN_.Width = 57;
-            // 
-            // Id_Ejemplar
-            // 
-            this.Id_Ejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Id_Ejemplar.HeaderText = "ID Ejemplar";
-            this.Id_Ejemplar.Name = "Id_Ejemplar";
-            this.Id_Ejemplar.ReadOnly = true;
-            this.Id_Ejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id_Ejemplar.Width = 79;
-            // 
-            // Id_Prestamo
-            // 
-            this.Id_Prestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Id_Prestamo.HeaderText = "ID Prestamo";
-            this.Id_Prestamo.Name = "Id_Prestamo";
-            this.Id_Prestamo.ReadOnly = true;
-            this.Id_Prestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id_Prestamo.Width = 83;
-            // 
-            // Fecha_De_Entrega
-            // 
-            this.Fecha_De_Entrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Fecha_De_Entrega.HeaderText = "Fecha De Entrega";
-            this.Fecha_De_Entrega.Name = "Fecha_De_Entrega";
-            this.Fecha_De_Entrega.ReadOnly = true;
-            this.Fecha_De_Entrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Fecha_De_Entrega.Width = 109;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2118,6 +2118,7 @@
             this.ClientSize = new System.Drawing.Size(1045, 561);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "BIBLIOTECA";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2126,6 +2127,10 @@
             this.tabInicio.ResumeLayout(false);
             this.tabInicio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).EndInit();
+            this.tabPrestamo.ResumeLayout(false);
+            this.tabPrestamo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).EndInit();
             this.tabAlumno.ResumeLayout(false);
             this.tabAlumno.PerformLayout();
             this.gbAgregarCarrera_Alumno.ResumeLayout(false);
@@ -2136,25 +2141,21 @@
             this.gbOcupacion_Personal.ResumeLayout(false);
             this.gbOcupacion_Personal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_Personal)).EndInit();
-            this.tabPrestamo.ResumeLayout(false);
-            this.tabPrestamo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaLibros_Prestamo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaAlumno_Prestamo)).EndInit();
             this.tabLibro.ResumeLayout(false);
             this.tabLibro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_libro)).EndInit();
             this.tabAjustes.ResumeLayout(false);
             this.tabAjustes_2.ResumeLayout(false);
-            this.btnGuardarCorreo_Herramientas.ResumeLayout(false);
-            this.btnGuardarCorreo_Herramientas.PerformLayout();
-            this.gbCorreo_herramientas.ResumeLayout(false);
-            this.gbCorreo_herramientas.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Historial)).EndInit();
             this.tabAnalisis.ResumeLayout(false);
             this.tabAnalisis.PerformLayout();
             this.gbGrafica_Analisis.ResumeLayout(false);
+            this.btnGuardarCorreo_Herramientas.ResumeLayout(false);
+            this.btnGuardarCorreo_Herramientas.PerformLayout();
+            this.gbCorreo_herramientas.ResumeLayout(false);
+            this.gbCorreo_herramientas.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
