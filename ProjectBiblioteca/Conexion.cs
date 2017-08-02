@@ -13,7 +13,7 @@ namespace ProjectBiblioteca
 
         public string connectionString()
         {
-            cxnString = "Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;";
+            cxnString = "Data Source=SERVER-PC;Initial Catalog=Biblioteca;Integrated security=true;";
             return cxnString;
         }
 

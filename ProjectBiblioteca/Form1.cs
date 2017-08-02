@@ -367,9 +367,9 @@ namespace ProjectBiblioteca
 
                 #endregion
                 #region llenar dgv historial Herramientas
-                switch (cbFiltro_Historial.SelectedItem)
+                switch (cbFiltro_Historial.SelectedIndex)
                 {
-                    case "TODOS":
+                    case 0:
                         cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         rd = cmd.ExecuteReader();
@@ -390,7 +390,7 @@ namespace ProjectBiblioteca
 
 
                         break;
-                    case "ALUMNOS":
+                    case 1:
                         cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         rd = cmd.ExecuteReader();
@@ -401,7 +401,7 @@ namespace ProjectBiblioteca
                         }
                         rd.Close();
                         break;
-                    case "PERSONAL":
+                    case 2:
                         cmd = new SqlCommand("historialPrestamos_Personal", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         rd = cmd.ExecuteReader();
