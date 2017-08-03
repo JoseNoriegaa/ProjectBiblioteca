@@ -18,16 +18,18 @@ namespace ProjectBiblioteca
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Carrera { get; set; }
+        public int cuatrimestre{ get; set; }
 
 
         public Alumno() { }
-        public Alumno(int matricula, string nombre,  string telefono, string correo, string carrera)
+        public Alumno(int matricula, string nombre,  string telefono, string correo, string carrera,int cuatrimestre)
         {
             this.Matricula = matricula;
             this.Nombre = nombre.Trim();
             this.Correo = correo;
             this.Telefono = telefono;
             this.Carrera = carrera;
+            this.cuatrimestre = cuatrimestre;
             ;
         }
 
@@ -45,6 +47,8 @@ namespace ProjectBiblioteca
                     cmd.Parameters.AddWithValue("@Correo", this.Correo);
                     cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
                     cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
+                    cmd.Parameters.AddWithValue("@cuatrimestre", this.cuatrimestre);
+
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Se ha registrado "+ this.Nombre);
                 }
@@ -80,6 +84,8 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Correo", this.Correo);
                 cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
                 cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
+                cmd.Parameters.AddWithValue("@cuatrimestre", this.cuatrimestre);
+
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha actualizado "+ this.Nombre);
             }

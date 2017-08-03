@@ -33,7 +33,9 @@ CREATE TABLE Alumno
 	foreign key (Carrera) 
 	references Carrera (Carrera) not null,
 	cuatrimestre int not null
-} 
+)
+alter table Alumno
+add libroEstado bit
 
 create table Ocupacion
 (
@@ -226,15 +228,20 @@ create procedure Alta_Alumno
 @Nombre varchar(50),
 @Correo varchar(50),
 @Telefono VARCHAR(10),
-@Carrera varchar(50)
+@Carrera varchar(50),
+@cuatrimestre int
 as
-Insert into Alumno (Matricula,Nombre,Correo,Telefono,Carrera) Values(@Matricula, @Nombre, @Correo, @Telefono, @Carrera)
+Insert into Alumno (Matricula,Nombre,Correo,Telefono,Carrera,cuatrimestre,libroEstado) Values(@Matricula, @Nombre, @Correo, @Telefono, @Carrera,@cuatrimestre,0)
 go
-
 
 create procedure Mostrar_Alumnos
 as
-select * from Alumno where 
+select * from Alumno 
+go
+
+create procedure Mostrar_Alumnos_SinLibro
+as
+select * from Alumno a where a.libroEstado=0
 go
 
 create procedure Buscar_Alumno
@@ -260,11 +267,12 @@ create procedure Editar_Alumno
 @Nombre varchar(50),
 @Correo varchar(50),
 @Telefono VARCHAR(10),
-@Carrera varchar(50)
+@Carrera varchar(50),
+@Cuatrimestre int
 
 as
 update Alumno
-set Matricula=@MAtricula, Nombre=@Nombre, Correo=@Correo, Telefono=@Telefono, Carrera=@Carrera
+set Matricula=@MAtricula,cuatrimestre=@Cuatrimestre, Nombre=@Nombre, Correo=@Correo, Telefono=@Telefono, Carrera=@Carrera
 where Matricula=@MatriculaVieja
 go
 
@@ -406,10 +414,17 @@ create procedure Registrar_Prestamo
 	as
 	update Libro set Libro.estatus=1 where Libro.Id_Libro=@Libro
 	if(@tipoPrestamo='Alumno')
+		begin
+		update Alumno set libroEstado=1 
+			
 		if(@Estado_Del_Libro='default')
+			
 			insert into Prestamo_alumno values(@Libro, @idPersona,@Fecha_Prestamo,@Fecha_Entrega,@Dias_De_Prestamo,default,@Estado)
 		else
+		
+		
 			insert into Prestamo_alumno values(@Libro, @idPersona,@Fecha_Prestamo,@Fecha_Entrega,@Dias_De_Prestamo,@Estado_Del_Libro,@Estado)
+		end
 	else
 		if(@Estado_Del_Libro='default')
 			insert into Prestamo_Personal values(@Libro, @idPersona,@Fecha_Prestamo,@Fecha_Entrega,@Dias_De_Prestamo,default,@Estado)
@@ -425,6 +440,7 @@ as
 	if((select count(Id_Prestamo) from Prestamo_alumno where Id_Libro=@IdLibro and Estado=1)=1)
 		update Prestamo_alumno set Estado='' where Id_Prestamo=@IdPrestamo
 		update Libro set estatus=0 where Id_Libro=@IdLibro
+		update Alumno set libroEstado=0
 		
 	if((select count(Id_Prestamo) from Prestamo_Personal a where a.Libro=@IdLibro and a.Estado=1)=1)
 		update Prestamo_Personal set Estado=0 where Id_Prestamo=@IdPrestamo
@@ -482,7 +498,7 @@ go
 
 
 INSERT INTO Carrera
-VALUES('Tecnologias De La Información Y De La Comunicación')
+VALUES('TIC')
 INSERT INTO Carrera
 VALUES('Mineria')
 INSERT INTO Carrera

@@ -244,7 +244,7 @@ namespace ProjectBiblioteca
                 #region llenar DGV Alumnos-Personal Prestamo
                 if (cbTipo_Prestamo.SelectedIndex == 0)
                 {
-                    cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+                    cmd = new SqlCommand("Mostrar_Alumnos_SinLibro", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     rd = cmd.ExecuteReader();
                     dgvListaAlumno_Prestamo.Rows.Clear();
@@ -285,13 +285,13 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar lista alumnos
-                cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+                cmd = new SqlCommand("Mostrar_Alumnos_SinLibro", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 rd = cmd.ExecuteReader();
                 dgvAlumnos_Alumno.Rows.Clear();
                 while (rd.Read())
                 {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(), rd["cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
                 }
                 rd.Close();
 
@@ -366,6 +366,7 @@ namespace ProjectBiblioteca
 
 
                 #endregion
+
                 #region llenar dgv historial Herramientas
                 switch (cbFiltro_Historial.SelectedIndex)
                 {
@@ -454,7 +455,7 @@ namespace ProjectBiblioteca
 
         private void btnAdd_Alumno_Click(object sender, EventArgs e)
         {   
-            alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtEmail_AlumnoAdd.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper());
+            alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text.ToUpper(), txtEmail_AlumnoAdd.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper(),int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
 
             if (actualizarAlumno == true)
             {
@@ -698,9 +699,17 @@ namespace ProjectBiblioteca
                     cbCarrera_AlumnoAdd.SelectedIndex=i;
                 }
             }
+                for (int i = 0; i < cbCuatrimestre_AlumnoAdd.Items.Count; i++)
+                {
+                    if (dgvAlumnos_Alumno.CurrentRow.Cells[3].Value.ToString() == cbCuatrimestre_AlumnoAdd.Items[i].ToString())
+                    {
+
+                        cbCuatrimestre_AlumnoAdd.SelectedIndex = i;
+                    }
+                }
             txtNombre_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[1].Value.ToString();
-            txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[3].Value.ToString();
-            txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
+            txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
+            txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[5].Value.ToString();
 
             }
         }
@@ -1150,6 +1159,11 @@ namespace ProjectBiblioteca
         private void tabAjustes_2_Click(object sender, EventArgs e)
         {
             llenarGrafica();
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            fillCB();
         }
 
         private void llenarGrafica()
