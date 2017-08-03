@@ -282,7 +282,7 @@ as
 Delete Alumno
 where Matricula=@Matricula
 go
-
+--|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 --procedures-Pendiente
 
 create procedure Agregar_Ocupacion
@@ -299,7 +299,7 @@ as
 select * from Ocupacion
 go
 
-
+--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
 create procedure verificar_Personal
@@ -352,7 +352,7 @@ as
 delete from Personal
 where Numero_De_Empleado=@Numero_De_Empleado
 go
-
+--|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 create procedure MostrarPrestamos_Alumno
 as

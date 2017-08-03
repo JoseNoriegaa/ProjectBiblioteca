@@ -26,8 +26,11 @@ namespace ProjectBiblioteca
         bool actualizarAlumno = false;
         bool actualizarPersonal = false;
         bool actualizarLibro = false;
+        bool borrarAlumno = false;
+        bool borrarPersonal = false;
+        bool borrarLibro = false;
 
-        
+
         SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
         ColumnSeries col;
         Axis ax;
@@ -685,8 +688,14 @@ namespace ProjectBiblioteca
         {
             if (dgvAlumnos_Alumno.Rows.Count>0)
             {
+                if (borrarAlumno==true)
+                {
+                   new Alumno().borrarAlumnoDB(int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString()));
+                    fillDGVs();
 
-            
+                }
+                else
+                {
             actualizarAlumno = true;
             lblActualizar_Alumno.Visible = actualizarAlumno;
             matriculavieja_Alumno = int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString());
@@ -711,6 +720,7 @@ namespace ProjectBiblioteca
             txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
             txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[5].Value.ToString();
 
+                }
             }
         }
 
@@ -724,26 +734,36 @@ namespace ProjectBiblioteca
         int numeroDeEmpleadoViejo;
         private void dgvLista_Personal_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvLista_Personal.Rows.Count>0)
+            if (dgvLista_Personal.Rows.Count > 0)
             {
-                
-            numeroDeEmpleadoViejo = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
-            actualizarPersonal = true;
-            lblActualizar_Personal.Visible = actualizarPersonal;
-
-
-            txtNoEmpleado_Personal.Text = dgvLista_Personal.CurrentRow.Cells[0].Value.ToString();
-            txtNombre_Personal.Text= dgvLista_Personal.CurrentRow.Cells[1].Value.ToString();
-            for (int i = 0; i < cbOcupacion_Personal.Items.Count; i++)
-            {
-                if (dgvLista_Personal.CurrentRow.Cells[2].Value.ToString()==cbOcupacion_Personal.Items[i].ToString())
+                if (borrarPersonal)
                 {
-                    cbOcupacion_Personal.SelectedIndex = i;
+                    int numeroDeEmpleado = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
+                    new Personal().borrarPersonalDB(numeroDeEmpleado);
+                    fillDGVs();
                 }
-            }
-            txtEMail_Personal.Text = dgvLista_Personal.CurrentRow.Cells[3].Value.ToString();
-            txtTelefono_Personal.Text = dgvLista_Personal.CurrentRow.Cells[4].Value.ToString();
+                else
+                {
+                    
 
+                    numeroDeEmpleadoViejo = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
+                    actualizarPersonal = true;
+                    lblActualizar_Personal.Visible = actualizarPersonal;
+
+
+                    txtNoEmpleado_Personal.Text = dgvLista_Personal.CurrentRow.Cells[0].Value.ToString();
+                    txtNombre_Personal.Text = dgvLista_Personal.CurrentRow.Cells[1].Value.ToString();
+                    for (int i = 0; i < cbOcupacion_Personal.Items.Count; i++)
+                    {
+                        if (dgvLista_Personal.CurrentRow.Cells[2].Value.ToString() == cbOcupacion_Personal.Items[i].ToString())
+                        {
+                            cbOcupacion_Personal.SelectedIndex = i;
+                        }
+                    }
+                    txtEMail_Personal.Text = dgvLista_Personal.CurrentRow.Cells[3].Value.ToString();
+                    txtTelefono_Personal.Text = dgvLista_Personal.CurrentRow.Cells[4].Value.ToString();
+
+                }
             }
         }
 
@@ -1164,6 +1184,37 @@ namespace ProjectBiblioteca
         private void tabControl1_Click(object sender, EventArgs e)
         {
             fillCB();
+        }
+
+        private void btnBorrar_Alumno_Click(object sender, EventArgs e)
+        {
+            borrarAlumno = true;
+            lblBorrar_Alumno.Visible = borrarAlumno;
+        }
+
+        private void btnBorrar_Personal_Click(object sender, EventArgs e)
+        {
+            borrarPersonal = true;
+            lblBorrar_Personal.Visible = borrarPersonal;
+        }
+
+        private void chkBorrar_Personal_CheckedChanged(object sender, EventArgs e)
+        {
+            borrarPersonal = chkBorrar_Personal.Checked;
+            lblBorrar_Personal.Visible = borrarPersonal;
+
+        }
+
+        private void btnBorrar_Alumno_CheckedChanged(object sender, EventArgs e)
+        {
+            borrarAlumno = chkBorrar_Personal.Checked;
+            lblBorrar_Personal.Visible = borrarPersonal;
+        }
+
+        private void chkBorrar_Alumno_CheckedChanged(object sender, EventArgs e)
+        {
+            borrarAlumno = chkBorrar_Alumno.Checked;
+            lblBorrar_Alumno.Visible = borrarAlumno;
         }
 
         private void llenarGrafica()

@@ -124,6 +124,31 @@ namespace ProjectBiblioteca
 
             return salida;
         }
+        public void borrarPersonalDB(int NumeroEmpl)
+        {
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("Eliminar_Personal", cnn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Numero_De_Empleado", NumeroEmpl);
+                if (MessageBox.Show("Esta seguro de borrar este registro permanentemete", "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+
+        }
 
     }
 }

@@ -218,6 +218,10 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblBorrar_Personal = new System.Windows.Forms.Label();
+            this.lblBorrar_Alumno = new System.Windows.Forms.Label();
+            this.chkBorrar_Personal = new System.Windows.Forms.CheckBox();
+            this.chkBorrar_Alumno = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -746,6 +750,8 @@
             // 
             // tabAlumno
             // 
+            this.tabAlumno.Controls.Add(this.chkBorrar_Alumno);
+            this.tabAlumno.Controls.Add(this.lblBorrar_Alumno);
             this.tabAlumno.Controls.Add(this.lblActualizar_Alumno);
             this.tabAlumno.Controls.Add(this.rbNuevaCarrera_Alumno);
             this.tabAlumno.Controls.Add(this.gbAgregarCarrera_Alumno);
@@ -841,7 +847,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(511, 97);
+            this.label13.Location = new System.Drawing.Point(501, 43);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 20;
@@ -859,7 +865,7 @@
             // 
             // txtBusqueda_Alumno
             // 
-            this.txtBusqueda_Alumno.Location = new System.Drawing.Point(514, 113);
+            this.txtBusqueda_Alumno.Location = new System.Drawing.Point(504, 63);
             this.txtBusqueda_Alumno.Name = "txtBusqueda_Alumno";
             this.txtBusqueda_Alumno.Size = new System.Drawing.Size(238, 20);
             this.txtBusqueda_Alumno.TabIndex = 18;
@@ -879,11 +885,11 @@
             this.Column1,
             this.Column13,
             this.Column14});
-            this.dgvAlumnos_Alumno.Location = new System.Drawing.Point(514, 138);
+            this.dgvAlumnos_Alumno.Location = new System.Drawing.Point(504, 92);
             this.dgvAlumnos_Alumno.Name = "dgvAlumnos_Alumno";
             this.dgvAlumnos_Alumno.ReadOnly = true;
             this.dgvAlumnos_Alumno.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(492, 344);
+            this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(502, 393);
             this.dgvAlumnos_Alumno.TabIndex = 0;
             this.dgvAlumnos_Alumno.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_Alumno_CellClick);
             // 
@@ -901,7 +907,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(510, 53);
+            this.label12.Location = new System.Drawing.Point(498, 13);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(185, 24);
             this.label12.TabIndex = 16;
@@ -1018,6 +1024,8 @@
             // 
             // tabPersonal
             // 
+            this.tabPersonal.Controls.Add(this.chkBorrar_Personal);
+            this.tabPersonal.Controls.Add(this.lblBorrar_Personal);
             this.tabPersonal.Controls.Add(this.gbOcupacion_Personal);
             this.tabPersonal.Controls.Add(this.cbAddOcupacion_Personal);
             this.tabPersonal.Controls.Add(this.lblActualizar_Personal);
@@ -1138,7 +1146,7 @@
             this.dgvLista_Personal.Location = new System.Drawing.Point(502, 90);
             this.dgvLista_Personal.Name = "dgvLista_Personal";
             this.dgvLista_Personal.ReadOnly = true;
-            this.dgvLista_Personal.Size = new System.Drawing.Size(495, 402);
+            this.dgvLista_Personal.Size = new System.Drawing.Size(505, 402);
             this.dgvLista_Personal.TabIndex = 14;
             this.dgvLista_Personal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_Personal_CellClick);
             // 
@@ -2074,12 +2082,13 @@
             // 
             // Column7
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column7.FillWeight = 70F;
             this.Column7.HeaderText = "Matricula";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column7.Width = 75;
             // 
             // Column8
             // 
@@ -2101,7 +2110,7 @@
             // 
             // Column1
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column1.HeaderText = "Cuatrimestre";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -2109,19 +2118,65 @@
             // 
             // Column13
             // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column13.HeaderText = "E-Mail";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
             this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column13.Width = 61;
             // 
             // Column14
             // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column14.HeaderText = "Telefono";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
             this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column14.Width = 74;
+            // 
+            // lblBorrar_Personal
+            // 
+            this.lblBorrar_Personal.AutoSize = true;
+            this.lblBorrar_Personal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Personal.Location = new System.Drawing.Point(830, 40);
+            this.lblBorrar_Personal.Name = "lblBorrar_Personal";
+            this.lblBorrar_Personal.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Personal.TabIndex = 21;
+            this.lblBorrar_Personal.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Personal.Visible = false;
+            // 
+            // lblBorrar_Alumno
+            // 
+            this.lblBorrar_Alumno.AutoSize = true;
+            this.lblBorrar_Alumno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Alumno.Location = new System.Drawing.Point(839, 43);
+            this.lblBorrar_Alumno.Name = "lblBorrar_Alumno";
+            this.lblBorrar_Alumno.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Alumno.TabIndex = 26;
+            this.lblBorrar_Alumno.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Alumno.Visible = false;
+            // 
+            // chkBorrar_Personal
+            // 
+            this.chkBorrar_Personal.AutoSize = true;
+            this.chkBorrar_Personal.Location = new System.Drawing.Point(943, 67);
+            this.chkBorrar_Personal.Name = "chkBorrar_Personal";
+            this.chkBorrar_Personal.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Personal.TabIndex = 22;
+            this.chkBorrar_Personal.Text = "Borrar";
+            this.chkBorrar_Personal.UseVisualStyleBackColor = true;
+            this.chkBorrar_Personal.CheckedChanged += new System.EventHandler(this.chkBorrar_Personal_CheckedChanged);
+            // 
+            // chkBorrar_Alumno
+            // 
+            this.chkBorrar_Alumno.AutoSize = true;
+            this.chkBorrar_Alumno.Location = new System.Drawing.Point(952, 65);
+            this.chkBorrar_Alumno.Name = "chkBorrar_Alumno";
+            this.chkBorrar_Alumno.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Alumno.TabIndex = 27;
+            this.chkBorrar_Alumno.Text = "Borrar";
+            this.chkBorrar_Alumno.UseVisualStyleBackColor = true;
+            this.chkBorrar_Alumno.CheckedChanged += new System.EventHandler(this.chkBorrar_Alumno_CheckedChanged);
             // 
             // Form1
             // 
@@ -2365,6 +2420,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.Label lblBorrar_Personal;
+        private System.Windows.Forms.Label lblBorrar_Alumno;
+        private System.Windows.Forms.CheckBox chkBorrar_Personal;
+        private System.Windows.Forms.CheckBox chkBorrar_Alumno;
     }
 }
 
