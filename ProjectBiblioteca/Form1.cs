@@ -288,7 +288,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar lista alumnos
-                cmd = new SqlCommand("Mostrar_Alumnos_SinLibro", cnn);
+                cmd = new SqlCommand("Mostrar_Alumnos", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 rd = cmd.ExecuteReader();
                 dgvAlumnos_Alumno.Rows.Clear();
@@ -744,8 +744,6 @@ namespace ProjectBiblioteca
                 }
                 else
                 {
-                    
-
                     numeroDeEmpleadoViejo = int.Parse(dgvLista_Personal.CurrentRow.Cells[0].Value.ToString());
                     actualizarPersonal = true;
                     lblActualizar_Personal.Visible = actualizarPersonal;
@@ -839,23 +837,31 @@ namespace ProjectBiblioteca
        
         private void dgvLista_libro_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvLista_libro.Rows.Count>0)
+            if (dgvLista_libro.Rows.Count > 0)
             {
+                if (borrarLibro)
+                {
+                    new Libro().borrarLibroDB(int.Parse(dgvLista_libro.CurrentRow.Cells[0].Value.ToString()));
+                    fillDGVs();
+                }
+                else
+                {
 
-            
-            actualizarLibro = true;
-            lblActualizar_Libro.Visible = actualizarLibro;
-            idLibroViejo=dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
-            txtId_Libro.Text = dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
-            txtIsbn_Libro.Text = dgvLista_libro.CurrentRow.Cells[2].Value.ToString();
-            txtTitulo_Libro.Text = dgvLista_libro.CurrentRow.Cells[1].Value.ToString();
-            txtAño_Libro.Text = dgvLista_libro.CurrentRow.Cells[3].Value.ToString();
-            txtClasificiacion_Libro.Text = dgvLista_libro.CurrentRow.Cells[4].Value.ToString();
-            txtAutor_Libro.Text = dgvLista_libro.CurrentRow.Cells[5].Value.ToString();
-            txtEditorial_Libro.Text = dgvLista_libro.CurrentRow.Cells[6].Value.ToString();
-            txtLugar_Libro.Text = dgvLista_libro.CurrentRow.Cells[7].Value.ToString();
-            txtEdicion_Libro.Text = dgvLista_libro.CurrentRow.Cells[8].Value.ToString();
-            txtDescripcion_Libro.Text = dgvLista_libro.CurrentRow.Cells[9].Value.ToString();
+
+                    actualizarLibro = true;
+                    lblActualizar_Libro.Visible = actualizarLibro;
+                    idLibroViejo = dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
+                    txtId_Libro.Text = dgvLista_libro.CurrentRow.Cells[0].Value.ToString();
+                    txtIsbn_Libro.Text = dgvLista_libro.CurrentRow.Cells[2].Value.ToString();
+                    txtTitulo_Libro.Text = dgvLista_libro.CurrentRow.Cells[1].Value.ToString();
+                    txtAño_Libro.Text = dgvLista_libro.CurrentRow.Cells[3].Value.ToString();
+                    txtClasificiacion_Libro.Text = dgvLista_libro.CurrentRow.Cells[4].Value.ToString();
+                    txtAutor_Libro.Text = dgvLista_libro.CurrentRow.Cells[5].Value.ToString();
+                    txtEditorial_Libro.Text = dgvLista_libro.CurrentRow.Cells[6].Value.ToString();
+                    txtLugar_Libro.Text = dgvLista_libro.CurrentRow.Cells[7].Value.ToString();
+                    txtEdicion_Libro.Text = dgvLista_libro.CurrentRow.Cells[8].Value.ToString();
+                    txtDescripcion_Libro.Text = dgvLista_libro.CurrentRow.Cells[9].Value.ToString();
+                }
             }
 
         }
@@ -1202,6 +1208,17 @@ namespace ProjectBiblioteca
         {
             borrarPersonal = chkBorrar_Personal.Checked;
             lblBorrar_Personal.Visible = borrarPersonal;
+            if (borrarPersonal)
+            {
+
+                actualizarPersonal =false;
+                lblActualizar_Personal.Visible = actualizarPersonal;
+                txtNoEmpleado_Personal.Text = null;
+                txtNombre_Personal.Text = null;
+                cbOcupacion_Personal.SelectedIndex = -1;
+                txtEMail_Personal.Text = null;
+                txtTelefono_Personal.Text = null;
+            }
 
         }
 
@@ -1215,6 +1232,40 @@ namespace ProjectBiblioteca
         {
             borrarAlumno = chkBorrar_Alumno.Checked;
             lblBorrar_Alumno.Visible = borrarAlumno;
+            if (borrarAlumno)
+            {
+                actualizarAlumno = false;
+                lblActualizar_Alumno.Visible = actualizarAlumno;
+                txtNoControl_AlumnoAdd.Text = null;
+                cbCarrera_AlumnoAdd.SelectedIndex = -1;
+                cbCuatrimestre_AlumnoAdd.SelectedIndex =-1;
+                txtNombre_AlumnoAdd.Text = null;
+                txtEmail_AlumnoAdd.Text = null;
+                txtTelefono_AlumnoAdd.Text = null;
+
+            }
+        }
+
+        private void chkBorrar_Libro_CheckedChanged(object sender, EventArgs e)
+        {
+            borrarLibro = chkBorrar_Libro.Checked;
+            lblBorrar_Libro.Visible = borrarLibro;
+            if (borrarLibro)
+            {
+                actualizarLibro = false;
+                lblActualizar_Libro.Visible = actualizarLibro;
+                txtId_Libro.Text = null;
+                txtIsbn_Libro.Text = null;
+                txtTitulo_Libro.Text = null;
+                txtAño_Libro.Text = null;
+                txtClasificiacion_Libro.Text = null;
+                txtAutor_Libro.Text = null;
+                txtEditorial_Libro.Text = null;
+                txtLugar_Libro.Text = null;
+                txtEdicion_Libro.Text = null;
+                txtDescripcion_Libro.Text = null;
+            }
+
         }
 
         private void llenarGrafica()

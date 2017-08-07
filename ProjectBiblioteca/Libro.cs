@@ -154,6 +154,30 @@ namespace ProjectBiblioteca
             }
             return salida;
         }
+        public void borrarLibroDB(int idLibro)
+        {
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("EliminarLibro", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdLibro", idLibro);
+                if (MessageBox.Show("Esta seguro de borrar este registro permanentemete", "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+
+        }
 
     }
 }

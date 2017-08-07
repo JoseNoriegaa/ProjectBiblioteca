@@ -80,6 +80,8 @@
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
             this.tabAlumno = new System.Windows.Forms.TabPage();
+            this.chkBorrar_Alumno = new System.Windows.Forms.CheckBox();
+            this.lblBorrar_Alumno = new System.Windows.Forms.Label();
             this.lblActualizar_Alumno = new System.Windows.Forms.Label();
             this.rbNuevaCarrera_Alumno = new System.Windows.Forms.CheckBox();
             this.gbAgregarCarrera_Alumno = new System.Windows.Forms.GroupBox();
@@ -90,6 +92,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtBusqueda_Alumno = new System.Windows.Forms.TextBox();
             this.dgvAlumnos_Alumno = new System.Windows.Forms.DataGridView();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -105,6 +113,8 @@
             this.txtTelefono_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.txtNombre_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.tabPersonal = new System.Windows.Forms.TabPage();
+            this.chkBorrar_Personal = new System.Windows.Forms.CheckBox();
+            this.lblBorrar_Personal = new System.Windows.Forms.Label();
             this.gbOcupacion_Personal = new System.Windows.Forms.GroupBox();
             this.btnOcupacion_Personal = new System.Windows.Forms.Button();
             this.txtOcupacion_Personal = new System.Windows.Forms.TextBox();
@@ -212,16 +222,8 @@
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblBorrar_Personal = new System.Windows.Forms.Label();
-            this.lblBorrar_Alumno = new System.Windows.Forms.Label();
-            this.chkBorrar_Personal = new System.Windows.Forms.CheckBox();
-            this.chkBorrar_Alumno = new System.Windows.Forms.CheckBox();
+            this.chkBorrar_Libro = new System.Windows.Forms.CheckBox();
+            this.lblBorrar_Libro = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -782,6 +784,28 @@
             this.tabAlumno.UseVisualStyleBackColor = true;
             this.tabAlumno.Click += new System.EventHandler(this.tabAlumno_Click);
             // 
+            // chkBorrar_Alumno
+            // 
+            this.chkBorrar_Alumno.AutoSize = true;
+            this.chkBorrar_Alumno.Location = new System.Drawing.Point(952, 65);
+            this.chkBorrar_Alumno.Name = "chkBorrar_Alumno";
+            this.chkBorrar_Alumno.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Alumno.TabIndex = 27;
+            this.chkBorrar_Alumno.Text = "Borrar";
+            this.chkBorrar_Alumno.UseVisualStyleBackColor = true;
+            this.chkBorrar_Alumno.CheckedChanged += new System.EventHandler(this.chkBorrar_Alumno_CheckedChanged);
+            // 
+            // lblBorrar_Alumno
+            // 
+            this.lblBorrar_Alumno.AutoSize = true;
+            this.lblBorrar_Alumno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Alumno.Location = new System.Drawing.Point(839, 43);
+            this.lblBorrar_Alumno.Name = "lblBorrar_Alumno";
+            this.lblBorrar_Alumno.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Alumno.TabIndex = 26;
+            this.lblBorrar_Alumno.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Alumno.Visible = false;
+            // 
             // lblActualizar_Alumno
             // 
             this.lblActualizar_Alumno.AutoSize = true;
@@ -892,6 +916,60 @@
             this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(502, 393);
             this.dgvAlumnos_Alumno.TabIndex = 0;
             this.dgvAlumnos_Alumno.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_Alumno_CellClick);
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column7.FillWeight = 70F;
+            this.Column7.HeaderText = "Matricula";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column7.Width = 75;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.HeaderText = "Nombre";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column9.FillWeight = 45F;
+            this.Column9.HeaderText = "Carrera";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column9.Width = 66;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column1.HeaderText = "Cuatrimestre";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 90;
+            // 
+            // Column13
+            // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column13.HeaderText = "E-Mail";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column13.Width = 61;
+            // 
+            // Column14
+            // 
+            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column14.HeaderText = "Telefono";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column14.Width = 74;
             // 
             // label5
             // 
@@ -1052,6 +1130,28 @@
             this.tabPersonal.TabIndex = 2;
             this.tabPersonal.Text = "PERSONAL";
             this.tabPersonal.UseVisualStyleBackColor = true;
+            // 
+            // chkBorrar_Personal
+            // 
+            this.chkBorrar_Personal.AutoSize = true;
+            this.chkBorrar_Personal.Location = new System.Drawing.Point(943, 67);
+            this.chkBorrar_Personal.Name = "chkBorrar_Personal";
+            this.chkBorrar_Personal.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Personal.TabIndex = 22;
+            this.chkBorrar_Personal.Text = "Borrar";
+            this.chkBorrar_Personal.UseVisualStyleBackColor = true;
+            this.chkBorrar_Personal.CheckedChanged += new System.EventHandler(this.chkBorrar_Personal_CheckedChanged);
+            // 
+            // lblBorrar_Personal
+            // 
+            this.lblBorrar_Personal.AutoSize = true;
+            this.lblBorrar_Personal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Personal.Location = new System.Drawing.Point(830, 40);
+            this.lblBorrar_Personal.Name = "lblBorrar_Personal";
+            this.lblBorrar_Personal.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Personal.TabIndex = 21;
+            this.lblBorrar_Personal.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Personal.Visible = false;
             // 
             // gbOcupacion_Personal
             // 
@@ -1298,6 +1398,8 @@
             // 
             // tabLibro
             // 
+            this.tabLibro.Controls.Add(this.lblBorrar_Libro);
+            this.tabLibro.Controls.Add(this.chkBorrar_Libro);
             this.tabLibro.Controls.Add(this.lblActualizar_Libro);
             this.tabLibro.Controls.Add(this.txtBusqueda_Libro);
             this.tabLibro.Controls.Add(this.dgvLista_libro);
@@ -2080,103 +2182,27 @@
             this.sALIRToolStripMenuItem.Text = "SALIR";
             this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
             // 
-            // Column7
+            // chkBorrar_Libro
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column7.FillWeight = 70F;
-            this.Column7.HeaderText = "Matricula";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column7.Width = 75;
+            this.chkBorrar_Libro.AutoSize = true;
+            this.chkBorrar_Libro.Location = new System.Drawing.Point(952, 60);
+            this.chkBorrar_Libro.Name = "chkBorrar_Libro";
+            this.chkBorrar_Libro.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Libro.TabIndex = 27;
+            this.chkBorrar_Libro.Text = "Borrar";
+            this.chkBorrar_Libro.UseVisualStyleBackColor = true;
+            this.chkBorrar_Libro.CheckedChanged += new System.EventHandler(this.chkBorrar_Libro_CheckedChanged);
             // 
-            // Column8
+            // lblBorrar_Libro
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.HeaderText = "Nombre";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column9
-            // 
-            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column9.FillWeight = 45F;
-            this.Column9.HeaderText = "Carrera";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column9.Width = 66;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column1.HeaderText = "Cuatrimestre";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 90;
-            // 
-            // Column13
-            // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column13.HeaderText = "E-Mail";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column13.Width = 61;
-            // 
-            // Column14
-            // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column14.HeaderText = "Telefono";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column14.Width = 74;
-            // 
-            // lblBorrar_Personal
-            // 
-            this.lblBorrar_Personal.AutoSize = true;
-            this.lblBorrar_Personal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblBorrar_Personal.Location = new System.Drawing.Point(830, 40);
-            this.lblBorrar_Personal.Name = "lblBorrar_Personal";
-            this.lblBorrar_Personal.Size = new System.Drawing.Size(167, 13);
-            this.lblBorrar_Personal.TabIndex = 21;
-            this.lblBorrar_Personal.Text = "Seleccione fila para borrar registro";
-            this.lblBorrar_Personal.Visible = false;
-            // 
-            // lblBorrar_Alumno
-            // 
-            this.lblBorrar_Alumno.AutoSize = true;
-            this.lblBorrar_Alumno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblBorrar_Alumno.Location = new System.Drawing.Point(839, 43);
-            this.lblBorrar_Alumno.Name = "lblBorrar_Alumno";
-            this.lblBorrar_Alumno.Size = new System.Drawing.Size(167, 13);
-            this.lblBorrar_Alumno.TabIndex = 26;
-            this.lblBorrar_Alumno.Text = "Seleccione fila para borrar registro";
-            this.lblBorrar_Alumno.Visible = false;
-            // 
-            // chkBorrar_Personal
-            // 
-            this.chkBorrar_Personal.AutoSize = true;
-            this.chkBorrar_Personal.Location = new System.Drawing.Point(943, 67);
-            this.chkBorrar_Personal.Name = "chkBorrar_Personal";
-            this.chkBorrar_Personal.Size = new System.Drawing.Size(54, 17);
-            this.chkBorrar_Personal.TabIndex = 22;
-            this.chkBorrar_Personal.Text = "Borrar";
-            this.chkBorrar_Personal.UseVisualStyleBackColor = true;
-            this.chkBorrar_Personal.CheckedChanged += new System.EventHandler(this.chkBorrar_Personal_CheckedChanged);
-            // 
-            // chkBorrar_Alumno
-            // 
-            this.chkBorrar_Alumno.AutoSize = true;
-            this.chkBorrar_Alumno.Location = new System.Drawing.Point(952, 65);
-            this.chkBorrar_Alumno.Name = "chkBorrar_Alumno";
-            this.chkBorrar_Alumno.Size = new System.Drawing.Size(54, 17);
-            this.chkBorrar_Alumno.TabIndex = 27;
-            this.chkBorrar_Alumno.Text = "Borrar";
-            this.chkBorrar_Alumno.UseVisualStyleBackColor = true;
-            this.chkBorrar_Alumno.CheckedChanged += new System.EventHandler(this.chkBorrar_Alumno_CheckedChanged);
+            this.lblBorrar_Libro.AutoSize = true;
+            this.lblBorrar_Libro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Libro.Location = new System.Drawing.Point(839, 44);
+            this.lblBorrar_Libro.Name = "lblBorrar_Libro";
+            this.lblBorrar_Libro.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Libro.TabIndex = 28;
+            this.lblBorrar_Libro.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Libro.Visible = false;
             // 
             // Form1
             // 
@@ -2424,6 +2450,8 @@
         private System.Windows.Forms.Label lblBorrar_Alumno;
         private System.Windows.Forms.CheckBox chkBorrar_Personal;
         private System.Windows.Forms.CheckBox chkBorrar_Alumno;
+        private System.Windows.Forms.Label lblBorrar_Libro;
+        private System.Windows.Forms.CheckBox chkBorrar_Libro;
     }
 }
 
