@@ -143,6 +143,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabLibro = new System.Windows.Forms.TabPage();
+            this.lblBorrar_Libro = new System.Windows.Forms.Label();
+            this.chkBorrar_Libro = new System.Windows.Forms.CheckBox();
             this.lblActualizar_Libro = new System.Windows.Forms.Label();
             this.txtBusqueda_Libro = new System.Windows.Forms.TextBox();
             this.dgvLista_libro = new System.Windows.Forms.DataGridView();
@@ -222,8 +224,6 @@
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkBorrar_Libro = new System.Windows.Forms.CheckBox();
-            this.lblBorrar_Libro = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -261,6 +261,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabInicio);
             this.tabControl1.Controls.Add(this.tabPrestamo);
             this.tabControl1.Controls.Add(this.tabAlumno);
@@ -268,6 +271,7 @@
             this.tabControl1.Controls.Add(this.tabLibro);
             this.tabControl1.Controls.Add(this.tabAjustes);
             this.tabControl1.Location = new System.Drawing.Point(1, 35);
+            this.tabControl1.MinimumSize = new System.Drawing.Size(1032, 527);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1032, 527);
@@ -293,10 +297,12 @@
             // 
             // btnDevolucion_Home
             // 
+            this.btnDevolucion_Home.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDevolucion_Home.Enabled = false;
             this.btnDevolucion_Home.Location = new System.Drawing.Point(907, 427);
+            this.btnDevolucion_Home.MinimumSize = new System.Drawing.Size(105, 52);
             this.btnDevolucion_Home.Name = "btnDevolucion_Home";
-            this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 52);
+            this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 72);
             this.btnDevolucion_Home.TabIndex = 7;
             this.btnDevolucion_Home.Text = "REGISTRAR DEVOLUCIÓN";
             this.btnDevolucion_Home.UseVisualStyleBackColor = true;
@@ -356,6 +362,9 @@
             // 
             this.dgvPrestamos_Home.AllowUserToAddRows = false;
             this.dgvPrestamos_Home.AllowUserToDeleteRows = false;
+            this.dgvPrestamos_Home.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPrestamos_Home.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrestamos_Home.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Home.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -367,6 +376,7 @@
             this.Id_Prestamo,
             this.Fecha_De_Entrega});
             this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
+            this.dgvPrestamos_Home.MinimumSize = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.Name = "dgvPrestamos_Home";
             this.dgvPrestamos_Home.ReadOnly = true;
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(873, 328);
@@ -1433,6 +1443,28 @@
             this.tabLibro.Text = "LIBRO";
             this.tabLibro.UseVisualStyleBackColor = true;
             // 
+            // lblBorrar_Libro
+            // 
+            this.lblBorrar_Libro.AutoSize = true;
+            this.lblBorrar_Libro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblBorrar_Libro.Location = new System.Drawing.Point(839, 44);
+            this.lblBorrar_Libro.Name = "lblBorrar_Libro";
+            this.lblBorrar_Libro.Size = new System.Drawing.Size(167, 13);
+            this.lblBorrar_Libro.TabIndex = 28;
+            this.lblBorrar_Libro.Text = "Seleccione fila para borrar registro";
+            this.lblBorrar_Libro.Visible = false;
+            // 
+            // chkBorrar_Libro
+            // 
+            this.chkBorrar_Libro.AutoSize = true;
+            this.chkBorrar_Libro.Location = new System.Drawing.Point(952, 60);
+            this.chkBorrar_Libro.Name = "chkBorrar_Libro";
+            this.chkBorrar_Libro.Size = new System.Drawing.Size(54, 17);
+            this.chkBorrar_Libro.TabIndex = 27;
+            this.chkBorrar_Libro.Text = "Borrar";
+            this.chkBorrar_Libro.UseVisualStyleBackColor = true;
+            this.chkBorrar_Libro.CheckedChanged += new System.EventHandler(this.chkBorrar_Libro_CheckedChanged);
+            // 
             // lblActualizar_Libro
             // 
             this.lblActualizar_Libro.AutoSize = true;
@@ -1767,6 +1799,9 @@
             // 
             // tabAjustes_2
             // 
+            this.tabAjustes_2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabAjustes_2.Controls.Add(this.tabPage2);
             this.tabAjustes_2.Controls.Add(this.tabAnalisis);
             this.tabAjustes_2.Controls.Add(this.btnGuardarCorreo_Herramientas);
@@ -2182,40 +2217,21 @@
             this.sALIRToolStripMenuItem.Text = "SALIR";
             this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
             // 
-            // chkBorrar_Libro
-            // 
-            this.chkBorrar_Libro.AutoSize = true;
-            this.chkBorrar_Libro.Location = new System.Drawing.Point(952, 60);
-            this.chkBorrar_Libro.Name = "chkBorrar_Libro";
-            this.chkBorrar_Libro.Size = new System.Drawing.Size(54, 17);
-            this.chkBorrar_Libro.TabIndex = 27;
-            this.chkBorrar_Libro.Text = "Borrar";
-            this.chkBorrar_Libro.UseVisualStyleBackColor = true;
-            this.chkBorrar_Libro.CheckedChanged += new System.EventHandler(this.chkBorrar_Libro_CheckedChanged);
-            // 
-            // lblBorrar_Libro
-            // 
-            this.lblBorrar_Libro.AutoSize = true;
-            this.lblBorrar_Libro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblBorrar_Libro.Location = new System.Drawing.Point(839, 44);
-            this.lblBorrar_Libro.Name = "lblBorrar_Libro";
-            this.lblBorrar_Libro.Size = new System.Drawing.Size(167, 13);
-            this.lblBorrar_Libro.TabIndex = 28;
-            this.lblBorrar_Libro.Text = "Seleccione fila para borrar registro";
-            this.lblBorrar_Libro.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1045, 561);
+            this.ClientSize = new System.Drawing.Size(1045, 566);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1061, 604);
             this.Name = "Form1";
             this.Text = "BIBLIOTECA";
+            this.AutoSizeChanged += new System.EventHandler(this.Form1_AutoSizeChanged);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabInicio.ResumeLayout(false);

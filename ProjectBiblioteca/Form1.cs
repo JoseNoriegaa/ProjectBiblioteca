@@ -1048,7 +1048,30 @@ namespace ProjectBiblioteca
 
 
             }
-            
+            int tamañoappx = 1061;
+            int tamañoappy = 600;
+            int tamañoControlx = 0;
+            int tamañoControly = 0;
+            double tamPorcen = 0;
+            double w = 0;
+            double h = 0;
+            int f = 0;
+            List<Control> ls = new List<Control>() {tabInicio, tabPrestamo,tabAlumno,tabPersonal, tabAnalisis,tabLibro,tabPage2, tabAjustes_2,
+                tabAjustes,tabControl1, gbAgregarCarrera_Alumno, gbCorreo_herramientas, gbGrafica_Analisis, gbOcupacion_Personal };
+            foreach (Control item1 in ls)
+            {
+                foreach (Control item in item1.Controls)
+                {
+                    tamañoControlx = item.MinimumSize.Width;
+                    tamañoControly = item.MinimumSize.Height;
+                    tamPorcen = (double)tamañoControlx / (double)tamañoappx;
+                    w = tamPorcen * this.Width;
+                    tamPorcen = (double)tamañoControly / (double)tamañoappy;
+                    h = tamPorcen * this.Height;
+                    item.Size = new System.Drawing.Size((int)w, (int)h);
+                    
+                }
+            }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1266,6 +1289,24 @@ namespace ProjectBiblioteca
                 txtDescripcion_Libro.Text = null;
             }
 
+        }
+
+        private void Form1_AutoSizeChanged(object sender, EventArgs e)
+        {
+
+          
+            
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+         //   double s = (((double)dgvPrestamos_Home.Width) / ((double)this.Width));
+         //MessageBox.Show("" + s);
+         //    double x = (s)* this.Width;
+         //   int h = (int)(this.Width * (600 / 328));
+
+         //   this.dgvPrestamos_Home.Size = new System.Drawing.Size((int)x,328);
+           
         }
 
         private void llenarGrafica()

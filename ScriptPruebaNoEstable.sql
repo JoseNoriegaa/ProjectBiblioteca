@@ -279,6 +279,7 @@ go
 create procedure Eliminar_Alumno
 @Matricula int
 as
+delete Prestamo_alumno where Matricula=@Matricula
 Delete Alumno
 where Matricula=@Matricula
 go
@@ -349,6 +350,7 @@ go
 create procedure Eliminar_Personal
 @Numero_De_Empleado int
 as
+delete from Prestamo_Personal where Personal=@Numero_De_Empleado
 delete from Personal
 where Numero_De_Empleado=@Numero_De_Empleado
 go
