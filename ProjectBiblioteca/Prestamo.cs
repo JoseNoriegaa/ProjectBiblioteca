@@ -11,8 +11,8 @@ namespace ProjectBiblioteca
     class Prestamo
     {
         
-        SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
-
+        private SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
+        private SqlCommand cmd;
         public string libroID { get; set; }
         public int matriculaAlumno { get; set; }
         public DateTime fechaDePrestamo { get; set; }
@@ -69,9 +69,8 @@ namespace ProjectBiblioteca
             try
             {
                 cnn.Open();
-                SqlCommand cmd = new SqlCommand("Registrar_Prestamo", cnn);
+                cmd = new SqlCommand("Registrar_Prestamo", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                //   cmd.Parameters.AddWithValue("@Id_Prestamo",);
                 cmd.Parameters.AddWithValue("@Libro", this.libroID);
                 if (tipoPrestamo == "Alumno")
                 {
@@ -107,15 +106,16 @@ namespace ProjectBiblioteca
         }
 
  
-        public void registrarDevolucion(string Id_Prestamo,string idLibro)
+        public void registrarDevolucion(string Id_Prestamo,string idLibro,int matricula)
         {
             try
             {
                 cnn.Open(); 
-                SqlCommand cmd = new SqlCommand("RegistrarDevolucion", cnn);
+                cmd = new SqlCommand("RegistrarDevolucion", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@IdPrestamo", Id_Prestamo);
                 cmd.Parameters.AddWithValue("@IdLibro", idLibro);
+                cmd.Parameters.AddWithValue("@Matricula", matricula);
                 cmd.ExecuteNonQuery();
 
             }
