@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using Novacode;
+
 namespace ProjectBiblioteca
 {
     class Prestamo
     {
-        
+
         private SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
         private SqlCommand cmd;
         public string libroID { get; set; }
@@ -62,7 +64,46 @@ namespace ProjectBiblioteca
             }
             this.tipoPrestamo = tipoDePrestamno;
         }
+        public void generarRecibolumno(string nombre,string telefono,string titulo,string correo,string codigo,string grupo,int cuatrimestre,int dias,int matricula,DateTime fechaPrestamo,DateTime fechaEntrega)
+        {
+             try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.ShowDialog();
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                string ruta = openFileDialog1.FileName;
+                byte[] filebytes = System.IO.File.ReadAllBytes(ruta);
+                saveFileDialog1.ShowDialog();
+                string nuevo = saveFileDialog1.FileName;
+                System.IO.File.WriteAllBytes(nuevo, filebytes);
 
+                var doc = DocX.Load(nuevo);
+                doc.ReplaceText("<NO. DE CONTROL>", matricula.ToString());
+                doc.ReplaceText("<NOMBRE>", nombre);
+                doc.ReplaceText("<TELEFONO>", telefono);
+                doc.ReplaceText("<CORREO>", correo);
+                doc.ReplaceText("<TITULO>", titulo);
+                doc.ReplaceText("<FECHA PRESTAMO>", fechaPrestamo.ToLongDateString().ToString());
+                doc.ReplaceText("<FECHA ENTREGA>", fechaEntrega.ToLongDateString().ToString());
+                doc.ReplaceText("<CODIGO>", codigo);
+                doc.ReplaceText("<GRUPO>", grupo);
+                doc.ReplaceText("<DIAS>", dias.ToString());
+                doc.ReplaceText("<CUATRIMESTRE>", cuatrimestre.ToString());
+
+                doc.Save();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+     
         public void registrarPrestamo()
         {
 

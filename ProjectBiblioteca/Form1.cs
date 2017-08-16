@@ -58,9 +58,9 @@ namespace ProjectBiblioteca
             fillCB();
             verificarFechaPrestamo();
             ShowIcon = true;
-
             llenarGrafica();
-
+            
+                
             List<Control> ls = new List<Control>() {tabInicio, tabPrestamo,tabAlumno,tabPersonal, tabAnalisis,tabLibro,tabPage2, tabAjustes_2,
                 tabAjustes,tabControl1, gbAgregarCarrera_Alumno, gbCorreo_herramientas, gbGrafica_Analisis, gbOcupacion_Personal,gbEliminarCarrera_Alumno };
             foreach (Control item1 in ls)
@@ -105,6 +105,12 @@ namespace ProjectBiblioteca
 
         private void cbTipo_Prestamo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtNoControl_Empleado_Prestamo.Text = null;
+            txtNombreLibro_Prestamo.Text = null;
+            txtISBN_Prestamo.Text = null;
+            txtIdEjemplar_Prestamo.Text = null;
+
+
             switch (cbTipo_Prestamo.SelectedItem.ToString())
             {
                 case "ALUMNO":
@@ -989,22 +995,52 @@ namespace ProjectBiblioteca
                     if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
                     {
                         prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text.ToUpper(), int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text.ToUpper(), "Alumno");
+
                     }
                     else
                     {
                         prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text.ToUpper(), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text.ToUpper(), "Personal");
                     }
-                    R_FechaPrestamo = dtpPrestamo_Prestamo.Value.Date;
-                    R_FechaEntrega = dtpEntrega_Prestamo.Value.Date;
-                    R_Dias = int.Parse(cbDias_Prestamo.SelectedItem.ToString());
-                    R_Matricula = int.Parse(txtNoControl_Empleado_Prestamo.Text);
-                    R_Codigo = txtIdEjemplar_Prestamo.Text;
+                    
+                   
                     fillDGVs();
                     if (MessageBox.Show("¿Desea crear el recibo?", "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        crearRecibo();
+                        if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
+                        {
+                            try
+                            {
+                                cnn.Open();
+                                cmd = new SqlCommand("Buscar_Alumno", cnn);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@Coincidencia", txtNoControl_Empleado_Prestamo.Text);
+                                rd = cmd.ExecuteReader();
+                                rd.Read();
+                                string nombre = rd["Nombre"].ToString();
+                                string telefono = rd["Telefono"].ToString();
+                                string grupo = rd["Carrera"].ToString();
+                                int cuatrimestre = int.Parse(rd["cuatrimestre"].ToString());
+                                string correo = rd["Correo"].ToString();
+                                rd.Close();
+                                cmd = new SqlCommand("buscarLibro_ID", cnn);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", txtIdEjemplar_Prestamo.Text);
+                                rd = cmd.ExecuteReader();
+                                rd.Read();
+                                string titulo = rd["Titulo"].ToString();
+                                rd.Close();
+                                prestamo.generarRecibolumno(nombre,telefono,titulo,correo, txtIdEjemplar_Prestamo.Text, grupo,cuatrimestre,3,int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date);
+                                
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
+                            finally { cnn.Close(); }
+                        }
                     }
-                    //prestamo.registrarPrestamo();
+                    prestamo.registrarPrestamo();
                     txtAlumno_Prestamo.Text = null;
                     txtISBN_Prestamo.Text = null;
                     txtLibro_Prestamo.Text = null;
@@ -1018,7 +1054,7 @@ namespace ProjectBiblioteca
                 else
                 {
                     MessageBox.Show("Aun no ha seleccionado un libro y un alumno o personal");
-                }
+               }
             }
             catch (Exception j)
             {
@@ -1384,6 +1420,19 @@ namespace ProjectBiblioteca
             }
         }
 
+        private void dtpEntrega_Prestamo_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpEntrega_Prestamo.Value<dtpPrestamo_Prestamo.Value)
+            {
+                dtpEntrega_Prestamo.Value = dtpPrestamo_Prestamo.Value.AddDays(3);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            verificarFechaPrestamo();
+        }
+
         private void btnBorrar_Alumno_CheckedChanged(object sender, EventArgs e)
         {
             borrarAlumno = chkBorrar_Personal.Checked;
@@ -1500,10 +1549,10 @@ namespace ProjectBiblioteca
                 lblMensaje_grafica.Visible = false;
                 SqlCommand cmd;
                 SqlDataReader rd;
-                switch (cbFiltro_Analisis.SelectedItem.ToString())
+                switch (cbFiltro_Analisis.SelectedItem)
                 {
                     case "LIBROS":
-
+                        
                         cmd = new SqlCommand("librosPrestados_Alumno", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         rd = cmd.ExecuteReader();
@@ -1524,21 +1573,25 @@ namespace ProjectBiblioteca
                         rd = cmd.ExecuteReader();
                         while (rd.Read())
                         {
-                            titulos2.Add(rd["Titulo"].ToString());
+                            titulos2.Add(rd[0].ToString());
                             valores2.Add(int.Parse(rd["Prestamos"].ToString()));
                         }
                         rd.Close();
 
                         for (int i = 0; i < titulos2.Count; i++)
                         {
-                            for (int e = 0; e < titulos1.Count; e++)
+                            for (int e = 0; e < ((titulos1.Count)-1); e++)
                             {
                                 if (titulos2[i] == titulos1[e])
                                 {
                                     valores1[e] = valores1[e] + valores2[i];
                                     titulos2.RemoveAt(i);
                                     valores2.RemoveAt(i);
-                                }
+                                if (titulos2.Count==0)
+                                {
+                                    i = titulos2.Count;
+                                    e = 2;
+                                }                                }
                             }
                         }
                         for (int i = 0; i < titulos2.Count; i++)
@@ -1754,37 +1807,37 @@ namespace ProjectBiblioteca
             }
         }
 
-        public void crearRecibo()
-        {
-            try
-            {
-                openFileDialog1.ShowDialog();
-                string ruta = openFileDialog1.FileName;
-                byte[] filebytes = System.IO.File.ReadAllBytes(ruta);
-                saveFileDialog1.ShowDialog();
-                string nuevo = saveFileDialog1.FileName;
-                System.IO.File.WriteAllBytes(nuevo, filebytes);
+        //public void crearRecibo()
+        //{
+        //    try
+        //    {
+        //        openFileDialog1.ShowDialog();
+        //        string ruta = openFileDialog1.FileName;
+        //        byte[] filebytes = System.IO.File.ReadAllBytes(ruta);
+        //        saveFileDialog1.ShowDialog();
+        //        string nuevo = saveFileDialog1.FileName;
+        //        System.IO.File.WriteAllBytes(nuevo, filebytes);
                 
-                var doc = DocX.Load(nuevo);
-                doc.ReplaceText("<NO. DE CONTROL>", R_Matricula.ToString());
-                doc.ReplaceText("<NOMBRE>", R_Nombre);
-                doc.ReplaceText("<TELEFONO>", R_Telefono);
-                doc.ReplaceText("<CORREO>", R_Correo);
-                doc.ReplaceText("<TITULO>", R_Titulo);
-                doc.ReplaceText("<FECHA PRESTAMO>", R_FechaPrestamo.ToLongDateString().ToString());
-                doc.ReplaceText("<FECHA ENTREGA>", R_FechaEntrega.ToLongDateString().ToString());
-                doc.ReplaceText("<CODIGO>", R_Codigo);
-                doc.ReplaceText("<GRUPO>", R_Grupo);
-                doc.ReplaceText("<DIAS>", R_Dias.ToString());
-                doc.ReplaceText("<CUATRIMESTRE>", R_Cuatrimestre.ToString());
+        //        var doc = DocX.Load(nuevo);
+        //        doc.ReplaceText("<NO. DE CONTROL>", R_Matricula.ToString());
+        //        doc.ReplaceText("<NOMBRE>", R_Nombre);
+        //        doc.ReplaceText("<TELEFONO>", R_Telefono);
+        //        doc.ReplaceText("<CORREO>", R_Correo);
+        //        doc.ReplaceText("<TITULO>", R_Titulo);
+        //        doc.ReplaceText("<FECHA PRESTAMO>", R_FechaPrestamo.ToLongDateString().ToString());
+        //        doc.ReplaceText("<FECHA ENTREGA>", R_FechaEntrega.ToLongDateString().ToString());
+        //        doc.ReplaceText("<CODIGO>", R_Codigo);
+        //        doc.ReplaceText("<GRUPO>", R_Grupo);
+        //        doc.ReplaceText("<DIAS>", R_Dias.ToString());
+        //        doc.ReplaceText("<CUATRIMESTRE>", R_Cuatrimestre.ToString());
 
-                doc.Save();
-            }
-            catch (Exception)
-            {
+        //        doc.Save();
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
     }
 }

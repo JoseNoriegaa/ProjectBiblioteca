@@ -234,6 +234,7 @@
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -667,6 +668,7 @@
             this.dtpEntrega_Prestamo.Name = "dtpEntrega_Prestamo";
             this.dtpEntrega_Prestamo.Size = new System.Drawing.Size(200, 20);
             this.dtpEntrega_Prestamo.TabIndex = 10;
+            this.dtpEntrega_Prestamo.ValueChanged += new System.EventHandler(this.dtpEntrega_Prestamo_ValueChanged);
             // 
             // txtIdEjemplar_Prestamo
             // 
@@ -939,7 +941,7 @@
             // txtIdCarrera_Alumno
             // 
             this.txtIdCarrera_Alumno.Location = new System.Drawing.Point(12, 42);
-            this.txtIdCarrera_Alumno.MaxLength = 50;
+            this.txtIdCarrera_Alumno.MaxLength = 5;
             this.txtIdCarrera_Alumno.MinimumSize = new System.Drawing.Size(185, 20);
             this.txtIdCarrera_Alumno.Name = "txtIdCarrera_Alumno";
             this.txtIdCarrera_Alumno.Size = new System.Drawing.Size(185, 20);
@@ -2388,6 +2390,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 7200000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2396,6 +2404,7 @@
             this.ClientSize = new System.Drawing.Size(1045, 566);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1061, 604);
             this.Name = "Form1";
@@ -2649,6 +2658,7 @@
         private System.Windows.Forms.DateTimePicker dtpPrestamo_Prestamo;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        public System.Windows.Forms.Timer timer1;
     }
 }
 

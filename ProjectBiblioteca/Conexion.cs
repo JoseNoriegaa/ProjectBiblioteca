@@ -13,7 +13,7 @@ namespace ProjectBiblioteca
 
         public string connectionString()
         {
-            cxnString = @"Data Source=DESKTOP-68MLGQ1\SQLEXPRESS;Initial Catalog=Biblioteca;Integrated security=true;";
+            cxnString = @"Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;";
             return cxnString;
         }
 

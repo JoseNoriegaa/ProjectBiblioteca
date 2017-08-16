@@ -463,7 +463,7 @@ select p.Matricula, a.Nombre, l.Titulo, l.ISBN,p.Id_Libro,p.Id_Prestamo,p.Fecha_
 from Prestamo_alumno p,Alumno a,Libro l 
 where (p.Matricula=a.Matricula and p.Id_Libro=l.Id_Libro)
 and(a.Nombre like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
-or p.Fecha_Prestamo like '%'+@Coincidencia+'%' or l.ISBN like '%'+@Coincidencia+'%')
+or p.Fecha_Prestamo like '%'+@Coincidencia+'%' or l.ISBN like '%'+@Coincidencia+'%' or p.Matricula like '%'+@Coincidencia+'%' or p.Id_Libro like '%'+@Coincidencia+'%') and p.Estado=1
 
 go
 
