@@ -106,7 +106,7 @@ namespace ProjectBiblioteca
         }
 
  
-        public void registrarDevolucion(string Id_Prestamo,string idLibro,int matricula)
+        public void registrarDevolucion(int Id_Prestamo,string idLibro,int matricula)
         {
             try
             {

@@ -122,6 +122,26 @@ namespace ProjectBiblioteca
             
         
         }
+
+        public int countISBN(string isbn)
+        {
+            int salida = 0;
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("countISBN", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ISBN", isbn);
+            SqlDataReader rd =  cmd.ExecuteReader();
+            if (rd.Read())
+            {
+                salida= int.Parse(rd[0].ToString());
+            }
+            else
+            {
+                salida= 0;
+            }
+            cnn.Close();
+            return salida;
+        }
         private bool verificarLibroRegistrado()
         {
             bool salida = false;
@@ -154,7 +174,7 @@ namespace ProjectBiblioteca
             }
             return salida;
         }
-        public void borrarLibroDB(int idLibro)
+        public void borrarLibroDB(string idLibro)
         {
             try
             {

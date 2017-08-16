@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using LiveCharts.Wpf;
 using LiveCharts;
+using Novacode;
 
 namespace ProjectBiblioteca
 {
@@ -38,7 +39,7 @@ namespace ProjectBiblioteca
         string para;
         SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
         ColumnSeries col;
-        Axis ax;
+        LiveCharts.Wpf.Axis ax;
         SqlCommand cmd;
         SqlDataReader rd;
 
@@ -257,6 +258,10 @@ namespace ProjectBiblioteca
                 MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source);
             }
         }
+        //variables para imprimir recibo
+        string R_Nombre, R_Telefono, R_Titulo, R_Correo, R_Codigo, R_Grupo;
+        int R_Cuatrimestre, R_Dias, R_Matricula;
+        DateTime R_FechaPrestamo, R_FechaEntrega;
 
         private void fillDGVs()
         {
@@ -276,6 +281,10 @@ namespace ProjectBiblioteca
                 while (rd.Read())
                 {
                     dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[7].ToString(), rd[8].ToString(), rd[9].ToString(), rd[6].ToString());
+                    if (rd["Id_Libro"].ToString()==R_Codigo)
+                    {
+                        R_Titulo = rd["Titulo"].ToString();
+                    }
                 }
                 rd.Close();
                 #endregion
@@ -289,7 +298,7 @@ namespace ProjectBiblioteca
                     dgvListaAlumno_Prestamo.Rows.Clear();
                     while (rd.Read())
                     {
-                        dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
+                        dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());                       
                     }
                 }
                 else
@@ -325,7 +334,16 @@ namespace ProjectBiblioteca
                 dgvAlumnos_Alumno.Rows.Clear();
                 while (rd.Read())
                 {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(), rd["cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(),
+                        rd["cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
+                    if (int.Parse(rd["Matricula"].ToString()) == R_Matricula)
+                    {
+                        R_Nombre = rd["Nombre"].ToString();
+                        R_Correo = rd["Correo"].ToString();
+                        R_Cuatrimestre = int.Parse(rd["cuatrimestre"].ToString());
+                        R_Grupo = rd["Carrera"].ToString();
+                        R_Telefono = rd["Telefono"].ToString();
+                    }
                 }
                 rd.Close();
                 #endregion
@@ -492,6 +510,14 @@ namespace ProjectBiblioteca
                 try
                 {
                     alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtTelefono_AlumnoAdd.Text, txtEmail_AlumnoAdd.Text.ToUpper(), cbCarrera_AlumnoAdd.Text.ToUpper(), int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
+                    if (alumno.verificarAlumnoRegistrado(matriculavieja_Alumno))
+                    {
+                        bl = true;
+                    }
+                    else
+                    {
+                        bl = false;
+                    }
                 }
                 catch (Exception)
                 {
@@ -507,7 +533,7 @@ namespace ProjectBiblioteca
             {
                 alumno.agregarAlumnoBD();
             }
-            if (bl ==false)
+            if (bl == false)
             {
                 txtNoControl_AlumnoAdd.Text = null;
                 txtNombre_AlumnoAdd.Text = null;
@@ -900,7 +926,7 @@ namespace ProjectBiblioteca
                 {
                     if (MessageBox.Show("Al borrar el libro todo su historial de prestamos sera eliminado tambien \n¿Desea continuar?", "Eliminar alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        new Libro().borrarLibroDB(int.Parse(dgvLista_libro.CurrentRow.Cells[0].Value.ToString()));
+                        new Libro().borrarLibroDB(dgvLista_libro.CurrentRow.Cells[0].Value.ToString());
                         fillDGVs();
                     }
                 }
@@ -968,7 +994,17 @@ namespace ProjectBiblioteca
                     {
                         prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text.ToUpper(), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text.ToUpper(), "Personal");
                     }
-                    prestamo.registrarPrestamo();
+                    R_FechaPrestamo = dtpPrestamo_Prestamo.Value.Date;
+                    R_FechaEntrega = dtpEntrega_Prestamo.Value.Date;
+                    R_Dias = int.Parse(cbDias_Prestamo.SelectedItem.ToString());
+                    R_Matricula = int.Parse(txtNoControl_Empleado_Prestamo.Text);
+                    R_Codigo = txtIdEjemplar_Prestamo.Text;
+                    fillDGVs();
+                    if (MessageBox.Show("¿Desea crear el recibo?", "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        crearRecibo();
+                    }
+                    //prestamo.registrarPrestamo();
                     txtAlumno_Prestamo.Text = null;
                     txtISBN_Prestamo.Text = null;
                     txtLibro_Prestamo.Text = null;
@@ -1104,14 +1140,14 @@ namespace ProjectBiblioteca
             }
         }
         //variables para capturar el id de prestamo y libro del datagridview en home
-        string idPrestamo, idLibro;
-        int matricula;
+        string idLibro;
+        int matricula, idPrestamo;
 
         private void dgvPrestamos_Home_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex>=0 && e.RowIndex<dgvPrestamos_Home.Rows.Count)
             {
-                idPrestamo = dgvPrestamos_Home.CurrentRow.Cells[5].Value.ToString();
+                idPrestamo = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[5].Value.ToString());
                 idLibro = dgvPrestamos_Home.CurrentRow.Cells[4].Value.ToString();
                 matricula = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[0].Value.ToString());
                 btnDevolucion_Home.Enabled = true;
@@ -1327,6 +1363,27 @@ namespace ProjectBiblioteca
             }
         }
 
+        private void txtIsbn_Libro_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string isbn = txtIsbn_Libro.Text;
+                int n = new Libro().countISBN(isbn);
+                if (n != 0)
+                {
+                    txtId_Libro.Text = isbn + "_" + (n + 1);
+                }
+                else
+                {
+                    txtId_Libro.Text = isbn + "_1";
+                }
+            }
+            catch (Exception j)
+            {
+                MessageBox.Show("error " + j.Message + j.Data);
+            }
+        }
+
         private void btnBorrar_Alumno_CheckedChanged(object sender, EventArgs e)
         {
             borrarAlumno = chkBorrar_Personal.Checked;
@@ -1410,31 +1467,7 @@ namespace ProjectBiblioteca
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label59_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label50_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void cbCuatrimestre_AlumnoAdd_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1456,16 +1489,6 @@ namespace ProjectBiblioteca
                     break;
 
             }
-        }
-
-        private void gbEliminarCarrera_Alumno_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gbAgregarCarrera_Alumno_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void llenarGrafica()
@@ -1530,7 +1553,7 @@ namespace ProjectBiblioteca
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
                         };
-                        ax = new Axis()
+                        ax = new LiveCharts.Wpf.Axis()
                         {
                             Separator = new Separator() { Step = 1, IsEnabled = false }
                         };
@@ -1558,7 +1581,7 @@ namespace ProjectBiblioteca
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
                         };
-                        ax = new Axis()
+                        ax = new LiveCharts.Wpf.Axis()
                         {
                             Separator = new Separator() { Step = 1, IsEnabled = false }
                         };
@@ -1608,7 +1631,7 @@ namespace ProjectBiblioteca
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
                         };
-                        ax = new Axis()
+                        ax = new LiveCharts.Wpf.Axis()
                         {
                             Separator = new Separator() { Step = 1, IsEnabled = false }
                         };
@@ -1661,7 +1684,7 @@ namespace ProjectBiblioteca
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
                         };
-                        ax = new Axis()
+                        ax = new LiveCharts.Wpf.Axis()
                         {
                             Separator = new Separator() { Step = 1, IsEnabled = false },
                         };
@@ -1714,7 +1737,7 @@ namespace ProjectBiblioteca
                 grafica_Analisis.Series.Add(col);
                 grafica_Analisis.AxisX.Add(ax);
 
-                grafica_Analisis.AxisY.Add(new Axis
+                grafica_Analisis.AxisY.Add(new LiveCharts.Wpf.Axis
                 {
 
                     Separator = new Separator()
@@ -1728,6 +1751,39 @@ namespace ProjectBiblioteca
             finally
             {
                 cnn.Close();
+            }
+        }
+
+        public void crearRecibo()
+        {
+            try
+            {
+                openFileDialog1.ShowDialog();
+                string ruta = openFileDialog1.FileName;
+                byte[] filebytes = System.IO.File.ReadAllBytes(ruta);
+                saveFileDialog1.ShowDialog();
+                string nuevo = saveFileDialog1.FileName;
+                System.IO.File.WriteAllBytes(nuevo, filebytes);
+                
+                var doc = DocX.Load(nuevo);
+                doc.ReplaceText("<NO. DE CONTROL>", R_Matricula.ToString());
+                doc.ReplaceText("<NOMBRE>", R_Nombre);
+                doc.ReplaceText("<TELEFONO>", R_Telefono);
+                doc.ReplaceText("<CORREO>", R_Correo);
+                doc.ReplaceText("<TITULO>", R_Titulo);
+                doc.ReplaceText("<FECHA PRESTAMO>", R_FechaPrestamo.ToLongDateString().ToString());
+                doc.ReplaceText("<FECHA ENTREGA>", R_FechaEntrega.ToLongDateString().ToString());
+                doc.ReplaceText("<CODIGO>", R_Codigo);
+                doc.ReplaceText("<GRUPO>", R_Grupo);
+                doc.ReplaceText("<DIAS>", R_Dias.ToString());
+                doc.ReplaceText("<CUATRIMESTRE>", R_Cuatrimestre.ToString());
+
+                doc.Save();
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

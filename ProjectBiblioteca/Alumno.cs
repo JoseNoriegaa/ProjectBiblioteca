@@ -101,7 +101,7 @@ namespace ProjectBiblioteca
 
 
         }
-        private bool verificarAlumnoRegistrado(int numeroDeControl)
+        public bool verificarAlumnoRegistrado(int numeroDeControl)
         {
             bool salida = false;
             try

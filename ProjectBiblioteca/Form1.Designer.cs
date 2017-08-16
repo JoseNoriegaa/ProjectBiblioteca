@@ -48,6 +48,7 @@
             this.Id_Prestamo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_De_Entrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPrestamo = new System.Windows.Forms.TabPage();
+            this.dtpPrestamo_Prestamo = new System.Windows.Forms.DateTimePicker();
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtEstado_Prestamo = new System.Windows.Forms.TextBox();
@@ -231,7 +232,8 @@
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNFORMACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dtpPrestamo_Prestamo = new System.Windows.Forms.DateTimePicker();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -486,6 +488,14 @@
             this.tabPrestamo.TabIndex = 3;
             this.tabPrestamo.Text = "PRÉSTAMO";
             this.tabPrestamo.UseVisualStyleBackColor = true;
+            // 
+            // dtpPrestamo_Prestamo
+            // 
+            this.dtpPrestamo_Prestamo.Enabled = false;
+            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(791, 304);
+            this.dtpPrestamo_Prestamo.Name = "dtpPrestamo_Prestamo";
+            this.dtpPrestamo_Prestamo.Size = new System.Drawing.Size(200, 20);
+            this.dtpPrestamo_Prestamo.TabIndex = 27;
             // 
             // label25
             // 
@@ -833,7 +843,6 @@
             this.gbEliminarCarrera_Alumno.TabStop = false;
             this.gbEliminarCarrera_Alumno.Text = "Carrera";
             this.gbEliminarCarrera_Alumno.Visible = false;
-            this.gbEliminarCarrera_Alumno.Enter += new System.EventHandler(this.gbEliminarCarrera_Alumno_Enter);
             // 
             // cbEliminarCarrera_Alumno
             // 
@@ -917,7 +926,6 @@
             this.gbAgregarCarrera_Alumno.TabStop = false;
             this.gbAgregarCarrera_Alumno.Text = "Carrera";
             this.gbAgregarCarrera_Alumno.Visible = false;
-            this.gbAgregarCarrera_Alumno.Enter += new System.EventHandler(this.gbAgregarCarrera_Alumno_Enter);
             // 
             // label59
             // 
@@ -927,7 +935,6 @@
             this.label59.Size = new System.Drawing.Size(107, 13);
             this.label59.TabIndex = 25;
             this.label59.Text = "ID DE LA CARRERA";
-            this.label59.Click += new System.EventHandler(this.label59_Click);
             // 
             // txtIdCarrera_Alumno
             // 
@@ -937,7 +944,6 @@
             this.txtIdCarrera_Alumno.Name = "txtIdCarrera_Alumno";
             this.txtIdCarrera_Alumno.Size = new System.Drawing.Size(185, 20);
             this.txtIdCarrera_Alumno.TabIndex = 24;
-            this.txtIdCarrera_Alumno.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label50
             // 
@@ -947,7 +953,6 @@
             this.label50.Size = new System.Drawing.Size(143, 13);
             this.label50.TabIndex = 23;
             this.label50.Text = "NOMBRE DE LA CARRERA";
-            this.label50.Click += new System.EventHandler(this.label50_Click);
             // 
             // txtCarrera_Alumno
             // 
@@ -1185,7 +1190,6 @@
             this.cbCuatrimestre_AlumnoAdd.Name = "cbCuatrimestre_AlumnoAdd";
             this.cbCuatrimestre_AlumnoAdd.Size = new System.Drawing.Size(255, 21);
             this.cbCuatrimestre_AlumnoAdd.TabIndex = 8;
-            this.cbCuatrimestre_AlumnoAdd.SelectedIndexChanged += new System.EventHandler(this.cbCuatrimestre_AlumnoAdd_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -1899,12 +1903,15 @@
             this.txtIsbn_Libro.Name = "txtIsbn_Libro";
             this.txtIsbn_Libro.Size = new System.Drawing.Size(234, 20);
             this.txtIsbn_Libro.TabIndex = 1;
+            this.txtIsbn_Libro.TextChanged += new System.EventHandler(this.txtIsbn_Libro_TextChanged);
             // 
             // txtId_Libro
             // 
+            this.txtId_Libro.Enabled = false;
             this.txtId_Libro.Location = new System.Drawing.Point(31, 86);
             this.txtId_Libro.MaxLength = 30;
             this.txtId_Libro.Name = "txtId_Libro";
+            this.txtId_Libro.ReadOnly = true;
             this.txtId_Libro.Size = new System.Drawing.Size(234, 20);
             this.txtId_Libro.TabIndex = 0;
             // 
@@ -2377,13 +2384,9 @@
             this.sALIRToolStripMenuItem.Text = "SALIR";
             this.sALIRToolStripMenuItem.Click += new System.EventHandler(this.sALIRToolStripMenuItem_Click);
             // 
-            // dtpPrestamo_Prestamo
+            // openFileDialog1
             // 
-            this.dtpPrestamo_Prestamo.Enabled = false;
-            this.dtpPrestamo_Prestamo.Location = new System.Drawing.Point(791, 304);
-            this.dtpPrestamo_Prestamo.Name = "dtpPrestamo_Prestamo";
-            this.dtpPrestamo_Prestamo.Size = new System.Drawing.Size(200, 20);
-            this.dtpPrestamo_Prestamo.TabIndex = 27;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -2644,6 +2647,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DateTimePicker dtpPrestamo_Prestamo;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
