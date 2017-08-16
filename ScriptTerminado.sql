@@ -193,6 +193,11 @@ delete Prestamo_Personal where Libro=@IdLibro
 delete Libro where Libro.Id_Libro = @IdLibro
 go
 
+create procedure buscarLibro_ID
+@id varchar(30)
+as
+select * from Libro where Id_Libro=@id
+go
 
 create procedure EditarLibro
 @IdLibro varchar(30),
