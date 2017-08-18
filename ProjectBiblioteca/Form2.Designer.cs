@@ -79,7 +79,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 23);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Jose Noriega";
+            this.label3.Text = "José Noriega";
             // 
             // label4
             // 

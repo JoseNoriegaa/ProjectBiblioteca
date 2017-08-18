@@ -120,6 +120,11 @@
             this.txtTelefono_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.txtNombre_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.tabPersonal = new System.Windows.Forms.TabPage();
+            this.cbActionOcupacion = new System.Windows.Forms.ComboBox();
+            this.gbEliminarOcupacion = new System.Windows.Forms.GroupBox();
+            this.cbEliminarOcupacion = new System.Windows.Forms.ComboBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.btnEliminarOcupacion = new System.Windows.Forms.Button();
             this.chkBorrar_Personal = new System.Windows.Forms.CheckBox();
             this.lblBorrar_Personal = new System.Windows.Forms.Label();
             this.gbOcupacion_Personal = new System.Windows.Forms.GroupBox();
@@ -154,16 +159,6 @@
             this.lblActualizar_Libro = new System.Windows.Forms.Label();
             this.txtBusqueda_Libro = new System.Windows.Forms.TextBox();
             this.dgvLista_libro = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar_Libro = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -233,11 +228,16 @@
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.gbEliminarOcupacion = new System.Windows.Forms.GroupBox();
-            this.cbEliminarOcupacion = new System.Windows.Forms.ComboBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.btnEliminarOcupacion = new System.Windows.Forms.Button();
-            this.cbActionOcupacion = new System.Windows.Forms.ComboBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -249,6 +249,7 @@
             this.gbAgregarCarrera_Alumno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos_Alumno)).BeginInit();
             this.tabPersonal.SuspendLayout();
+            this.gbEliminarOcupacion.SuspendLayout();
             this.gbOcupacion_Personal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_Personal)).BeginInit();
             this.tabLibro.SuspendLayout();
@@ -262,7 +263,6 @@
             this.btnGuardarCorreo_Herramientas.SuspendLayout();
             this.gbCorreo_herramientas.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.gbEliminarOcupacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1275,6 +1275,64 @@
             this.tabPersonal.Text = "PERSONAL";
             this.tabPersonal.UseVisualStyleBackColor = true;
             // 
+            // cbActionOcupacion
+            // 
+            this.cbActionOcupacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbActionOcupacion.FormattingEnabled = true;
+            this.cbActionOcupacion.Items.AddRange(new object[] {
+            "Agregar",
+            "Editar",
+            "Eliminar"});
+            this.cbActionOcupacion.Location = new System.Drawing.Point(146, 202);
+            this.cbActionOcupacion.MinimumSize = new System.Drawing.Size(113, 0);
+            this.cbActionOcupacion.Name = "cbActionOcupacion";
+            this.cbActionOcupacion.Size = new System.Drawing.Size(113, 21);
+            this.cbActionOcupacion.TabIndex = 31;
+            this.cbActionOcupacion.SelectedIndexChanged += new System.EventHandler(this.cbActionOcupacion_SelectedIndexChanged);
+            // 
+            // gbEliminarOcupacion
+            // 
+            this.gbEliminarOcupacion.Controls.Add(this.cbEliminarOcupacion);
+            this.gbEliminarOcupacion.Controls.Add(this.label58);
+            this.gbEliminarOcupacion.Controls.Add(this.btnEliminarOcupacion);
+            this.gbEliminarOcupacion.Location = new System.Drawing.Point(281, 73);
+            this.gbEliminarOcupacion.Name = "gbEliminarOcupacion";
+            this.gbEliminarOcupacion.Size = new System.Drawing.Size(197, 99);
+            this.gbEliminarOcupacion.TabIndex = 25;
+            this.gbEliminarOcupacion.TabStop = false;
+            this.gbEliminarOcupacion.Text = "Puesto/ocupación";
+            this.gbEliminarOcupacion.Visible = false;
+            // 
+            // cbEliminarOcupacion
+            // 
+            this.cbEliminarOcupacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEliminarOcupacion.FormattingEnabled = true;
+            this.cbEliminarOcupacion.Location = new System.Drawing.Point(8, 42);
+            this.cbEliminarOcupacion.MinimumSize = new System.Drawing.Size(180, 0);
+            this.cbEliminarOcupacion.Name = "cbEliminarOcupacion";
+            this.cbEliminarOcupacion.Size = new System.Drawing.Size(180, 21);
+            this.cbEliminarOcupacion.TabIndex = 28;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(6, 24);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(140, 13);
+            this.label58.TabIndex = 23;
+            this.label58.Text = "SELECCIONE OCUPACIÓN";
+            // 
+            // btnEliminarOcupacion
+            // 
+            this.btnEliminarOcupacion.Location = new System.Drawing.Point(116, 66);
+            this.btnEliminarOcupacion.MinimumSize = new System.Drawing.Size(75, 23);
+            this.btnEliminarOcupacion.Name = "btnEliminarOcupacion";
+            this.btnEliminarOcupacion.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarOcupacion.TabIndex = 21;
+            this.btnEliminarOcupacion.Text = "Borrar";
+            this.btnEliminarOcupacion.UseVisualStyleBackColor = true;
+            this.btnEliminarOcupacion.Click += new System.EventHandler(this.btnEliminarOcupacion_Click);
+            // 
             // chkBorrar_Personal
             // 
             this.chkBorrar_Personal.AutoSize = true;
@@ -1648,86 +1706,6 @@
             this.dgvLista_libro.Size = new System.Drawing.Size(449, 406);
             this.dgvLista_libro.TabIndex = 13;
             this.dgvLista_libro.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_libro_CellClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id Ejempar";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 76;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre Del Libro";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 84;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn3.HeaderText = "ISBN";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 57;
-            // 
-            // Column17
-            // 
-            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column17.HeaderText = "Año";
-            this.Column17.Name = "Column17";
-            this.Column17.ReadOnly = true;
-            this.Column17.Width = 51;
-            // 
-            // Column18
-            // 
-            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column18.HeaderText = "Clasificación";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
-            this.Column18.Width = 91;
-            // 
-            // Column19
-            // 
-            this.Column19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column19.HeaderText = "Autor";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            this.Column19.Width = 57;
-            // 
-            // Column20
-            // 
-            this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column20.HeaderText = "Editorial";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            this.Column20.Width = 69;
-            // 
-            // Column21
-            // 
-            this.Column21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column21.HeaderText = "Lugar";
-            this.Column21.Name = "Column21";
-            this.Column21.ReadOnly = true;
-            this.Column21.Width = 59;
-            // 
-            // Column22
-            // 
-            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column22.HeaderText = "Edicion";
-            this.Column22.Name = "Column22";
-            this.Column22.ReadOnly = true;
-            this.Column22.Width = 67;
-            // 
-            // Column23
-            // 
-            this.Column23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column23.HeaderText = "Descripción";
-            this.Column23.Name = "Column23";
-            this.Column23.ReadOnly = true;
-            this.Column23.Width = 88;
             // 
             // btnAgregar_Libro
             // 
@@ -2404,63 +2382,87 @@
             this.timer2.Interval = 86400000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // gbEliminarOcupacion
+            // dataGridViewTextBoxColumn1
             // 
-            this.gbEliminarOcupacion.Controls.Add(this.cbEliminarOcupacion);
-            this.gbEliminarOcupacion.Controls.Add(this.label58);
-            this.gbEliminarOcupacion.Controls.Add(this.btnEliminarOcupacion);
-            this.gbEliminarOcupacion.Location = new System.Drawing.Point(281, 73);
-            this.gbEliminarOcupacion.Name = "gbEliminarOcupacion";
-            this.gbEliminarOcupacion.Size = new System.Drawing.Size(197, 99);
-            this.gbEliminarOcupacion.TabIndex = 25;
-            this.gbEliminarOcupacion.TabStop = false;
-            this.gbEliminarOcupacion.Text = "Puesto/ocupación";
-            this.gbEliminarOcupacion.Visible = false;
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn1.FillWeight = 200F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id Ejempar";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.Width = 82;
             // 
-            // cbEliminarOcupacion
+            // dataGridViewTextBoxColumn2
             // 
-            this.cbEliminarOcupacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEliminarOcupacion.FormattingEnabled = true;
-            this.cbEliminarOcupacion.Location = new System.Drawing.Point(8, 42);
-            this.cbEliminarOcupacion.MinimumSize = new System.Drawing.Size(180, 0);
-            this.cbEliminarOcupacion.Name = "cbEliminarOcupacion";
-            this.cbEliminarOcupacion.Size = new System.Drawing.Size(180, 21);
-            this.cbEliminarOcupacion.TabIndex = 28;
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre Del Libro";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 84;
             // 
-            // label58
+            // dataGridViewTextBoxColumn3
             // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(6, 24);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(140, 13);
-            this.label58.TabIndex = 23;
-            this.label58.Text = "SELECCIONE OCUPACIÓN";
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn3.HeaderText = "ISBN";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 57;
             // 
-            // btnEliminarOcupacion
+            // Column17
             // 
-            this.btnEliminarOcupacion.Location = new System.Drawing.Point(116, 66);
-            this.btnEliminarOcupacion.MinimumSize = new System.Drawing.Size(75, 23);
-            this.btnEliminarOcupacion.Name = "btnEliminarOcupacion";
-            this.btnEliminarOcupacion.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminarOcupacion.TabIndex = 21;
-            this.btnEliminarOcupacion.Text = "Borrar";
-            this.btnEliminarOcupacion.UseVisualStyleBackColor = true;
-            this.btnEliminarOcupacion.Click += new System.EventHandler(this.btnEliminarOcupacion_Click);
+            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column17.HeaderText = "Año";
+            this.Column17.Name = "Column17";
+            this.Column17.ReadOnly = true;
+            this.Column17.Width = 51;
             // 
-            // cbActionOcupacion
+            // Column18
             // 
-            this.cbActionOcupacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbActionOcupacion.FormattingEnabled = true;
-            this.cbActionOcupacion.Items.AddRange(new object[] {
-            "Agregar",
-            "Editar",
-            "Eliminar"});
-            this.cbActionOcupacion.Location = new System.Drawing.Point(146, 202);
-            this.cbActionOcupacion.MinimumSize = new System.Drawing.Size(113, 0);
-            this.cbActionOcupacion.Name = "cbActionOcupacion";
-            this.cbActionOcupacion.Size = new System.Drawing.Size(113, 21);
-            this.cbActionOcupacion.TabIndex = 31;
-            this.cbActionOcupacion.SelectedIndexChanged += new System.EventHandler(this.cbActionOcupacion_SelectedIndexChanged);
+            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column18.HeaderText = "Clasificación";
+            this.Column18.Name = "Column18";
+            this.Column18.ReadOnly = true;
+            this.Column18.Width = 91;
+            // 
+            // Column19
+            // 
+            this.Column19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column19.HeaderText = "Autor";
+            this.Column19.Name = "Column19";
+            this.Column19.ReadOnly = true;
+            this.Column19.Width = 57;
+            // 
+            // Column20
+            // 
+            this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column20.HeaderText = "Editorial";
+            this.Column20.Name = "Column20";
+            this.Column20.ReadOnly = true;
+            this.Column20.Width = 69;
+            // 
+            // Column21
+            // 
+            this.Column21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column21.HeaderText = "Lugar";
+            this.Column21.Name = "Column21";
+            this.Column21.ReadOnly = true;
+            this.Column21.Width = 59;
+            // 
+            // Column22
+            // 
+            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column22.HeaderText = "Edicion";
+            this.Column22.Name = "Column22";
+            this.Column22.ReadOnly = true;
+            this.Column22.Width = 67;
+            // 
+            // Column23
+            // 
+            this.Column23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column23.HeaderText = "Descripción";
+            this.Column23.Name = "Column23";
+            this.Column23.ReadOnly = true;
+            this.Column23.Width = 88;
             // 
             // Form1
             // 
@@ -2494,6 +2496,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos_Alumno)).EndInit();
             this.tabPersonal.ResumeLayout(false);
             this.tabPersonal.PerformLayout();
+            this.gbEliminarOcupacion.ResumeLayout(false);
+            this.gbEliminarOcupacion.PerformLayout();
             this.gbOcupacion_Personal.ResumeLayout(false);
             this.gbOcupacion_Personal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista_Personal)).EndInit();
@@ -2513,8 +2517,6 @@
             this.gbCorreo_herramientas.ResumeLayout(false);
             this.gbCorreo_herramientas.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.gbEliminarOcupacion.ResumeLayout(false);
-            this.gbEliminarOcupacion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2656,16 +2658,6 @@
         private System.Windows.Forms.TextBox txtOcupacion_Personal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblActualizar_Libro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mOToolStripMenuItem;
@@ -2730,6 +2722,16 @@
         private System.Windows.Forms.ComboBox cbEliminarOcupacion;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Button btnEliminarOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
     }
 }
 

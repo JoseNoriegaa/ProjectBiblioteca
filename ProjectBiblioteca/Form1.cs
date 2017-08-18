@@ -1777,7 +1777,7 @@ namespace ProjectBiblioteca
                 switch (cbFiltro_Analisis.SelectedItem)
                 {
                     case "LIBROS":
-                        
+
                         cmd = new SqlCommand("librosPrestados_Alumno", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         rd = cmd.ExecuteReader();
@@ -1805,18 +1805,19 @@ namespace ProjectBiblioteca
 
                         for (int i = 0; i < titulos2.Count; i++)
                         {
-                            for (int e = 0; e < ((titulos1.Count)-1); e++)
+                            for (int e = 0; e < ((titulos1.Count) - 1); e++)
                             {
                                 if (titulos2[i] == titulos1[e])
                                 {
                                     valores1[e] = valores1[e] + valores2[i];
                                     titulos2.RemoveAt(i);
                                     valores2.RemoveAt(i);
-                                if (titulos2.Count==0)
-                                {
-                                    i = titulos2.Count;
-                                    e = 2;
-                                }                                }
+                                    if (titulos2.Count == 0)
+                                    {
+                                        i = titulos2.Count;
+                                        e = 2;
+                                    }
+                                }
                             }
                         }
                         for (int i = 0; i < titulos2.Count; i++)
@@ -1827,6 +1828,7 @@ namespace ProjectBiblioteca
                         }
                         col = new ColumnSeries()
                         {
+                            Title = "Cantidad:",
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
@@ -1838,9 +1840,14 @@ namespace ProjectBiblioteca
                         ax.Labels = new List<string>();
                         col.Values.Clear();
                         ax.Labels.Clear();
+
                         grafica_Analisis.Series.Clear();
                         grafica_Analisis.AxisX.Clear();
                         grafica_Analisis.AxisY.Clear();
+
+                        
+
+                        
                         for (int i = 0; i < titulos1.Count; i++)
                         {
                             col.Values.Add(valores1[i]);
@@ -1855,9 +1862,12 @@ namespace ProjectBiblioteca
 
                         col = new ColumnSeries()
                         {
+                            Title = "Cantidad:",
+
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
+                            
                         };
                         ax = new LiveCharts.Wpf.Axis()
                         {
@@ -1891,6 +1901,7 @@ namespace ProjectBiblioteca
                                 }
                             }
                         }
+
                         for (int i = 0; i < carreras1.Count; i++)
                         {
                             ax.Labels.Add(carreras1[i]);
@@ -1905,6 +1916,8 @@ namespace ProjectBiblioteca
 
                         col = new ColumnSeries()
                         {
+                            Title = "Cantidad:",
+
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
@@ -1958,6 +1971,9 @@ namespace ProjectBiblioteca
 
                         col = new ColumnSeries()
                         {
+                            Title = "Cantidad:",
+
+
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
