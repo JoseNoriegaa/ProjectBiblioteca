@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 using Novacode;
+using System.IO;
 
 namespace ProjectBiblioteca
 {
@@ -64,7 +65,45 @@ namespace ProjectBiblioteca
             }
             this.tipoPrestamo = tipoDePrestamno;
         }
-        public void generarRecibolumno(string nombre,string telefono,string titulo,string correo,string codigo,string grupo,int cuatrimestre,int dias,int matricula,DateTime fechaPrestamo,DateTime fechaEntrega)
+
+        public void generarReciboPersonal(string nombre, string telefono, string titulo, string correo, string codigo,
+            int numeroDeEmpleado, DateTime fechaPrestamo, string ocupacion)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.ShowDialog();
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                string ruta = openFileDialog1.FileName;
+                byte[] filebytes = File.ReadAllBytes(ruta);
+                saveFileDialog1.ShowDialog();
+                string nuevo = saveFileDialog1.FileName;
+                File.WriteAllBytes(nuevo, filebytes);
+
+                var doc = DocX.Load(nuevo);
+                doc.ReplaceText("<NO. DE EMPLEADO>", numeroDeEmpleado.ToString());
+                doc.ReplaceText("<NOMBRE>", nombre);
+                doc.ReplaceText("<TELEFONO>", telefono);
+                doc.ReplaceText("<CORREO>", correo);
+                doc.ReplaceText("<TITULO>", titulo);
+                doc.ReplaceText("<FECHA PRESTAMO>", fechaPrestamo.ToLongDateString().ToString());
+                doc.ReplaceText("<CODIGO>", codigo);
+                doc.ReplaceText("<OCUPACION>", ocupacion);
+
+                doc.Save();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERR EL RECIBO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void generarRecibolumno(string nombre, string telefono, string titulo, string correo, string codigo, 
+            string grupo, int cuatrimestre, int dias, int matricula, DateTime fechaPrestamo, DateTime fechaEntrega)
         {
              try
             {
@@ -98,8 +137,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERAR EL RECIBO","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -129,14 +167,14 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Estado", 1);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Se ha registrado el prestamo");
+                MessageBox.Show("Se ha registrado el prestamo","INFO",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
 
 
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source);
+                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             finally
             {
@@ -162,7 +200,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source);
+                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             finally
             {

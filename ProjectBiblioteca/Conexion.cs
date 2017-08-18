@@ -8,12 +8,12 @@ namespace ProjectBiblioteca
 {
     class Conexion
     {
-        string cxnString;
+        string cxnString= @"Data Source=(LocalDb)\MSSQLLocalDb; AttachDbFilename=|DataDirectory|\Biblioteca.mdf; Initial Catalog = Biblioteca; Integrated Security = TRUE";
         public Conexion() { }
 
         public string connectionString()
         {
-            cxnString = @"Data Source=DESKTOP-TIBD95D;Initial Catalog=Biblioteca;Integrated security=true;";
+            cxnString = @"Data Source=DESKTOP-68MLGQ1\SQLEXPRESS;Initial Catalog=Biblioteca;Integrated security=true;";
             return cxnString;
         }
 
