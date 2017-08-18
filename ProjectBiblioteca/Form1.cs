@@ -1458,7 +1458,7 @@ namespace ProjectBiblioteca
             {
                 string isbn = txtIsbn_Libro.Text;
                 int n = new Libro().countISBN(isbn);
-                if (n != 0)
+                if (n != 0 &&!(actualizarLibro))
                 {
                     txtId_Libro.Text = isbn + "_" + (n + 1);
                 }
@@ -1763,6 +1763,16 @@ namespace ProjectBiblioteca
             gbOcupacion_Personal.Visible = false;
             gbEliminarOcupacion.Visible = false;
 
+        }
+
+
+        private void txtEdicion_Libro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
         }
 
         private void llenarGrafica()
