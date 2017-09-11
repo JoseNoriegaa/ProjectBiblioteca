@@ -118,4 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PRESTAMOS-DE-LIBROS-BIBLIOTECA-ALUMNOS.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PRÉSTAMOS-DE-LIBROS-BIBLIOTECA-PERSONAL.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

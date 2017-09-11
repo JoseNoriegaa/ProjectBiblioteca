@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -75,12 +88,11 @@
             this.NombreDelLibro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ISBN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvListaAlumno_Prestamo = new System.Windows.Forms.DataGridView();
-            this.NoControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
             this.tabAlumno = new System.Windows.Forms.TabPage();
+            this.label61 = new System.Windows.Forms.Label();
+            this.txtApellido_Alumno = new System.Windows.Forms.TextBox();
             this.gbEliminarCarrera_Alumno = new System.Windows.Forms.GroupBox();
             this.cbEliminarCarrera_Alumno = new System.Windows.Forms.ComboBox();
             this.label56 = new System.Windows.Forms.Label();
@@ -101,6 +113,7 @@
             this.dgvAlumnos_Alumno = new System.Windows.Forms.DataGridView();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MailAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -154,6 +167,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabLibro = new System.Windows.Forms.TabPage();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtPrecioLibro = new System.Windows.Forms.TextBox();
             this.lblBorrar_Libro = new System.Windows.Forms.Label();
             this.chkBorrar_Libro = new System.Windows.Forms.CheckBox();
             this.lblActualizar_Libro = new System.Windows.Forms.Label();
@@ -169,6 +184,7 @@
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar_Libro = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -217,20 +233,19 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.btnGuardarCorreo_Herramientas = new System.Windows.Forms.TabPage();
-            this.label57 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.txtAsuntoCorreo_Herramientas = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.txtCuerpoCorreo_Herramientas = new System.Windows.Forms.RichTextBox();
-            this.gbCorreo_herramientas = new System.Windows.Forms.GroupBox();
+            this.label60 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
             this.checkPassCorreo = new System.Windows.Forms.CheckBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.txtPassCorreo = new System.Windows.Forms.TextBox();
+            this.txtAsuntoCorreo_Herramientas = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtCuerpoCorreo_Herramientas = new System.Windows.Forms.RichTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,6 +253,9 @@
             this.sALIRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.NoControl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos_Home)).BeginInit();
@@ -261,7 +279,6 @@
             this.tabAnalisis.SuspendLayout();
             this.gbGrafica_Analisis.SuspendLayout();
             this.btnGuardarCorreo_Herramientas.SuspendLayout();
-            this.gbCorreo_herramientas.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -315,7 +332,7 @@
             // 
             this.btnDevolucion_Home.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDevolucion_Home.Enabled = false;
-            this.btnDevolucion_Home.Location = new System.Drawing.Point(907, 427);
+            this.btnDevolucion_Home.Location = new System.Drawing.Point(913, 407);
             this.btnDevolucion_Home.MinimumSize = new System.Drawing.Size(105, 52);
             this.btnDevolucion_Home.Name = "btnDevolucion_Home";
             this.btnDevolucion_Home.Size = new System.Drawing.Size(105, 72);
@@ -380,10 +397,20 @@
             // 
             this.dgvPrestamos_Home.AllowUserToAddRows = false;
             this.dgvPrestamos_Home.AllowUserToDeleteRows = false;
+            this.dgvPrestamos_Home.AllowUserToResizeColumns = false;
+            this.dgvPrestamos_Home.AllowUserToResizeRows = false;
             this.dgvPrestamos_Home.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPrestamos_Home.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrestamos_Home.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPrestamos_Home.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Home.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoControl_Matricula,
@@ -393,10 +420,21 @@
             this.Id_Ejemplar,
             this.Id_Prestamo,
             this.Fecha_De_Entrega});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrestamos_Home.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
             this.dgvPrestamos_Home.MinimumSize = new System.Drawing.Size(873, 328);
+            this.dgvPrestamos_Home.MultiSelect = false;
             this.dgvPrestamos_Home.Name = "dgvPrestamos_Home";
             this.dgvPrestamos_Home.ReadOnly = true;
+            this.dgvPrestamos_Home.RowHeadersVisible = false;
+            this.dgvPrestamos_Home.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.TabIndex = 3;
             this.dgvPrestamos_Home.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrestamos_Home_CellClick);
@@ -407,21 +445,25 @@
             this.NoControl_Matricula.HeaderText = "No. De Control/No. De Empleado";
             this.NoControl_Matricula.Name = "NoControl_Matricula";
             this.NoControl_Matricula.ReadOnly = true;
-            this.NoControl_Matricula.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NoControl_Matricula.Width = 132;
+            this.NoControl_Matricula.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NoControl_Matricula.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NoControl_Matricula.Width = 113;
             // 
             // Nombre_
             // 
             this.Nombre_.HeaderText = "Nombre";
             this.Nombre_.Name = "Nombre_";
             this.Nombre_.ReadOnly = true;
+            this.Nombre_.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre_.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Nombre_Libro
             // 
             this.Nombre_Libro.HeaderText = "Titulo";
             this.Nombre_Libro.Name = "Nombre_Libro";
             this.Nombre_Libro.ReadOnly = true;
-            this.Nombre_Libro.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Nombre_Libro.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre_Libro.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ISBN_
             // 
@@ -430,7 +472,8 @@
             this.ISBN_.Name = "ISBN_";
             this.ISBN_.ReadOnly = true;
             this.ISBN_.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ISBN_.Width = 57;
+            this.ISBN_.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ISBN_.Width = 38;
             // 
             // Id_Ejemplar
             // 
@@ -439,7 +482,8 @@
             this.Id_Ejemplar.Name = "Id_Ejemplar";
             this.Id_Ejemplar.ReadOnly = true;
             this.Id_Ejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id_Ejemplar.Width = 79;
+            this.Id_Ejemplar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id_Ejemplar.Width = 60;
             // 
             // Id_Prestamo
             // 
@@ -448,7 +492,8 @@
             this.Id_Prestamo.Name = "Id_Prestamo";
             this.Id_Prestamo.ReadOnly = true;
             this.Id_Prestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id_Prestamo.Width = 83;
+            this.Id_Prestamo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id_Prestamo.Width = 64;
             // 
             // Fecha_De_Entrega
             // 
@@ -457,7 +502,8 @@
             this.Fecha_De_Entrega.Name = "Fecha_De_Entrega";
             this.Fecha_De_Entrega.ReadOnly = true;
             this.Fecha_De_Entrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Fecha_De_Entrega.Width = 109;
+            this.Fecha_De_Entrega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Fecha_De_Entrega.Width = 90;
             // 
             // tabPrestamo
             // 
@@ -720,16 +766,36 @@
             // 
             this.dgvListaLibros_Prestamo.AllowUserToAddRows = false;
             this.dgvListaLibros_Prestamo.AllowUserToDeleteRows = false;
+            this.dgvListaLibros_Prestamo.AllowUserToResizeColumns = false;
+            this.dgvListaLibros_Prestamo.AllowUserToResizeRows = false;
             this.dgvListaLibros_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaLibros_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListaLibros_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaLibros_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdEjempar,
             this.NombreDelLibro,
             this.ISBN});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaLibros_Prestamo.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 165);
             this.dgvListaLibros_Prestamo.MinimumSize = new System.Drawing.Size(382, 292);
             this.dgvListaLibros_Prestamo.Name = "dgvListaLibros_Prestamo";
             this.dgvListaLibros_Prestamo.ReadOnly = true;
+            this.dgvListaLibros_Prestamo.RowHeadersVisible = false;
+            this.dgvListaLibros_Prestamo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaLibros_Prestamo.Size = new System.Drawing.Size(382, 292);
             this.dgvListaLibros_Prestamo.TabIndex = 7;
             this.dgvListaLibros_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaLibros_Prestamo_CellClick);
@@ -739,6 +805,8 @@
             this.IdEjempar.HeaderText = "Id Ejempar";
             this.IdEjempar.Name = "IdEjempar";
             this.IdEjempar.ReadOnly = true;
+            this.IdEjempar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IdEjempar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // NombreDelLibro
             // 
@@ -746,49 +814,54 @@
             this.NombreDelLibro.HeaderText = "Nombre Del Libro";
             this.NombreDelLibro.Name = "NombreDelLibro";
             this.NombreDelLibro.ReadOnly = true;
+            this.NombreDelLibro.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NombreDelLibro.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ISBN
             // 
             this.ISBN.HeaderText = "ISBN";
             this.ISBN.Name = "ISBN";
             this.ISBN.ReadOnly = true;
+            this.ISBN.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ISBN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dgvListaAlumno_Prestamo
             // 
             this.dgvListaAlumno_Prestamo.AllowUserToAddRows = false;
             this.dgvListaAlumno_Prestamo.AllowUserToDeleteRows = false;
+            this.dgvListaAlumno_Prestamo.AllowUserToResizeColumns = false;
+            this.dgvListaAlumno_Prestamo.AllowUserToResizeRows = false;
             this.dgvListaAlumno_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaAlumno_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvListaAlumno_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaAlumno_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoControl,
             this.Nombre,
             this.Column2});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaAlumno_Prestamo.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 165);
             this.dgvListaAlumno_Prestamo.MinimumSize = new System.Drawing.Size(241, 292);
             this.dgvListaAlumno_Prestamo.Name = "dgvListaAlumno_Prestamo";
             this.dgvListaAlumno_Prestamo.ReadOnly = true;
+            this.dgvListaAlumno_Prestamo.RowHeadersVisible = false;
+            this.dgvListaAlumno_Prestamo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaAlumno_Prestamo.Size = new System.Drawing.Size(241, 292);
             this.dgvListaAlumno_Prestamo.TabIndex = 6;
             this.dgvListaAlumno_Prestamo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaAlumno_Prestamo_CellClick);
-            // 
-            // NoControl
-            // 
-            this.NoControl.HeaderText = "No. Control";
-            this.NoControl.Name = "NoControl";
-            this.NoControl.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
             // 
             // txtLibro_Prestamo
             // 
@@ -810,6 +883,8 @@
             // 
             // tabAlumno
             // 
+            this.tabAlumno.Controls.Add(this.label61);
+            this.tabAlumno.Controls.Add(this.txtApellido_Alumno);
             this.tabAlumno.Controls.Add(this.gbEliminarCarrera_Alumno);
             this.tabAlumno.Controls.Add(this.cbActionsCarrera);
             this.tabAlumno.Controls.Add(this.chkBorrar_Alumno);
@@ -842,12 +917,30 @@
             this.tabAlumno.Text = "ALUMNO";
             this.tabAlumno.UseVisualStyleBackColor = true;
             // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(12, 181);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(49, 13);
+            this.label61.TabIndex = 32;
+            this.label61.Text = "Apellidos";
+            // 
+            // txtApellido_Alumno
+            // 
+            this.txtApellido_Alumno.Location = new System.Drawing.Point(15, 197);
+            this.txtApellido_Alumno.MaxLength = 50;
+            this.txtApellido_Alumno.MinimumSize = new System.Drawing.Size(255, 20);
+            this.txtApellido_Alumno.Name = "txtApellido_Alumno";
+            this.txtApellido_Alumno.Size = new System.Drawing.Size(255, 20);
+            this.txtApellido_Alumno.TabIndex = 31;
+            // 
             // gbEliminarCarrera_Alumno
             // 
             this.gbEliminarCarrera_Alumno.Controls.Add(this.cbEliminarCarrera_Alumno);
             this.gbEliminarCarrera_Alumno.Controls.Add(this.label56);
             this.gbEliminarCarrera_Alumno.Controls.Add(this.btnDeleteCarrera_alumno);
-            this.gbEliminarCarrera_Alumno.Location = new System.Drawing.Point(293, 136);
+            this.gbEliminarCarrera_Alumno.Location = new System.Drawing.Point(283, 142);
             this.gbEliminarCarrera_Alumno.Name = "gbEliminarCarrera_Alumno";
             this.gbEliminarCarrera_Alumno.Size = new System.Drawing.Size(197, 99);
             this.gbEliminarCarrera_Alumno.TabIndex = 24;
@@ -893,7 +986,7 @@
             "Agregar",
             "Editar",
             "Eliminar"});
-            this.cbActionsCarrera.Location = new System.Drawing.Point(301, 279);
+            this.cbActionsCarrera.Location = new System.Drawing.Point(291, 285);
             this.cbActionsCarrera.MinimumSize = new System.Drawing.Size(113, 0);
             this.cbActionsCarrera.Name = "cbActionsCarrera";
             this.cbActionsCarrera.Size = new System.Drawing.Size(113, 21);
@@ -930,7 +1023,7 @@
             this.gbAgregarCarrera_Alumno.Controls.Add(this.label50);
             this.gbAgregarCarrera_Alumno.Controls.Add(this.txtCarrera_Alumno);
             this.gbAgregarCarrera_Alumno.Controls.Add(this.btnAddCarrera_alumno);
-            this.gbAgregarCarrera_Alumno.Location = new System.Drawing.Point(301, 316);
+            this.gbAgregarCarrera_Alumno.Location = new System.Drawing.Point(291, 322);
             this.gbAgregarCarrera_Alumno.Name = "gbAgregarCarrera_Alumno";
             this.gbAgregarCarrera_Alumno.Size = new System.Drawing.Size(197, 142);
             this.gbAgregarCarrera_Alumno.TabIndex = 22;
@@ -976,7 +1069,7 @@
             // 
             // btnAddCarrera_alumno
             // 
-            this.btnAddCarrera_alumno.Location = new System.Drawing.Point(116, 112);
+            this.btnAddCarrera_alumno.Location = new System.Drawing.Point(114, 112);
             this.btnAddCarrera_alumno.MinimumSize = new System.Drawing.Size(75, 23);
             this.btnAddCarrera_alumno.Name = "btnAddCarrera_alumno";
             this.btnAddCarrera_alumno.Size = new System.Drawing.Size(75, 23);
@@ -989,7 +1082,7 @@
             // 
             this.lblActualizar_Alumno.AutoSize = true;
             this.lblActualizar_Alumno.ForeColor = System.Drawing.Color.Red;
-            this.lblActualizar_Alumno.Location = new System.Drawing.Point(27, 97);
+            this.lblActualizar_Alumno.Location = new System.Drawing.Point(15, 71);
             this.lblActualizar_Alumno.Name = "lblActualizar_Alumno";
             this.lblActualizar_Alumno.Size = new System.Drawing.Size(74, 13);
             this.lblActualizar_Alumno.TabIndex = 24;
@@ -1009,7 +1102,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(23, 53);
+            this.label4.Location = new System.Drawing.Point(11, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 24);
             this.label4.TabIndex = 0;
@@ -1028,42 +1121,75 @@
             // 
             this.dgvAlumnos_Alumno.AllowUserToAddRows = false;
             this.dgvAlumnos_Alumno.AllowUserToDeleteRows = false;
+            this.dgvAlumnos_Alumno.AllowUserToResizeColumns = false;
+            this.dgvAlumnos_Alumno.AllowUserToResizeRows = false;
             this.dgvAlumnos_Alumno.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAlumnos_Alumno.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlumnos_Alumno.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvAlumnos_Alumno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnos_Alumno.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Column8,
+            this.Apellidos,
             this.Column9,
             this.Column1,
             this.MailAlumno,
             this.Column14});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlumnos_Alumno.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvAlumnos_Alumno.Location = new System.Drawing.Point(504, 92);
             this.dgvAlumnos_Alumno.MinimumSize = new System.Drawing.Size(502, 393);
+            this.dgvAlumnos_Alumno.MultiSelect = false;
             this.dgvAlumnos_Alumno.Name = "dgvAlumnos_Alumno";
             this.dgvAlumnos_Alumno.ReadOnly = true;
-            this.dgvAlumnos_Alumno.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvAlumnos_Alumno.RowHeadersVisible = false;
+            this.dgvAlumnos_Alumno.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvAlumnos_Alumno.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(502, 393);
             this.dgvAlumnos_Alumno.TabIndex = 9;
             this.dgvAlumnos_Alumno.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_Alumno_CellClick);
             // 
             // Column7
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column7.FillWeight = 70F;
             this.Column7.HeaderText = "Matricula";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column7.Width = 75;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Width = 65;
             // 
             // Column8
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column8.HeaderText = "Nombre";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Apellidos
+            // 
+            this.Apellidos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Apellidos.HeaderText = "Apellidos";
+            this.Apellidos.Name = "Apellidos";
+            this.Apellidos.ReadOnly = true;
+            this.Apellidos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Apellidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column9
             // 
@@ -1073,7 +1199,8 @@
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column9.Width = 66;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column9.Width = 47;
             // 
             // Column1
             // 
@@ -1081,7 +1208,8 @@
             this.Column1.HeaderText = "Cuatrimestre";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 90;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 71;
             // 
             // MailAlumno
             // 
@@ -1090,7 +1218,8 @@
             this.MailAlumno.Name = "MailAlumno";
             this.MailAlumno.ReadOnly = true;
             this.MailAlumno.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MailAlumno.Width = 61;
+            this.MailAlumno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.MailAlumno.Width = 42;
             // 
             // Column14
             // 
@@ -1099,13 +1228,14 @@
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
             this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column14.Width = 74;
+            this.Column14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column14.Width = 55;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label5.Location = new System.Drawing.Point(24, 120);
+            this.label5.Location = new System.Drawing.Point(12, 94);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 1;
@@ -1124,7 +1254,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(24, 318);
+            this.label10.Location = new System.Drawing.Point(14, 324);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 13);
             this.label10.TabIndex = 11;
@@ -1132,7 +1262,7 @@
             // 
             // txtNoControl_AlumnoAdd
             // 
-            this.txtNoControl_AlumnoAdd.Location = new System.Drawing.Point(27, 136);
+            this.txtNoControl_AlumnoAdd.Location = new System.Drawing.Point(15, 110);
             this.txtNoControl_AlumnoAdd.MaxLength = 8;
             this.txtNoControl_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtNoControl_AlumnoAdd.Name = "txtNoControl_AlumnoAdd";
@@ -1143,7 +1273,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 214);
+            this.label8.Location = new System.Drawing.Point(14, 220);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 13);
             this.label8.TabIndex = 7;
@@ -1152,7 +1282,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(24, 370);
+            this.label11.Location = new System.Drawing.Point(14, 376);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(49, 13);
             this.label11.TabIndex = 12;
@@ -1162,7 +1292,7 @@
             // 
             this.cbCarrera_AlumnoAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarrera_AlumnoAdd.FormattingEnabled = true;
-            this.cbCarrera_AlumnoAdd.Location = new System.Drawing.Point(27, 279);
+            this.cbCarrera_AlumnoAdd.Location = new System.Drawing.Point(17, 285);
             this.cbCarrera_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 0);
             this.cbCarrera_AlumnoAdd.Name = "cbCarrera_AlumnoAdd";
             this.cbCarrera_AlumnoAdd.Size = new System.Drawing.Size(255, 21);
@@ -1172,15 +1302,15 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 167);
+            this.label6.Location = new System.Drawing.Point(14, 141);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 3;
-            this.label6.Text = "Nombre";
+            this.label6.Text = "Nombre(s)";
             // 
             // txtEmail_AlumnoAdd
             // 
-            this.txtEmail_AlumnoAdd.Location = new System.Drawing.Point(27, 334);
+            this.txtEmail_AlumnoAdd.Location = new System.Drawing.Point(17, 340);
             this.txtEmail_AlumnoAdd.MaxLength = 50;
             this.txtEmail_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtEmail_AlumnoAdd.Name = "txtEmail_AlumnoAdd";
@@ -1198,7 +1328,7 @@
             "4",
             "5",
             "6"});
-            this.cbCuatrimestre_AlumnoAdd.Location = new System.Drawing.Point(27, 230);
+            this.cbCuatrimestre_AlumnoAdd.Location = new System.Drawing.Point(17, 236);
             this.cbCuatrimestre_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 0);
             this.cbCuatrimestre_AlumnoAdd.Name = "cbCuatrimestre_AlumnoAdd";
             this.cbCuatrimestre_AlumnoAdd.Size = new System.Drawing.Size(255, 21);
@@ -1207,7 +1337,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 263);
+            this.label9.Location = new System.Drawing.Point(17, 269);
             this.label9.MinimumSize = new System.Drawing.Size(41, 13);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 13);
@@ -1216,7 +1346,7 @@
             // 
             // btnAdd_Alumno
             // 
-            this.btnAdd_Alumno.Location = new System.Drawing.Point(76, 430);
+            this.btnAdd_Alumno.Location = new System.Drawing.Point(66, 436);
             this.btnAdd_Alumno.Name = "btnAdd_Alumno";
             this.btnAdd_Alumno.Size = new System.Drawing.Size(206, 28);
             this.btnAdd_Alumno.TabIndex = 7;
@@ -1226,7 +1356,7 @@
             // 
             // txtTelefono_AlumnoAdd
             // 
-            this.txtTelefono_AlumnoAdd.Location = new System.Drawing.Point(27, 386);
+            this.txtTelefono_AlumnoAdd.Location = new System.Drawing.Point(17, 392);
             this.txtTelefono_AlumnoAdd.MaxLength = 10;
             this.txtTelefono_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtTelefono_AlumnoAdd.Name = "txtTelefono_AlumnoAdd";
@@ -1236,7 +1366,7 @@
             // 
             // txtNombre_AlumnoAdd
             // 
-            this.txtNombre_AlumnoAdd.Location = new System.Drawing.Point(27, 183);
+            this.txtNombre_AlumnoAdd.Location = new System.Drawing.Point(15, 157);
             this.txtNombre_AlumnoAdd.MaxLength = 50;
             this.txtNombre_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtNombre_AlumnoAdd.Name = "txtNombre_AlumnoAdd";
@@ -1430,7 +1560,17 @@
             // 
             this.dgvLista_Personal.AllowUserToAddRows = false;
             this.dgvLista_Personal.AllowUserToDeleteRows = false;
+            this.dgvLista_Personal.AllowUserToResizeColumns = false;
+            this.dgvLista_Personal.AllowUserToResizeRows = false;
             this.dgvLista_Personal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLista_Personal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvLista_Personal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista_Personal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column10,
@@ -1438,46 +1578,74 @@
             this.Column12,
             this.Column15,
             this.Column16});
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLista_Personal.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvLista_Personal.Location = new System.Drawing.Point(502, 90);
             this.dgvLista_Personal.MinimumSize = new System.Drawing.Size(505, 402);
             this.dgvLista_Personal.Name = "dgvLista_Personal";
             this.dgvLista_Personal.ReadOnly = true;
+            this.dgvLista_Personal.RowHeadersVisible = false;
+            this.dgvLista_Personal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista_Personal.Size = new System.Drawing.Size(505, 402);
             this.dgvLista_Personal.TabIndex = 10;
             this.dgvLista_Personal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_Personal_CellClick);
             // 
             // Column10
             // 
+            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column10.FillWeight = 114.5137F;
             this.Column10.HeaderText = "No.Empleado";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
             this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column10.Width = 80;
             // 
             // Column11
             // 
+            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column11.FillWeight = 80.58376F;
             this.Column11.HeaderText = "Nombre";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
             this.Column11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column12
             // 
+            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column12.FillWeight = 63.61876F;
             this.Column12.HeaderText = "Ocupación";
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
             this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column15
             // 
+            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column15.FillWeight = 63.61876F;
             this.Column15.HeaderText = "E-Mail";
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
+            this.Column15.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column16
             // 
+            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column16.FillWeight = 177.665F;
             this.Column16.HeaderText = "Telefono";
             this.Column16.Name = "Column16";
             this.Column16.ReadOnly = true;
+            this.Column16.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label20
             // 
@@ -1604,6 +1772,8 @@
             // 
             // tabLibro
             // 
+            this.tabLibro.Controls.Add(this.label62);
+            this.tabLibro.Controls.Add(this.txtPrecioLibro);
             this.tabLibro.Controls.Add(this.lblBorrar_Libro);
             this.tabLibro.Controls.Add(this.chkBorrar_Libro);
             this.tabLibro.Controls.Add(this.lblActualizar_Libro);
@@ -1638,6 +1808,24 @@
             this.tabLibro.TabIndex = 5;
             this.tabLibro.Text = "LIBRO";
             this.tabLibro.UseVisualStyleBackColor = true;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(28, 448);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(47, 13);
+            this.label62.TabIndex = 30;
+            this.label62.Text = "PRECIO";
+            // 
+            // txtPrecioLibro
+            // 
+            this.txtPrecioLibro.Location = new System.Drawing.Point(31, 464);
+            this.txtPrecioLibro.MaxLength = 4;
+            this.txtPrecioLibro.MinimumSize = new System.Drawing.Size(234, 20);
+            this.txtPrecioLibro.Name = "txtPrecioLibro";
+            this.txtPrecioLibro.Size = new System.Drawing.Size(234, 20);
+            this.txtPrecioLibro.TabIndex = 29;
             // 
             // lblBorrar_Libro
             // 
@@ -1686,6 +1874,8 @@
             // 
             this.dgvLista_libro.AllowUserToAddRows = false;
             this.dgvLista_libro.AllowUserToDeleteRows = false;
+            this.dgvLista_libro.AllowUserToResizeColumns = false;
+            this.dgvLista_libro.AllowUserToResizeRows = false;
             this.dgvLista_libro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLista_libro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista_libro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1698,11 +1888,22 @@
             this.Column20,
             this.Column21,
             this.Column22,
-            this.Column23});
+            this.Column23,
+            this.Precio});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLista_libro.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvLista_libro.Location = new System.Drawing.Point(557, 86);
             this.dgvLista_libro.MinimumSize = new System.Drawing.Size(449, 406);
             this.dgvLista_libro.Name = "dgvLista_libro";
             this.dgvLista_libro.ReadOnly = true;
+            this.dgvLista_libro.RowHeadersVisible = false;
+            this.dgvLista_libro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista_libro.Size = new System.Drawing.Size(449, 406);
             this.dgvLista_libro.TabIndex = 13;
             this.dgvLista_libro.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_libro_CellClick);
@@ -1715,7 +1916,8 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.Width = 76;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 57;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -1723,7 +1925,9 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Nombre Del Libro";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 84;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 65;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -1731,7 +1935,9 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "ISBN";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 57;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Width = 38;
             // 
             // Column17
             // 
@@ -1739,7 +1945,9 @@
             this.Column17.HeaderText = "Año";
             this.Column17.Name = "Column17";
             this.Column17.ReadOnly = true;
-            this.Column17.Width = 51;
+            this.Column17.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column17.Width = 32;
             // 
             // Column18
             // 
@@ -1747,7 +1955,9 @@
             this.Column18.HeaderText = "Clasificación";
             this.Column18.Name = "Column18";
             this.Column18.ReadOnly = true;
-            this.Column18.Width = 91;
+            this.Column18.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column18.Width = 72;
             // 
             // Column19
             // 
@@ -1755,7 +1965,9 @@
             this.Column19.HeaderText = "Autor";
             this.Column19.Name = "Column19";
             this.Column19.ReadOnly = true;
-            this.Column19.Width = 57;
+            this.Column19.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column19.Width = 38;
             // 
             // Column20
             // 
@@ -1763,7 +1975,9 @@
             this.Column20.HeaderText = "Editorial";
             this.Column20.Name = "Column20";
             this.Column20.ReadOnly = true;
-            this.Column20.Width = 69;
+            this.Column20.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column20.Width = 50;
             // 
             // Column21
             // 
@@ -1771,7 +1985,9 @@
             this.Column21.HeaderText = "Lugar";
             this.Column21.Name = "Column21";
             this.Column21.ReadOnly = true;
-            this.Column21.Width = 59;
+            this.Column21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column21.Width = 40;
             // 
             // Column22
             // 
@@ -1779,7 +1995,9 @@
             this.Column22.HeaderText = "Edicion";
             this.Column22.Name = "Column22";
             this.Column22.ReadOnly = true;
-            this.Column22.Width = 67;
+            this.Column22.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column22.Width = 48;
             // 
             // Column23
             // 
@@ -1787,7 +2005,19 @@
             this.Column23.HeaderText = "Descripción";
             this.Column23.Name = "Column23";
             this.Column23.ReadOnly = true;
-            this.Column23.Width = 88;
+            this.Column23.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column23.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column23.Width = 69;
+            // 
+            // Precio
+            // 
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Precio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Precio.Width = 50;
             // 
             // btnAgregar_Libro
             // 
@@ -2102,7 +2332,17 @@
             // 
             this.dgvPrestamos_Historial.AllowUserToAddRows = false;
             this.dgvPrestamos_Historial.AllowUserToDeleteRows = false;
+            this.dgvPrestamos_Historial.AllowUserToResizeColumns = false;
+            this.dgvPrestamos_Historial.AllowUserToResizeRows = false;
             this.dgvPrestamos_Historial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrestamos_Historial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvPrestamos_Historial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Historial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._idprestamo,
@@ -2113,77 +2353,100 @@
             this._isbn,
             this._fechaprestamo,
             this._fechaentrega});
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrestamos_Historial.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvPrestamos_Historial.Location = new System.Drawing.Point(6, 160);
             this.dgvPrestamos_Historial.MinimumSize = new System.Drawing.Size(998, 301);
             this.dgvPrestamos_Historial.Name = "dgvPrestamos_Historial";
             this.dgvPrestamos_Historial.ReadOnly = true;
+            this.dgvPrestamos_Historial.RowHeadersVisible = false;
+            this.dgvPrestamos_Historial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrestamos_Historial.Size = new System.Drawing.Size(998, 301);
             this.dgvPrestamos_Historial.TabIndex = 3;
+            this.dgvPrestamos_Historial.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrestamos_Historial_CellClick);
             // 
             // _idprestamo
             // 
-            this._idprestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._idprestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._idprestamo.HeaderText = "ID Prestamo";
             this._idprestamo.Name = "_idprestamo";
             this._idprestamo.ReadOnly = true;
             this._idprestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._idprestamo.Width = 83;
+            this._idprestamo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this._idprestamo.Width = 80;
             // 
             // _persona
             // 
-            this._persona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this._persona.HeaderText = "No. De Control/No. De Empleado";
+            this._persona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this._persona.HeaderText = "No. De Control/  No. De Empleado";
             this._persona.Name = "_persona";
             this._persona.ReadOnly = true;
-            this._persona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this._persona.Width = 98;
+            this._persona.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._persona.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this._persona.Width = 110;
             // 
             // _nombre
             // 
+            this._nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._nombre.HeaderText = "Nombre";
             this._nombre.Name = "_nombre";
             this._nombre.ReadOnly = true;
+            this._nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this._nombre.Width = 190;
             // 
             // _idejemplar
             // 
-            this._idejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._idejemplar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._idejemplar.HeaderText = "ID Ejemplar";
             this._idejemplar.Name = "_idejemplar";
             this._idejemplar.ReadOnly = true;
             this._idejemplar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._idejemplar.Width = 79;
+            this._idejemplar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // _titulo
             // 
+            this._titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._titulo.HeaderText = "Titulo";
             this._titulo.Name = "_titulo";
             this._titulo.ReadOnly = true;
-            this._titulo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._titulo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._titulo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this._titulo.Width = 190;
             // 
             // _isbn
             // 
-            this._isbn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._isbn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._isbn.HeaderText = "ISBN";
             this._isbn.Name = "_isbn";
             this._isbn.ReadOnly = true;
             this._isbn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._isbn.Width = 57;
+            this._isbn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // _fechaprestamo
             // 
+            this._fechaprestamo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._fechaprestamo.HeaderText = "Fecha de prestamo";
             this._fechaprestamo.Name = "_fechaprestamo";
             this._fechaprestamo.ReadOnly = true;
             this._fechaprestamo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this._fechaprestamo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this._fechaprestamo.Width = 110;
             // 
             // _fechaentrega
             // 
-            this._fechaentrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._fechaentrega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this._fechaentrega.HeaderText = "Fecha De Entrega";
             this._fechaentrega.Name = "_fechaentrega";
             this._fechaentrega.ReadOnly = true;
             this._fechaentrega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this._fechaentrega.Width = 76;
+            this._fechaentrega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // tabAnalisis
             // 
@@ -2265,14 +2528,19 @@
             // 
             // btnGuardarCorreo_Herramientas
             // 
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label60);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.button1);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.label57);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.button2);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.checkPassCorreo);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.label37);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtCorreo);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.label36);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtPassCorreo);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtAsuntoCorreo_Herramientas);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label33);
+            this.btnGuardarCorreo_Herramientas.Controls.Add(this.label34);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.label35);
             this.btnGuardarCorreo_Herramientas.Controls.Add(this.txtCuerpoCorreo_Herramientas);
-            this.btnGuardarCorreo_Herramientas.Controls.Add(this.gbCorreo_herramientas);
             this.btnGuardarCorreo_Herramientas.Location = new System.Drawing.Point(4, 22);
             this.btnGuardarCorreo_Herramientas.Name = "btnGuardarCorreo_Herramientas";
             this.btnGuardarCorreo_Herramientas.Padding = new System.Windows.Forms.Padding(3);
@@ -2281,100 +2549,40 @@
             this.btnGuardarCorreo_Herramientas.Text = "E-MAIL";
             this.btnGuardarCorreo_Herramientas.UseVisualStyleBackColor = true;
             // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(14, 25);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(109, 25);
+            this.label60.TabIndex = 12;
+            this.label60.Text = "CORREO";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(253, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 43);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "REGISTRAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label57
             // 
             this.label57.AutoSize = true;
             this.label57.ForeColor = System.Drawing.Color.Red;
-            this.label57.Location = new System.Drawing.Point(727, 207);
+            this.label57.Location = new System.Drawing.Point(151, 101);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(252, 13);
             this.label57.TabIndex = 11;
             this.label57.Text = "NOTA:Ingrese un correo  de dominio ------ solamente";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(405, 406);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Guardar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(25, 17);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(343, 25);
-            this.label37.TabIndex = 9;
-            this.label37.Text = "NOTIFICACIONES DE CORREO";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(27, 120);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(52, 13);
-            this.label36.TabIndex = 8;
-            this.label36.Text = "CUERPO";
-            // 
-            // txtAsuntoCorreo_Herramientas
-            // 
-            this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(27, 92);
-            this.txtAsuntoCorreo_Herramientas.MaxLength = 50;
-            this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
-            this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(461, 20);
-            this.txtAsuntoCorreo_Herramientas.TabIndex = 1;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(24, 75);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(52, 13);
-            this.label35.TabIndex = 6;
-            this.label35.Text = "ASUNTO";
-            // 
-            // txtCuerpoCorreo_Herramientas
-            // 
-            this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(30, 136);
-            this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
-            this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 251);
-            this.txtCuerpoCorreo_Herramientas.TabIndex = 2;
-            this.txtCuerpoCorreo_Herramientas.Text = "";
-            // 
-            // gbCorreo_herramientas
-            // 
-            this.gbCorreo_herramientas.Controls.Add(this.button1);
-            this.gbCorreo_herramientas.Controls.Add(this.checkPassCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.txtCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.txtPassCorreo);
-            this.gbCorreo_herramientas.Controls.Add(this.label33);
-            this.gbCorreo_herramientas.Controls.Add(this.label34);
-            this.gbCorreo_herramientas.Location = new System.Drawing.Point(678, 26);
-            this.gbCorreo_herramientas.Name = "gbCorreo_herramientas";
-            this.gbCorreo_herramientas.Size = new System.Drawing.Size(314, 178);
-            this.gbCorreo_herramientas.TabIndex = 4;
-            this.gbCorreo_herramientas.TabStop = false;
-            this.gbCorreo_herramientas.Text = "INGRESAR CORREO";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(226, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Registrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // checkPassCorreo
             // 
             this.checkPassCorreo.AutoSize = true;
-            this.checkPassCorreo.Location = new System.Drawing.Point(12, 112);
+            this.checkPassCorreo.Location = new System.Drawing.Point(269, 184);
             this.checkPassCorreo.Name = "checkPassCorreo";
             this.checkPassCorreo.Size = new System.Drawing.Size(117, 17);
             this.checkPassCorreo.TabIndex = 6;
@@ -2382,38 +2590,83 @@
             this.checkPassCorreo.UseVisualStyleBackColor = true;
             this.checkPassCorreo.CheckedChanged += new System.EventHandler(this.checkPassCorreo_CheckedChanged);
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(492, 15);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(343, 25);
+            this.label37.TabIndex = 9;
+            this.label37.Text = "NOTIFICACIONES DE CORREO";
+            // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(12, 42);
+            this.txtCorreo.Location = new System.Drawing.Point(19, 78);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtCorreo.Size = new System.Drawing.Size(382, 20);
             this.txtCorreo.TabIndex = 4;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(494, 106);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(52, 13);
+            this.label36.TabIndex = 8;
+            this.label36.Text = "CUERPO";
             // 
             // txtPassCorreo
             // 
-            this.txtPassCorreo.Location = new System.Drawing.Point(12, 86);
+            this.txtPassCorreo.Location = new System.Drawing.Point(19, 158);
             this.txtPassCorreo.Name = "txtPassCorreo";
-            this.txtPassCorreo.Size = new System.Drawing.Size(289, 20);
+            this.txtPassCorreo.Size = new System.Drawing.Size(382, 20);
             this.txtPassCorreo.TabIndex = 5;
             this.txtPassCorreo.UseSystemPasswordChar = true;
+            // 
+            // txtAsuntoCorreo_Herramientas
+            // 
+            this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(497, 78);
+            this.txtAsuntoCorreo_Herramientas.MaxLength = 50;
+            this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
+            this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(458, 20);
+            this.txtAsuntoCorreo_Herramientas.TabIndex = 1;
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(9, 26);
+            this.label33.Location = new System.Drawing.Point(17, 62);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(155, 13);
+            this.label33.Size = new System.Drawing.Size(212, 13);
             this.label33.TabIndex = 1;
-            this.label33.Text = "Dirección de correo electrónico";
+            this.label33.Text = "DIRECCIÓN DE CORREO ELECTRÓNICO";
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(9, 70);
+            this.label34.Location = new System.Drawing.Point(17, 142);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(61, 13);
+            this.label34.Size = new System.Drawing.Size(81, 13);
             this.label34.TabIndex = 2;
-            this.label34.Text = "Contraseña";
+            this.label34.Text = "CONTRASEÑA";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(495, 62);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(52, 13);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "ASUNTO";
+            // 
+            // txtCuerpoCorreo_Herramientas
+            // 
+            this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(497, 122);
+            this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
+            this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 209);
+            this.txtCuerpoCorreo_Herramientas.TabIndex = 2;
+            this.txtCuerpoCorreo_Herramientas.Text = "";
             // 
             // notifyIcon1
             // 
@@ -2465,6 +2718,28 @@
             this.timer2.Interval = 86400000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // NoControl
+            // 
+            this.NoControl.HeaderText = "No. Control";
+            this.NoControl.Name = "NoControl";
+            this.NoControl.ReadOnly = true;
+            this.NoControl.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NoControl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2515,8 +2790,6 @@
             this.gbGrafica_Analisis.ResumeLayout(false);
             this.btnGuardarCorreo_Herramientas.ResumeLayout(false);
             this.btnGuardarCorreo_Herramientas.PerformLayout();
-            this.gbCorreo_herramientas.ResumeLayout(false);
-            this.gbCorreo_herramientas.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2591,9 +2864,6 @@
         private System.Windows.Forms.Label lNoControl_Empleado_Prestamo;
         private System.Windows.Forms.ComboBox cbTipo_Prestamo;
         private System.Windows.Forms.Button bRealizarPrestamo_Prestamo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdEjempar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreDelLibro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ISBN;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtEstado_Prestamo;
         private System.Windows.Forms.Label label25;
@@ -2603,14 +2873,12 @@
         private System.Windows.Forms.TabControl tabAjustes_2;
         private System.Windows.Forms.TabPage btnGuardarCorreo_Herramientas;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox gbCorreo_herramientas;
         private System.Windows.Forms.CheckBox checkPassCorreo;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.TextBox txtPassCorreo;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox txtAsuntoCorreo_Herramientas;
@@ -2649,11 +2917,6 @@
         private System.Windows.Forms.Label lblActualizar_Alumno;
         public System.Windows.Forms.DataGridView dgvAlumnos_Alumno;
         private System.Windows.Forms.Label lblActualizar_Personal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.GroupBox gbOcupacion_Personal;
         private System.Windows.Forms.Button btnOcupacion_Personal;
         private System.Windows.Forms.TextBox txtOcupacion_Personal;
@@ -2670,14 +2933,6 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox txtBusqueda_Historial;
         private System.Windows.Forms.DataGridView dgvPrestamos_Historial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _idprestamo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _persona;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _idejemplar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _titulo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _isbn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaprestamo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaentrega;
         private System.Windows.Forms.TabPage tabAnalisis;
         private System.Windows.Forms.ComboBox cbFiltro_Analisis;
         private System.Windows.Forms.Label label55;
@@ -2685,13 +2940,6 @@
         private System.Windows.Forms.GroupBox gbGrafica_Analisis;
         private LiveCharts.WinForms.CartesianChart grafica_Analisis;
         private System.Windows.Forms.Label lblMensaje_grafica;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoControl_Matricula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_Libro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ISBN_;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Ejemplar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Prestamo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_De_Entrega;
         private System.Windows.Forms.Label lblBorrar_Personal;
         private System.Windows.Forms.Label lblBorrar_Alumno;
         private System.Windows.Forms.CheckBox chkBorrar_Personal;
@@ -2706,23 +2954,42 @@
         private System.Windows.Forms.TextBox txtIdCarrera_Alumno;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.ComboBox cbActionsCarrera;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoControl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DateTimePicker dtpPrestamo_Prestamo;
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MailAlumno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.ComboBox cbActionOcupacion;
         private System.Windows.Forms.GroupBox gbEliminarOcupacion;
         private System.Windows.Forms.ComboBox cbEliminarOcupacion;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Button btnEliminarOcupacion;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TextBox txtApellido_Alumno;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtPrecioLibro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEjempar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreDelLibro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ISBN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MailAlumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _idprestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _persona;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _idejemplar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _titulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _isbn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaprestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _fechaentrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -2733,6 +3000,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoControl_Matricula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre_Libro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ISBN_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Ejemplar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Prestamo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_De_Entrega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoControl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 

@@ -59,5 +59,25 @@ namespace BIBLIOTECA.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS {
+            get {
+                object obj = ResourceManager.GetObject("PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL {
+            get {
+                object obj = ResourceManager.GetObject("PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

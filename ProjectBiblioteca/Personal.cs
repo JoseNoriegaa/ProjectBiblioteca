@@ -9,23 +9,22 @@ namespace ProjectBiblioteca
 {
     class Personal
     {
-       
-        SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
-
-
+        private SqlConnection cnn = new SqlConnection(new Conexion().connectionString());
         public int numeroDeEmpleado { get; set; }
         public string Nombre { get; set; }
         public string Ocupacion { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
+
         public Personal() { }
-        public Personal(int numeroDeEmpleado, string nombre, string ocupacion, string correo, string telefono)
+
+        public Personal(int numeroDeEmpleado, string Nombre, string Ocupacion, string Correo, string Telefono)
         {
             this.numeroDeEmpleado = numeroDeEmpleado;
-            this.Nombre = nombre;
-            this.Ocupacion = ocupacion;
-            this.Correo = correo;
-            this.Telefono = telefono;
+            this.Nombre = Nombre;
+            this.Ocupacion = Ocupacion;
+            this.Correo = Correo;
+            this.Telefono = Telefono;
         }
 
         public void agregarPersonalBD()
@@ -61,9 +60,8 @@ namespace ProjectBiblioteca
             {
                 cnn.Close();
             }
-
-
         }
+
         public void actualizarPersonal(int numeroDeEmpleadoViejo)
         {
             try
@@ -91,6 +89,37 @@ namespace ProjectBiblioteca
                 cnn.Close();
             }
         }
+
+        public bool verificarLibroPersonal(int numeroDeEmpleado)
+        {
+            bool salida = false;
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("verificar_Libro_Personal", cnn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NumeroDeEmpleado", numeroDeEmpleado);
+
+                if (int.Parse(cmd.ExecuteScalar().ToString()) !=0)
+                {
+                    salida = true;
+                }
+                else
+                {
+                    salida = false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return salida;
+        }
+
         private bool verificarPersonalRegistrado()
         {
             bool salida = false;
@@ -109,9 +138,7 @@ namespace ProjectBiblioteca
                 {
                     salida = false;
                 }
-
                 
-
             }
             catch (Exception e)
             {
@@ -124,6 +151,7 @@ namespace ProjectBiblioteca
 
             return salida;
         }
+
         public void borrarPersonalDB(int NumeroEmpl)
         {
             try

@@ -30,6 +30,7 @@ namespace ProjectBiblioteca
         {
             this.IdCarrera = IdCarrera.ToUpper();
         }
+
         public void agregarCarreraBD()
         {
             try

@@ -17,42 +17,17 @@ namespace ProjectBiblioteca
         SqlCommand cmd;
         public string correo { get; set; }
         public string Password { get; set; }
+        public string Asunto { get; set; }
+        public string Cuerpo { get; set; }
+
         public Correo() { }
 
-        public Correo(string correo, string Password)
+        public Correo(string correo, string Password, string asunto, string cuerpo)
         {
             this.correo = correo;
             this.Password = Password;
-        }
-
-        public int countCorreo()
-        {
-            int salida = 0;
-            try
-            {
-                cnn.Open();
-                cmd = new SqlCommand("countCorreo", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                rd = cmd.ExecuteReader();
-                if (rd.Read())
-                {
-                    salida = int.Parse(rd[0].ToString());
-                }
-                else
-                {
-                    salida = 0;
-                }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
-
-            }
-            finally
-            {
-                cnn.Close();
-            }
-            return salida;
+            this.Asunto = asunto;
+            this.Cuerpo = cuerpo;
         }
 
         public List<string> VerCorreo()
@@ -69,6 +44,8 @@ namespace ProjectBiblioteca
                 {
                     ls.Add(rd[0].ToString());
                     ls.Add(rd[1].ToString());
+                    ls.Add(rd[2].ToString());
+                    ls.Add(rd[3].ToString());
                 }
             }
             catch (Exception f)
@@ -91,6 +68,8 @@ namespace ProjectBiblioteca
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Correo", correo);
                 cmd.Parameters.AddWithValue("@Contraseña", Password);
+                cmd.Parameters.AddWithValue("@Asunto", Asunto);
+                cmd.Parameters.AddWithValue("@Cuerpo", Cuerpo);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha registrado correctamente su correo");
             }

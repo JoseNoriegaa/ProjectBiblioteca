@@ -15,6 +15,7 @@ namespace ProjectBiblioteca
 
         public int Matricula { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Carrera { get; set; }
@@ -22,15 +23,16 @@ namespace ProjectBiblioteca
 
 
         public Alumno() { }
-        public Alumno(int matricula, string nombre,  string telefono, string correo, string carrera,int cuatrimestre)
+        public Alumno(int matricula, string nombre,string apellido, string telefono, string correo, string carrera,int cuatrimestre)
         {
             this.Matricula = matricula;
             this.Nombre = nombre.Trim();
+            this.Apellido = apellido.Trim();
             this.Correo = correo;
             this.Telefono = telefono;
             this.Carrera = carrera;
             this.cuatrimestre = cuatrimestre;
-            ;
+            
         }
 
         public void agregarAlumnoBD()
@@ -44,6 +46,7 @@ namespace ProjectBiblioteca
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Matricula", this.Matricula);
                     cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
+                    cmd.Parameters.AddWithValue("@Apellidos", this.Apellido);
                     cmd.Parameters.AddWithValue("@Correo", this.Correo);
                     cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
                     cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
@@ -71,6 +74,7 @@ namespace ProjectBiblioteca
             }
 
         }
+
         public void actualizarAlumno(int matriculaVieja)
         {
             try
@@ -81,6 +85,7 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Matricula", this.Matricula);
                 cmd.Parameters.AddWithValue("@MatriculaVieja", matriculaVieja);
                 cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
+                cmd.Parameters.AddWithValue("@Apellidos", this.Apellido);
                 cmd.Parameters.AddWithValue("@Correo", this.Correo);
                 cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
                 cmd.Parameters.AddWithValue("@Carrera", this.Carrera);
@@ -101,6 +106,40 @@ namespace ProjectBiblioteca
 
 
         }
+
+        public bool verificarLibroEstadoAlumno(int numeroDeControl)
+        {
+            bool salida = false;
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("LibroEstadoAlumno", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Matricula", numeroDeControl);
+                SqlDataReader rd = cmd.ExecuteReader();
+                rd.Read();
+                var v = rd[0];
+                if (bool.Parse(v.ToString())==true)
+                {
+                    salida = true;
+                }
+                else
+                {
+                    salida = false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return salida;
+        }
+
         public bool verificarAlumnoRegistrado(int numeroDeControl)
         {
             bool salida = false;
@@ -132,6 +171,7 @@ namespace ProjectBiblioteca
             }
             return salida;
         }
+
         public void borrarAlumnoDB(int matricula)
         {
             try

@@ -8,6 +8,7 @@ using System.Data;
 using System.Windows.Forms;
 using Novacode;
 using System.IO;
+using BIBLIOTECA.Properties;
 
 namespace ProjectBiblioteca
 {
@@ -48,11 +49,10 @@ namespace ProjectBiblioteca
 
         }
 
-        public Prestamo(int numeroEmpleado, string libro, DateTime fechaDePrestamo, DateTime fechaDeEntrega, int dias, string estadoDelLibro, string tipoDePrestamno)
+        public Prestamo(int numeroEmpleado, string libro, DateTime fechaDePrestamo, int dias, string estadoDelLibro, string tipoDePrestamno)
         {
             this.libroID = libro;
             this.numeroEmpleado = numeroEmpleado;
-            this.fechaDeEntrega = fechaDeEntrega;
             this.fechaDePrestamo = fechaDePrestamo;
             this.diasDePrestamo = dias;
             if (string.IsNullOrEmpty(estadoDelLibro))
@@ -71,17 +71,20 @@ namespace ProjectBiblioteca
         {
             try
             {
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
-                openFileDialog1.FilterIndex = 1;
-                openFileDialog1.ShowDialog();
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
-                saveFileDialog1.FilterIndex = 1;
-                string ruta = openFileDialog1.FileName;
-                byte[] filebytes = File.ReadAllBytes(ruta);
-                saveFileDialog1.ShowDialog();
-                string nuevo = saveFileDialog1.FileName;
+                if (!(Directory.Exists(@"C:\PRESTAMOS/")))
+                {
+                    Directory.CreateDirectory(@"C:\PRESTAMOS/");
+                }
+                string nuevo = $@"C:\PRESTAMOS/" + numeroDeEmpleado + ".docx";
+                int c = 1;
+                while (File.Exists(nuevo))
+                {
+                    nuevo = $@"C:\PRESTAMOS/{numeroDeEmpleado}({c}).docx";
+                    c++;
+                }
+
+                byte[] filebytes = Resources.PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL;
+
                 File.WriteAllBytes(nuevo, filebytes);
 
                 var doc = DocX.Load(nuevo);
@@ -107,19 +110,20 @@ namespace ProjectBiblioteca
         {
              try
             {
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
-                openFileDialog1.FilterIndex = 1;
-                openFileDialog1.ShowDialog();
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Word Document (.docx)|*.docx|All Files (*.*)|*.*";
-                saveFileDialog1.FilterIndex = 1;
-                string ruta = openFileDialog1.FileName;
-                byte[] filebytes = System.IO.File.ReadAllBytes(ruta);
-                saveFileDialog1.ShowDialog();
-                string nuevo = saveFileDialog1.FileName;
-                System.IO.File.WriteAllBytes(nuevo, filebytes);
+                if (!(Directory.Exists(@"C:\PRESTAMOS/")))
+                {
+                    Directory.CreateDirectory(@"C:\PRESTAMOS/");
+                }
+                string nuevo = $@"C:\PRESTAMOS/" + matricula + ".docx";
+                int c = 1;
+                while (File.Exists(nuevo))
+                {
+                    nuevo = $@"C:\PRESTAMOS/{matricula}({c}).docx";
+                    c++;
+                }
 
+                byte[] filebytes = Resources.PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS;
+                File.WriteAllBytes(nuevo, filebytes);
                 var doc = DocX.Load(nuevo);
                 doc.ReplaceText("<NO. DE CONTROL>", matricula.ToString());
                 doc.ReplaceText("<NOMBRE>", nombre);
@@ -154,13 +158,14 @@ namespace ProjectBiblioteca
                 if (tipoPrestamo == "Alumno")
                 {
                     cmd.Parameters.AddWithValue("@idPersona", this.matriculaAlumno);
+                    cmd.Parameters.AddWithValue("@Fecha_Entrega", this.fechaDeEntrega);
                 }
                 else
                 {
                     cmd.Parameters.AddWithValue("@idPersona", this.numeroEmpleado);
+                    cmd.Parameters.AddWithValue("@Fecha_Entrega", "");
                 }
                 cmd.Parameters.AddWithValue("@Fecha_Prestamo", this.fechaDePrestamo);
-                cmd.Parameters.AddWithValue("@Fecha_Entrega", this.fechaDeEntrega);
                 cmd.Parameters.AddWithValue("@Dias_De_Prestamo", this.diasDePrestamo);
                 cmd.Parameters.AddWithValue("@Estado_Del_Libro", this.estadoDelLibro);
                 cmd.Parameters.AddWithValue("@tipoPrestamo", this.tipoPrestamo);
