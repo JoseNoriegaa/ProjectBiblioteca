@@ -43,6 +43,7 @@ namespace ProjectBiblioteca
         LiveCharts.Wpf.Axis ax;
         SqlCommand cmd;
         SqlDataReader rd;
+        List<Carrera> listaCarreras = new List<Carrera>();
         #endregion
 
         public Form1()
@@ -56,12 +57,11 @@ namespace ProjectBiblioteca
             cbTipo_Prestamo.SelectedIndex = 0;
             cbFiltro_Historial.SelectedIndex = 0;
             cbFiltro_Analisis.SelectedIndex = 0;
-            fillDGVs();
+            fillDGVs("todo");
             fillCB();
-            verificarFechaPrestamo();
+            rbPrestamo.Checked = true;
             ShowIcon = true;
             llenarGrafica();
-
             List<Control> ls = new List<Control>() {tabInicio, tabPrestamo,tabAlumno,tabPersonal, tabAnalisis,tabLibro,tabPage2, tabAjustes_2,
                 tabAjustes,tabControl1, gbAgregarCarrera_Alumno, gbGrafica_Analisis, gbOcupacion_Personal,gbEliminarCarrera_Alumno };
             foreach (Control item1 in ls)
@@ -173,7 +173,7 @@ namespace ProjectBiblioteca
                     dtpPrestamo_Prestamo.Value = DateTime.Today;
                     break;
             }
-            fillDGVs();
+            fillDGVs("alumnos-personal prestamo");
         }
 
         private void cbFiltroBusqueda_Home_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,7 +190,7 @@ namespace ProjectBiblioteca
                     dgvPrestamos_Home.Columns[0].HeaderText = "No. De Empleado";
                     break;
             }
-            fillDGVs();
+            fillDGVs("prestamos home");
         }
 
         private void checkPassCorreo_CheckedChanged(object sender, EventArgs e)
@@ -205,18 +205,27 @@ namespace ProjectBiblioteca
             {
                 password += "*";
             }
-            if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrEmpty(txtPassCorreo.Text) || string.IsNullOrEmpty(txtAsuntoCorreo_Herramientas.Text) || string.IsNullOrEmpty(txtCuerpoCorreo_Herramientas.Text))
+            if (rbPrestamo.Checked)
             {
-                MessageBox.Show("Los campos no pueden estar vacios".ToUpper());
+                if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrEmpty(txtPassCorreo.Text) || string.IsNullOrEmpty(txtAsuntoCorreo_Herramientas.Text) || string.IsNullOrEmpty(txtCuerpoCorreo_Herramientas.Text))
+                {
+                    MessageBox.Show("Los campos no pueden estar vacios".ToUpper());
+                }
+                else
+                {
+                    if (MessageBox.Show("ESTA SEGURO QUE ESTE ES SU CORREO\nCorreo: " + txtCorreo.Text.ToUpper() + "\nContraseña:" + password, "CORREO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Correo correo = new Correo(txtCorreo.Text, txtPassCorreo.Text, txtAsuntoCorreo_Herramientas.Text, txtCuerpoCorreo_Herramientas.Text);
+                        correo.agregarCorreo();
+                    }
+                }
             }
             else
             {
-                if (MessageBox.Show("ESTA SEGURO QUE ESTE ES SU CORREO\nCorreo: " + txtCorreo.Text.ToUpper() + "\nContraseña:" + password, "CORREO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    Correo correo = new Correo(txtCorreo.Text, txtPassCorreo.Text, txtAsuntoCorreo_Herramientas.Text, txtCuerpoCorreo_Herramientas.Text);
-                    correo.agregarCorreo();
-                }
+                Correo correo = new Correo(txtAsuntoCorreo_Herramientas.Text, txtCuerpoCorreo_Herramientas.Text);
+                correo.adddNotificacionesCorreo();
             }
+           
         }
         //variable para guardar el id antes de editar libro
         string idLibroViejo;
@@ -277,7 +286,8 @@ namespace ProjectBiblioteca
                     txtEdicion_Libro.Text = null;
                     actualizarLibro = false;
                     lblActualizar_Libro.Visible = actualizarLibro;
-                    fillDGVs();
+                    fillDGVs("libro");
+                    fillDGVs("libro prestamo");
                 }
             }
             catch (Exception j)
@@ -286,7 +296,7 @@ namespace ProjectBiblioteca
             }
         }
 
-        private void fillDGVs()
+        private void fillDGVs(string dgv)
         {
             try
             {
@@ -294,188 +304,209 @@ namespace ProjectBiblioteca
                 SqlDataReader rd;
                 cnn.Open();
                 #region llenar DGV libro
-                dgvLista_libro.Rows.Clear();
-                dgvLista_Personal.Rows.Clear();
-                dgvListaLibros_Prestamo.Rows.Clear();
-
-                cmd = new SqlCommand("BuscarLibros_Todos", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                rd = cmd.ExecuteReader();
-                while (rd.Read())
+                if (dgv=="libro" || dgv=="todo")
                 {
-                    dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd[3].ToString(),
-                        rd[4].ToString(), rd[5].ToString(), rd[7].ToString(), rd[8].ToString(), rd[9].ToString(), rd[6].ToString(), rd["Precio"].ToString());
+                    dgvLista_libro.Rows.Clear();
+
+                    cmd = new SqlCommand("BuscarLibros_Todos", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        dgvLista_libro.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd[3].ToString(),
+                            rd[4].ToString(), rd[5].ToString(), rd[7].ToString(), rd[8].ToString(), rd[9].ToString(), rd[6].ToString(), rd["Precio"].ToString());
+                    }
+                    rd.Close();
                 }
-                rd.Close();
                 #endregion
 
                 #region llenar DGV Alumnos-Personal Prestamo
-                if (cbTipo_Prestamo.SelectedIndex == 0)
+                if (dgv== "alumnos-personal prestamo" || dgv == "todo")
                 {
-                    cmd = new SqlCommand("Mostrar_Alumnos_SinLibro", cnn);
+                    if (cbTipo_Prestamo.SelectedIndex == 0)
+                    {
+                        cmd = new SqlCommand("Mostrar_Alumnos_SinLibro", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvListaAlumno_Prestamo.Rows.Clear();
+                        while (rd.Read())
+                        {
+                            dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), $"{ rd["Nombre"].ToString()} { rd["Apellido"].ToString()}", rd["Correo"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("Mostrar_Personal", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        rd = cmd.ExecuteReader();
+                        dgvListaAlumno_Prestamo.Rows.Clear();
+
+                        while (rd.Read())
+                        {
+                            dgvListaAlumno_Prestamo.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
+                        }
+                    }
+                    rd.Close();
+                }
+                #endregion
+
+                #region llenar dgv Libro prestamo
+                if (dgv== "libro prestamo" || dgv == "todo")
+                {
+                    cmd = new SqlCommand("BuscarLibros_NoPrestados", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     rd = cmd.ExecuteReader();
-                    dgvListaAlumno_Prestamo.Rows.Clear();
+                    dgvListaLibros_Prestamo.Rows.Clear();
                     while (rd.Read())
                     {
-                        dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
+                        dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
                     }
+                    rd.Close();
                 }
-                else
+
+                #endregion
+
+                #region llenar lista alumnos
+                if (dgv== "alumno" || dgv == "todo")
+                {
+                    cmd = new SqlCommand("Mostrar_Alumnos", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    rd = cmd.ExecuteReader();
+                    dgvAlumnos_Alumno.Rows.Clear();
+                    while (rd.Read())
+                    {
+                        dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), $"{rd["Nombre"].ToString()} { rd["Apellido"].ToString()}", rd["Carrera"].ToString(),
+                            rd["cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString(), rd["Nombre"].ToString(), rd["Apellido"].ToString());
+                    }
+                    rd.Close();
+                }
+                #endregion
+
+                #region llenar lista Personal
+                if (dgv== "personal" || dgv == "todo")
                 {
                     cmd = new SqlCommand("Mostrar_Personal", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     rd = cmd.ExecuteReader();
-                    dgvListaAlumno_Prestamo.Rows.Clear();
-
+                    dgvLista_Personal.Rows.Clear();
                     while (rd.Read())
                     {
-                        dgvListaAlumno_Prestamo.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
+                        dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
                     }
+                    rd.Close();
                 }
-                rd.Close();
-                #endregion
-
-                #region llenar dgv Libro prestamo
-                cmd = new SqlCommand("BuscarLibros_NoPrestados", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                rd = cmd.ExecuteReader();
-                while (rd.Read())
-                {
-                    dgvListaLibros_Prestamo.Rows.Add(rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString());
-                }
-                rd.Close();
-                #endregion
-
-                #region llenar lista alumnos
-                cmd = new SqlCommand("Mostrar_Alumnos", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                rd = cmd.ExecuteReader();
-                dgvAlumnos_Alumno.Rows.Clear();
-                while (rd.Read())
-                {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Apellido"].ToString(), rd["Carrera"].ToString(),
-                        rd["cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
-                }
-                rd.Close();
-                #endregion
-
-                #region llenar lista Personal
-                cmd = new SqlCommand("Mostrar_Personal", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                rd = cmd.ExecuteReader();
-                while (rd.Read())
-                {
-                    dgvLista_Personal.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Ocupacion"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
-                }
-                rd.Close();
 
                 #endregion
 
                 #region llenar dgv prestamos home
-                switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
+                if (dgv== "prestamos home" || dgv == "todo")
                 {
-                    case "TODOS":
-                        cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Home.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString().Remove(10));
-                        }
-                        rd.Close();
-                        cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        while (rd.Read())
-                        {
-                            try
+                    switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
+                    {
+                        case "TODOS":
+                            cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Home.Rows.Clear();
+                            while (rd.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString());
-
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), $"{rd[2].ToString()} {rd[3].ToString()}",
+                                    rd[5].ToString(), rd[6].ToString(), rd[4].ToString(), rd[0].ToString(), rd[7].ToString().Remove(10));
                             }
-                            catch (Exception)
+                            rd.Close();
+                            cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            while (rd.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString());
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[0].ToString());
                             }
+                            rd.Close();
 
-                        }
-                        rd.Close();
+                            break;
+                        case "ALUMNOS":
+                            cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Home.Rows.Clear();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), $"{rd[2].ToString()} {rd[3].ToString()}", rd[4].ToString(), rd[5].ToString(), rd[6].ToString(), rd[0].ToString(), rd[7].ToString().Remove(10));
+                            }
+                            rd.Close();
+                            break;
 
-                        break;
-                    case "ALUMNOS":
-                        cmd = new SqlCommand("MostrarPrestamos_Alumno", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Home.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString().Remove(10));
-                        }
-                        rd.Close();
-                        break;
-
-                    case "PERSONAL":
-                        cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Home.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Home.Rows.Add(rd[0].ToString(), rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[6].ToString().Remove(10));
-                        }
-                        rd.Close();
-                        break;
+                        case "PERSONAL":
+                            cmd = new SqlCommand("MostrarPrestamos_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Home.Rows.Clear();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[0].ToString(), rd[0].ToString(), rd[5].ToString());
+                            }
+                            rd.Close();
+                            break;
+                    }
                 }
-
+                if (dgvPrestamos_Home.Rows.Count == 0)
+                {
+                    bEliminarHistorial_herramientas.Enabled = true;
+                }
+                else
+                {
+                    bEliminarHistorial_herramientas.Enabled = false;
+                }
                 #endregion
 
                 #region llenar dgv historial Herramientas
-                switch (cbFiltro_Historial.SelectedIndex)
+                if (dgv== "historial" || dgv == "todo")
                 {
-                    case 0:
-                        cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Historial.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString());
-                        }
-                        rd.Close();
-                        cmd = new SqlCommand("historialPrestamos_Personal", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10));
-                        }
-                        rd.Close();
+                    switch (cbFiltro_Historial.SelectedIndex)
+                    {
+                        case 0:
+                            cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(rd[0].ToString(), rd[1].ToString(), $"{rd[2].ToString()} {rd[3].ToString()}", rd[4].ToString(), rd[5].ToString(), rd[6].ToString(), rd[8].ToString().Remove(10), rd[7].ToString().Remove(10));
+                            }
+                            rd.Close();
+                            cmd = new SqlCommand("historialPrestamos_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10));
+                            }
+                            rd.Close();
 
-                        break;
-                    case 1:
-                        cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Historial.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Id_Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString().Remove(10));
-                        }
-                        rd.Close();
-                        break;
-                    case 2:
-                        cmd = new SqlCommand("historialPrestamos_Personal", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        rd = cmd.ExecuteReader();
-                        dgvPrestamos_Historial.Rows.Clear();
-                        while (rd.Read())
-                        {
-                            dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10), rd["Fecha_Entrega"].ToString());
-                        }
-                        rd.Close();
-                        break;
+                            break;
+                        case 1:
+                            cmd = new SqlCommand("historialPrestamos_Alumno", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(rd[0].ToString(), rd[1].ToString(), $"{rd[2].ToString()} {rd[3].ToString()}", rd[4].ToString(), rd[5].ToString(), rd[6].ToString(), rd[8].ToString().Remove(10), rd[7].ToString().Remove(10));
+                            }
+                            rd.Close();
+                            break;
+                        case 2:
+                            cmd = new SqlCommand("historialPrestamos_Personal", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            rd = cmd.ExecuteReader();
+                            dgvPrestamos_Historial.Rows.Clear();
+                            while (rd.Read())
+                            {
+                                dgvPrestamos_Historial.Rows.Add(rd["Id_Prestamo"].ToString(), rd["Personal"].ToString(), rd["Nombre"].ToString(), rd["Libro"].ToString(), rd["Titulo"].ToString(), rd["ISBN"].ToString(), rd["Fecha_Prestamo"].ToString().Remove(10));
+                            }
+                            rd.Close();
+                            break;
+                    }
                 }
                 #endregion
             }
@@ -506,7 +537,7 @@ namespace ProjectBiblioteca
                 selecAlumno_Personal = true;
             }
         }
-
+        
         private void btnAdd_Alumno_Click(object sender, EventArgs e)
         {
             bool bl = false;
@@ -526,7 +557,7 @@ namespace ProjectBiblioteca
                     try
                     {
                         alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtApellido_Alumno.Text.ToUpper(), txtTelefono_AlumnoAdd.Text,
-                        txtEmail_AlumnoAdd.Text, cbCarrera_AlumnoAdd.Text.ToUpper(), int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
+                        txtEmail_AlumnoAdd.Text, strCarrera, int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
                     }
                     catch (Exception)
                     {
@@ -538,7 +569,7 @@ namespace ProjectBiblioteca
                     try
                     {
                         alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtApellido_Alumno.Text.ToUpper(), txtTelefono_AlumnoAdd.Text,
-                            txtEmail_AlumnoAdd.Text, cbCarrera_AlumnoAdd.Text.ToUpper(), int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
+                            txtEmail_AlumnoAdd.Text, strCarrera, int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
                         if (agregarAlumno && alumno.verificarAlumnoRegistrado(matriculavieja_Alumno))
                         {
                             bl = true;
@@ -573,7 +604,8 @@ namespace ProjectBiblioteca
                 txtApellido_Alumno.Text = null;
                 cbCuatrimestre_AlumnoAdd.SelectedIndex = -1;
                 cbCarrera_AlumnoAdd.SelectedIndex = -1;
-                fillDGVs();
+                fillDGVs("alumno");
+                fillDGVs("alumnos - personal prestamo");
                 actualizarAlumno = false;
                 lblActualizar_Alumno.Visible = actualizarAlumno;
                 btnAdd_Alumno.Text = "Agregar";
@@ -590,15 +622,12 @@ namespace ProjectBiblioteca
 
             cbCarrera_AlumnoAdd.Items.Clear();
             cbEliminarCarrera_Alumno.Items.Clear();
+            listaCarreras.Clear();
             while (rd.Read())
             {
-                cbCarrera_AlumnoAdd.Items.Add(rd[0].ToString());
-                cbCarrera_AlumnoAdd.DisplayMember = rd[1].ToString();
-                cbCarrera_AlumnoAdd.ValueMember = rd[0].ToString();
-
-                cbEliminarCarrera_Alumno.Items.Add(rd[0].ToString());
-                cbEliminarCarrera_Alumno.DisplayMember = rd[1].ToString();
-                cbEliminarCarrera_Alumno.ValueMember = rd[0].ToString();
+                listaCarreras.Add(new Carrera(rd[0].ToString(), rd[1].ToString()));
+                cbCarrera_AlumnoAdd.Items.Add(rd[1].ToString());
+                cbEliminarCarrera_Alumno.Items.Add(rd[1].ToString());
             }
             rd.Close();
             #endregion
@@ -680,7 +709,7 @@ namespace ProjectBiblioteca
             }
             else
             {
-                fillDGVs();
+                fillDGVs("alumnos-personal prestamo");
             }
         }
 
@@ -703,7 +732,7 @@ namespace ProjectBiblioteca
             }
             else
             {
-                fillDGVs();
+                fillDGVs("libro prestamo"); 
             }
         }
 
@@ -732,7 +761,7 @@ namespace ProjectBiblioteca
             }
             else
             {
-                fillDGVs();
+                fillDGVs("libro");
             }
         }
 
@@ -748,14 +777,13 @@ namespace ProjectBiblioteca
                 dgvAlumnos_Alumno.Rows.Clear();
                 while (rd.Read())
                 {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Carrera"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
-
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), $"{rd["Nombre"].ToString()} {rd["Apellido"].ToString()}", rd["Carrera"].ToString(), rd["Cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
                 }
                 cnn.Close();
             }
             else
             {
-                fillDGVs();
+                fillDGVs("alumno");
             }
 
         }
@@ -778,7 +806,7 @@ namespace ProjectBiblioteca
             }
             else
             {
-                fillDGVs();
+                fillDGVs("personal");
             }
         }
         //variable para guardar matricula antes de actualizar
@@ -798,9 +826,9 @@ namespace ProjectBiblioteca
                         else
                         {
                             new Alumno().borrarAlumnoDB(int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString()));
+                            fillDGVs("alumno");
+                            fillDGVs("alumnos-personal prestamo");
                         }
-
-                        fillDGVs();
                     }
                 }
                 else
@@ -812,7 +840,7 @@ namespace ProjectBiblioteca
                     txtNoControl_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString();
                     for (int i = 0; i < cbCarrera_AlumnoAdd.Items.Count; i++)
                     {
-                        if (dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString() == cbCarrera_AlumnoAdd.Items[i].ToString())
+                        if (dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString() == listaCarreras[i].IdCarrera)
                         {
                             cbCarrera_AlumnoAdd.SelectedIndex = i;
                         }
@@ -824,8 +852,8 @@ namespace ProjectBiblioteca
                             cbCuatrimestre_AlumnoAdd.SelectedIndex = i;
                         }
                     }
-                    txtNombre_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[1].Value.ToString();
-                    txtApellido_Alumno.Text = dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString();
+                    txtNombre_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[6].Value.ToString();
+                    txtApellido_Alumno.Text = dgvAlumnos_Alumno.CurrentRow.Cells[7].Value.ToString();
                     txtEmail_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[4].Value.ToString();
                     txtTelefono_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[5].Value.ToString();
                 }
@@ -851,7 +879,9 @@ namespace ProjectBiblioteca
                         else
                         {
                             new Personal().borrarPersonalDB(numeroDeEmpleado);
-                            fillDGVs();
+                            fillDGVs("personal");
+                            fillDGVs("alumnos - personal prestamo");
+
                         }
 
                     }
@@ -915,7 +945,8 @@ namespace ProjectBiblioteca
                 }
                 if (!(bl))
                 {
-                    fillDGVs();
+                    fillDGVs("personal");
+                    fillDGVs("alumnos - personal prestamo");
                     txtNoEmpleado_Personal.Text = null;
                     txtNombre_Personal.Text = null;
                     cbOcupacion_Personal.SelectedIndex = -1;
@@ -972,7 +1003,8 @@ namespace ProjectBiblioteca
                     if (MessageBox.Show("Al borrar el libro todo su historial de prestamos sera eliminado tambien \n¿Desea continuar?", "Eliminar Libro", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         new Libro().borrarLibroDB(dgvLista_libro.CurrentRow.Cells[0].Value.ToString());
-                        fillDGVs();
+                        fillDGVs("libro");
+                        fillDGVs("libro prestamo");
                     }
                 }
                 else
@@ -1033,7 +1065,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR A MANDAR EL CORREO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR A MANDAR EL CORREO\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1045,16 +1077,14 @@ namespace ProjectBiblioteca
                 {
                     if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
                     {
-                        prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text.ToUpper(), int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text.ToUpper(), "Alumno");
+                        prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text.ToUpper(), int.Parse(txtNoControl_Empleado_Prestamo.Text),dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text.ToUpper(), "Alumno");
 
                     }
                     else
                     {
                         prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text.ToUpper(), dtpPrestamo_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text.ToUpper(), "Personal");
                     }
-
-
-                    fillDGVs();
+                    
                     if (MessageBox.Show("¿Desea crear el recibo?".ToUpper(), "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
@@ -1083,9 +1113,9 @@ namespace ProjectBiblioteca
                                 prestamo.generarRecibolumno(nombre, telefono, titulo, correo, txtIdEjemplar_Prestamo.Text, grupo, cuatrimestre, 3, int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date);
 
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-                                MessageBox.Show("HA OCURRIDO UN ERROR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("HA OCURRIDO UN ERROR\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             finally { cnn.Close(); }
                         }
@@ -1125,6 +1155,10 @@ namespace ProjectBiblioteca
                         }
                     }
                     prestamo.registrarPrestamo();
+                    fillDGVs("libro prestamo");
+                    fillDGVs("prestamos home");
+                    fillDGVs("historial");
+                    fillDGVs("alumnos-personal prestamo");
                     enviarCorreo(null, null);
                     para = null;
                     txtAlumno_Prestamo.Text = null;
@@ -1146,7 +1180,6 @@ namespace ProjectBiblioteca
             {
                 MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            fillDGVs();
             llenarGrafica();
         }
 
@@ -1162,23 +1195,14 @@ namespace ProjectBiblioteca
                     switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
                     {
                         case "TODOS":
-                            cmd = new SqlCommand("BuscarPrestamo_Alumno", cnn);
+                            cmd = new SqlCommand("BuscarPrestamo_Alumno_NoDevuelto", cnn);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Home.Text);
                             reader = cmd.ExecuteReader();
-                            int i = 0;
                             dgvPrestamos_Home.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add();
-                                dgvPrestamos_Home.Rows[i].Cells[0].Value = reader[0];
-                                dgvPrestamos_Home.Rows[i].Cells["Nombre_"].Value = reader[1];
-                                dgvPrestamos_Home.Rows[i].Cells["Nombre_Libro"].Value = reader[2];
-                                dgvPrestamos_Home.Rows[i].Cells["ISBN_"].Value = reader[3];
-                                dgvPrestamos_Home.Rows[i].Cells["Id_Ejemplar"].Value = reader[4];
-                                dgvPrestamos_Home.Rows[i].Cells["Id_Prestamo"].Value = reader[5];
-                                dgvPrestamos_Home.Rows[i].Cells["Fecha_De_Entrega"].Value = reader[6].ToString().Remove(10);
-                                i++;
+                                dgvPrestamos_Home.Rows.Add(reader[0].ToString(), $"{reader[1].ToString()} {reader[2].ToString()}",reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString().Remove(10));
                             }
                             reader.Close();
 
@@ -1189,15 +1213,7 @@ namespace ProjectBiblioteca
                             reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add();
-                                dgvPrestamos_Home.Rows[i].Cells["NoControl_Matricula"].Value = reader[0];
-                                dgvPrestamos_Home.Rows[i].Cells["Nombre_"].Value = reader[1];
-                                dgvPrestamos_Home.Rows[i].Cells["Nombre_Libro"].Value = reader[2];
-                                dgvPrestamos_Home.Rows[i].Cells["ISBN_"].Value = reader[3];
-                                dgvPrestamos_Home.Rows[i].Cells["Id_Ejemplar"].Value = reader[4];
-                                dgvPrestamos_Home.Rows[i].Cells["Id_Prestamo"].Value = reader[5];
-                                dgvPrestamos_Home.Rows[i].Cells["Fecha_De_Entrega"].Value = reader[6].ToString().Remove(10);
-                                i++;
+                                dgvPrestamos_Home.Rows.Add(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString().Remove(10));
                             }
                             break;
                         case "PERSONAL":
@@ -1206,19 +1222,10 @@ namespace ProjectBiblioteca
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Home.Text);
                             reader = cmd.ExecuteReader();
-                            int d = 0;
                             dgvPrestamos_Home.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add();
-                                dgvPrestamos_Home.Rows[d].Cells["NoControl_Matricula"].Value = reader[0];
-                                dgvPrestamos_Home.Rows[d].Cells["Nombre_"].Value = reader[1];
-                                dgvPrestamos_Home.Rows[d].Cells["Nombre_Libro"].Value = reader[2];
-                                dgvPrestamos_Home.Rows[d].Cells["ISBN_"].Value = reader[3];
-                                dgvPrestamos_Home.Rows[d].Cells["Id_Ejemplar"].Value = reader[4];
-                                dgvPrestamos_Home.Rows[d].Cells["Id_Prestamo"].Value = reader[5];
-                                dgvPrestamos_Home.Rows[d].Cells["Fecha_De_Entrega"].Value = reader[6].ToString().Remove(10);
-                                d++;
+                                dgvPrestamos_Home.Rows.Add(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString().Remove(10));
                             }
                             reader.Close();
 
@@ -1228,19 +1235,10 @@ namespace ProjectBiblioteca
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Home.Text);
                             reader = cmd.ExecuteReader();
-                            int s = 0;
                             dgvPrestamos_Home.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add();
-                                dgvPrestamos_Home.Rows[s].Cells["NoControl_Matricula"].Value = reader[0];
-                                dgvPrestamos_Home.Rows[s].Cells["Nombre_"].Value = reader[1];
-                                dgvPrestamos_Home.Rows[s].Cells["Nombre_Libro"].Value = reader[2];
-                                dgvPrestamos_Home.Rows[s].Cells["ISBN_"].Value = reader[3];
-                                dgvPrestamos_Home.Rows[s].Cells["Id_Ejemplar"].Value = reader[4];
-                                dgvPrestamos_Home.Rows[s].Cells["Id_Prestamo"].Value = reader[5];
-                                dgvPrestamos_Home.Rows[s].Cells["Fecha_De_Entrega"].Value = reader[6].ToString().Remove(10);
-                                s++;
+                                dgvPrestamos_Home.Rows.Add(reader[0].ToString(), $"{reader[1].ToString()} {reader[2].ToString()}", reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString().Remove(10));
                             }
                             reader.Close();
                             break;
@@ -1248,13 +1246,13 @@ namespace ProjectBiblioteca
                 }
                 else
                 {
-                    fillDGVs();
+                    fillDGVs("prestamos home");
                 }
                 cnn.Close();
             }
             catch (Exception j)
             {
-                MessageBox.Show("Ha ocurrido un error" + j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error\n" + j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -1266,14 +1264,12 @@ namespace ProjectBiblioteca
         int matricula, idPrestamo;
 
         private void dgvPrestamos_Home_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.RowIndex < dgvPrestamos_Home.Rows.Count)
-            {
-                idPrestamo = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[5].Value.ToString());
-                idLibro = dgvPrestamos_Home.CurrentRow.Cells[4].Value.ToString();
-                matricula = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[0].Value.ToString());
-                btnDevolucion_Home.Enabled = true;
-            }
+        {//System.NullReferenceException
+            idPrestamo = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[5].Value.ToString());
+            idLibro = dgvPrestamos_Home.CurrentRow.Cells[4].Value.ToString();
+            matricula = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[0].Value.ToString());
+            btnDevolucion_Home.Enabled = true;
+            RegistrarDevolucion();
         }
 
         private void mOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1336,7 +1332,7 @@ namespace ProjectBiblioteca
 
         private void cbFiltro_Historial_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fillDGVs();
+            fillDGVs("historial");
         }
 
         private void txtBusqueda_Historial_TextChanged(object sender, EventArgs e)
@@ -1356,12 +1352,10 @@ namespace ProjectBiblioteca
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@Coincidencia", txtBusqueda_Historial.Text);
                             reader = cmd.ExecuteReader();
-                            int i = 0;
                             dgvPrestamos_Historial.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
-                                i++;
+                                dgvPrestamos_Historial.Rows.Add(reader[0].ToString(), reader[1].ToString(), $"{reader[2].ToString()} {reader[3].ToString()}", reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[8].ToString());
                             }
                             reader.Close();
 
@@ -1371,9 +1365,7 @@ namespace ProjectBiblioteca
                             reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
-
-
+                                dgvPrestamos_Historial.Rows.Add(reader["Id_Prestamo"].ToString(), reader["Personal"].ToString(), reader["Nombre"].ToString(), reader["Libro"].ToString(), reader["Titulo"].ToString(), reader["ISBN"].ToString(), reader["Fecha_Prestamo"].ToString());
                             }
                             break;
                         case "PERSONAL":
@@ -1386,7 +1378,7 @@ namespace ProjectBiblioteca
                             dgvPrestamos_Historial.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+                                dgvPrestamos_Historial.Rows.Add(reader["Id_Prestamo"].ToString(), reader["Personal"].ToString(), reader["Nombre"].ToString(), reader["Libro"].ToString(), reader["Titulo"].ToString(), reader["ISBN"].ToString(), reader["Fecha_Prestamo"].ToString());
                             }
                             reader.Close();
 
@@ -1400,7 +1392,7 @@ namespace ProjectBiblioteca
                             dgvPrestamos_Historial.Rows.Clear();
                             while (reader.Read())
                             {
-                                dgvPrestamos_Historial.Rows.Add(reader[5].ToString(), reader[0].ToString(), reader[1].ToString(), reader[4].ToString(), reader[2].ToString(), reader[3].ToString(), reader[7].ToString().Remove(10), reader[6].ToString().Remove(10));
+                                dgvPrestamos_Historial.Rows.Add(reader[0].ToString(), reader[1].ToString(), $"{reader[2].ToString()} {reader[3].ToString()}", reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(),reader[8].ToString());
                             }
                             reader.Close();
                             break;
@@ -1408,13 +1400,13 @@ namespace ProjectBiblioteca
                 }
                 else
                 {
-                    fillDGVs();
+                    fillDGVs("historial");
                 }
                 cnn.Close();
             }
             catch (Exception j)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -1422,7 +1414,7 @@ namespace ProjectBiblioteca
             }
         }
 
-        private void btnDevolucion_Home_Click(object sender, EventArgs e)
+        private void RegistrarDevolucion()
         {
             try
             {
@@ -1434,11 +1426,17 @@ namespace ProjectBiblioteca
             }
             catch (Exception j)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            fillDGVs();
-
+            fillDGVs("prestamos home");
+            fillDGVs("alumnos-personal prestamo");
+            fillDGVs("libro prestamo");
             btnDevolucion_Home.Enabled = false;
+        }
+
+        private void btnDevolucion_Home_Click(object sender, EventArgs e)
+        {
+            RegistrarDevolucion();
         }
 
         private void cbFiltro_Analisis_SelectedIndexChanged(object sender, EventArgs e)
@@ -1525,7 +1523,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception j)
             {
-                MessageBox.Show(/*"HA OCURRIDO UN ERROR", "ERROR"*/j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR: " +  j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1537,55 +1535,9 @@ namespace ProjectBiblioteca
             }
         }
 
-        private void txtNoControl_AlumnoAdd_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void txtTelefono_AlumnoAdd_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void txtNoEmpleado_Personal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void txtTelefono_Personal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void txtAño_Libro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-        }
-
         private void txtIsbn_Libro_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
-
             if (char.IsNumber(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == (char)Keys.Back)
             {
                 e.Handled = false;
@@ -1628,18 +1580,19 @@ namespace ProjectBiblioteca
                         }
                     }
                 }
-
+                para = null;
                 for (int i = 0; i < correos.Count; i++)
                 {
-                    string subject = "";
-                    string body = "";
-                    para = null;
+                    //Para que puedan cambiarlo
+                    string subject = correo.VerCorreo()[4];
+                    string body = correo.VerCorreo()[5];
                     para = correos[i];
-                    subject = "NOTIFICACIÓN BIBLIOTECA UTPP";
+                    //----Fijo
+                  /*subject = "NOTIFICACIÓN BIBLIOTECA UTPP";
                     body = $"ALUMNO(A) {nombres[i]} SE LE DA AVISO DE QUE EL DÍA DE HOY {DateTime.Today.ToShortDateString()} " +
                         $"ES LA FECHA LÍMITE PARA DEVOLVER EL LIBRO '{titulos[i]}' PRESTADO POR LA BIBLIOTECA ESCOLAR DE LA UNIVERSIDAD TECNOLÓGICA DE PUERTO PEÑASCO.\n" +
                         $"SE LE PIDE PASAR A ENTREGAR EL LIBRO O BIEN RENOVAR SU PRÉSTAMO.\n" +
-                        $"POR SU ATENCIÓN, GRACIAS.";
+                        $"POR SU ATENCIÓN, GRACIAS.";*/
                     enviarCorreo(subject, body);
                 }
             }
@@ -1686,6 +1639,7 @@ namespace ProjectBiblioteca
                 txtIsbn_Libro.Text = null;
                 txtTitulo_Libro.Text = null;
                 txtAño_Libro.Text = null;
+                txtPrecioLibro.Text = null;
                 txtClasificiacion_Libro.Text = null;
                 txtAutor_Libro.Text = null;
                 txtEditorial_Libro.Text = null;
@@ -1737,11 +1691,15 @@ namespace ProjectBiblioteca
             txtIdCarrera_Alumno.Text = null;
             txtCarrera_Alumno.Text = null;
         }
-
+        string strCarrera;
         private void cbCarrera_AlumnoAdd_SelectedIndexChanged(object sender, EventArgs e)
         {
             gbAgregarCarrera_Alumno.Visible = false;
             gbEliminarCarrera_Alumno.Visible = false;
+            if (cbCarrera_AlumnoAdd.SelectedIndex>=0)
+            {
+                strCarrera = listaCarreras[cbCarrera_AlumnoAdd.SelectedIndex].IdCarrera;
+            }
         }
 
         private void btnEliminarOcupacion_Click(object sender, EventArgs e)
@@ -1796,7 +1754,7 @@ namespace ProjectBiblioteca
 
         }
 
-        private void txtEdicion_Libro_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
             if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
@@ -1846,9 +1804,9 @@ namespace ProjectBiblioteca
                             DateTime.Parse(dgvPrestamos_Historial.CurrentRow.Cells[6].Value.ToString()), DateTime.Parse(dgvPrestamos_Historial.CurrentRow.Cells[7].Value.ToString()));
 
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("HA OCURRIDO UN ERROR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("HA OCURRIDO UN ERROR\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
@@ -1891,6 +1849,21 @@ namespace ProjectBiblioteca
                     finally { cnn.Close(); }
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿ESTA SEGURO QUE DESEA ELIMINAR EL HISTORIAL POR COMPLETO?","ELIMINAR HISTORIAL",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)==DialogResult.Yes)
+            {
+                new Prestamo().BorrarHistorial();
+                fillDGVs("historial");
+                fillDGVs("prestamos home");
+            }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            verificarFechaPrestamo();
         }
 
         private void llenarGrafica()
@@ -1943,7 +1916,7 @@ namespace ProjectBiblioteca
                                     if (titulos2.Count == 0)
                                     {
                                         i = titulos2.Count;
-                                        e = 2;
+                                        break;
                                     }
                                 }
                             }
@@ -1960,6 +1933,7 @@ namespace ProjectBiblioteca
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
+                            
                         };
                         ax = new LiveCharts.Wpf.Axis()
                         {
@@ -1972,8 +1946,22 @@ namespace ProjectBiblioteca
                         grafica_Analisis.AxisX.Clear();
                         grafica_Analisis.AxisY.Clear();
 
-
                         List<ChartData> ch = new List<ChartData>();
+
+
+                        for (int i = 0; i < titulos1.Count; i++)
+                        {
+                            for (int e = i+1; e < titulos1.Count; e++)
+                            {
+                                if (titulos1[i]==titulos1[e])
+                                {
+                                    valores1[i] += valores1[e];
+                                    valores1.RemoveAt(e);
+                                    titulos1.RemoveAt(e);
+                                }
+                            }
+                        }
+
 
                         for (int i = 0; i < titulos1.Count; i++)
                         {
@@ -2011,7 +1999,7 @@ namespace ProjectBiblioteca
                             DataLabels = true,
                             Values = new ChartValues<int>(),
                             LabelPoint = point => point.Y.ToString(),
-
+                            
                         };
                         ax = new LiveCharts.Wpf.Axis()
                         {
@@ -2236,9 +2224,9 @@ namespace ProjectBiblioteca
                 }
                 );
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message,ex.TargetSite.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

@@ -85,7 +85,7 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Matricula", this.Matricula);
                 cmd.Parameters.AddWithValue("@MatriculaVieja", matriculaVieja);
                 cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
-                cmd.Parameters.AddWithValue("@Apellidos", this.Apellido);
+                cmd.Parameters.AddWithValue("@Apellido", this.Apellido);
                 cmd.Parameters.AddWithValue("@Correo", this.Correo);
                 cmd.Parameters.AddWithValue("@Telefono", this.Telefono);
                 cmd.Parameters.AddWithValue("@Carrera", this.Carrera);

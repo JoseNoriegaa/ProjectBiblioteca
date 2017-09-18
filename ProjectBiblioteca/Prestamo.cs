@@ -189,7 +189,27 @@ namespace ProjectBiblioteca
 
         }
 
- 
+        public void BorrarHistorial()
+        {
+            try
+            {
+                cnn.Open();
+                cmd = new SqlCommand("borrarHistorial", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Se ha eliminado el historial", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
         public void registrarDevolucion(int Id_Prestamo,string idLibro,int matricula)
         {
             try

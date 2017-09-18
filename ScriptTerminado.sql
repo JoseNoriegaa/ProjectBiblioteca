@@ -31,7 +31,9 @@ create table Correo
 	Correo varchar(200) primary key,
 	Contraseña varchar(200) not null,
 	Asunto varchar(200) not null,
-	Cuerpo varchar(max) not null
+	Cuerpo varchar(max) not null,
+	AsuntoNotificacion varchar(200) not null,
+	CuerpoNotificacion varchar(max) not null
 )
 
 CREATE TABLE Alumno
@@ -84,6 +86,22 @@ CREATE TABLE Prestamo_alumno
 	Estado bit
 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 create procedure countCorreo
 as
 select count(Correo) from Correo
@@ -107,9 +125,16 @@ create procedure ingresarCorreo
 @Cuerpo nvarchar(max)
 as
 if ((select count(Correo) from Correo)=0)
-insert into Correo values(@Correo,@Contraseña,@Asunto,@Cuerpo)
+insert into Correo values(@Correo,@Contraseña,@Asunto,@Cuerpo,'','')
 else
 update Correo set Correo=@Correo, Contraseña=@Contraseña, Asunto=@Asunto, Cuerpo=@Cuerpo
+go
+
+create procedure adddNotificacionesCorreo
+@Asunto varchar(200),
+@Cuerpo nvarchar(max)
+as
+update Correo set Asunto=@Asunto, Cuerpo=@Cuerpo
 go
 
 create procedure verificarLibro
@@ -159,19 +184,13 @@ go
 create procedure BuscarLibros_NoPrestados
 as
 select * from Libro where Libro.estatus=0
+order by titulo asc
 go
 
 create procedure BusquedaLibros_NoPrestados
 @coincidencia varchar(50)
 as
 select * from Libro where Libro.estatus=0 and(Titulo like '%'+@coincidencia+'%' or Autor like '%'+@coincidencia+'%')
-go
-
-create procedure BuscarPrestamo_Alumno_NoDevuelto
-@coincidencia varchar(50)
-as
-select * from Prestamo_alumno 
-where Estado=1 and str(Matricula) like '%'+@coincidencia+'%'
 go
 
 create procedure BuscarLibros_Todos
@@ -431,41 +450,58 @@ where Numero_De_Empleado=@Numero_De_Empleado
 go
 
 
-create procedure MostrarPrestamos_Alumno
+alter procedure MostrarPrestamos_Alumno
 as
-select a.Matricula, b.Nombre,c.Titulo, c.ISBN,a.Id_Libro,a.Id_Prestamo,a.Fecha_Entrega 
-from Prestamo_alumno a,Alumno b,Libro c where a.Matricula=b.Matricula and a.Id_Libro=c.Id_Libro and a.Estado=1
+select p.Id_Prestamo,p.Matricula, a.Nombre, a.Apellido, p.Id_Libro, l.Titulo, l.ISBN ,p.Fecha_Entrega
+from Prestamo_alumno p,Alumno a,Libro l 
+where (p.Matricula=a.Matricula and p.Id_Libro=l.Id_Libro) and p.Estado=1 and p.Estado=1
 go
 
 
 create procedure historialPrestamos_Alumno
 as
-select a.Matricula, b.Nombre,c.Titulo, c.ISBN,a.Id_Libro,a.Id_Prestamo,a.Fecha_Entrega,a.Fecha_Prestamo 
+select a.Id_Prestamo,a.Matricula, b.Nombre, b.Apellido,a.Id_Libro,c.Titulo, c.ISBN,a.Fecha_Entrega,a.Fecha_Prestamo 
 from Prestamo_alumno a,Alumno b,Libro c 
 where a.Matricula=b.Matricula and a.Id_Libro=c.Id_Libro
 ORDER BY (a.Fecha_Prestamo) asc
 go
 
 
+alter procedure borrarHistorial
+as
+truncate table Prestamo_alumno
+truncate table Prestamo_Personal
+go
+
 create procedure MostrarPrestamos_Personal
 as
-select a.Personal, b.Nombre,c.Titulo, c.ISBN,a.Libro,a.Id_Prestamo
-from Prestamo_Personal a,Personal b,Libro c 
-where a.Personal=b.Numero_De_Empleado and a.Libro=c.Id_Libro and a.Estado=1
+select p.Id_Prestamo,p.Personal, per.Nombre, p.Libro,l.Titulo, l.ISBN,p.Fecha_Prestamo
+from Prestamo_Personal p,Personal per,Libro l 
+where (p.Personal=per.Numero_De_Empleado and p.Libro=l.Id_Libro) and p.Estado=1
 go
 
 create procedure historialPrestamos_Personal
 as
-select a.Personal, b.Nombre,c.Titulo, c.ISBN,a.Libro,a.Id_Prestamo,a.Fecha_Prestamo 
+select a.Id_Prestamo,a.Personal, b.Nombre,a.Libro,c.Titulo, c.ISBN,a.Fecha_Prestamo
 from Prestamo_Personal a,Personal b,Libro c 
 where a.Personal=b.Numero_De_Empleado and a.Libro=c.Id_Libro
 ORDER BY (a.Fecha_Prestamo) asc
 go
 
+create procedure BuscarPrestamo_Personal_NoDevuelto
+@Coincidencia varchar(max)
+as
+select p.Personal, per.Nombre,l.Titulo, l.ISBN, p.Libro,p.Id_Prestamo,p.Fecha_Prestamo
+from Prestamo_Personal p,Personal per,Libro l 
+where (p.Personal=per.Numero_De_Empleado and p.Libro=l.Id_Libro)
+and(per.Nombre like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
+or p.Fecha_Prestamo like '%'+@Coincidencia+'%' or l.ISBN like '%'+@Coincidencia+'%') and p.Estado=1
+go
+
 create procedure BuscarPrestamo_Personal
 @Coincidencia varchar(max)
 as
-select p.Personal, per.Nombre, l.Titulo, l.ISBN,p.Libro,p.Id_Prestamo,p.Fecha_Entrega ,p.Fecha_Prestamo
+select p.Id_Prestamo,p.Personal, per.Nombre, p.Libro,l.Titulo, l.ISBN,p.Fecha_Prestamo
 from Prestamo_Personal p,Personal per,Libro l 
 where (p.Personal=per.Numero_De_Empleado and p.Libro=l.Id_Libro)
 and(per.Nombre like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
@@ -475,12 +511,21 @@ go
 create procedure BuscarPrestamo_Alumno
 @Coincidencia varchar(max)
 as
-select p.Matricula, a.Nombre, l.Titulo, l.ISBN,p.Id_Libro,p.Id_Prestamo,p.Fecha_Entrega ,p.Fecha_Prestamo
+select p.Id_Prestamo,p.Matricula, a.Nombre, a.Apellido, p.Id_Libro, l.Titulo, l.ISBN ,p.Fecha_Prestamo,p.Fecha_Entrega
 from Prestamo_alumno p,Alumno a,Libro l 
 where (p.Matricula=a.Matricula and p.Id_Libro=l.Id_Libro)
-and(a.Nombre like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
+and(a.Nombre like '%'+@Coincidencia+'%' or a.Apellido like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
 or p.Fecha_Prestamo like '%'+@Coincidencia+'%' or l.ISBN like '%'+@Coincidencia+'%' or p.Matricula like '%'+@Coincidencia+'%' or p.Id_Libro like '%'+@Coincidencia+'%') and p.Estado=1
+go
 
+create procedure BuscarPrestamo_Alumno_NoDevuelto
+@Coincidencia varchar(max)
+as
+select p.Matricula, a.Nombre, a.Apellido,  l.Titulo, l.ISBN ,p.Id_Libro,p.Id_Prestamo,p.Fecha_Prestamo
+from Prestamo_alumno p,Alumno a,Libro l 
+where (p.Matricula=a.Matricula and p.Id_Libro=l.Id_Libro)
+and(a.Nombre like '%'+@Coincidencia+'%' or a.Apellido like '%'+@Coincidencia+'%' or l.Titulo like '%'+@Coincidencia+'%'
+or p.Fecha_Prestamo like '%'+@Coincidencia+'%' or l.ISBN like '%'+@Coincidencia+'%' or p.Matricula like '%'+@Coincidencia+'%' or p.Id_Libro like '%'+@Coincidencia+'%') and p.Estado=1
 go
 
 create procedure Registrar_Prestamo
@@ -588,7 +633,11 @@ VALUES('PARAM','PARAMÉDICOS')
 INSERT INTO Carrera
 VALUES('GA','GASTRONOMÍA')
 INSERT INTO Carrera
-VALUES('MANT','MANTENIMIENTO INDUSTRIAL')
+VALUES('LGA','LICENCIATURA EN GASTRONOMÍA')
+INSERT INTO Carrera
+VALUES('LPC','LICENCIATURA EN PROTECCIÓN CIVIL')
+INSERT INTO Carrera
+VALUES('IDIE','INGENIERÍA EN DESARROLLO E INNOVACIÓN EMPRESARIAL')
 
 
 ----------------triggers
@@ -615,11 +664,8 @@ declare @Libro varchar(30)
 select @Libro = (select Libro from inserted)
 
 update Libro set estatus=1 where Id_Libro=@Libro
-
 go
 
-truncate table Alumno
-select * from alumno
 -----------------inserciones entre BDs-----------
 
 ---------------LIBROS
@@ -647,10 +693,13 @@ select * from alumno
  FROM [BIBLIOTECA].[dbo].[Tabla_Usuario] 
 
  UPDATE [DB_Biblioteca_Prueba].[dbo].[Alumno] set Libroestado =0
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'GA' where Carrera like '%ga%'
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'GA' where Carrera like '%ga%' and cuatrimestre<7
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'LGA' where Carrera like '%ga%' and cuatrimestre>6
  update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'TIC' where Carrera like '%tic%'
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'PARAM' where Carrera like '%pa%'
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'DN' where Carrera like '%dn%' OR Carrera like '%desa%'
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'PARAM' where Carrera like '%pa%' 
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'LPC' where Carrera like '%lpc%' or Carrera like '%pa%' and cuatrimestre>6
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'DN' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre<7
+ update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'IDIE' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre>6
  update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'MIN' where Carrera like '%min%'
  update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'MANT' where Carrera like '%mant%'
  --**Falta saber si camiaria nombre en lic e ing**----
