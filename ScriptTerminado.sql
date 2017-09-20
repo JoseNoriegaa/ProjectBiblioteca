@@ -1,9 +1,8 @@
-CREATE DATABASE DB_Biblioteca_Prueba
+CREATE DATABASE DB_Biblioteca
 
-use DB_Biblioteca_Prueba
+use DB_Biblioteca
 
 --TABLAS--
-
 CREATE TABLE Libro
 (
 	Id_Libro varchar(30) primary key,
@@ -12,7 +11,7 @@ CREATE TABLE Libro
 	Año int,
 	Clasificacion varchar(200) NOT NULL,
 	Autor varchar(200) NOT NULL,
-	Descripcion nvarchar(max) default 'DESCRIPCIÓN NO AGREGADA',
+	Descripcion nvarchar(200) default 'DESCRIPCIÓN NO AGREGADA',
 	Editorial varchar(200),
 	Lugar varchar(200),
 	Edicion varchar(200),
@@ -42,7 +41,7 @@ CREATE TABLE Alumno
 	Nombre varchar(100) NOT NULL,
 	Apellido varchar(100) NOT NULL,
 	Correo varchar(200),
-	Telefono VARCHAR(10),
+	Telefono varchar(10),
 	Carrera varchar(10) not null,
 	cuatrimestre int not null,
 	LibroEstado bit
@@ -55,10 +54,10 @@ create table Ocupacion
 
 CREATE TABLE Personal
 (
-	Numero_De_Empleado int primary key,
-	Nombre varchar(50) NOT NULL,
+	Numero_De_Empleado bigint primary key,
+	Nombre varchar(200) NOT NULL,
 	Ocupacion varchar(50) not null,
-	Correo varchar(50) NOT NULL,
+	Correo varchar(200) NOT NULL,
 	Telefono varchar(10)
 )
 
@@ -71,7 +70,7 @@ CREATE TABLE Prestamo_alumno
 	Fecha_Prestamo date,
 	Fecha_Entrega date,
 	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
-	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
+	Estado_Del_Libro nvarchar(max) default 'DESCRIPCIÓN NO AGREGADA',
 	Estado bit
  )
 
@@ -82,7 +81,7 @@ CREATE TABLE Prestamo_alumno
 	Personal int not null,
 	Fecha_Prestamo date,
 	Dias_De_Prestamo int check(Dias_De_Prestamo = 3 or Dias_De_Prestamo = null),
-	Estado_Del_Libro nvarchar(max) default 'Descripción no agregada',
+	Estado_Del_Libro nvarchar(max) default 'DESCRIPCIÓN NO AGREGADA',
 	Estado bit
 )
 
@@ -93,12 +92,30 @@ CREATE TABLE Prestamo_alumno
 
 
 
+create procedure COMMAND
+@Command varchar(10)
+as
+if (@Command='ALUMNO')
+	truncate table Alumno
 
+if (@Command='ALUMNO')
+	truncate table Prestamo_alumno
+			
+if(@Command='PERSONAL')
+	truncate table Personal
 
+if(@Command='PERSONAL')
+	truncate table Prestamo_Personal
 
+if(@Command='LIBRO')
+	truncate table Libro
 
+if(@Command='LIBRO')
+	truncate table Prestamo_alumno
 
-
+if(@Command='LIBRO')
+	truncate table Prestamo_Personal
+go
 
 
 
@@ -134,7 +151,7 @@ create procedure adddNotificacionesCorreo
 @Asunto varchar(200),
 @Cuerpo nvarchar(max)
 as
-update Correo set Asunto=@Asunto, Cuerpo=@Cuerpo
+update Correo set AsuntoNotificacion=@Asunto, CuerpoNotificacion=@Cuerpo
 go
 
 create procedure verificarLibro
@@ -178,7 +195,7 @@ create procedure Buscar_Alumno_sinLibro
 @coincidencia varchar(50)
 as
 select * from Alumno 
-where LibroEstado=0 and(Nombre like '%'+@coincidencia+'%' or Apellido like '%'+@coincidencia+'%' or str(Matricula) like '%'+@coincidencia+'%')
+where LibroEstado=0 and (Nombre like '%'+@coincidencia+'%' or Apellido like '%'+@coincidencia+'%' or str(Matricula) like '%'+@coincidencia+'%')
 go
 
 create procedure BuscarLibros_NoPrestados
@@ -216,7 +233,7 @@ where Id_Libro like '%'+@IdLibro+'%' or Libro.ISBN like '%'+@ISBN+'%' or Titulo 
 go
 
 
-create procedure EliminarLibro
+create procedure eliminarLibro
 @IdLibro varchar(30)
 as
 delete Prestamo_alumno where Id_Libro=@IdLibro
@@ -330,6 +347,7 @@ create procedure Buscar_Alumno
 as
 select * from Alumno 
 where Nombre like '%'+@coincidencia+'%' or str(Matricula) like '%'+@coincidencia+'%' or Apellido like '%'+@coincidencia+'%'
+or carrera like '%'+@coincidencia+'%'
 go
 
 
@@ -398,7 +416,7 @@ go
 create procedure verificar_Libro_Personal
 @NumeroDeEmpleado int
 as
-select count(Personal) from Prestamo_Personal where Personal=@NumeroDeEmpleado
+select count(Personal) from Prestamo_Personal where Personal=@NumeroDeEmpleado and Estado=1
 go
 
 create procedure Agregar_Personal
@@ -416,7 +434,7 @@ go
 create procedure Buscar_Personal
 @coincidencia varchar(50)
 as
-select * from Personal
+select Numero_De_Empleado,Nombre,Correo,Ocupacion,telefono from Personal
 where Nombre like '%'+@coincidencia+'%' or str(Numero_De_Empleado) like '%'+@coincidencia+'%'
 go
 
@@ -450,7 +468,7 @@ where Numero_De_Empleado=@Numero_De_Empleado
 go
 
 
-alter procedure MostrarPrestamos_Alumno
+create procedure MostrarPrestamos_Alumno
 as
 select p.Id_Prestamo,p.Matricula, a.Nombre, a.Apellido, p.Id_Libro, l.Titulo, l.ISBN ,p.Fecha_Entrega
 from Prestamo_alumno p,Alumno a,Libro l 
@@ -467,7 +485,7 @@ ORDER BY (a.Fecha_Prestamo) asc
 go
 
 
-alter procedure borrarHistorial
+create procedure borrarHistorial
 as
 truncate table Prestamo_alumno
 truncate table Prestamo_Personal
@@ -556,7 +574,7 @@ create procedure Registrar_Prestamo
 			insert into Prestamo_Personal values(@Libro, @idPersona,@Fecha_Prestamo,@Dias_De_Prestamo,@Estado_Del_Libro,@Estado)		
 	go
 
-
+	
 create procedure RegistrarDevolucion
 @IdPrestamo int,
 @IdLibro varchar(30),
@@ -622,6 +640,23 @@ go
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 INSERT INTO Carrera
 VALUES('TIC','TECNOLOGIAS DE LA INFORMACION Y LA COMUNICACION')
 INSERT INTO Carrera
@@ -638,6 +673,9 @@ INSERT INTO Carrera
 VALUES('LPC','LICENCIATURA EN PROTECCIÓN CIVIL')
 INSERT INTO Carrera
 VALUES('IDIE','INGENIERÍA EN DESARROLLO E INNOVACIÓN EMPRESARIAL')
+INSERT INTO Carrera
+VALUES('MANT','MANTENIMIENTO INDUSTRIAL')
+
 
 
 ----------------triggers
@@ -669,10 +707,11 @@ go
 -----------------inserciones entre BDs-----------
 
 ---------------LIBROS
- INSERT INTO  DB_Biblioteca_Prueba.dbo.Libro 
+ INSERT INTO  DB_Biblioteca.dbo.Libro 
  ([Id_Libro],[Titulo],[Año],[Clasificacion],[Autor],[Editorial],[Lugar],[Edicion],[Precio],[ISBN],[Descripcion])
  
- SELECT e.EjemplarID,l.NombreLibro,l.Año,l.Clasificacion,l.Autor,l.Editorial,l.Lugar,l.edicion,l.Precio,e.LibroId,e.Descripcion
+ SELECT UPPER( e.EjemplarID),UPPER(l.NombreLibro),l.Año,UPPER(l.Clasificacion),UPPER(l.Autor),UPPER(l.Editorial),UPPER(l.Lugar),UPPER(l.edicion)
+ ,l.Precio,UPPER(e.LibroId),UPPER(e.Descripcion)
 
  FROM BIBLIOTECA.dbo.Tabla_Libros l ,BIBLIOTECA.dbo.EJEMPLARES e
 
@@ -680,27 +719,28 @@ go
 
  order by e.EjemplarID
 
- UPDATE DB_Biblioteca_Prueba.dbo.Libro SET estatus=0
-
+ UPDATE DB_Biblioteca.dbo.Libro SET estatus=0
+ truncate table alumno
 
 ------------ALUMNOS
- INSERT INTO [DB_Biblioteca_Prueba].[dbo].[Alumno]
+ INSERT INTO [DB_Biblioteca].[dbo].[Alumno]
 ([Matricula],[Nombre],[Apellido],[Telefono],[cuatrimestre],[Carrera],[Correo])
  
  SELECT 
- [ID_Usuario],[NombreUsuario],[ApellidoUsuario],CAST([Telefono] AS VARCHAR(10)),[Cuatrimestre],
- CAST([Grupo] AS VARCHAR(10)),CAST([E-Mail] AS VARCHAR (200))
+ UPPER([ID_Usuario]),UPPER([NombreUsuario]),UPPER([ApellidoUsuario]),CAST([Telefono] AS VARCHAR(10)),[Cuatrimestre],
+ CAST([Grupo] AS VARCHAR(10)),UPPER(CAST([E-Mail] AS VARCHAR (200)))
  FROM [BIBLIOTECA].[dbo].[Tabla_Usuario] 
 
- UPDATE [DB_Biblioteca_Prueba].[dbo].[Alumno] set Libroestado =0
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'GA' where Carrera like '%ga%' and cuatrimestre<7
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'LGA' where Carrera like '%ga%' and cuatrimestre>6
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'TIC' where Carrera like '%tic%'
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'PARAM' where Carrera like '%pa%' 
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'LPC' where Carrera like '%lpc%' or Carrera like '%pa%' and cuatrimestre>6
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'DN' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre<7
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'IDIE' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre>6
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'MIN' where Carrera like '%min%'
- update DB_Biblioteca_Prueba.dbo.alumno set Carrera = 'MANT' where Carrera like '%mant%'
+ UPDATE [DB_Biblioteca].[dbo].[Alumno] set Libroestado =0
+ update DB_Biblioteca.dbo.alumno set Carrera = 'LGA' where Carrera like '%ga%' and cuatrimestre>6
+ update DB_Biblioteca.dbo.alumno set Carrera = 'LPC' where Carrera like '%lpc%' or Carrera like '%pa%' and cuatrimestre>6
+ update DB_Biblioteca.dbo.alumno set Carrera = 'IDIE' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre>6
+ update DB_Biblioteca.dbo.alumno set Carrera = 'GA' where Carrera like '%ga%' and cuatrimestre<7
+ update DB_Biblioteca.dbo.alumno set Carrera = 'TIC' where Carrera like '%tic%'
+ update DB_Biblioteca.dbo.alumno set Carrera = 'PARAM' where Carrera like '%pa%' 
+ update DB_Biblioteca.dbo.alumno set Carrera = 'DN' where Carrera like '%dn%' OR Carrera like '%desa%' and cuatrimestre<7
+ update DB_Biblioteca.dbo.alumno set Carrera = 'MIN' where Carrera like '%min%'
+ update DB_Biblioteca.dbo.alumno set Carrera = 'MANT' where Carrera like '%mant%'
+update  DB_Biblioteca.dbo.alumno set Carrera='DN' where Carrera='IDIE'and cuatrimestre<7
  --**Falta saber si camiaria nombre en lic e ing**----
  ------------

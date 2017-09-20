@@ -32,11 +32,12 @@ namespace ProjectBiblioteca
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Puesto", this.nombre.ToUpper());
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Se ha agregado correctamente " + this.nombre.ToUpper());
+                MessageBox.Show("Se ha agregado correctamente ".ToUpper() + this.nombre.ToUpper());
             }
-            catch (Exception f)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, "ERROR: " + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             finally
             {
@@ -44,7 +45,6 @@ namespace ProjectBiblioteca
             }
         }
         
-
         public void editarPuestoBD(string puestoViejo)
         {
             try
@@ -56,15 +56,16 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@puestoViejo", puestoViejo);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, "ERROR: " + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 cnn.Close();
             }
         }
+
         public void eliminarPuestoBD()
         {
             try
@@ -75,9 +76,10 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@puesto", this.nombre);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, "ERROR: " + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             finally
             {

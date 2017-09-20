@@ -52,9 +52,9 @@ namespace ProjectBiblioteca
 
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -77,12 +77,12 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Telefono",this.Telefono);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Se ha actualizado " + this.Nombre);
+                MessageBox.Show("SE HA ACTUALIZADO " + this.Nombre,"INFO",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -109,9 +109,9 @@ namespace ProjectBiblioteca
                     salida = false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -140,9 +140,9 @@ namespace ProjectBiblioteca
                 }
                 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -160,15 +160,15 @@ namespace ProjectBiblioteca
                 SqlCommand cmd = new SqlCommand("Eliminar_Personal", cnn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Numero_De_Empleado", NumeroEmpl);
-                if (MessageBox.Show("Esta seguro de borrar este registro permanentemete", "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("Esta seguro de borrar este registro permanentemete".ToUpper(), "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     cmd.ExecuteNonQuery();
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {

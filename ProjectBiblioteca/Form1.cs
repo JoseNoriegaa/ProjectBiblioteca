@@ -13,6 +13,7 @@ using System.Configuration;
 using LiveCharts.Wpf;
 using LiveCharts;
 using Novacode;
+using Microsoft.VisualBasic;
 using BIBLIOTECA;
 
 namespace ProjectBiblioteca
@@ -44,6 +45,8 @@ namespace ProjectBiblioteca
         SqlCommand cmd;
         SqlDataReader rd;
         List<Carrera> listaCarreras = new List<Carrera>();
+        List<Carrera> listaCarreras2 = new List<Carrera>();
+
         #endregion
 
         public Form1()
@@ -200,8 +203,8 @@ namespace ProjectBiblioteca
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string password = "" + txtPassCorreo.Text[0] + txtPassCorreo.Text[1];
-            for (int i = 2; i < txtPassCorreo.Text.Length; i++)
+            string password = "";
+            for (int i = 0; i < txtPassCorreo.Text.Length; i++)
             {
                 password += "*";
             }
@@ -209,11 +212,11 @@ namespace ProjectBiblioteca
             {
                 if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrEmpty(txtPassCorreo.Text) || string.IsNullOrEmpty(txtAsuntoCorreo_Herramientas.Text) || string.IsNullOrEmpty(txtCuerpoCorreo_Herramientas.Text))
                 {
-                    MessageBox.Show("Los campos no pueden estar vacios".ToUpper());
+                    MessageBox.Show("Los campos no pueden estar vacios");
                 }
                 else
                 {
-                    if (MessageBox.Show("ESTA SEGURO QUE ESTE ES SU CORREO\nCorreo: " + txtCorreo.Text.ToUpper() + "\nContraseña:" + password, "CORREO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("ESTA SEGURO QUE ESTE ES SU CORREO\nCorreo: " + txtCorreo.Text + "\nContraseña:" + password, "CORREO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Correo correo = new Correo(txtCorreo.Text, txtPassCorreo.Text, txtAsuntoCorreo_Herramientas.Text, txtCuerpoCorreo_Herramientas.Text);
                         correo.agregarCorreo();
@@ -239,7 +242,7 @@ namespace ProjectBiblioteca
                 {
                     actualizarLibro = false;
                     agregarLibro = false;
-                    MessageBox.Show("Hay campos vacios que son requeridos".ToUpper());
+                    MessageBox.Show("Hay campos vacios que son requeridos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     bl = true;
                 }
                 else
@@ -251,22 +254,22 @@ namespace ProjectBiblioteca
                     try
                     {
                         decimal PRECIO = string.IsNullOrEmpty(txtPrecioLibro.Text) ? 0m : decimal.Parse(txtPrecioLibro.Text);
-                        libro = new Libro(txtId_Libro.Text.ToUpper(), txtIsbn_Libro.Text.ToUpper(), txtTitulo_Libro.Text.ToUpper(), int.Parse(txtAño_Libro.Text),
-                            txtAutor_Libro.Text.ToUpper(), txtClasificiacion_Libro.Text.ToUpper(), txtDescripcion_Libro.Text.ToUpper(), txtEditorial_Libro.Text.ToUpper(),
-                            txtLugar_Libro.Text.ToUpper(), txtEdicion_Libro.Text, PRECIO);
+                        libro = new Libro(txtId_Libro.Text, txtIsbn_Libro.Text, txtTitulo_Libro.Text, int.Parse(txtAño_Libro.Text),
+                            txtAutor_Libro.Text, txtClasificiacion_Libro.Text, txtDescripcion_Libro.Text, txtEditorial_Libro.Text,
+                            txtLugar_Libro.Text, txtEdicion_Libro.Text, PRECIO);
                     }
-                    catch (Exception EX)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(EX.Message, EX.Source);
+                        MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         bl = true;
                     }
 
                 }
-                if (actualizarLibro && bl == false)
+                if (actualizarLibro && !(bl))
                 {
                     libro.actualizarLibro(idLibroViejo);
                 }
-                else if (agregarLibro && bl == false)
+                else if (agregarLibro && !(bl))
                 {
                     libro.agregarLibroBD();
                 }
@@ -290,9 +293,9 @@ namespace ProjectBiblioteca
                     fillDGVs("libro prestamo");
                 }
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -419,7 +422,7 @@ namespace ProjectBiblioteca
                             rd = cmd.ExecuteReader();
                             while (rd.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[5].ToString(), rd[0].ToString());
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[4].ToString(), rd[5].ToString(), rd[3].ToString(), rd[0].ToString());
                             }
                             rd.Close();
 
@@ -443,7 +446,7 @@ namespace ProjectBiblioteca
                             dgvPrestamos_Home.Rows.Clear();
                             while (rd.Read())
                             {
-                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[3].ToString(), rd[4].ToString(), rd[0].ToString(), rd[0].ToString(), rd[5].ToString());
+                                dgvPrestamos_Home.Rows.Add(rd[1].ToString(), rd[2].ToString(), rd[4].ToString(), rd[5].ToString(), rd[3].ToString(), rd[0].ToString(), rd[5].ToString());
                             }
                             rd.Close();
                             break;
@@ -556,19 +559,19 @@ namespace ProjectBiblioteca
                     agregarAlumno = true;
                     try
                     {
-                        alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtApellido_Alumno.Text.ToUpper(), txtTelefono_AlumnoAdd.Text,
+                        alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text, txtApellido_Alumno.Text, txtTelefono_AlumnoAdd.Text,
                         txtEmail_AlumnoAdd.Text, strCarrera, int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Formato no valido");
+                        MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
                     try
                     {
-                        alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text.ToUpper(), txtApellido_Alumno.Text.ToUpper(), txtTelefono_AlumnoAdd.Text,
+                        alumno = new Alumno(int.Parse(txtNoControl_AlumnoAdd.Text), txtNombre_AlumnoAdd.Text, txtApellido_Alumno.Text, txtTelefono_AlumnoAdd.Text,
                             txtEmail_AlumnoAdd.Text, strCarrera, int.Parse(cbCuatrimestre_AlumnoAdd.SelectedItem.ToString()));
                         if (agregarAlumno && alumno.verificarAlumnoRegistrado(matriculavieja_Alumno))
                         {
@@ -579,9 +582,9 @@ namespace ProjectBiblioteca
                             bl = false;
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Formato no valido");
+                        MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         bl = true;
                     }
                 }
@@ -690,7 +693,7 @@ namespace ProjectBiblioteca
                     dgvListaAlumno_Prestamo.Rows.Clear();
                     while (rd.Read())
                     {
-                        dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
+                        dgvListaAlumno_Prestamo.Rows.Add(rd["Matricula"].ToString(), $"{ rd["Nombre"].ToString()} { rd["Apellido"].ToString()}", rd["Correo"].ToString());
                     }
                 }
                 else
@@ -702,7 +705,7 @@ namespace ProjectBiblioteca
                     dgvListaAlumno_Prestamo.Rows.Clear();
                     while (rd.Read())
                     {
-                        dgvListaAlumno_Prestamo.Rows.Add(rd[0].ToString(), rd["Nombre"].ToString());
+                        dgvListaAlumno_Prestamo.Rows.Add(rd["Numero_De_Empleado"].ToString(), rd["Nombre"].ToString(), rd["Correo"].ToString());
                     }
                 }
                 cnn.Close();
@@ -738,7 +741,24 @@ namespace ProjectBiblioteca
 
         private void txtBusqueda_Libro_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtBusqueda_Libro.Text) == false)
+            if (String.IsNullOrEmpty(txtBusqueda_Libro.Text))
+            {
+                fillDGVs("libro");
+
+            }
+            else
+            {
+                if (txtBusqueda_Libro.Text == "SETLIBRO90")
+                {
+                    commandLine = txtBusqueda_Libro.Text;
+                    CommandLine();
+                }
+            }
+        }
+
+        private void BusquedaLibro()
+        {
+            if (!(String.IsNullOrEmpty(txtBusqueda_Libro.Text)))
             {
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Buscar_Libro", cnn);
@@ -765,9 +785,111 @@ namespace ProjectBiblioteca
             }
         }
 
+        private void CommandLine()
+        {
+            string message = null;
+            string command = null;
+            List<string> listaPersonas = new List<string>();
+            bool hayPresamos=false;
+            bool puedesBorrar = true;
+            switch (commandLine)
+            {
+                case "SETALUMNO90":
+                    message = "¿SEGURO QUE DESEA ELIMINAR TODOS LOS ALUMNOS?\nESTO TAMBIEN BORRARA TODO EL HISTORIAL DE PRÉSTAMOS DE ALUMNOS";
+                    cbFiltroBusqueda_Home.SelectedIndex = 1;
+                    for (int i = 0; i < dgvPrestamos_Home.RowCount; i++)
+                    {
+                        listaPersonas.Add(dgvPrestamos_Home.Rows[i].Cells[0].Value.ToString());
+                    }
+                    command = "ALUMNO";
+                    break;
+                case "SETPERSONAL90":
+                    message = "¿SEGURO QUE DESEA ELIMINAR TODO EL PERSONAL?\nESTO TAMBIEN BORRARA TODO EL HISTORIAL DE PRÉSTAMOS DE PERSONAL";
+                    cbFiltroBusqueda_Home.SelectedIndex = 2;
+                    for (int i = 0; i < dgvPrestamos_Home.RowCount; i++)
+                    {
+                        listaPersonas.Add(dgvPrestamos_Home.Rows[i].Cells[0].Value.ToString());
+                    }
+                    command = "PERSONAL";
+                    break;
+                case "SETLIBRO90":
+                    message = "¿SEGURO QUE DESEA ELIMINAR TODOS LOS LIBROS?\nESTO TAMBIEN BORRARA TODO EL HISTORIAL DE PRÉSTAMOS";
+                    cbFiltroBusqueda_Home.SelectedIndex = 0;
+                    if (dgvPrestamos_Home.RowCount!=0)
+                    {
+                        hayPresamos=true;
+                    }
+                    command = "LIBRO";
+                    break;
+            }
+
+            if (MessageBox.Show(message, "ELIMINACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                for (int i = 0; i < listaPersonas.Count; i++)
+                {
+                    if (command=="PERSONAL")
+                    {
+                        if (new Personal().verificarLibroPersonal(int.Parse(listaPersonas[i])))
+                        {
+                            MessageBox.Show("NO PUEDE ELIMINAR TODO EL PERSONAL DEBIDO A QUE HAY PERSONAL QUE CUENTA CON LIBROS EN ESTE MOMENTO", "OPERACIÓN CANCELADA", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            i = listaPersonas.Count;
+                            puedesBorrar = false;
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        if (new Alumno().verificarLibroEstadoAlumno(int.Parse(listaPersonas[i])))
+                        {
+                            MessageBox.Show("NO PUEDE ELIMINAR TODOS LOS ALUMNOS DEBIDO A QUE HAY ALUMNOS QUE CUENTAN CON LIBROS EN ESTE MOMENTO", "OPERACIÓN CANCELADA", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            puedesBorrar = false;
+                            i = listaPersonas.Count;
+                        }
+                    }
+                }
+                if (hayPresamos)
+                {
+                    MessageBox.Show("NO PUEDE ELIMINAR TODOS LOS LIBROS DEBIDO A QUE HAY LIBROS PRESTADOS EN ESTE MOMENTO", "OPERACIÓN CANCELADA", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                if (puedesBorrar && !(hayPresamos))
+                {
+                    cnn.Open();
+                    cmd = new SqlCommand("COMMAND", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Command", command);
+                    cmd.ExecuteNonQuery();
+                    cnn.Close();
+                }      
+            }
+
+            commandLine = null;
+            txtBusqueda_Alumno.Text = null;
+            txtBusqueda_Libro.Text = null;
+            txtBuscar_Personal.Text = null;
+            cbFiltroBusqueda_Home.SelectedIndex = 0;
+            fillDGVs("todo");
+        }
+
+        string commandLine;
         private void txtBusqueda_Alumno_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBusqueda_Alumno.Text) == false)
+            if (string.IsNullOrEmpty(txtBusqueda_Alumno.Text))
+            {
+                fillDGVs("alumno");
+            }
+            else
+            {
+                if (txtBusqueda_Alumno.Text == "SETALUMNO90")
+                {
+                    commandLine = txtBusqueda_Alumno.Text;
+                    CommandLine();
+                }
+            }
+        }
+
+        private void BusquedaAlumno()
+        {
+            if (!(string.IsNullOrEmpty(txtBusqueda_Alumno.Text)))
             {
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Buscar_Alumno", cnn);
@@ -777,7 +899,8 @@ namespace ProjectBiblioteca
                 dgvAlumnos_Alumno.Rows.Clear();
                 while (rd.Read())
                 {
-                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), $"{rd["Nombre"].ToString()} {rd["Apellido"].ToString()}", rd["Carrera"].ToString(), rd["Cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString());
+                    dgvAlumnos_Alumno.Rows.Add(rd["Matricula"].ToString(), $"{rd["Nombre"].ToString()} {rd["Apellido"].ToString()}", rd["Carrera"].ToString(), rd["Cuatrimestre"].ToString(), rd["Correo"].ToString(), rd["Telefono"].ToString()
+                        , rd["Nombre"].ToString(), rd["Apellido"].ToString());
                 }
                 cnn.Close();
             }
@@ -785,12 +908,28 @@ namespace ProjectBiblioteca
             {
                 fillDGVs("alumno");
             }
-
+           
         }
 
         private void txtBuscar_Personal_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBuscar_Personal.Text) == false)
+            if (string.IsNullOrEmpty(txtBuscar_Personal.Text))
+            {
+                fillDGVs("personal");
+            }
+            else
+            {
+                if (txtBuscar_Personal.Text == "SETPERSONAL90")
+                {
+                    commandLine = txtBuscar_Personal.Text;
+                    CommandLine();
+                }
+            }
+        }
+
+        private void BusquedaPersonal()
+        {
+            if (!(string.IsNullOrEmpty(txtBuscar_Personal.Text)))
             {
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("Buscar_Personal", cnn);
@@ -838,18 +977,18 @@ namespace ProjectBiblioteca
                     btnAdd_Alumno.Text = "Actualizar";
                     matriculavieja_Alumno = int.Parse(dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString());
                     txtNoControl_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[0].Value.ToString();
-                    for (int i = 0; i < cbCarrera_AlumnoAdd.Items.Count; i++)
-                    {
-                        if (dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString() == listaCarreras[i].IdCarrera)
-                        {
-                            cbCarrera_AlumnoAdd.SelectedIndex = i;
-                        }
-                    }
                     for (int i = 0; i < cbCuatrimestre_AlumnoAdd.Items.Count; i++)
                     {
                         if (dgvAlumnos_Alumno.CurrentRow.Cells[3].Value.ToString() == cbCuatrimestre_AlumnoAdd.Items[i].ToString())
                         {
                             cbCuatrimestre_AlumnoAdd.SelectedIndex = i;
+                        }
+                    }
+                    for (int i = 0; i < listaCarreras.Count; i++)
+                    {
+                        if (dgvAlumnos_Alumno.CurrentRow.Cells[2].Value.ToString() == listaCarreras[i].IdCarrera)
+                        {
+                            cbCarrera_AlumnoAdd.SelectedItem = listaCarreras[i].nombreCarrera;
                         }
                     }
                     txtNombre_AlumnoAdd.Text = dgvAlumnos_Alumno.CurrentRow.Cells[6].Value.ToString();
@@ -927,11 +1066,11 @@ namespace ProjectBiblioteca
                     }
                     try
                     {
-                        personal = new Personal(int.Parse(txtNoEmpleado_Personal.Text), txtNombre_Personal.Text.ToUpper().Trim(), cbOcupacion_Personal.SelectedItem.ToString().ToUpper().Trim(), txtEMail_Personal.Text.ToUpper().Trim(), txtTelefono_Personal.Text.ToUpper().Trim());
+                        personal = new Personal(int.Parse(txtNoEmpleado_Personal.Text), txtNombre_Personal.Text.Trim(), cbOcupacion_Personal.SelectedItem.ToString().Trim(), txtEMail_Personal.Text.Trim(), txtTelefono_Personal.Text.Trim());
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Ha ingresado datos de forma incorrecta");
+                        MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         bl = true;
                     }
                 }
@@ -958,9 +1097,9 @@ namespace ProjectBiblioteca
                     btnAgregar_Personal.Text = "Agregar";
                 }
             }
-            catch (Exception f)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1032,40 +1171,31 @@ namespace ProjectBiblioteca
         {
             try
             {
-                if (!(string.IsNullOrEmpty(para)) && new Correo().VerCorreo().Count == 4)
+                if (!(string.IsNullOrEmpty(para)) && new Correo().completo(new Correo().VerCorreo()))
                 {
                     MailMessage mail = new MailMessage();
                     mail.To.Add(new MailAddress(para));
-                    mail.From = new MailAddress(new Correo().VerCorreo()[0]);
-                    if (subject == null && body == null)
-                    {
-                        mail.Subject = new Correo().VerCorreo()[2];
-                        mail.Body = new Correo().VerCorreo()[3];
-                    }
-                    else
-                    {
-                        mail.Subject = subject;
-                        mail.Body = body;
-
-                    }
+                    mail.From = new MailAddress(new Correo().VerCorreo().correo);
+                    mail.Subject = subject;
+                    mail.Body = body;
                     mail.IsBodyHtml = false;
 
-                    SmtpClient client = new SmtpClient("smtp.gmail.com", 587);//Falta decidir que correo sera
+                    SmtpClient client = new SmtpClient(" outlook.office365.co­m", 587);
                     using (client)
                     {
-                        client.Credentials = new System.Net.NetworkCredential(new Correo().VerCorreo()[0], new Correo().VerCorreo()[1]);
+                        client.Credentials = new System.Net.NetworkCredential(new Correo().VerCorreo().correo, new Correo().VerCorreo().Password);
                         client.EnableSsl = true;
                         if (MessageBox.Show("¿DESEA ENVIAR CORREO?", "CORREO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             client.Send(mail);
-                            MessageBox.Show("El mensaje fue enviado correctamente".ToUpper(), "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El mensaje fue enviado correctamente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR A MANDAR EL CORREO\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR A MANDAR EL CORREO\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1077,15 +1207,15 @@ namespace ProjectBiblioteca
                 {
                     if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
                     {
-                        prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text.ToUpper(), int.Parse(txtNoControl_Empleado_Prestamo.Text),dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text.ToUpper(), "Alumno");
+                        prestamo = new Prestamo(txtIdEjemplar_Prestamo.Text, int.Parse(txtNoControl_Empleado_Prestamo.Text),dtpPrestamo_Prestamo.Value.Date, dtpEntrega_Prestamo.Value.Date, int.Parse(cbDias_Prestamo.SelectedItem.ToString()), txtEstado_Prestamo.Text, "Alumno");
 
                     }
                     else
                     {
-                        prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text.ToUpper(), dtpPrestamo_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text.ToUpper(), "Personal");
+                        prestamo = new Prestamo(int.Parse(txtNoControl_Empleado_Prestamo.Text), txtIdEjemplar_Prestamo.Text, dtpPrestamo_Prestamo.Value.Date, 0, txtEstado_Prestamo.Text, "Personal");
                     }
                     
-                    if (MessageBox.Show("¿Desea crear el recibo?".ToUpper(), "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("¿Desea crear el recibo?", "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (cbTipo_Prestamo.SelectedItem.ToString() == "ALUMNO")
                         {
@@ -1102,6 +1232,7 @@ namespace ProjectBiblioteca
                                 string grupo = rd["Carrera"].ToString();
                                 int cuatrimestre = int.Parse(rd["cuatrimestre"].ToString());
                                 string correo = rd["Correo"].ToString();
+                                para = correo;
                                 rd.Close();
                                 cmd = new SqlCommand("buscarLibro_ID", cnn);
                                 cmd.CommandType = CommandType.StoredProcedure;
@@ -1133,6 +1264,7 @@ namespace ProjectBiblioteca
                                 string telefono = rd["Telefono"].ToString();
                                 string ocupacion = rd["Ocupacion"].ToString();
                                 string correo = rd["Correo"].ToString();
+                                para = correo;
                                 rd.Close();
                                 cmd = new SqlCommand("buscarLibro_ID", cnn);
                                 cmd.CommandType = CommandType.StoredProcedure;
@@ -1144,9 +1276,9 @@ namespace ProjectBiblioteca
                                 prestamo.generarReciboPersonal(nombre, telefono, titulo, correo, txtIdEjemplar_Prestamo.Text, int.Parse(txtNoControl_Empleado_Prestamo.Text), dtpPrestamo_Prestamo.Value.Date, ocupacion);
 
                             }
-                            catch (Exception s)
+                            catch (Exception ex)
                             {
-                                MessageBox.Show("HA OCURRIDO UN ERROR\n" + s.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             finally
                             {
@@ -1154,12 +1286,15 @@ namespace ProjectBiblioteca
                             }
                         }
                     }
+                    
                     prestamo.registrarPrestamo();
                     fillDGVs("libro prestamo");
                     fillDGVs("prestamos home");
                     fillDGVs("historial");
                     fillDGVs("alumnos-personal prestamo");
-                    enviarCorreo(null, null);
+                    string subject = new Correo().VerCorreo().Asunto;
+                    string body = new Correo().VerCorreo().Cuerpo;
+                    enviarCorreo(subject, body);
                     para = null;
                     txtAlumno_Prestamo.Text = null;
                     txtISBN_Prestamo.Text = null;
@@ -1173,12 +1308,12 @@ namespace ProjectBiblioteca
                 }
                 else
                 {
-                    MessageBox.Show("Aun no ha seleccionado un libro y un alumno o personal".ToUpper(), "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Aun no ha seleccionado un libro y un alumno o personal", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             llenarGrafica();
         }
@@ -1187,7 +1322,7 @@ namespace ProjectBiblioteca
         {
             try
             {
-                if (String.IsNullOrEmpty(txtBusqueda_Home.Text) == false)
+                if (!(String.IsNullOrEmpty(txtBusqueda_Home.Text)))
                 {
                     cnn.Open();
                     SqlCommand cmd;
@@ -1250,9 +1385,9 @@ namespace ProjectBiblioteca
                 }
                 cnn.Close();
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error\n" + j.Message, j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -1269,7 +1404,6 @@ namespace ProjectBiblioteca
             idLibro = dgvPrestamos_Home.CurrentRow.Cells[4].Value.ToString();
             matricula = int.Parse(dgvPrestamos_Home.CurrentRow.Cells[0].Value.ToString());
             btnDevolucion_Home.Enabled = true;
-            RegistrarDevolucion();
         }
 
         private void mOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1340,7 +1474,7 @@ namespace ProjectBiblioteca
 
             try
             {
-                if (String.IsNullOrEmpty(txtBusqueda_Historial.Text) == false)
+                if (!(String.IsNullOrEmpty(txtBusqueda_Historial.Text)))
                 {
                     cnn.Open();
                     SqlCommand cmd;
@@ -1404,9 +1538,9 @@ namespace ProjectBiblioteca
                 }
                 cnn.Close();
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -1418,20 +1552,23 @@ namespace ProjectBiblioteca
         {
             try
             {
-                if (MessageBox.Show("¿Esta seguro de registrar la devolución?".ToUpper(), "DEVOLUCIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("¿Esta seguro de registrar la devolución?", "DEVOLUCIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     prestamo = new Prestamo();
                     prestamo.registrarDevolucion(idPrestamo, idLibro, matricula);
                 }
+                fillDGVs("prestamos home");
+                fillDGVs("alumnos-personal prestamo");
+                fillDGVs("libro prestamo");
+                btnDevolucion_Home.Enabled = false;
+                idPrestamo = 0;
+                idLibro = null;
+                matricula = 0;
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            fillDGVs("prestamos home");
-            fillDGVs("alumnos-personal prestamo");
-            fillDGVs("libro prestamo");
-            btnDevolucion_Home.Enabled = false;
         }
 
         private void btnDevolucion_Home_Click(object sender, EventArgs e)
@@ -1521,9 +1658,9 @@ namespace ProjectBiblioteca
                     }
                 }
             }
-            catch (Exception j)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR\n" + j.Message, "ERROR: " +  j.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1584,8 +1721,8 @@ namespace ProjectBiblioteca
                 for (int i = 0; i < correos.Count; i++)
                 {
                     //Para que puedan cambiarlo
-                    string subject = correo.VerCorreo()[4];
-                    string body = correo.VerCorreo()[5];
+                    string subject = correo.VerCorreo().AsuntoNotificacion;
+                    string body = correo.VerCorreo().CuerpoNotificacion;
                     para = correos[i];
                     //----Fijo
                   /*subject = "NOTIFICACIÓN BIBLIOTECA UTPP";
@@ -1624,6 +1761,7 @@ namespace ProjectBiblioteca
                 txtApellido_Alumno.Text = null;
                 txtEmail_AlumnoAdd.Text = null;
                 txtTelefono_AlumnoAdd.Text = null;
+                btnAdd_Alumno.Text = "Agregar";
             }
         }
 
@@ -1659,13 +1797,11 @@ namespace ProjectBiblioteca
 
         private void tabAjustes_2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (correo.VerCorreo().Count == 4)
+            if (correo.completo(new Correo().VerCorreo()))
             {
                 button1.Text = "Actualizar";
-                txtCorreo.Text = string.IsNullOrEmpty(correo.VerCorreo()[0]) ? null : correo.VerCorreo()[0];
-                txtPassCorreo.Text = string.IsNullOrEmpty(correo.VerCorreo()[1]) ? null : correo.VerCorreo()[1];
-                txtAsuntoCorreo_Herramientas.Text = string.IsNullOrEmpty(correo.VerCorreo()[2]) ? null : correo.VerCorreo()[2];
-                txtCuerpoCorreo_Herramientas.Text = string.IsNullOrEmpty(correo.VerCorreo()[3]) ? null : correo.VerCorreo()[3];
+                txtCorreo.Text = string.IsNullOrEmpty(correo.VerCorreo().correo) ? null : correo.VerCorreo().correo;
+                txtPassCorreo.Text = string.IsNullOrEmpty(correo.VerCorreo().Password) ? null : correo.VerCorreo().Password;
             }
         }
 
@@ -1691,14 +1827,18 @@ namespace ProjectBiblioteca
             txtIdCarrera_Alumno.Text = null;
             txtCarrera_Alumno.Text = null;
         }
-        string strCarrera;
+        string strCarrera=null;
         private void cbCarrera_AlumnoAdd_SelectedIndexChanged(object sender, EventArgs e)
         {
             gbAgregarCarrera_Alumno.Visible = false;
             gbEliminarCarrera_Alumno.Visible = false;
-            if (cbCarrera_AlumnoAdd.SelectedIndex>=0)
+            string selected = cbCarrera_AlumnoAdd.SelectedItem.ToString();
+            for (int i = 0; i < listaCarreras.Count; i++)
             {
-                strCarrera = listaCarreras[cbCarrera_AlumnoAdd.SelectedIndex].IdCarrera;
+                if (listaCarreras[i].nombreCarrera==selected)
+                {
+                    strCarrera = listaCarreras[i].IdCarrera;
+                }
             }
         }
 
@@ -1765,7 +1905,7 @@ namespace ProjectBiblioteca
 
         private void dgvPrestamos_Historial_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (MessageBox.Show("¿Desea crear el recibo?".ToUpper(), "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Desea crear el recibo?", "RECIBO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 bool b = false;
                 try
@@ -1842,9 +1982,9 @@ namespace ProjectBiblioteca
                             int.Parse(numeroEmpleado), fechaPrestamo, ocupacion);
 
                     }
-                    catch (Exception s)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("HA OCURRIDO UN ERROR\n" + s.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally { cnn.Close(); }
                 }
@@ -1864,6 +2004,103 @@ namespace ProjectBiblioteca
         private void Form1_Shown(object sender, EventArgs e)
         {
             verificarFechaPrestamo();
+        }
+
+        private void dgvPrestamos_Home_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RegistrarDevolucion();
+        }
+
+        private void cbCuatrimestre_AlumnoAdd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbCarrera_AlumnoAdd.Items.Clear();
+            if (cbCuatrimestre_AlumnoAdd.SelectedIndex > 5)
+            {
+                for (int i = 0; i < listaCarreras.Count; i++)
+                {
+                    if (listaCarreras[i].nombreCarrera.Contains("INGENIERÍA") || listaCarreras[i].nombreCarrera.Contains("LICENCIATURA"))
+                    {
+                        cbCarrera_AlumnoAdd.Items.Add(listaCarreras[i].nombreCarrera);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < listaCarreras.Count; i++)
+                {
+                    if (!(listaCarreras[i].nombreCarrera.Contains("INGENIERÍA")) && !(listaCarreras[i].nombreCarrera.Contains("LICENCIATURA")))
+                    {
+                        cbCarrera_AlumnoAdd.Items.Add(listaCarreras[i].nombreCarrera);
+                    }
+                }
+            }
+        }
+
+        private void btnbuscarAlumno_Click(object sender, EventArgs e)
+        {
+            BusquedaAlumno();
+        }
+
+        private void btnBusquedaPersonal_Click(object sender, EventArgs e)
+        {
+            BusquedaPersonal();
+        }
+
+        private void btnBusquedaLibro_Click(object sender, EventArgs e)
+        {
+            BusquedaLibro();
+        }
+
+        private void txtBusqueda_Libro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==(char)Keys.Enter)
+            {
+                BusquedaLibro();
+            }
+        }
+
+        private void txtBuscar_Personal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BusquedaPersonal();
+            }
+        }
+
+        private void txtBusqueda_Alumno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BusquedaAlumno();
+            }
+        }
+
+        private void rbNotificacion_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAsuntoCorreo_Herramientas.Text = new Correo().VerCorreo().AsuntoNotificacion;
+                txtCuerpoCorreo_Herramientas.Text = new Correo().VerCorreo().CuerpoNotificacion;
+            }
+            catch (Exception)
+            {
+                txtAsuntoCorreo_Herramientas.Text = null;
+                txtCuerpoCorreo_Herramientas.Text = null;
+            }
+        }
+
+        private void rbPrestamo_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAsuntoCorreo_Herramientas.Text = new Correo().VerCorreo().Asunto;
+                txtCuerpoCorreo_Herramientas.Text = new Correo().VerCorreo().Cuerpo;
+            }
+            catch (Exception)
+            {
+                txtAsuntoCorreo_Herramientas.Text = null;
+                txtCuerpoCorreo_Herramientas.Text = null;
+            }
         }
 
         private void llenarGrafica()
@@ -2226,7 +2463,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,ex.TargetSite.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

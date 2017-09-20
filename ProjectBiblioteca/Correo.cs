@@ -38,9 +38,21 @@ namespace ProjectBiblioteca
             this.CuerpoNotificacion = CuerpoNotificacion;
         }
 
-        public List<string> VerCorreo()
+        public bool completo(Correo c)
         {
-            List<string> ls = new List<string>();
+            if (String.IsNullOrEmpty(c.correo) || String.IsNullOrEmpty(c.Password) || String.IsNullOrEmpty(c.Asunto) || String.IsNullOrEmpty(c.Cuerpo)
+                || String.IsNullOrEmpty(c.AsuntoNotificacion) || String.IsNullOrEmpty(c.CuerpoNotificacion))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public Correo VerCorreo()
+        {
+            Correo Correo = new Correo();
             try
             {
                 cnn.Open();
@@ -50,21 +62,23 @@ namespace ProjectBiblioteca
                 rd = cmd.ExecuteReader();
                 if (rd.Read())
                 {
-                    ls.Add(rd[0].ToString());
-                    ls.Add(rd[1].ToString());
-                    ls.Add(rd[2].ToString());
-                    ls.Add(rd[3].ToString());
+                    Correo.correo = rd[0].ToString();
+                    Correo.Password = rd[1].ToString();
+                    Correo.Asunto = rd[2].ToString();
+                    Correo.Cuerpo = rd[3].ToString();
+                    Correo.AsuntoNotificacion = rd[4].ToString();
+                    Correo.CuerpoNotificacion = rd[5].ToString();
                 }
             }
-            catch (Exception f)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
                 cnn.Close();
             }
-            return ls;
+            return Correo;
 
         }
         public void agregarCorreo()
@@ -81,9 +95,9 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha registrado correctamente su correo");
             }
-            catch (Exception f)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -103,9 +117,9 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha registrado correctamente asunto y correo para notificaciones");
             }
-            catch (Exception f)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + f.Message, f.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {

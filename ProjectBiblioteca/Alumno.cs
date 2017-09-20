@@ -94,10 +94,9 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha actualizado "+ this.Nombre);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -128,10 +127,9 @@ namespace ProjectBiblioteca
                     salida = false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
-
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -160,10 +158,9 @@ namespace ProjectBiblioteca
                     salida = false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
-
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -185,10 +182,11 @@ namespace ProjectBiblioteca
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
-            } finally
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
             {
                 cnn.Close();
             }

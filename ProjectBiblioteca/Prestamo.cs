@@ -98,10 +98,11 @@ namespace ProjectBiblioteca
                 doc.ReplaceText("<OCUPACION>", ocupacion);
 
                 doc.Save();
+                MessageBox.Show("SE HA GENERADO CORRECTAMENTE EL RECIBO EN LA RUTA: " + nuevo,"INFO",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERR EL RECIBO", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERR EL RECIBO.\n" + ex.Message, "ERROR: " + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -138,10 +139,12 @@ namespace ProjectBiblioteca
                 doc.ReplaceText("<CUATRIMESTRE>", cuatrimestre.ToString());
 
                 doc.Save();
+                MessageBox.Show("SE HA GENERADO CORRECTAMENTE EL RECIBO EN LA RUTA: " + nuevo, "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERAR EL RECIBO","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("HA OCURRIDO UN ERROR AL GENERR EL RECIBO.\n" + ex.Message, "ERROR: " + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,14 +175,14 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@Estado", 1);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Se ha registrado el prestamo","INFO",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Se ha registrado el prestamo".ToUpper(),"INFO",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
 
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error\n" + ex.Message, ex.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             finally
             {
@@ -200,9 +203,9 @@ namespace ProjectBiblioteca
 
                 MessageBox.Show("Se ha eliminado el historial", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -225,7 +228,7 @@ namespace ProjectBiblioteca
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ha ocurrido un error" + e.Message, e.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error\n".ToUpper() + e.Message, e.Source,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             finally
             {

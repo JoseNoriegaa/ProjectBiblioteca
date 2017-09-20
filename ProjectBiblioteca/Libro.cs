@@ -80,9 +80,9 @@ namespace ProjectBiblioteca
                 MessageBox.Show("Error.\nId existente");
             }
         }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -113,9 +113,9 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha actualizado el libro " + this.titulo);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -162,10 +162,9 @@ namespace ProjectBiblioteca
                     salida = false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -195,10 +194,9 @@ namespace ProjectBiblioteca
                     salida = false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -236,15 +234,15 @@ namespace ProjectBiblioteca
                     SqlCommand cmd = new SqlCommand("EliminarLibro", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@IdLibro", idLibro);
-                    if (MessageBox.Show("Esta seguro de borrar este registro permanentemete", "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("¿ESTA SEGURO DE ESLIMINAR ESTE LIBRO PERMANENTEMENTE?", "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         cmd.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {

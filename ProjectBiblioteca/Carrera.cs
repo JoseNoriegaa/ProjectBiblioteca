@@ -43,9 +43,9 @@ namespace ProjectBiblioteca
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Se ha agregado '" + this.nombreCarrera + "'");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -65,9 +65,9 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@NombreCarrera", this.nombreCarrera);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {
@@ -84,9 +84,9 @@ namespace ProjectBiblioteca
                 cmd.Parameters.AddWithValue("@IdCarrera", this.IdCarrera);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error.\n" + e.Message, e.Source);
+                MessageBox.Show("HA OCURRIDO UN ERROR.\n" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             finally
             {

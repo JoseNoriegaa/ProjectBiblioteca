@@ -22,7 +22,7 @@ namespace BIBLIOTECA.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace BIBLIOTECA.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BIBLIOTECA.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace BIBLIOTECA.Properties {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace BIBLIOTECA.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS {
+        public static byte[] PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS {
             get {
                 object obj = ResourceManager.GetObject("PRESTAMOS_DE_LIBROS_BIBLIOTECA_ALUMNOS", resourceCulture);
                 return ((byte[])(obj));
@@ -73,7 +73,7 @@ namespace BIBLIOTECA.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL {
+        public static byte[] PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL {
             get {
                 object obj = ResourceManager.GetObject("PRÉSTAMOS_DE_LIBROS_BIBLIOTECA_PERSONAL", resourceCulture);
                 return ((byte[])(obj));

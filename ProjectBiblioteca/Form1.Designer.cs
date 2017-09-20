@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -94,6 +94,7 @@
             this.txtLibro_Prestamo = new System.Windows.Forms.TextBox();
             this.txtAlumno_Prestamo = new System.Windows.Forms.TextBox();
             this.tabAlumno = new System.Windows.Forms.TabPage();
+            this.btnbuscarAlumno = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.txtApellido_Alumno = new System.Windows.Forms.TextBox();
             this.gbEliminarCarrera_Alumno = new System.Windows.Forms.GroupBox();
@@ -137,6 +138,7 @@
             this.txtTelefono_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.txtNombre_AlumnoAdd = new System.Windows.Forms.TextBox();
             this.tabPersonal = new System.Windows.Forms.TabPage();
+            this.btnBusquedaPersonal = new System.Windows.Forms.Button();
             this.cbActionOcupacion = new System.Windows.Forms.ComboBox();
             this.gbEliminarOcupacion = new System.Windows.Forms.GroupBox();
             this.cbEliminarOcupacion = new System.Windows.Forms.ComboBox();
@@ -171,6 +173,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabLibro = new System.Windows.Forms.TabPage();
+            this.btnBusquedaLibro = new System.Windows.Forms.Button();
+            this.txtDescripcion_Libro = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
             this.txtPrecioLibro = new System.Windows.Forms.TextBox();
             this.lblBorrar_Libro = new System.Windows.Forms.Label();
@@ -203,7 +207,6 @@
             this.txtEdicion_Libro = new System.Windows.Forms.TextBox();
             this.txtLugar_Libro = new System.Windows.Forms.TextBox();
             this.txtEditorial_Libro = new System.Windows.Forms.TextBox();
-            this.txtDescripcion_Libro = new System.Windows.Forms.RichTextBox();
             this.txtAutor_Libro = new System.Windows.Forms.TextBox();
             this.txtClasificiacion_Libro = new System.Windows.Forms.TextBox();
             this.txtAño_Libro = new System.Windows.Forms.TextBox();
@@ -306,7 +309,7 @@
             this.tabControl1.Controls.Add(this.tabPersonal);
             this.tabControl1.Controls.Add(this.tabLibro);
             this.tabControl1.Controls.Add(this.tabAjustes);
-            this.tabControl1.Location = new System.Drawing.Point(1, 35);
+            this.tabControl1.Location = new System.Drawing.Point(1, 36);
             this.tabControl1.MinimumSize = new System.Drawing.Size(1032, 527);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -389,6 +392,7 @@
             // 
             // txtBusqueda_Home
             // 
+            this.txtBusqueda_Home.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda_Home.Location = new System.Drawing.Point(21, 110);
             this.txtBusqueda_Home.MinimumSize = new System.Drawing.Size(265, 20);
             this.txtBusqueda_Home.Name = "txtBusqueda_Home";
@@ -406,14 +410,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPrestamos_Home.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPrestamos_Home.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrestamos_Home.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle53;
             this.dgvPrestamos_Home.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Home.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoControl_Matricula,
@@ -423,14 +427,14 @@
             this.Id_Ejemplar,
             this.Id_Prestamo,
             this.Fecha_De_Entrega});
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPrestamos_Home.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrestamos_Home.DefaultCellStyle = dataGridViewCellStyle54;
             this.dgvPrestamos_Home.Location = new System.Drawing.Point(21, 151);
             this.dgvPrestamos_Home.MinimumSize = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.MultiSelect = false;
@@ -441,6 +445,7 @@
             this.dgvPrestamos_Home.Size = new System.Drawing.Size(873, 328);
             this.dgvPrestamos_Home.TabIndex = 3;
             this.dgvPrestamos_Home.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrestamos_Home_CellClick);
+            this.dgvPrestamos_Home.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrestamos_Home_CellDoubleClick);
             // 
             // NoControl_Matricula
             // 
@@ -572,6 +577,7 @@
             // 
             // txtEstado_Prestamo
             // 
+            this.txtEstado_Prestamo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEstado_Prestamo.Location = new System.Drawing.Point(791, 408);
             this.txtEstado_Prestamo.MinimumSize = new System.Drawing.Size(201, 40);
             this.txtEstado_Prestamo.Multiline = true;
@@ -772,29 +778,30 @@
             this.dgvListaLibros_Prestamo.AllowUserToResizeColumns = false;
             this.dgvListaLibros_Prestamo.AllowUserToResizeRows = false;
             this.dgvListaLibros_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaLibros_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaLibros_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
             this.dgvListaLibros_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaLibros_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdEjempar,
             this.NombreDelLibro,
             this.ISBN});
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaLibros_Prestamo.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaLibros_Prestamo.DefaultCellStyle = dataGridViewCellStyle56;
             this.dgvListaLibros_Prestamo.Location = new System.Drawing.Point(291, 165);
             this.dgvListaLibros_Prestamo.MinimumSize = new System.Drawing.Size(382, 292);
+            this.dgvListaLibros_Prestamo.MultiSelect = false;
             this.dgvListaLibros_Prestamo.Name = "dgvListaLibros_Prestamo";
             this.dgvListaLibros_Prestamo.ReadOnly = true;
             this.dgvListaLibros_Prestamo.RowHeadersVisible = false;
@@ -835,29 +842,30 @@
             this.dgvListaAlumno_Prestamo.AllowUserToResizeColumns = false;
             this.dgvListaAlumno_Prestamo.AllowUserToResizeRows = false;
             this.dgvListaAlumno_Prestamo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaAlumno_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle57.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle57.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaAlumno_Prestamo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle57;
             this.dgvListaAlumno_Prestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaAlumno_Prestamo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NoControl,
             this.Nombre,
             this.Column2});
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaAlumno_Prestamo.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle58.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle58.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle58.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaAlumno_Prestamo.DefaultCellStyle = dataGridViewCellStyle58;
             this.dgvListaAlumno_Prestamo.Location = new System.Drawing.Point(22, 165);
             this.dgvListaAlumno_Prestamo.MinimumSize = new System.Drawing.Size(241, 292);
+            this.dgvListaAlumno_Prestamo.MultiSelect = false;
             this.dgvListaAlumno_Prestamo.Name = "dgvListaAlumno_Prestamo";
             this.dgvListaAlumno_Prestamo.ReadOnly = true;
             this.dgvListaAlumno_Prestamo.RowHeadersVisible = false;
@@ -890,6 +898,7 @@
             // 
             // txtLibro_Prestamo
             // 
+            this.txtLibro_Prestamo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLibro_Prestamo.Location = new System.Drawing.Point(291, 135);
             this.txtLibro_Prestamo.MinimumSize = new System.Drawing.Size(189, 20);
             this.txtLibro_Prestamo.Name = "txtLibro_Prestamo";
@@ -899,6 +908,7 @@
             // 
             // txtAlumno_Prestamo
             // 
+            this.txtAlumno_Prestamo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAlumno_Prestamo.Location = new System.Drawing.Point(22, 132);
             this.txtAlumno_Prestamo.MinimumSize = new System.Drawing.Size(176, 20);
             this.txtAlumno_Prestamo.Name = "txtAlumno_Prestamo";
@@ -908,6 +918,7 @@
             // 
             // tabAlumno
             // 
+            this.tabAlumno.Controls.Add(this.btnbuscarAlumno);
             this.tabAlumno.Controls.Add(this.label61);
             this.tabAlumno.Controls.Add(this.txtApellido_Alumno);
             this.tabAlumno.Controls.Add(this.gbEliminarCarrera_Alumno);
@@ -942,6 +953,17 @@
             this.tabAlumno.Text = "ALUMNO";
             this.tabAlumno.UseVisualStyleBackColor = true;
             // 
+            // btnbuscarAlumno
+            // 
+            this.btnbuscarAlumno.Location = new System.Drawing.Point(748, 61);
+            this.btnbuscarAlumno.MinimumSize = new System.Drawing.Size(75, 23);
+            this.btnbuscarAlumno.Name = "btnbuscarAlumno";
+            this.btnbuscarAlumno.Size = new System.Drawing.Size(75, 23);
+            this.btnbuscarAlumno.TabIndex = 29;
+            this.btnbuscarAlumno.Text = "Buscar";
+            this.btnbuscarAlumno.UseVisualStyleBackColor = true;
+            this.btnbuscarAlumno.Click += new System.EventHandler(this.btnbuscarAlumno_Click);
+            // 
             // label61
             // 
             this.label61.AutoSize = true;
@@ -953,12 +975,13 @@
             // 
             // txtApellido_Alumno
             // 
+            this.txtApellido_Alumno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellido_Alumno.Location = new System.Drawing.Point(15, 197);
-            this.txtApellido_Alumno.MaxLength = 50;
+            this.txtApellido_Alumno.MaxLength = 100;
             this.txtApellido_Alumno.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtApellido_Alumno.Name = "txtApellido_Alumno";
             this.txtApellido_Alumno.Size = new System.Drawing.Size(255, 20);
-            this.txtApellido_Alumno.TabIndex = 31;
+            this.txtApellido_Alumno.TabIndex = 3;
             // 
             // gbEliminarCarrera_Alumno
             // 
@@ -1025,7 +1048,7 @@
             this.chkBorrar_Alumno.MinimumSize = new System.Drawing.Size(54, 17);
             this.chkBorrar_Alumno.Name = "chkBorrar_Alumno";
             this.chkBorrar_Alumno.Size = new System.Drawing.Size(54, 17);
-            this.chkBorrar_Alumno.TabIndex = 9;
+            this.chkBorrar_Alumno.TabIndex = 10;
             this.chkBorrar_Alumno.Text = "Borrar";
             this.chkBorrar_Alumno.UseVisualStyleBackColor = true;
             this.chkBorrar_Alumno.CheckedChanged += new System.EventHandler(this.chkBorrar_Alumno_CheckedChanged);
@@ -1067,6 +1090,7 @@
             // 
             // txtIdCarrera_Alumno
             // 
+            this.txtIdCarrera_Alumno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIdCarrera_Alumno.Location = new System.Drawing.Point(12, 42);
             this.txtIdCarrera_Alumno.MaxLength = 5;
             this.txtIdCarrera_Alumno.MinimumSize = new System.Drawing.Size(185, 20);
@@ -1085,6 +1109,7 @@
             // 
             // txtCarrera_Alumno
             // 
+            this.txtCarrera_Alumno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCarrera_Alumno.Location = new System.Drawing.Point(12, 86);
             this.txtCarrera_Alumno.MaxLength = 50;
             this.txtCarrera_Alumno.MinimumSize = new System.Drawing.Size(185, 20);
@@ -1135,12 +1160,14 @@
             // 
             // txtBusqueda_Alumno
             // 
+            this.txtBusqueda_Alumno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda_Alumno.Location = new System.Drawing.Point(504, 63);
             this.txtBusqueda_Alumno.MinimumSize = new System.Drawing.Size(238, 20);
             this.txtBusqueda_Alumno.Name = "txtBusqueda_Alumno";
             this.txtBusqueda_Alumno.Size = new System.Drawing.Size(238, 20);
-            this.txtBusqueda_Alumno.TabIndex = 8;
+            this.txtBusqueda_Alumno.TabIndex = 9;
             this.txtBusqueda_Alumno.TextChanged += new System.EventHandler(this.txtBusqueda_Alumno_TextChanged);
+            this.txtBusqueda_Alumno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_Alumno_KeyPress);
             // 
             // dgvAlumnos_Alumno
             // 
@@ -1150,14 +1177,14 @@
             this.dgvAlumnos_Alumno.AllowUserToResizeRows = false;
             this.dgvAlumnos_Alumno.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAlumnos_Alumno.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlumnos_Alumno.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle59.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle59.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlumnos_Alumno.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle59;
             this.dgvAlumnos_Alumno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnos_Alumno.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
@@ -1168,14 +1195,14 @@
             this.Column14,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlumnos_Alumno.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle60.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle60.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlumnos_Alumno.DefaultCellStyle = dataGridViewCellStyle60;
             this.dgvAlumnos_Alumno.Location = new System.Drawing.Point(504, 92);
             this.dgvAlumnos_Alumno.MinimumSize = new System.Drawing.Size(502, 393);
             this.dgvAlumnos_Alumno.MultiSelect = false;
@@ -1184,7 +1211,7 @@
             this.dgvAlumnos_Alumno.RowHeadersVisible = false;
             this.dgvAlumnos_Alumno.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlumnos_Alumno.Size = new System.Drawing.Size(502, 393);
-            this.dgvAlumnos_Alumno.TabIndex = 9;
+            this.dgvAlumnos_Alumno.TabIndex = 11;
             this.dgvAlumnos_Alumno.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_Alumno_CellClick);
             // 
             // Column7
@@ -1291,6 +1318,7 @@
             // 
             // txtNoControl_AlumnoAdd
             // 
+            this.txtNoControl_AlumnoAdd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNoControl_AlumnoAdd.Location = new System.Drawing.Point(15, 110);
             this.txtNoControl_AlumnoAdd.MaxLength = 8;
             this.txtNoControl_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
@@ -1325,7 +1353,7 @@
             this.cbCarrera_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 0);
             this.cbCarrera_AlumnoAdd.Name = "cbCarrera_AlumnoAdd";
             this.cbCarrera_AlumnoAdd.Size = new System.Drawing.Size(255, 21);
-            this.cbCarrera_AlumnoAdd.TabIndex = 4;
+            this.cbCarrera_AlumnoAdd.TabIndex = 5;
             this.cbCarrera_AlumnoAdd.SelectedIndexChanged += new System.EventHandler(this.cbCarrera_AlumnoAdd_SelectedIndexChanged);
             // 
             // label6
@@ -1339,12 +1367,13 @@
             // 
             // txtEmail_AlumnoAdd
             // 
+            this.txtEmail_AlumnoAdd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmail_AlumnoAdd.Location = new System.Drawing.Point(17, 340);
-            this.txtEmail_AlumnoAdd.MaxLength = 50;
+            this.txtEmail_AlumnoAdd.MaxLength = 200;
             this.txtEmail_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtEmail_AlumnoAdd.Name = "txtEmail_AlumnoAdd";
             this.txtEmail_AlumnoAdd.Size = new System.Drawing.Size(255, 20);
-            this.txtEmail_AlumnoAdd.TabIndex = 5;
+            this.txtEmail_AlumnoAdd.TabIndex = 6;
             // 
             // cbCuatrimestre_AlumnoAdd
             // 
@@ -1356,12 +1385,18 @@
             "3",
             "4",
             "5",
-            "6"});
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"});
             this.cbCuatrimestre_AlumnoAdd.Location = new System.Drawing.Point(17, 236);
             this.cbCuatrimestre_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 0);
             this.cbCuatrimestre_AlumnoAdd.Name = "cbCuatrimestre_AlumnoAdd";
             this.cbCuatrimestre_AlumnoAdd.Size = new System.Drawing.Size(255, 21);
-            this.cbCuatrimestre_AlumnoAdd.TabIndex = 3;
+            this.cbCuatrimestre_AlumnoAdd.TabIndex = 4;
+            this.cbCuatrimestre_AlumnoAdd.SelectedIndexChanged += new System.EventHandler(this.cbCuatrimestre_AlumnoAdd_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -1378,25 +1413,27 @@
             this.btnAdd_Alumno.Location = new System.Drawing.Point(66, 436);
             this.btnAdd_Alumno.Name = "btnAdd_Alumno";
             this.btnAdd_Alumno.Size = new System.Drawing.Size(206, 28);
-            this.btnAdd_Alumno.TabIndex = 7;
+            this.btnAdd_Alumno.TabIndex = 8;
             this.btnAdd_Alumno.Text = "Agregar";
             this.btnAdd_Alumno.UseVisualStyleBackColor = true;
             this.btnAdd_Alumno.Click += new System.EventHandler(this.btnAdd_Alumno_Click);
             // 
             // txtTelefono_AlumnoAdd
             // 
+            this.txtTelefono_AlumnoAdd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTelefono_AlumnoAdd.Location = new System.Drawing.Point(17, 392);
             this.txtTelefono_AlumnoAdd.MaxLength = 10;
             this.txtTelefono_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtTelefono_AlumnoAdd.Name = "txtTelefono_AlumnoAdd";
             this.txtTelefono_AlumnoAdd.Size = new System.Drawing.Size(255, 20);
-            this.txtTelefono_AlumnoAdd.TabIndex = 6;
+            this.txtTelefono_AlumnoAdd.TabIndex = 7;
             this.txtTelefono_AlumnoAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // txtNombre_AlumnoAdd
             // 
+            this.txtNombre_AlumnoAdd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre_AlumnoAdd.Location = new System.Drawing.Point(15, 157);
-            this.txtNombre_AlumnoAdd.MaxLength = 50;
+            this.txtNombre_AlumnoAdd.MaxLength = 100;
             this.txtNombre_AlumnoAdd.MinimumSize = new System.Drawing.Size(255, 20);
             this.txtNombre_AlumnoAdd.Name = "txtNombre_AlumnoAdd";
             this.txtNombre_AlumnoAdd.Size = new System.Drawing.Size(255, 20);
@@ -1404,6 +1441,7 @@
             // 
             // tabPersonal
             // 
+            this.tabPersonal.Controls.Add(this.btnBusquedaPersonal);
             this.tabPersonal.Controls.Add(this.cbActionOcupacion);
             this.tabPersonal.Controls.Add(this.gbEliminarOcupacion);
             this.tabPersonal.Controls.Add(this.chkBorrar_Personal);
@@ -1433,6 +1471,17 @@
             this.tabPersonal.TabIndex = 2;
             this.tabPersonal.Text = "PERSONAL";
             this.tabPersonal.UseVisualStyleBackColor = true;
+            // 
+            // btnBusquedaPersonal
+            // 
+            this.btnBusquedaPersonal.Location = new System.Drawing.Point(771, 56);
+            this.btnBusquedaPersonal.MinimumSize = new System.Drawing.Size(75, 23);
+            this.btnBusquedaPersonal.Name = "btnBusquedaPersonal";
+            this.btnBusquedaPersonal.Size = new System.Drawing.Size(75, 23);
+            this.btnBusquedaPersonal.TabIndex = 32;
+            this.btnBusquedaPersonal.Text = "Buscar";
+            this.btnBusquedaPersonal.UseVisualStyleBackColor = true;
+            this.btnBusquedaPersonal.Click += new System.EventHandler(this.btnBusquedaPersonal_Click);
             // 
             // cbActionOcupacion
             // 
@@ -1541,6 +1590,7 @@
             // 
             // txtOcupacion_Personal
             // 
+            this.txtOcupacion_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtOcupacion_Personal.Location = new System.Drawing.Point(9, 45);
             this.txtOcupacion_Personal.MinimumSize = new System.Drawing.Size(185, 20);
             this.txtOcupacion_Personal.Name = "txtOcupacion_Personal";
@@ -1578,12 +1628,14 @@
             // 
             // txtBuscar_Personal
             // 
+            this.txtBuscar_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBuscar_Personal.Location = new System.Drawing.Point(502, 58);
             this.txtBuscar_Personal.MinimumSize = new System.Drawing.Size(263, 20);
             this.txtBuscar_Personal.Name = "txtBuscar_Personal";
             this.txtBuscar_Personal.Size = new System.Drawing.Size(263, 20);
             this.txtBuscar_Personal.TabIndex = 8;
             this.txtBuscar_Personal.TextChanged += new System.EventHandler(this.txtBuscar_Personal_TextChanged);
+            this.txtBuscar_Personal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_Personal_KeyPress);
             // 
             // dgvLista_Personal
             // 
@@ -1592,14 +1644,14 @@
             this.dgvLista_Personal.AllowUserToResizeColumns = false;
             this.dgvLista_Personal.AllowUserToResizeRows = false;
             this.dgvLista_Personal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLista_Personal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle61.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle61.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle61.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle61.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLista_Personal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle61;
             this.dgvLista_Personal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista_Personal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column10,
@@ -1607,16 +1659,17 @@
             this.Column12,
             this.Column15,
             this.Column16});
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLista_Personal.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle62.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle62.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLista_Personal.DefaultCellStyle = dataGridViewCellStyle62;
             this.dgvLista_Personal.Location = new System.Drawing.Point(502, 90);
             this.dgvLista_Personal.MinimumSize = new System.Drawing.Size(505, 402);
+            this.dgvLista_Personal.MultiSelect = false;
             this.dgvLista_Personal.Name = "dgvLista_Personal";
             this.dgvLista_Personal.ReadOnly = true;
             this.dgvLista_Personal.RowHeadersVisible = false;
@@ -1698,6 +1751,7 @@
             // 
             // txtTelefono_Personal
             // 
+            this.txtTelefono_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTelefono_Personal.Location = new System.Drawing.Point(11, 338);
             this.txtTelefono_Personal.MaxLength = 10;
             this.txtTelefono_Personal.Name = "txtTelefono_Personal";
@@ -1716,8 +1770,9 @@
             // 
             // txtEMail_Personal
             // 
+            this.txtEMail_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEMail_Personal.Location = new System.Drawing.Point(11, 275);
-            this.txtEMail_Personal.MaxLength = 50;
+            this.txtEMail_Personal.MaxLength = 200;
             this.txtEMail_Personal.Name = "txtEMail_Personal";
             this.txtEMail_Personal.Size = new System.Drawing.Size(243, 20);
             this.txtEMail_Personal.TabIndex = 5;
@@ -1753,8 +1808,9 @@
             // 
             // txtNombre_Personal
             // 
+            this.txtNombre_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre_Personal.Location = new System.Drawing.Point(11, 144);
-            this.txtNombre_Personal.MaxLength = 50;
+            this.txtNombre_Personal.MaxLength = 200;
             this.txtNombre_Personal.MinimumSize = new System.Drawing.Size(243, 20);
             this.txtNombre_Personal.Name = "txtNombre_Personal";
             this.txtNombre_Personal.Size = new System.Drawing.Size(243, 20);
@@ -1771,6 +1827,7 @@
             // 
             // txtNoEmpleado_Personal
             // 
+            this.txtNoEmpleado_Personal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNoEmpleado_Personal.Location = new System.Drawing.Point(11, 90);
             this.txtNoEmpleado_Personal.MaxLength = 10;
             this.txtNoEmpleado_Personal.MinimumSize = new System.Drawing.Size(243, 20);
@@ -1801,6 +1858,8 @@
             // 
             // tabLibro
             // 
+            this.tabLibro.Controls.Add(this.btnBusquedaLibro);
+            this.tabLibro.Controls.Add(this.txtDescripcion_Libro);
             this.tabLibro.Controls.Add(this.label62);
             this.tabLibro.Controls.Add(this.txtPrecioLibro);
             this.tabLibro.Controls.Add(this.lblBorrar_Libro);
@@ -1822,7 +1881,6 @@
             this.tabLibro.Controls.Add(this.txtEdicion_Libro);
             this.tabLibro.Controls.Add(this.txtLugar_Libro);
             this.tabLibro.Controls.Add(this.txtEditorial_Libro);
-            this.tabLibro.Controls.Add(this.txtDescripcion_Libro);
             this.tabLibro.Controls.Add(this.txtAutor_Libro);
             this.tabLibro.Controls.Add(this.txtClasificiacion_Libro);
             this.tabLibro.Controls.Add(this.txtAño_Libro);
@@ -1838,6 +1896,29 @@
             this.tabLibro.Text = "LIBRO";
             this.tabLibro.UseVisualStyleBackColor = true;
             // 
+            // btnBusquedaLibro
+            // 
+            this.btnBusquedaLibro.Location = new System.Drawing.Point(827, 58);
+            this.btnBusquedaLibro.MinimumSize = new System.Drawing.Size(75, 23);
+            this.btnBusquedaLibro.Name = "btnBusquedaLibro";
+            this.btnBusquedaLibro.Size = new System.Drawing.Size(75, 23);
+            this.btnBusquedaLibro.TabIndex = 31;
+            this.btnBusquedaLibro.Text = "Buscar";
+            this.btnBusquedaLibro.UseVisualStyleBackColor = true;
+            this.btnBusquedaLibro.Click += new System.EventHandler(this.btnBusquedaLibro_Click);
+            // 
+            // txtDescripcion_Libro
+            // 
+            this.txtDescripcion_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion_Libro.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtDescripcion_Libro.Location = new System.Drawing.Point(292, 317);
+            this.txtDescripcion_Libro.MaxLength = 200;
+            this.txtDescripcion_Libro.MinimumSize = new System.Drawing.Size(234, 20);
+            this.txtDescripcion_Libro.Multiline = true;
+            this.txtDescripcion_Libro.Name = "txtDescripcion_Libro";
+            this.txtDescripcion_Libro.Size = new System.Drawing.Size(234, 122);
+            this.txtDescripcion_Libro.TabIndex = 10;
+            // 
             // label62
             // 
             this.label62.AutoSize = true;
@@ -1849,12 +1930,14 @@
             // 
             // txtPrecioLibro
             // 
+            this.txtPrecioLibro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPrecioLibro.Location = new System.Drawing.Point(31, 464);
-            this.txtPrecioLibro.MaxLength = 4;
+            this.txtPrecioLibro.MaxLength = 10;
             this.txtPrecioLibro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtPrecioLibro.Name = "txtPrecioLibro";
             this.txtPrecioLibro.Size = new System.Drawing.Size(234, 20);
-            this.txtPrecioLibro.TabIndex = 29;
+            this.txtPrecioLibro.TabIndex = 9;
+            this.txtPrecioLibro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // lblBorrar_Libro
             // 
@@ -1874,7 +1957,7 @@
             this.chkBorrar_Libro.MinimumSize = new System.Drawing.Size(54, 17);
             this.chkBorrar_Libro.Name = "chkBorrar_Libro";
             this.chkBorrar_Libro.Size = new System.Drawing.Size(54, 17);
-            this.chkBorrar_Libro.TabIndex = 12;
+            this.chkBorrar_Libro.TabIndex = 13;
             this.chkBorrar_Libro.Text = "Borrar";
             this.chkBorrar_Libro.UseVisualStyleBackColor = true;
             this.chkBorrar_Libro.CheckedChanged += new System.EventHandler(this.chkBorrar_Libro_CheckedChanged);
@@ -1892,12 +1975,14 @@
             // 
             // txtBusqueda_Libro
             // 
+            this.txtBusqueda_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda_Libro.Location = new System.Drawing.Point(557, 60);
             this.txtBusqueda_Libro.MinimumSize = new System.Drawing.Size(264, 20);
             this.txtBusqueda_Libro.Name = "txtBusqueda_Libro";
             this.txtBusqueda_Libro.Size = new System.Drawing.Size(264, 20);
-            this.txtBusqueda_Libro.TabIndex = 11;
+            this.txtBusqueda_Libro.TabIndex = 12;
             this.txtBusqueda_Libro.TextChanged += new System.EventHandler(this.txtBusqueda_Libro_TextChanged);
+            this.txtBusqueda_Libro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_Libro_KeyPress);
             // 
             // dgvLista_libro
             // 
@@ -1919,22 +2004,23 @@
             this.Column22,
             this.Column23,
             this.Precio});
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLista_libro.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle63.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle63.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle63.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle63.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLista_libro.DefaultCellStyle = dataGridViewCellStyle63;
             this.dgvLista_libro.Location = new System.Drawing.Point(557, 86);
             this.dgvLista_libro.MinimumSize = new System.Drawing.Size(449, 406);
+            this.dgvLista_libro.MultiSelect = false;
             this.dgvLista_libro.Name = "dgvLista_libro";
             this.dgvLista_libro.ReadOnly = true;
             this.dgvLista_libro.RowHeadersVisible = false;
             this.dgvLista_libro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista_libro.Size = new System.Drawing.Size(449, 406);
-            this.dgvLista_libro.TabIndex = 13;
+            this.dgvLista_libro.TabIndex = 14;
             this.dgvLista_libro.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_libro_CellClick);
             // 
             // dataGridViewTextBoxColumn1
@@ -2054,7 +2140,7 @@
             this.btnAgregar_Libro.MinimumSize = new System.Drawing.Size(93, 38);
             this.btnAgregar_Libro.Name = "btnAgregar_Libro";
             this.btnAgregar_Libro.Size = new System.Drawing.Size(93, 38);
-            this.btnAgregar_Libro.TabIndex = 10;
+            this.btnAgregar_Libro.TabIndex = 11;
             this.btnAgregar_Libro.Text = "Agregar";
             this.btnAgregar_Libro.UseVisualStyleBackColor = true;
             this.btnAgregar_Libro.Click += new System.EventHandler(this.btnAgregar_Libro_Click);
@@ -2089,7 +2175,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(278, 281);
+            this.label46.Location = new System.Drawing.Point(289, 301);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(80, 13);
             this.label46.TabIndex = 19;
@@ -2151,8 +2237,9 @@
             // 
             // txtEdicion_Libro
             // 
+            this.txtEdicion_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEdicion_Libro.Location = new System.Drawing.Point(31, 422);
-            this.txtEdicion_Libro.MaxLength = 4;
+            this.txtEdicion_Libro.MaxLength = 200;
             this.txtEdicion_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtEdicion_Libro.Name = "txtEdicion_Libro";
             this.txtEdicion_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2161,8 +2248,9 @@
             // 
             // txtLugar_Libro
             // 
+            this.txtLugar_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLugar_Libro.Location = new System.Drawing.Point(31, 379);
-            this.txtLugar_Libro.MaxLength = 50;
+            this.txtLugar_Libro.MaxLength = 200;
             this.txtLugar_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtLugar_Libro.Name = "txtLugar_Libro";
             this.txtLugar_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2170,26 +2258,19 @@
             // 
             // txtEditorial_Libro
             // 
+            this.txtEditorial_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEditorial_Libro.Location = new System.Drawing.Point(31, 336);
-            this.txtEditorial_Libro.MaxLength = 50;
+            this.txtEditorial_Libro.MaxLength = 200;
             this.txtEditorial_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtEditorial_Libro.Name = "txtEditorial_Libro";
             this.txtEditorial_Libro.Size = new System.Drawing.Size(234, 20);
             this.txtEditorial_Libro.TabIndex = 6;
             // 
-            // txtDescripcion_Libro
-            // 
-            this.txtDescripcion_Libro.Location = new System.Drawing.Point(278, 297);
-            this.txtDescripcion_Libro.MinimumSize = new System.Drawing.Size(216, 145);
-            this.txtDescripcion_Libro.Name = "txtDescripcion_Libro";
-            this.txtDescripcion_Libro.Size = new System.Drawing.Size(216, 145);
-            this.txtDescripcion_Libro.TabIndex = 9;
-            this.txtDescripcion_Libro.Text = "";
-            // 
             // txtAutor_Libro
             // 
+            this.txtAutor_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAutor_Libro.Location = new System.Drawing.Point(31, 297);
-            this.txtAutor_Libro.MaxLength = 80;
+            this.txtAutor_Libro.MaxLength = 200;
             this.txtAutor_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtAutor_Libro.Name = "txtAutor_Libro";
             this.txtAutor_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2197,8 +2278,9 @@
             // 
             // txtClasificiacion_Libro
             // 
+            this.txtClasificiacion_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtClasificiacion_Libro.Location = new System.Drawing.Point(31, 254);
-            this.txtClasificiacion_Libro.MaxLength = 50;
+            this.txtClasificiacion_Libro.MaxLength = 200;
             this.txtClasificiacion_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtClasificiacion_Libro.Name = "txtClasificiacion_Libro";
             this.txtClasificiacion_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2206,8 +2288,9 @@
             // 
             // txtAño_Libro
             // 
+            this.txtAño_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAño_Libro.Location = new System.Drawing.Point(31, 211);
-            this.txtAño_Libro.MaxLength = 4;
+            this.txtAño_Libro.MaxLength = 200;
             this.txtAño_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtAño_Libro.Name = "txtAño_Libro";
             this.txtAño_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2216,7 +2299,9 @@
             // 
             // txtTitulo_Libro
             // 
+            this.txtTitulo_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTitulo_Libro.Location = new System.Drawing.Point(31, 168);
+            this.txtTitulo_Libro.MaxLength = 200;
             this.txtTitulo_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtTitulo_Libro.Name = "txtTitulo_Libro";
             this.txtTitulo_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2224,8 +2309,9 @@
             // 
             // txtIsbn_Libro
             // 
+            this.txtIsbn_Libro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIsbn_Libro.Location = new System.Drawing.Point(31, 129);
-            this.txtIsbn_Libro.MaxLength = 16;
+            this.txtIsbn_Libro.MaxLength = 17;
             this.txtIsbn_Libro.MinimumSize = new System.Drawing.Size(234, 20);
             this.txtIsbn_Libro.Name = "txtIsbn_Libro";
             this.txtIsbn_Libro.Size = new System.Drawing.Size(234, 20);
@@ -2362,6 +2448,7 @@
             // 
             // txtBusqueda_Historial
             // 
+            this.txtBusqueda_Historial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda_Historial.Location = new System.Drawing.Point(6, 134);
             this.txtBusqueda_Historial.MinimumSize = new System.Drawing.Size(265, 20);
             this.txtBusqueda_Historial.Name = "txtBusqueda_Historial";
@@ -2376,14 +2463,14 @@
             this.dgvPrestamos_Historial.AllowUserToResizeColumns = false;
             this.dgvPrestamos_Historial.AllowUserToResizeRows = false;
             this.dgvPrestamos_Historial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPrestamos_Historial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle64.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle64.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPrestamos_Historial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle64;
             this.dgvPrestamos_Historial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestamos_Historial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._idprestamo,
@@ -2394,16 +2481,17 @@
             this._isbn,
             this._fechaprestamo,
             this._fechaentrega});
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPrestamos_Historial.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle65.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle65.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle65.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrestamos_Historial.DefaultCellStyle = dataGridViewCellStyle65;
             this.dgvPrestamos_Historial.Location = new System.Drawing.Point(6, 160);
             this.dgvPrestamos_Historial.MinimumSize = new System.Drawing.Size(998, 301);
+            this.dgvPrestamos_Historial.MultiSelect = false;
             this.dgvPrestamos_Historial.Name = "dgvPrestamos_Historial";
             this.dgvPrestamos_Historial.ReadOnly = true;
             this.dgvPrestamos_Historial.RowHeadersVisible = false;
@@ -2597,10 +2685,11 @@
             this.rbPrestamo.Location = new System.Drawing.Point(844, 33);
             this.rbPrestamo.Name = "rbPrestamo";
             this.rbPrestamo.Size = new System.Drawing.Size(69, 17);
-            this.rbPrestamo.TabIndex = 13;
+            this.rbPrestamo.TabIndex = 6;
             this.rbPrestamo.TabStop = true;
             this.rbPrestamo.Text = "Préstamo";
             this.rbPrestamo.UseVisualStyleBackColor = true;
+            this.rbPrestamo.CheckedChanged += new System.EventHandler(this.rbPrestamo_CheckedChanged);
             // 
             // rbNotificacion
             // 
@@ -2608,10 +2697,11 @@
             this.rbNotificacion.Location = new System.Drawing.Point(739, 33);
             this.rbNotificacion.Name = "rbNotificacion";
             this.rbNotificacion.Size = new System.Drawing.Size(92, 17);
-            this.rbNotificacion.TabIndex = 2;
+            this.rbNotificacion.TabIndex = 5;
             this.rbNotificacion.TabStop = true;
             this.rbNotificacion.Text = "Notificaciones";
             this.rbNotificacion.UseVisualStyleBackColor = true;
+            this.rbNotificacion.CheckedChanged += new System.EventHandler(this.rbNotificacion_CheckedChanged);
             // 
             // label60
             // 
@@ -2639,9 +2729,9 @@
             this.label57.ForeColor = System.Drawing.Color.Red;
             this.label57.Location = new System.Drawing.Point(151, 101);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(252, 13);
+            this.label57.Size = new System.Drawing.Size(266, 13);
             this.label57.TabIndex = 11;
-            this.label57.Text = "NOTA:Ingrese un correo  de dominio ------ solamente";
+            this.label57.Text = "NOTA:Ingrese un correo  de dominio @utpp solamente";
             // 
             // checkPassCorreo
             // 
@@ -2657,9 +2747,10 @@
             // txtCorreo
             // 
             this.txtCorreo.Location = new System.Drawing.Point(19, 78);
+            this.txtCorreo.MaxLength = 200;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(382, 20);
-            this.txtCorreo.TabIndex = 4;
+            this.txtCorreo.TabIndex = 1;
             // 
             // label36
             // 
@@ -2673,19 +2764,20 @@
             // txtPassCorreo
             // 
             this.txtPassCorreo.Location = new System.Drawing.Point(19, 158);
+            this.txtPassCorreo.MaxLength = 200;
             this.txtPassCorreo.Name = "txtPassCorreo";
             this.txtPassCorreo.Size = new System.Drawing.Size(382, 20);
-            this.txtPassCorreo.TabIndex = 5;
+            this.txtPassCorreo.TabIndex = 2;
             this.txtPassCorreo.UseSystemPasswordChar = true;
             // 
             // txtAsuntoCorreo_Herramientas
             // 
             this.txtAsuntoCorreo_Herramientas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.txtAsuntoCorreo_Herramientas.Location = new System.Drawing.Point(497, 78);
-            this.txtAsuntoCorreo_Herramientas.MaxLength = 50;
+            this.txtAsuntoCorreo_Herramientas.MaxLength = 200;
             this.txtAsuntoCorreo_Herramientas.Name = "txtAsuntoCorreo_Herramientas";
             this.txtAsuntoCorreo_Herramientas.Size = new System.Drawing.Size(458, 20);
-            this.txtAsuntoCorreo_Herramientas.TabIndex = 1;
+            this.txtAsuntoCorreo_Herramientas.TabIndex = 3;
             // 
             // label33
             // 
@@ -2719,7 +2811,7 @@
             this.txtCuerpoCorreo_Herramientas.Location = new System.Drawing.Point(497, 122);
             this.txtCuerpoCorreo_Herramientas.Name = "txtCuerpoCorreo_Herramientas";
             this.txtCuerpoCorreo_Herramientas.Size = new System.Drawing.Size(461, 209);
-            this.txtCuerpoCorreo_Herramientas.TabIndex = 2;
+            this.txtCuerpoCorreo_Herramientas.TabIndex = 4;
             this.txtCuerpoCorreo_Herramientas.Text = "";
             // 
             // notifyIcon1
@@ -2923,7 +3015,6 @@
         private System.Windows.Forms.TextBox txtEdicion_Libro;
         private System.Windows.Forms.TextBox txtLugar_Libro;
         private System.Windows.Forms.TextBox txtEditorial_Libro;
-        private System.Windows.Forms.RichTextBox txtDescripcion_Libro;
         private System.Windows.Forms.TextBox txtAutor_Libro;
         private System.Windows.Forms.TextBox txtClasificiacion_Libro;
         private System.Windows.Forms.TextBox txtAño_Libro;
@@ -3049,6 +3140,10 @@
         private System.Windows.Forms.RadioButton rbPrestamo;
         private System.Windows.Forms.RadioButton rbNotificacion;
         private System.Windows.Forms.Button bEliminarHistorial_herramientas;
+        private System.Windows.Forms.TextBox txtDescripcion_Libro;
+        private System.Windows.Forms.Button btnbuscarAlumno;
+        private System.Windows.Forms.Button btnBusquedaPersonal;
+        private System.Windows.Forms.Button btnBusquedaLibro;
     }
 }
 
