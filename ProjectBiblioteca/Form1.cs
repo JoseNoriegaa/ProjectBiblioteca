@@ -48,31 +48,41 @@ namespace ProjectBiblioteca
         List<Carrera> listaCarreras2 = new List<Carrera>();
 
         #endregion
-
+        bool estadoConexion= new Conexion().probarConexion(new Conexion().connectionString());
         public Form1()
         {
-            InitializeComponent();
+            
+                InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cbFiltroBusqueda_Home.SelectedIndex = 0;
-            cbTipo_Prestamo.SelectedIndex = 0;
-            cbFiltro_Historial.SelectedIndex = 0;
-            cbFiltro_Analisis.SelectedIndex = 0;
-            fillDGVs("todo");
-            fillCB();
-            rbPrestamo.Checked = true;
-            ShowIcon = true;
-            llenarGrafica();
-            List<Control> ls = new List<Control>() {tabInicio, tabPrestamo,tabAlumno,tabPersonal, tabAnalisis,tabLibro,tabPage2, tabAjustes_2,
-                tabAjustes,tabControl1, gbAgregarCarrera_Alumno, gbGrafica_Analisis, gbOcupacion_Personal,gbEliminarCarrera_Alumno };
-            foreach (Control item1 in ls)
+            if (estadoConexion)
             {
-                foreach (Control item in item1.Controls)
+
+                cbFiltroBusqueda_Home.SelectedIndex = 0;
+                cbTipo_Prestamo.SelectedIndex = 0;
+                cbFiltro_Historial.SelectedIndex = 0;
+                cbFiltro_Analisis.SelectedIndex = 0;
+                fillDGVs("todo");
+                fillCB();
+                rbPrestamo.Checked = true;
+                ShowIcon = true;
+                llenarGrafica();
+                List<Control> ls = new List<Control>() {tabInicio, tabPrestamo,tabAlumno,tabPersonal, tabAnalisis,tabLibro,tabPage2, tabAjustes_2,
+                tabAjustes,tabControl1, gbAgregarCarrera_Alumno, gbGrafica_Analisis, gbOcupacion_Personal,gbEliminarCarrera_Alumno };
+                foreach (Control item1 in ls)
                 {
-                    item.MinimumSize = item.Size;
+                    foreach (Control item in item1.Controls)
+                    {
+                        item.MinimumSize = item.Size;
+                    }
                 }
+            }
+            else
+            {
+                this.Close();
             }
         }
 
@@ -307,7 +317,7 @@ namespace ProjectBiblioteca
                 SqlDataReader rd;
                 cnn.Open();
                 #region llenar DGV libro
-                if (dgv=="libro" || dgv=="todo")
+                if (dgv == "libro" || dgv == "todo")
                 {
                     dgvLista_libro.Rows.Clear();
 
@@ -324,7 +334,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar DGV Alumnos-Personal Prestamo
-                if (dgv== "alumnos-personal prestamo" || dgv == "todo")
+                if (dgv == "alumnos-personal prestamo" || dgv == "todo")
                 {
                     if (cbTipo_Prestamo.SelectedIndex == 0)
                     {
@@ -354,7 +364,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar dgv Libro prestamo
-                if (dgv== "libro prestamo" || dgv == "todo")
+                if (dgv == "libro prestamo" || dgv == "todo")
                 {
                     cmd = new SqlCommand("BuscarLibros_NoPrestados", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -370,7 +380,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar lista alumnos
-                if (dgv== "alumno" || dgv == "todo")
+                if (dgv == "alumno" || dgv == "todo")
                 {
                     cmd = new SqlCommand("Mostrar_Alumnos", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -386,7 +396,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar lista Personal
-                if (dgv== "personal" || dgv == "todo")
+                if (dgv == "personal" || dgv == "todo")
                 {
                     cmd = new SqlCommand("Mostrar_Personal", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -402,7 +412,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar dgv prestamos home
-                if (dgv== "prestamos home" || dgv == "todo")
+                if (dgv == "prestamos home" || dgv == "todo")
                 {
                     switch (cbFiltroBusqueda_Home.SelectedItem.ToString())
                     {
@@ -463,7 +473,7 @@ namespace ProjectBiblioteca
                 #endregion
 
                 #region llenar dgv historial Herramientas
-                if (dgv== "historial" || dgv == "todo")
+                if (dgv == "historial" || dgv == "todo")
                 {
                     switch (cbFiltro_Historial.SelectedIndex)
                     {
@@ -517,6 +527,7 @@ namespace ProjectBiblioteca
             finally
             {
                 cnn.Close();
+                
             }
         }
 
@@ -630,7 +641,7 @@ namespace ProjectBiblioteca
             {
                 listaCarreras.Add(new Carrera(rd[0].ToString(), rd[1].ToString()));
                 cbCarrera_AlumnoAdd.Items.Add(rd[1].ToString());
-                cbEliminarCarrera_Alumno.Items.Add(rd[1].ToString());
+                cbEliminarCarrera_Alumno.Items.Add(rd[0].ToString());
             }
             rd.Close();
             #endregion
@@ -640,8 +651,10 @@ namespace ProjectBiblioteca
             cmd.CommandType = CommandType.StoredProcedure;
             rd = cmd.ExecuteReader();
             cbOcupacion_Personal.Items.Clear();
+            cbEliminarOcupacion.Items.Clear();
             while (rd.Read())
             {
+                cbEliminarOcupacion.Items.Add(rd[0].ToString());
                 cbOcupacion_Personal.Items.Add(rd[0].ToString());
             }
             rd.Close();
@@ -668,7 +681,7 @@ namespace ProjectBiblioteca
                 else
                 {
                     carrera = new Carrera(txtIdCarrera_Alumno.Text, txtCarrera_Alumno.Text);
-                    carrera.editarCarreraBD(cbCarrera_AlumnoAdd.SelectedItem.ToString());
+                    carrera.editarCarreraBD();
                     gbAgregarCarrera_Alumno.Visible = false;
                     fillCB();
                 }
@@ -1815,14 +1828,15 @@ namespace ProjectBiblioteca
                     btnAddCarrera_alumno.Text = "Agregar";
                     break;
                 case "1":
+                    gbAgregarCarrera_Alumno.Visible = false;
+                    gbEliminarCarrera_Alumno.Visible = true;
+                    break;
+                case "2":
                     gbAgregarCarrera_Alumno.Visible = true;
                     gbEliminarCarrera_Alumno.Visible = false;
                     btnAddCarrera_alumno.Text = "Editar";
                     break;
-                case "2":
-                    gbAgregarCarrera_Alumno.Visible = false;
-                    gbEliminarCarrera_Alumno.Visible = true;
-                    break;
+                
             }
             txtIdCarrera_Alumno.Text = null;
             txtCarrera_Alumno.Text = null;
@@ -1866,7 +1880,7 @@ namespace ProjectBiblioteca
                     btnOcupacion_Personal.Text = "Agregar";
 
                     break;
-                case 1:
+                case 2:
                     if (cbOcupacion_Personal.SelectedIndex != 0)
                     {
                         gbOcupacion_Personal.Visible = true;
@@ -1879,9 +1893,10 @@ namespace ProjectBiblioteca
                         MessageBox.Show("SELECCIONE UN ELEMENTO EN OCUPACION", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     break;
-                case 2:
+                case 1:
                     gbEliminarOcupacion.Visible = true;
                     gbOcupacion_Personal.Visible = false;
+                    fillCB();
 
                     break;
             }
@@ -2101,6 +2116,31 @@ namespace ProjectBiblioteca
                 txtAsuntoCorreo_Herramientas.Text = null;
                 txtCuerpoCorreo_Herramientas.Text = null;
             }
+        }
+
+        private void tabAlumno_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label59_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCarrera_Alumno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIdCarrera_Alumno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void llenarGrafica()

@@ -301,19 +301,16 @@ create procedure EliminarCarrera
 @IdCarrera varchar(10)
 as
 delete alumno where Carrera=@IdCarrera
-delete Carrera
-where Carrera=@IdCarrera 
+delete Carrera where IdCarrera=@IdCarrera 
 go
 
 
 create procedure EditarCarrera
-@IdCarreraViejo varchar(10),
 @IdCarrera varchar(10),
 @NombreCarrera varchar(50)
 
 as
-update alumno set Carrera=@IdCarrera where Carrera=@IdCarreraViejo
-update Carrera set IdCarrera=@IdCarrera, Carrera=@NombreCarrera where IdCarrera=@IdCarreraViejo
+update Carrera set Carrera=@NombreCarrera where IdCarrera=@NombreCarrera
 
 go
 
@@ -399,12 +396,20 @@ create procedure Agregar_Ocupacion
 as
 insert into Ocupacion values (@Puesto)
 go
+create procedure eliminarPuesto
+@puesto varchar(200)
+as
+delete from Personal where Ocupacion=@puesto
+delete from Ocupacion where Puesto=@puesto
+go
+
 
 
 create procedure Mostrar_Ocupacion
 as
 select * from Ocupacion
 go
+
 
 
 create procedure verificar_Personal

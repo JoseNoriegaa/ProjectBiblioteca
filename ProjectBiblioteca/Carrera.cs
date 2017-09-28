@@ -53,14 +53,13 @@ namespace ProjectBiblioteca
             }
         }
 
-        public void editarCarreraBD(string IdViejo)
+        public void editarCarreraBD()
         {
             try
             {
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("EditarCarrera", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdCarreraViejo", IdViejo);
                 cmd.Parameters.AddWithValue("@IdCarrera", this.IdCarrera);
                 cmd.Parameters.AddWithValue("@NombreCarrera", this.nombreCarrera);
                 cmd.ExecuteNonQuery();
@@ -78,11 +77,14 @@ namespace ProjectBiblioteca
         {
             try
             {
-                cnn.Open();
-                SqlCommand cmd = new SqlCommand("EliminarCarrera", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdCarrera", this.IdCarrera);
-                cmd.ExecuteNonQuery();
+                if (MessageBox.Show("Al borrar este puesto se eliminaran todos los registros relacionados.\n¿Desea continuar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("EliminarCarrera", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdCarrera", this.IdCarrera);
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {

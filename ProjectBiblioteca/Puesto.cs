@@ -70,11 +70,15 @@ namespace ProjectBiblioteca
         {
             try
             {
-                cnn.Open();
-                SqlCommand cmd = new SqlCommand("eliminarPuesto", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@puesto", this.nombre);
-                cmd.ExecuteNonQuery();
+                if (MessageBox.Show("Al borrar este puesto se eliminaran todos los registros relacionados.\n¿Desea continuar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("eliminarPuesto", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@puesto", this.nombre);
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
